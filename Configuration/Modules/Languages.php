@@ -6,36 +6,36 @@ use \ECG\LolitaFramework\Configuration\Init as Init;
 use \ECG\LolitaFramework\Configuration\Configuration as Configuration;
 use \ECG\LolitaFramework\Configuration\IModule as IModule;
 
-class Menus extends Init implements IModule
+class Languages extends Init implements IModule
 {
-
     /**
-     * Menus class constructor
+     * Languages class constructor
      *
-     * @param string $data config file data.
+     * @param array $data engine data.
      */
     public function __construct($data = null)
     {
-        $this->data = $data;
+        $this->data        = (array) $data;
+        $this->init_action = 'after_setup_theme';
         $this->init();
     }
 
     /**
      * Run by the 'init' hook.
-     * Execute the "register_nav_menus" function from WordPress
+     * Execute the "add_theme_support" function from WordPress.
      *
      * @return void
      */
     public function install()
     {
-        if (is_array($this->data) && !empty($this->data)) {
-            $locations = array();
-
-            foreach ($this->data as $slug => $desc) {
-                $locations[ $slug ] = $desc;
+        if (is_array($this->data) && ! empty($this->data)) {
+            foreach ($this->data as $domain => $path) {
+                /*
+                 * Make theme available for translation.
+                 * Translations can be filed in the /languages/ directory.
+                 */
+                load_theme_textdomain($domain, HelperString::compileVariables($path));
             }
-
-            register_nav_menus($locations);
         }
     }
 

@@ -1,10 +1,10 @@
 <?php
-namespace LiveEditor\LolitaFramework\Configuration\Modules;
+namespace ECG\LolitaFramework\Configuration\Modules;
 
-use \LiveEditor\LolitaFramework\Core\HelperString as HelperString;
-use \LiveEditor\LolitaFramework\Configuration\Init as Init;
-use \LiveEditor\LolitaFramework\Configuration\Configuration as Configuration;
-use \LiveEditor\LolitaFramework\Configuration\IModule as IModule;
+use \ECG\LolitaFramework\Core\HelperString as HelperString;
+use \ECG\LolitaFramework\Configuration\Init as Init;
+use \ECG\LolitaFramework\Configuration\Configuration as Configuration;
+use \ECG\LolitaFramework\Configuration\IModule as IModule;
 
 class Sidebars extends Init implements IModule
 {
@@ -16,7 +16,7 @@ class Sidebars extends Init implements IModule
      */
     public function __construct($data = null)
     {
-        $this->data = $data;
+        $this->data = (array) $data;
         $this->init();
     }
 

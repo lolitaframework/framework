@@ -1,5 +1,5 @@
 <?php
-namespace LiveEditor\LolitaFramework\Core;
+namespace ECG\LolitaFramework\Core;
 
 class GlobalLocator
 {

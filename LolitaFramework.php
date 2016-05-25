@@ -1,5 +1,5 @@
 <?php
-namespace LiveEditor;
+namespace ECG;
 
 /**
  * Lolita Framework singlton class
@@ -10,13 +10,14 @@ class LolitaFramework
      * Get class instance only once
      * @return [LolitaFramewor] object.
      */
-    public function &getInstance()
+    public static function getInstance()
     {
         static $instance;
         if (isset($instance)) {
             return $instance;
         }
-        return new self();
+        $self = new self();
+        return $self;
     }
 
     /**
@@ -33,18 +34,18 @@ class LolitaFramework
      */
     public function constants()
     {
-        define(DS, DIRECTORY_SEPARATOR);
-        define(NS, '\\');
-        define(LF_DIR, dirname(__FILE__));
-        define(LF_URL, $this->getURLByDirectory(LF_DIR));
-        define(BASE_DIR, dirname(LF_DIR));
-        define(BASE_URL, $this->getURLByDirectory(BASE_DIR));
-        define(SITE_URL, get_bloginfo('url'));
-        define(AJAX_URL, admin_url('admin-ajax.php'));
+        define('DS', DIRECTORY_SEPARATOR);
+        define('NS', '\\');
+        define('LF_DIR', dirname(__FILE__));
+        define('LF_URL', $this->getURLByDirectory(LF_DIR));
+        define('BASE_DIR', dirname(LF_DIR));
+        define('BASE_URL', $this->getURLByDirectory(BASE_DIR));
+        define('SITE_URL', get_bloginfo('url'));
+        define('AJAX_URL', admin_url('admin-ajax.php'));
         if (!function_exists('wp_create_nonce')) {
             require_once(ABSPATH . DS . 'wp-includes' . DS . 'pluggable.php');
         }
-        define(LF_NONCE, wp_create_nonce('Lolita Framework'));
+        define('LF_NONCE', wp_create_nonce('Lolita Framework'));
     }
 
     /**

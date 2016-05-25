@@ -1,5 +1,5 @@
 <?php
-namespace LiveEditor\LolitaFramework\Configuration;
+namespace ECG\LolitaFramework\Configuration;
 
 abstract class Init
 {
