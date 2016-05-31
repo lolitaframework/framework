@@ -1,7 +1,7 @@
 <?php
 namespace ECG\LolitaFramework\Configuration;
 
-use ECG\LolitaFramework\Core\GlobalLocator as GlobalLocator;
+use \ECG\LolitaFramework\Core\GlobalLocator as GlobalLocator;
 use \ECG\LolitaFramework\Core\HelperClass as HelperClass;
 
 class Configuration
