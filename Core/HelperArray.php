@@ -103,4 +103,28 @@ class HelperArray
         }
         return $array;
     }
+
+    /**
+     * Making l10n script data from array
+     * @param  array $l10n array to convert into l10n script.
+     * @return string l10n string.
+     */
+    public static function l10n($object_name, array $l10n)
+    {
+        if (is_array($l10n)) {
+            foreach ($l10n as $key => $value) {
+                if (!is_scalar($value)) {
+                    continue;
+                }
+
+                $l10n[$key] = html_entity_decode( (string) $value, ENT_QUOTES, 'UTF-8');
+            }
+            return sprintf(
+                '<script type="text/javascript">var %s = %s;</script>',
+                $object_name,
+                wp_json_encode($l10n)
+            );
+        }
+        return '';
+    }
 }

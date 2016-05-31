@@ -43,6 +43,7 @@ class Customs implements IModule
         // Autoload classes
         $this->folders = $this->getFolders();
         $this->classes = $this->getClasses();
+
         spl_autoload_register(array( &$this, 'autoload' ));
     }
 

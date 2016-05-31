@@ -4,31 +4,11 @@ namespace ECG\LolitaFramework\Core;
 class GlobalLocator
 {
     /**
-     * Get global vaiable
-     *
-     * @param  [string] $global_name varibale name.
-     * @return [mixed] varibale.
-     */
-    public static function get($global_name)
-    {
-        $methods = HelperClass::getAllMethods(__CLASS__, \ReflectionMethod::IS_STATIC);
-
-        $methods = array_flip($methods);
-        unset($methods[ __METHOD__ ]);
-        $methods = array_flip($methods);
-
-        if (in_array($global_name, $methods)) {
-            return self::$global_name();
-        }
-        return null;
-    }
-
-    /**
      * Get wp_filesystem
      *
      * @return Object
      */
-    public static function getWpFilesystem()
+    public static function wpFilesystem()
     {
         global $wp_filesystem;
 
@@ -42,5 +22,15 @@ class GlobalLocator
         }
 
         return new \WP_Filesystem_Direct(null);
+    }
+
+    /**
+     * Get post
+     * @return WP_Post current post object.
+     */
+    public static function post()
+    {
+        global $post;
+        return $post;
     }
 }

@@ -37,9 +37,9 @@ class LolitaFramework
         define('DS', DIRECTORY_SEPARATOR);
         define('NS', '\\');
         define('LF_DIR', dirname(__FILE__));
-        define('LF_URL', $this->getURLByDirectory(LF_DIR));
+        define('LF_URL', self::getURLByDirectory(LF_DIR));
         define('BASE_DIR', dirname(LF_DIR));
-        define('BASE_URL', $this->getURLByDirectory(BASE_DIR));
+        define('BASE_URL', self::getURLByDirectory(BASE_DIR));
         define('SITE_URL', get_bloginfo('url'));
         define('AJAX_URL', admin_url('admin-ajax.php'));
         if (!function_exists('wp_create_nonce')) {
@@ -80,7 +80,7 @@ class LolitaFramework
      * @param  [string] $dir path.
      * @return [string] URL.
      */
-    public function getURLByDirectory($dir)
+    public static function getURLByDirectory($dir)
     {
         $url = str_replace(untrailingslashit(ABSPATH), site_url(), $dir);
         return str_replace('\\', '/', $url);

@@ -106,7 +106,7 @@ class PostTypes extends Init implements IModule
     private function getDefaultArguments($plural, $singular)
     {
         $labels = array(
-            'name'               => 'lolita',
+            'name'               => $plural,
             'singular_name'      => $singular,
             'add_new'            => 'Add New',
             'add_new_item'       => 'Add New '. $singular,

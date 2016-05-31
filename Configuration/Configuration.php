@@ -107,6 +107,7 @@ class Configuration
      */
     private function getConfigPath($module)
     {
+        $module = strtolower($module);
         return $this->settings_path . str_replace('.php', self::CONFIG_EXTENSION, basename($module));
     }
 
@@ -118,7 +119,7 @@ class Configuration
      */
     private function getConfigData($config_path)
     {
-        $filesystem  = GlobalLocator::get('getWpFilesystem');
+        $filesystem  = GlobalLocator::wpFilesystem();
         $data        = null;
         if (is_file($config_path)) {
             $data = $filesystem->get_contents($config_path);
@@ -158,8 +159,17 @@ class Configuration
      */
     private function getAllConfigurationModules()
     {
-        $modules_path = dirname(__FILE__) . DS . 'modules';
+        $modules_path = dirname(__FILE__) . DS . 'Modules';
         $pattern      = $modules_path.DS.'*.php';
         return (array) glob($pattern);
+    }
+
+    /**
+     * Get configuration folder
+     * @return [string] folder.
+     */
+    public static function getFolder()
+    {
+        return dirname(__FILE__);
     }
 }
