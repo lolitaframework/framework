@@ -7,8 +7,6 @@
 # Declare project language and PHP versions to test against.
 # @link http://about.travis-ci.org/docs/user/languages/php/
 language: php
-
-# Declare versions of PHP to use. Use one decimal max.
 php:
     - "7.0"
     - "5.6"
@@ -16,8 +14,9 @@ php:
     - "5.4"
     - "5.3"
 before_script:
-    # Install CodeSniffer for WordPress Coding Standards checks.
-    - mkdir /tmp/php-codesniffer && curl -L https://github.com/squizlabs/PHP_CodeSniffer/archive/master.tar.gz | tar xz --strip-components=1 -C php-codesniffer
+    - pyrus install pear/PHP_CodeSniffer
+    - phpenv rehash
+
 
 # Ditch sudo and use containers.
 # @link http://docs.travis-ci.com/user/migrating-from-legacy/#Why-migrate-to-container-based-infrastructure%3F
@@ -30,4 +29,4 @@ sudo: false
 script:
     # Search theme for PHP syntax errors.
     - find . \( -name '*.php' \) -exec php -lf {} \;
-    - /tmp/php-codesniffer/scripts/phpcs -p -s -v -n . --standard=PSR2 --extensions=php
+    - phpcs -p -s -v -n . --standard=PSR2 --extensions=php
