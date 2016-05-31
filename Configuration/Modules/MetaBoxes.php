@@ -97,7 +97,6 @@ class MetaBoxes implements IModule
         $meta_data    = get_post_meta($post->ID, $metabox_name, true);
 
         if ($controls instanceof Controls) {
-
             foreach ($controls->collection as $control) {
                 // ==============================================================
                 // Set name with prefix
@@ -128,7 +127,6 @@ class MetaBoxes implements IModule
             );
         } else {
             throw new \Exception('Wront $controls object');
-            
         }
     }
 

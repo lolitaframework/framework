@@ -50,7 +50,6 @@ class Configuration
     {
         $modules = $this->getAllConfigurationModules();
         foreach ($modules as $module) {
-
             $class_name  = $this->getClassName($module);
             $config_path = $this->getConfigPath($module);
             $data        = $this->getConfigData($config_path);
