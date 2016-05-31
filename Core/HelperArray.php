@@ -117,7 +117,7 @@ class HelperArray
                     continue;
                 }
 
-                $l10n[$key] = html_entity_decode( (string) $value, ENT_QUOTES, 'UTF-8');
+                $l10n[$key] = html_entity_decode((string) $value, ENT_QUOTES, 'UTF-8');
             }
             return sprintf(
                 '<script type="text/javascript">var %s = %s;</script>',

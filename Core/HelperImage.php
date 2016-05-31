@@ -2,7 +2,7 @@
 namespace ECG\LolitaFramework\Core;
 
 class HelperImage
-{   
+{
     /**
      * Get image url
      * @param  integer $attachment_id attachment id.

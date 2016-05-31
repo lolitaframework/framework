@@ -52,7 +52,7 @@ class Controls
             );
             $control->generate_data = $arguments;
             if (null !== $control) {
-               $this->collection[ $name ] = $control;
+                    $this->collection[ $name ] = $control;
             }
         }
         return $this;

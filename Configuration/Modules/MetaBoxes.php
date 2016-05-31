@@ -77,7 +77,7 @@ class MetaBoxes implements IModule
     }
 
     /**
-     * Default callback 
+     * Default callback
      */
     public function defaultCallback()
     {

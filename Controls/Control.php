@@ -136,7 +136,7 @@ abstract class Control
     {
         $reflector = new \ReflectionClass(get_class($this));
         return dirname($reflector->getFileName());
-    } 
+    }
 
     /**
      * Get url to control

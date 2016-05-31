@@ -68,7 +68,7 @@ class PostTypes extends Init implements IModule
      * Get required post type parameters
      * @return [array] required parameters.
      */
-    private function getRequiredParameters() 
+    private function getRequiredParameters()
     {
         return array(
             'slug',
@@ -80,7 +80,7 @@ class PostTypes extends Init implements IModule
     /**
      * Get arguments to registering our post type.
      * @param  [array] $post_type_args parameters.
-     * @return [array] 
+     * @return [array] compiled.
      */
     private function compileParameters($post_type_args)
     {
