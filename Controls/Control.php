@@ -42,7 +42,7 @@ abstract class Control
      */
     public function getName()
     {
-       return $this->parameters['name'];
+        return $this->parameters['name'];
     }
 
     /**
@@ -51,7 +51,7 @@ abstract class Control
      */
     public function setValue($value)
     {
-       $this->parameters['value'] = $value;
+        $this->parameters['value'] = $value;
     }
 
     /**
@@ -60,7 +60,7 @@ abstract class Control
      */
     public function getValue()
     {
-       return $this->parameters['value'];
+        return $this->parameters['value'];
     }
 
     /**
