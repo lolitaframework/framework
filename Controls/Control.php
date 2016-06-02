@@ -71,8 +71,8 @@ abstract class Control
     {
         $class_path = str_replace(NS, DS, NS . get_class($this));
         $class_name = basename($class_path);
-        $class_name = lcfirst($class_name);
-        $view_name  = HelperString::camelToSnake($class_name);
+        $view_name  = lcfirst($class_name);
+        $view_name  = HelperString::camelToSnake($view_name);
 
         return __DIR__ . DS . $class_name . DS . 'views' . DS . $view_name . '.php';
     }
@@ -94,6 +94,15 @@ abstract class Control
     public function getURL()
     {
         return LolitaFramework::getURLByDirectory($this->getDIR());
+    }
+
+    /**
+     * Control class folder URL
+     * @return string folder URL.
+     */
+    public static function controlURL()
+    {
+        return LolitaFramework::getURLByDirectory(__DIR__);
     }
 
     /**

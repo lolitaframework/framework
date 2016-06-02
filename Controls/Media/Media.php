@@ -28,6 +28,7 @@ class Media extends Control
         // Styles
         // ==============================================================
         wp_enqueue_style('lolita-media-control', $this->getURL() . '/assets/css/media.css');
+        wp_enqueue_style('lolita-controls', self::controlURL() . '/assets/css/controls.css');
 
         // ==============================================================
         // Scripts

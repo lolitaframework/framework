@@ -82,9 +82,9 @@ class HelperString
                     $pieces = explode('::', $func);
                     $model  = $pieces[0];
                     $method = $pieces[1];
-                    if (class_exists($model, false)) {
+                    if (class_exists($model, true)) {
                         if (method_exists($model, $method)) {
-                            $str = (string) $model::$method();
+                            $str = $model::$method();
                         }
                     }
                 } else {

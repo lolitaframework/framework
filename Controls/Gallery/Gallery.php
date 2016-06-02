@@ -32,6 +32,10 @@ class Gallery extends Control
             'lolita-gallery-control',
             $this->getURL() . '/assets/css/gallery.css'
         );
+        wp_enqueue_style(
+            'lolita-controls',
+            self::controlURL() . '/assets/css/controls.css'
+        );
 
         // ==============================================================
         // Scripts
@@ -54,11 +58,12 @@ class Gallery extends Control
      */
     public function render()
     {
-        $this->attributes['value'] = '';
+        $values = $this->getValue();
+        $this->parameters['value'] = '';
         $this->parameters['l10n'] = HelperArray::l10n(
             'lolita_gallery_control_l10n',
             array(
-                'items' => $this->getItems(),
+                'items' => $this->getItems($values),
             )
         );
         return parent::render();
@@ -68,17 +73,14 @@ class Gallery extends Control
      * All gallery items
      * @return array all items.
      */
-    public function getItems()
+    public function getItems($values)
     {
         $result = array();
-        $values = $this->getValue();
-        if (is_array($values)) {
-            foreach ($values as $key => $value) {
-                $post = get_post((int) $value);
-                if (null !== $post) {
-                    $post->src = HelperImage::getURL($value);
-                    array_push($result, $post);
-                }
+        foreach ($values as $key => $value) {
+            $p = get_post((int) $value);
+            if (null !== $p) {
+                $p->src = HelperImage::getURL($p->ID);
+                array_push($result, $p);
             }
         }
         return $result;

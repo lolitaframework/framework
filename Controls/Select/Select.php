@@ -3,6 +3,7 @@ namespace ECG\LolitaFramework\Controls\Select;
 
 use \ECG\LolitaFramework\Controls\Control as Control;
 use \ECG\LolitaFramework\Core\HelperArray as HelperArray;
+use \ECG\LolitaFramework\Core\HelperString as HelperString;
 
 class Select extends Control
 {
@@ -21,12 +22,27 @@ class Select extends Control
     }
 
     /**
+     * Prepare options
+     * @return void
+     */
+    private function prepareOptions()
+    {
+        if (array_key_exists('options', $this->parameters)) {
+            if (!is_array($this->parameters['options'])) {
+                $this->parameters['options'] = HelperString::compileVariables($this->parameters['options']);
+            }
+        } else {
+            $this->parameters['options'] = array();
+        }
+    }
+
+    /**
      * Render control
      * @return string html code.
      */
     public function render()
     {
-        $this->parameters['options'] = HelperArray::get($this->parameters, 'options', array());
+        $this->prepareOptions();
         $attributes = HelperArray::leaveRightKeys(
             $this->getAllowedAttributes(),
             $this->parameters
