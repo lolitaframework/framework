@@ -9,12 +9,15 @@ class Gallery extends Control
 {
     /**
      * Control constructor
-     * @param string $name control name.
+     * @param array $parameters control parameters.
      */
-    public function __construct($name)
+    public function __construct(array $parameters)
     {
-        parent::setName($name);
-        add_action('admin_enqueue_scripts', array(&$this, 'addScriptsAndStyles'));
+        parent::__construct($parameters);
+        add_action(
+            'admin_enqueue_scripts',
+            array(&$this, 'addScriptsAndStyles')
+        );
     }
 
     /**
@@ -25,7 +28,10 @@ class Gallery extends Control
         // ==============================================================
         // Styles
         // ==============================================================
-        wp_enqueue_style('lolita-gallery-control', $this->getURL() . '/assets/css/gallery.css');
+        wp_enqueue_style(
+            'lolita-gallery-control',
+            $this->getURL() . '/assets/css/gallery.css'
+        );
 
         // ==============================================================
         // Scripts
@@ -48,23 +54,11 @@ class Gallery extends Control
      */
     public function render()
     {
-        $value      = $this->getValue();
-        // $src        = HelperImage::getURL($value);
-        // $attachment = get_post($value);
-
-        $this->view_data = array(
-            'name' => $this->getName(),
-            'l10n' => HelperArray::l10n(
-                'lolita_gallery_control_l10n',
-                array(
-                    'items' => $this->getItems(),
-                )
-            ),
-        );
-        $this->setAttributes(
+        $this->attributes['value'] = '';
+        $this->parameters['l10n'] = HelperArray::l10n(
+            'lolita_gallery_control_l10n',
             array(
-                'name'            => $this->getName(),
-                'type'            => 'hidden',
+                'items' => $this->getItems(),
             )
         );
         return parent::render();

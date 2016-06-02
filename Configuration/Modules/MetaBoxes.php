@@ -23,9 +23,13 @@ class MetaBoxes implements IModule
      */
     public function __construct($data = null)
     {
-        $this->data = (array) $data;
-        $this->prepareData();
-        $this->init();
+        if (null !== $data) {
+            $this->data = (array) $data;
+            $this->prepareData();
+            $this->init();
+        } else {
+            throw new \Exception(__('JSON can be converted to Array', 'lolita'));
+        }
     }
 
     /**
@@ -112,7 +116,8 @@ class MetaBoxes implements IModule
                 // ==============================================================
                 // Fill new attributes
                 // ==============================================================
-                $control->setAttributes(
+                $control->parameters = array_merge(
+                    $control->parameters,
                     array(
                         'class' => 'widefat',
                         'id'    => $control->getName() . '-id',
@@ -168,8 +173,8 @@ class MetaBoxes implements IModule
             $this->toggleSave($slug, $post_id);
 
             if (array_key_exists('controls', $data)) {
-                foreach ($data['controls'] as $name => $arguments) {
-                    $control_name = $this->controlNameWithPrefix($slug, $name);
+                foreach ($data['controls'] as $arguments) {
+                    $control_name = $this->controlNameWithPrefix($slug, $arguments['name']);
                     $this->toggleSave($control_name, $post_id);
                 }
             }

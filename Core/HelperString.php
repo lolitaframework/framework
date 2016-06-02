@@ -4,6 +4,43 @@ namespace ECG\LolitaFramework\Core;
 class HelperString
 {
     /**
+     * Sentence like : "Hello i'm here" to snake "hello_im_here"
+     * @param  string $val    sentence
+     * @param  string $symbol snake symbol, default _.
+     * @return sentence in snake case.
+     */
+    public static function sentenceToSnake($val, $symbol = '_')
+    {
+        $title = strip_tags($val);
+        // Preserve escaped octets.
+        $val = preg_replace('|%([a-fA-F0-9][a-fA-F0-9])|', '---$1---', $val);
+        // Remove percent signs that are not part of an octet.
+        $val = str_replace('%', '', $val);
+        // Restore octets.
+        $val = preg_replace('|---([a-fA-F0-9][a-fA-F0-9])---|', '%$1', $val);
+
+        if (seems_utf8($val)) {
+            if (function_exists('mb_strtolower')) {
+                $val = mb_strtolower($val, 'UTF-8');
+            }
+            $val = utf8_uri_encode($val, 200);
+        }
+
+        $val = strtolower($val);
+
+        // kill entities
+        $val = preg_replace('/&.+?;/', '', $val);
+        $val = str_replace('.', $symbol, $val);
+
+        $val = preg_replace('/[^%a-z0-9 _-]/', '', $val);
+        $val = preg_replace('/\s+/', $symbol, $val);
+        $val = preg_replace('|-+|', $symbol, $val);
+        $val = trim($val, $symbol);
+
+        return $val;
+    }
+
+    /**
      * Take a string_like_this and return a StringLikeThis
      *
      * @param  [string] $val string_like_this.

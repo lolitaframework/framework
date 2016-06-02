@@ -1,10 +1,11 @@
 <?php
-namespace parallax\LolitaFramework\Configuration\Modules;
+namespace ECG\LolitaFramework\Configuration\Modules;
 
-use \parallax\LolitaFramework\Core\HelperArray as HelperArray;
-use \parallax\LolitaFramework\Configuration\Init as Init;
-use \parallax\LolitaFramework\Configuration\Configuration as Configuration;
-use \parallax\LolitaFramework\Configuration\IModule as IModule;
+use \ECG\LolitaFramework\Core\HelperString as HelperString;
+use \ECG\LolitaFramework\Core\HelperArray as HelperArray;
+use \ECG\LolitaFramework\Configuration\Init as Init;
+use \ECG\LolitaFramework\Configuration\Configuration as Configuration;
+use \ECG\LolitaFramework\Configuration\IModule as IModule;
 
 class Taxonomies extends Init implements IModule
 {
@@ -46,7 +47,7 @@ class Taxonomies extends Init implements IModule
      */
     private function checkForErrors(array $taxonomy)
     {
-        foreach ($required_keys as $key) {
+        foreach ($this->requiredKeys() as $key) {
             if (!array_key_exists($key, $taxonomy)) {
                 throw new Exception("This key `$key` is required!");
             }

@@ -18,15 +18,14 @@ class Controls
     /**
      * Create control
      * @param  string $class control class name.
-     * @param  string $name  control name.
-     * @param  string $value current value.
+     * @param  array $parameters parameters.
      * @return mixed
      */
-    public static function create($class, $name, $value = '')
+    public static function create($class, $parameters)
     {
         $class_name = __NAMESPACE__ . NS . $class . NS . $class;
         if (class_exists($class_name)) {
-            return new $class_name($name, $value);
+            return new $class_name($parameters);
         }
         return null;
     }
@@ -38,21 +37,19 @@ class Controls
      */
     public function generateControls(array $data)
     {
-        foreach ($data as $name => $arguments) {
-            if (!array_key_exists('type', $arguments) || '' === $arguments['type']) {
-                throw new \Exception("`type` option should be setted!");
+        foreach ($data as $arguments) {
+            if (!array_key_exists('__TYPE__', $arguments) || '' === $arguments['__TYPE__']) {
+                throw new \Exception("`__TYPE__` option should be setted!");
             }
-            if (!is_string($name)) {
+            if (!is_string($arguments['name'])) {
                 throw new \Exception("`name` must be in string type.");
             }
             $control = self::create(
-                $arguments['type'],
-                $name,
-                HelperArray::get($arguments, 'value')
+                $arguments['__TYPE__'],
+                $arguments
             );
-            $control->generate_data = $arguments;
             if (null !== $control) {
-                    $this->collection[ $name ] = $control;
+                $this->collection[ $arguments['name'] ] = $control;
             }
         }
         return $this;
@@ -68,8 +65,7 @@ class Controls
     {
         $rendered_controls = array();
         foreach ($this->collection as $control) {
-            $view_data = array_merge($control->generate_data, array('control' => $control));
-            $rendered_controls[] = View::make($control_view, $view_data);
+            $rendered_controls[] = View::make($control_view, array('control' => $control));
         }
         return View::make($collection_view, array('controls' => implode('', $rendered_controls)));
     }

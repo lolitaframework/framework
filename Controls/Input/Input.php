@@ -2,36 +2,33 @@
 namespace ECG\LolitaFramework\Controls\Input;
 
 use \ECG\LolitaFramework\Controls\Control as Control;
+use \ECG\LolitaFramework\Core\HelperArray as HelperArray;
 
 class Input extends Control
 {
     /**
-     * Input type
-     * @var string
+     * Input constructor
+     * @param array $parameters control parameters.
      */
-    private $type = 'text';
-
-    /**
-     * Set input type
-     * @param string $type new input type.
-     */
-    private function setType($type = 'text')
+    public function __construct(array $parameters)
     {
-        $allowed = $this->getAllowedTypes();
-        if (in_array($type, $allowed)) {
-            $this->type = $type;
-        } else {
-            $this->type = $allowed[0];
-        }
+        parent::__construct($parameters);
+        $this->prepareType();
     }
 
     /**
-     * Get type
-     * @return [string] input type.
+     * Prepare Input type
+     * @return Input instance.
      */
-    private function getType()
+    private function prepareType()
     {
-        return $this->type;
+        $allowed = $this->getAllowedTypes();
+        if (in_array($this->parameters['type'], $allowed)) {
+            $this->parameters['type'] = $this->parameters['type'];
+        } else {
+            $this->parameters['type'] = $allowed[0];
+        }
+        return $this;
     }
 
     /**
@@ -55,18 +52,31 @@ class Input extends Control
     }
 
     /**
-     * Render our control
-     * @return string HTML control code.
+     * Get allowed attributes
+     * @return array allowed list.
+     */
+    private function getAllowedAttributes()
+    {
+        return array(
+            'type',
+            'name',
+            'class',
+            'id',
+            'value',
+        );
+    }
+
+    /**
+     * Render control
+     * @return string html code.
      */
     public function render()
     {
-        $this->setAttributes(
-            array(
-                'name'  => $this->getName(),
-                'value' => $this->getValue(),
-                'type'  => $this->getType(),
-            )
+        $attributes = HelperArray::leaveRightKeys(
+            $this->getAllowedAttributes(),
+            $this->parameters
         );
+        $this->parameters['attributes_str'] = HelperArray::join($attributes);
         return parent::render();
     }
 }

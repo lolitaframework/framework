@@ -3,6 +3,7 @@ namespace ECG\LolitaFramework\Controls\Media;
 
 use \ECG\LolitaFramework\Controls\Control as Control;
 use \ECG\LolitaFramework\Core\HelperImage as HelperImage;
+use \ECG\LolitaFramework\Core\HelperArray as HelperArray;
 
 class Media extends Control
 {
@@ -10,9 +11,11 @@ class Media extends Control
      * Control constructor
      * @param string $name control name.
      */
-    public function __construct($name)
+    public function __construct(array $parameters)
     {
-        parent::setName($name);
+        $parameters['value'] = HelperArray::get($parameters, 'value', '');
+        $parameters['type']  = HelperArray::get($parameters, 'type', 'hidden');
+        parent::__construct($parameters);
         add_action('admin_enqueue_scripts', array(&$this, 'addScriptsAndStyles'));
     }
 
@@ -42,29 +45,35 @@ class Media extends Control
     }
 
     /**
-     * Render our control
-     * @return string HTML control code.
+     * Get allowed attributes
+     * @return array allowed list.
+     */
+    private function getAllowedAttributes()
+    {
+        return array(
+            'type',
+            'name',
+            'value',
+        );
+    }
+
+    /**
+     * Render control
+     * @return string html code.
      */
     public function render()
     {
         $value      = $this->getValue();
-        $src        = HelperImage::getURL($value);
-        $attachment = get_post($value);
+        $attributes = HelperArray::leaveRightKeys(
+            $this->getAllowedAttributes(),
+            $this->parameters
+        );
+        $this->parameters['attributes_str'] = HelperArray::join($attributes);
 
-        $this->view_data = array(
-            'add_button_hide' => $this->addButtonHide(),
-            'preview_hide'    => $this->previewHide(),
-            'value'           => $value,
-            'src'             => $src,
-            'title'           => $this->getAttachmentTitle($value),
-        );
-        $this->setAttributes(
-            array(
-                'name'            => $this->getName(),
-                'value'           => $value,
-                'type'            => 'hidden',
-            )
-        );
+        $this->parameters['src']   = HelperImage::getURL($value);
+        $this->parameters['title'] = $this->getAttachmentTitle($value);
+        $this->parameters['add_button_hide'] = $this->addButtonHide();
+        $this->parameters['preview_hide'] = $this->previewHide();
         return parent::render();
     }
 
