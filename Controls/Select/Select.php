@@ -6,7 +6,7 @@ use \ECG\LolitaFramework\Core\HelperArray as HelperArray;
 
 class Select extends Control
 {
-	/**
+    /**
      * Get allowed attributes
      * @return array allowed list.
      */
@@ -20,13 +20,13 @@ class Select extends Control
         );
     }
 
-	/**
+    /**
      * Render control
      * @return string html code.
      */
     public function render()
     {
-    	$this->parameters['options'] = HelperArray::get($this->parameters, 'options', array());
+        $this->parameters['options'] = HelperArray::get($this->parameters, 'options', array());
         $attributes = HelperArray::leaveRightKeys(
             $this->getAllowedAttributes(),
             $this->parameters

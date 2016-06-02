@@ -37,25 +37,27 @@ abstract class Control
     }
 
     /**
-    * Get control name
-    * @return string control name.
-    */
+     * Get control name
+     * @return string control name.
+     */
     public function getName()
     {
        return $this->parameters['name'];
     }
+
     /**
-    * Set control value
-    * @param string $value control value.
-    */
+     * Set control value
+     * @param string $value control value.
+     */
     public function setValue($value)
     {
        $this->parameters['value'] = $value;
     }
+
     /**
-    * Get control value
-    * @return string value.
-    */
+     * Get control value
+     * @return string value.
+     */
     public function getValue()
     {
        return $this->parameters['value'];
