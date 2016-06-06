@@ -1,8 +1,8 @@
 <?php
-namespace ECG\LolitaFramework\Controls\Input;
+namespace redbrook\LolitaFramework\Controls\Input;
 
-use \ECG\LolitaFramework\Controls\Control as Control;
-use \ECG\LolitaFramework\Core\HelperArray as HelperArray;
+use \redbrook\LolitaFramework\Controls\Control as Control;
+use \redbrook\LolitaFramework\Core\HelperArray as HelperArray;
 
 class Input extends Control
 {

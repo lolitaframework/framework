@@ -1,5 +1,5 @@
 <?php
-namespace ECG\LolitaFramework\Core;
+namespace redbrook\LolitaFramework\Core;
 
 class HelperArray
 {

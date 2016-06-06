@@ -1,10 +1,10 @@
 <?php
-namespace ECG\LolitaFramework\Controls;
+namespace redbrook\LolitaFramework\Controls;
 
-use \ECG\LolitaFramework\Core\HelperString as HelperString;
-use \ECG\LolitaFramework\Core\HelperArray as HelperArray;
-use \ECG\LolitaFramework\Core\View as View;
-use \ECG\LolitaFramework as LolitaFramework;
+use \redbrook\LolitaFramework\Core\HelperString as HelperString;
+use \redbrook\LolitaFramework\Core\HelperArray as HelperArray;
+use \redbrook\LolitaFramework\Core\View as View;
+use \redbrook\LolitaFramework as LolitaFramework;
 
 abstract class Control
 {

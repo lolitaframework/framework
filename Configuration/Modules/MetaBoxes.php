@@ -1,13 +1,13 @@
 <?php
-namespace ECG\LolitaFramework\Configuration\Modules;
+namespace redbrook\LolitaFramework\Configuration\Modules;
 
-use \ECG\LolitaFramework\Core\HelperString as HelperString;
-use \ECG\LolitaFramework\Core\HelperArray as HelperArray;
-use \ECG\LolitaFramework\Core\GlobalLocator as GlobalLocator;
-use \ECG\LolitaFramework\Core\View as View;
-use \ECG\LolitaFramework\Configuration\Configuration as Configuration;
-use \ECG\LolitaFramework\Configuration\IModule as IModule;
-use \ECG\LolitaFramework\Controls\Controls as Controls;
+use \redbrook\LolitaFramework\Core\HelperString as HelperString;
+use \redbrook\LolitaFramework\Core\HelperArray as HelperArray;
+use \redbrook\LolitaFramework\Core\GlobalLocator as GlobalLocator;
+use \redbrook\LolitaFramework\Core\View as View;
+use \redbrook\LolitaFramework\Configuration\Configuration as Configuration;
+use \redbrook\LolitaFramework\Configuration\IModule as IModule;
+use \redbrook\LolitaFramework\Controls\Controls as Controls;
 
 class MetaBoxes implements IModule
 {
@@ -131,7 +131,7 @@ class MetaBoxes implements IModule
                 Configuration::getFolder() . DS . 'views' . DS . 'meta_box_row.php'
             );
         } else {
-            throw new \Exception('Wront $controls object');
+            throw new \Exception('Wrong $controls object');
         }
     }
 

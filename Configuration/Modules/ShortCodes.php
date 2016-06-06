@@ -1,8 +1,8 @@
 <?php
-namespace ECG\LolitaFramework\Configuration\Modules;
+namespace redbrook\LolitaFramework\Configuration\Modules;
 
-use \ECG\LolitaFramework\Configuration\Configuration as Configuration;
-use \ECG\LolitaFramework\Configuration\IModule as IModule;
+use \redbrook\LolitaFramework\Configuration\Configuration as Configuration;
+use \redbrook\LolitaFramework\Configuration\IModule as IModule;
 
 class ShortCodes implements IModule
 {
@@ -13,7 +13,7 @@ class ShortCodes implements IModule
      */
     public function __construct($data = null)
     {
-        $this->data = (array) $data;
+        $this->data = $data;
         $this->install();
     }
 

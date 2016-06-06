@@ -1,0 +1,12 @@
+{
+	"compilerOptions": {
+		"noImplicitAny": true,
+		"removeComments": true,
+		"preserveConstEnums": true,
+		"out": "../js/lolita_css_loader.js",
+		"sourceMap": true
+	},
+	"files": [
+		"lolita_css_loader.ts"
+	]
+}

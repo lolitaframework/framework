@@ -1,8 +1,8 @@
 <?php
-namespace ECG\LolitaFramework\Configuration;
+namespace redbrook\LolitaFramework\Configuration;
 
-use \ECG\LolitaFramework\Core\GlobalLocator as GlobalLocator;
-use \ECG\LolitaFramework\Core\HelperClass as HelperClass;
+use \redbrook\LolitaFramework\Core\GlobalLocator as GlobalLocator;
+use \redbrook\LolitaFramework\Core\HelperClass as HelperClass;
 
 class Configuration
 {

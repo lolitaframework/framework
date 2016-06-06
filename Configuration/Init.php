@@ -1,5 +1,5 @@
 <?php
-namespace ECG\LolitaFramework\Configuration;
+namespace redbrook\LolitaFramework\Configuration;
 
 abstract class Init
 {

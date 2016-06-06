@@ -1,9 +1,9 @@
 <?php
-namespace ECG\LolitaFramework\Controls\Gallery;
+namespace redbrook\LolitaFramework\Controls\Gallery;
 
-use \ECG\LolitaFramework\Controls\Control as Control;
-use \ECG\LolitaFramework\Core\HelperImage as HelperImage;
-use \ECG\LolitaFramework\Core\HelperArray as HelperArray;
+use \redbrook\LolitaFramework\Controls\Control as Control;
+use \redbrook\LolitaFramework\Core\HelperImage as HelperImage;
+use \redbrook\LolitaFramework\Core\HelperArray as HelperArray;
 
 class Gallery extends Control
 {

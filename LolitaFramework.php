@@ -1,5 +1,5 @@
 <?php
-namespace ECG;
+namespace redbrook;
 
 /**
  * Lolita Framework singlton class

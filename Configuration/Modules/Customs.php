@@ -1,9 +1,9 @@
 <?php
-namespace ECG\LolitaFramework\Configuration\Modules;
+namespace redbrook\LolitaFramework\Configuration\Modules;
 
-use \ECG\LolitaFramework\Core\HelperString as HelperString;
-use \ECG\LolitaFramework\Configuration\Configuration as Configuration;
-use \ECG\LolitaFramework\Configuration\IModule as IModule;
+use \redbrook\LolitaFramework\Core\HelperString as HelperString;
+use \redbrook\LolitaFramework\Configuration\Configuration as Configuration;
+use \redbrook\LolitaFramework\Configuration\IModule as IModule;
 
 class Customs implements IModule
 {
