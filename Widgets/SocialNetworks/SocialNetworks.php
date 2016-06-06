@@ -6,11 +6,13 @@ use \redbrook\LolitaFramework\Core\View as View;
 use \redbrook\LolitaFramework\Core\HelperArray as HelperArray;
 use \redbrook\LolitaFramework as LolitaFramework;
 
-class SocialNetworks extends AbstractWithControls{
+class SocialNetworks extends AbstractWithControls
+{
     /**
      * Register widget with WordPress.
      */
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct(
             __('Lolita Social networks', 'lolita'),
             array('description' => __('Social networks widget', 'lolita'))
@@ -23,7 +25,7 @@ class SocialNetworks extends AbstractWithControls{
      */
     public function addScriptsAndStyles()
     {
-        $font_awesome_url = 
+        $font_awesome_url =
             LolitaFramework::getURLByDirectory(__DIR__) . DS .
             'assets' . DS .
             'font-awesome-4.6.3' . DS .
@@ -117,7 +119,8 @@ class SocialNetworks extends AbstractWithControls{
      * @param array $args     Widget arguments.
      * @param array $instance Saved values from database.
      */
-    public function widget( $args, $instance ) {
+    public function widget($args, $instance)
+    {
         echo View::make(
             dirname(__FILE__) . DS . 'views' . DS . 'social_networks.php',
             array(

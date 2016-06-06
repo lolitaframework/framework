@@ -6,18 +6,20 @@ use \redbrook\LolitaFramework\Core\View as View;
 use \redbrook\LolitaFramework\Core\HelperArray as HelperArray;
 use redbrook\LolitaFramework as LolitaFramework;
 
-class SubscribeForm extends AbstractWithControls{
+class SubscribeForm extends AbstractWithControls
+{
     /**
      * Register widget with WordPress.
      */
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct(
             __('Lolita subscribe form', 'lolita'),
             array('description' => __('Subscribe form widget', 'lolita'))
         );
         add_action('wp_enqueue_scripts', array(&$this, 'addScriptsAndStyles'));
-        add_action( 'wp_ajax_lolita_subscribe', array(&$this, 'subscribe'));
-        add_action( 'wp_ajax_nopriv_lolita_subscribe', array(&$this, 'subscribe'));
+        add_action('wp_ajax_lolita_subscribe', array(&$this, 'subscribe'));
+        add_action('wp_ajax_nopriv_lolita_subscribe', array(&$this, 'subscribe'));
     }
 
     /**
@@ -30,7 +32,7 @@ class SubscribeForm extends AbstractWithControls{
             'New subscriber',
             'Thank you for leave us your email!'
         );
-        if ( true === $result) {
+        if (true === $result) {
             wp_send_json_success($result);
         } else {
             wp_send_json_error($result);
@@ -114,7 +116,8 @@ class SubscribeForm extends AbstractWithControls{
      * @param array $args     Widget arguments.
      * @param array $instance Saved values from database.
      */
-    public function widget( $args, $instance ) {
+    public function widget($args, $instance)
+    {
         $instance['success_message'] = HelperArray::get(
             $instance,
             'success_message',

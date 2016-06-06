@@ -6,14 +6,15 @@ use \redbrook\LolitaFramework\Core\HelperString as HelperString;
 use \redbrook\LolitaFramework\Core\View as View;
 use \redbrook\LolitaFramework\Controls\Controls as Controls;
 
-abstract class AbstractWithControls extends \WP_Widget{
+abstract class AbstractWithControls extends \WP_Widget
+{
 
     /**
      * Register widget with WordPress.
      */
     public function __construct($name, $widget_options = array(), $id_base = '', $control_options = array())
     {
-        if ( '' === $id_base) {
+        if ('' === $id_base) {
             $id_base = HelperString::sentenceToSnake($name);
         }
         parent::__construct(
@@ -38,7 +39,8 @@ abstract class AbstractWithControls extends \WP_Widget{
      * @param array $args     Widget arguments.
      * @param array $instance Saved values from database.
      */
-    public function widget( $args, $instance ) {
+    public function widget($args, $instance)
+    {
         echo View::make(dirname(__FILE__) . DS . 'views' . DS . 'default.php');
     }
 
@@ -49,7 +51,8 @@ abstract class AbstractWithControls extends \WP_Widget{
      *
      * @param array $instance Previously saved values from database.
      */
-    public function form($instance) {
+    public function form($instance)
+    {
         $controls = new Controls;
         $controls->generateControls($this->getControlsData());
 
