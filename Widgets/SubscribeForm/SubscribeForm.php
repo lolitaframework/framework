@@ -1,10 +1,11 @@
 <?php
-namespace redbrook\LolitaFramework\Widgets\SubscribeForm;
+namespace duidluck\LolitaFramework\Widgets\SubscribeForm;
 
-use \redbrook\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls as AbstractWithControls;
-use \redbrook\LolitaFramework\Core\View as View;
-use \redbrook\LolitaFramework\Core\HelperArray as HelperArray;
-use \redbrook\LolitaFramework\Widgets\SubscribeForm\vendor\DrewM\MailChimp\MailChimp as MailChimp;
+use \duidluck\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls as AbstractWithControls;
+use \duidluck\LolitaFramework\Core\View as View;
+use \duidluck\LolitaFramework\Core\HelperArray as HelperArray;
+use \duidluck\LolitaFramework\Widgets\SubscribeForm\vendor\DrewM\MailChimp\MailChimp as MailChimp;
+use \duidluck\LolitaFramework;
 
 class SubscribeForm extends AbstractWithControls{
     /**
@@ -83,7 +84,7 @@ class SubscribeForm extends AbstractWithControls{
      */
     public function addScriptsAndStyles()
     {
-        $assets = $this->getURL() . 'assets' . DS;
+        LolitaFramework::getURLByDirectory(__DIR__) . 'assets' . DS;
         // ==============================================================
         // Scripts
         // ==============================================================
@@ -111,7 +112,7 @@ class SubscribeForm extends AbstractWithControls{
 
     public function adminAddScriptsAndStyles()
     {
-        $assets = $this->getURL() . 'assets' . DS;
+        LolitaFramework::getURLByDirectory(__DIR__) . 'assets' . DS;
         // ==============================================================
         // Scripts
         // ==============================================================
@@ -129,7 +130,7 @@ class SubscribeForm extends AbstractWithControls{
      * Get controls data
      * @return array data to generate controls.
      */
-    public function getControlsData()
+    public static function getControlsData()
     {
         return array(
             array(

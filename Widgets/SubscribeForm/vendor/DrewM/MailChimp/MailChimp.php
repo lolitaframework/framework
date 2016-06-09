@@ -1,6 +1,6 @@
 <?php
 
-namespace redbrook\LolitaFramework\Widgets\SubscribeForm\vendor\DrewM\MailChimp;
+namespace duidluck\LolitaFramework\Widgets\SubscribeForm\vendor\DrewM\MailChimp;
 
 /**
  * Super-simple, minimum abstraction MailChimp API v3 wrapper
