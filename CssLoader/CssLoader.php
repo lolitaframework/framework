@@ -1,8 +1,8 @@
 <?php
-namespace redbrook\LolitaFramework\CssLoader;
+namespace duidluck\LolitaFramework\CssLoader;
 
-use redbrook\LolitaFramework as LolitaFramework;
-use redbrook\LolitaFramework\Core\View as View;
+use \duidluck\LolitaFramework as LolitaFramework;
+use \duidluck\LolitaFramework\Core\View as View;
 
 class CssLoader
 {
@@ -46,7 +46,7 @@ class CssLoader
     /**
      * Add Loader templates
      */
-    public function renderTemplates() 
+    public function renderTemplates()
     {
         echo View::make(__DIR__ . DS . 'views' . DS . 'css_loader.php');
     }

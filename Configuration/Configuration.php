@@ -1,8 +1,8 @@
 <?php
-namespace redbrook\LolitaFramework\Configuration;
+namespace duidluck\LolitaFramework\Configuration;
 
-use \redbrook\LolitaFramework\Core\GlobalLocator as GlobalLocator;
-use \redbrook\LolitaFramework\Core\HelperClass as HelperClass;
+use \duidluck\LolitaFramework\Core\GlobalLocator as GlobalLocator;
+use \duidluck\LolitaFramework\Core\HelperClass as HelperClass;
 
 class Configuration
 {

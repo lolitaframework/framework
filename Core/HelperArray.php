@@ -1,5 +1,5 @@
 <?php
-namespace redbrook\LolitaFramework\Core;
+namespace duidluck\LolitaFramework\Core;
 
 class HelperArray
 {

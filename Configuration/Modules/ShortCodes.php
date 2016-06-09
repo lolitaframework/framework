@@ -1,8 +1,8 @@
 <?php
-namespace redbrook\LolitaFramework\Configuration\Modules;
+namespace duidluck\LolitaFramework\Configuration\Modules;
 
-use \redbrook\LolitaFramework\Configuration\Configuration as Configuration;
-use \redbrook\LolitaFramework\Configuration\IModule as IModule;
+use \duidluck\LolitaFramework\Configuration\Configuration as Configuration;
+use \duidluck\LolitaFramework\Configuration\IModule as IModule;
 
 class ShortCodes implements IModule
 {
@@ -14,7 +14,11 @@ class ShortCodes implements IModule
     public function __construct($data = null)
     {
         $this->data = $data;
-        $this->install();
+        if (null !== $this->data) {
+            $this->install();
+        } else {
+            throw new \Exception(__('JSON can be converted to Array', 'lolita'));
+        }
     }
 
     /**
@@ -22,8 +26,10 @@ class ShortCodes implements IModule
      */
     private function install()
     {
-        foreach ($this->data as $tag => $func) {
-            add_shortcode($tag, $func);
+        if (is_array($this->data)) {
+            foreach ($this->data as $tag => $func) {
+                add_shortcode($tag, $func);
+            }
         }
     }
 

@@ -1,8 +1,8 @@
 <?php
-namespace redbrook\LolitaFramework\Controls\Textarea;
+namespace duidluck\LolitaFramework\Controls\Textarea;
 
-use \redbrook\LolitaFramework\Controls\Control as Control;
-use \redbrook\LolitaFramework\Core\HelperArray as HelperArray;
+use \duidluck\LolitaFramework\Controls\Control as Control;
+use \duidluck\LolitaFramework\Core\HelperArray as HelperArray;
 
 class Textarea extends Control
 {

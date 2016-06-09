@@ -1,8 +1,8 @@
 <?php
-namespace redbrook\LolitaFramework\Controls;
+namespace duidluck\LolitaFramework\Controls;
 
-use \redbrook\LolitaFramework\Core\HelperArray as HelperArray;
-use \redbrook\LolitaFramework\Core\View as View;
+use \duidluck\LolitaFramework\Core\HelperArray as HelperArray;
+use \duidluck\LolitaFramework\Core\View as View;
 
 /**
  * Controls collection class
@@ -17,13 +17,12 @@ class Controls
 
     /**
      * Create control
-     * @param  string $class control class name.
+     * @param  string $class_name control class name.
      * @param  array $parameters parameters.
      * @return mixed
      */
-    public static function create($class, $parameters)
+    public static function create($class_name, $parameters)
     {
-        $class_name = __NAMESPACE__ . NS . $class . NS . $class;
         if (class_exists($class_name)) {
             return new $class_name($parameters);
         }
@@ -37,15 +36,14 @@ class Controls
      */
     public function generateControls(array $data)
     {
+        self::loadScriptsAndStyles($data);
         foreach ($data as $arguments) {
-            if (!array_key_exists('__TYPE__', $arguments) || '' === $arguments['__TYPE__']) {
-                throw new \Exception("`__TYPE__` option should be setted!");
-            }
             if (!is_string($arguments['name'])) {
                 throw new \Exception("`name` must be in string type.");
             }
+            $class_name = self::getClassNameFromType(HelperArray::get($arguments, '__TYPE__'));
             $control = self::create(
-                $arguments['__TYPE__'],
+                $class_name,
                 $arguments
             );
             if (null !== $control) {
@@ -53,6 +51,33 @@ class Controls
             }
         }
         return $this;
+    }
+
+    /**
+     * Get class name from type
+     * @param  string $type control type
+     * @return string 
+     */
+    public static function getClassNameFromType($type)
+    {
+        if ('' === $type) {
+            throw new \Exception("`__TYPE__` option should be setted!");
+        }
+        return __NAMESPACE__ . NS . $type . NS . $type;
+    }
+
+    /**
+     * Load all scripts and styles from each control
+     * @param  array  $data controls data.
+     * @return void.
+     */
+    public static function loadScriptsAndStyles(array $data)
+    {
+        foreach ($data as $arguments) {
+            $class_name = self::getClassNameFromType(HelperArray::get($arguments, '__TYPE__'));
+            add_action('wp_enqueue_scripts', array($class_name, 'enqueue'));
+            add_action('admin_enqueue_scripts', array($class_name, 'adminEnqueue'));
+        }
     }
 
     /**

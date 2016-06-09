@@ -1,8 +1,8 @@
 <?php
-namespace redbrook\LolitaFramework\Widgets;
+namespace duidluck\LolitaFramework\Widgets;
 
-use \redbrook\LolitaFramework\Core\GlobalLocator as GlobalLocator;
-use \redbrook\LolitaFramework\Core\HelperClass as HelperClass;
+use \duidluck\LolitaFramework\Core\GlobalLocator as GlobalLocator;
+use \duidluck\LolitaFramework\Core\HelperClass as HelperClass;
 
 class Widgets
 {
@@ -25,6 +25,7 @@ class Widgets
     public function __construct()
     {
         $this->data = $this->getAllClasses();
+        $this->runBeforeInits();
         add_action('widgets_init', array($this, 'load'));
     }
 
@@ -33,7 +34,8 @@ class Widgets
      *
      * @return array
      */
-    public static function getAllClasses() {
+    public static function getAllClasses()
+    {
         $result  = array();
         $folders = (array) glob(dirname(__FILE__) . '/*', GLOB_ONLYDIR);
         foreach ($folders as $folder) {
@@ -51,9 +53,23 @@ class Widgets
     /**
      * Load classes
      */
-    public function load() {
-        foreach ( $this->data as $class ) {
+    public function load()
+    {
+        foreach ($this->data as $class) {
             register_widget($class);
+        }
+    }
+
+    /**
+     * This function run before widgets_init hook
+     * @return void
+     */
+    public function runBeforeInits()
+    {
+        foreach ($this->data as $class) {
+            if (HelperClass::isImplements($class, __NAMESPACE__ . NS . 'IHaveBeforeInit')) {
+                $class::beforeInit();
+            }
         }
     }
 }

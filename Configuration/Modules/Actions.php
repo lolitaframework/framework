@@ -1,9 +1,9 @@
 <?php
-namespace redbrook\LolitaFramework\Configuration\Modules;
+namespace duidluck\LolitaFramework\Configuration\Modules;
 
-use \redbrook\LolitaFramework\Configuration\Configuration as Configuration;
-use \redbrook\LolitaFramework\Configuration\IModule as IModule;
-use \redbrook\LolitaFramework\Core\HelperArray as HelperArray;
+use \duidluck\LolitaFramework\Configuration\Configuration as Configuration;
+use \duidluck\LolitaFramework\Configuration\IModule as IModule;
+use \duidluck\LolitaFramework\Core\HelperArray as HelperArray;
 
 class Actions implements IModule
 {

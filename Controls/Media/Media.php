@@ -1,9 +1,10 @@
 <?php
-namespace redbrook\LolitaFramework\Controls\Media;
+namespace duidluck\LolitaFramework\Controls\Media;
 
-use \redbrook\LolitaFramework\Controls\Control as Control;
-use \redbrook\LolitaFramework\Core\HelperImage as HelperImage;
-use \redbrook\LolitaFramework\Core\HelperArray as HelperArray;
+use \duidluck\LolitaFramework\Controls\Control as Control;
+use \duidluck\LolitaFramework\Core\HelperImage as HelperImage;
+use \duidluck\LolitaFramework\Core\HelperArray as HelperArray;
+use \duidluck\LolitaFramework as LolitaFramework;
 
 class Media extends Control
 {
@@ -16,19 +17,18 @@ class Media extends Control
         $parameters['value'] = HelperArray::get($parameters, 'value', '');
         $parameters['type']  = HelperArray::get($parameters, 'type', 'hidden');
         parent::__construct($parameters);
-        add_action('admin_enqueue_scripts', array(&$this, 'addScriptsAndStyles'));
     }
 
     /**
      * Add scripts and styles
      */
-    public function addScriptsAndStyles()
+    public static function adminEnqueue()
     {
         // ==============================================================
         // Styles
         // ==============================================================
-        wp_enqueue_style('lolita-media-control', $this->getURL() . '/assets/css/media.css');
-        wp_enqueue_style('lolita-controls', self::controlURL() . '/assets/css/controls.css');
+        wp_enqueue_style('lolita-media-control', LolitaFramework::getURLByDirectory(__DIR__) . '/assets/css/media.css');
+        wp_enqueue_style('lolita-controls', self::getURL() . '/assets/css/controls.css');
 
         // ==============================================================
         // Scripts
@@ -38,7 +38,7 @@ class Media extends Control
         wp_enqueue_script('underscore');
         wp_enqueue_script(
             'lolita-media-control',
-            $this->getURL() . '/assets/js/media.js',
+            LolitaFramework::getURLByDirectory(__DIR__) . '/assets/js/media.js',
             array('jquery'),
             false,
             true

@@ -1,10 +1,10 @@
 <?php
-namespace redbrook\LolitaFramework\Controls;
+namespace duidluck\LolitaFramework\Controls;
 
-use \redbrook\LolitaFramework\Core\HelperString as HelperString;
-use \redbrook\LolitaFramework\Core\HelperArray as HelperArray;
-use \redbrook\LolitaFramework\Core\View as View;
-use \redbrook\LolitaFramework as LolitaFramework;
+use \duidluck\LolitaFramework\Core\HelperString as HelperString;
+use \duidluck\LolitaFramework\Core\HelperArray as HelperArray;
+use \duidluck\LolitaFramework\Core\View as View;
+use \duidluck\LolitaFramework as LolitaFramework;
 
 abstract class Control
 {
@@ -81,26 +81,16 @@ abstract class Control
      * Get current class directory
      * @return string directory path.
      */
-    public function getDIR()
+    public static function getDIR()
     {
-        $reflector = new \ReflectionClass(get_class($this));
-        return dirname($reflector->getFileName());
+        return __DIR__;
     }
 
     /**
      * Get url to control
      * @return string url.
      */
-    public function getURL()
-    {
-        return LolitaFramework::getURLByDirectory($this->getDIR());
-    }
-
-    /**
-     * Control class folder URL
-     * @return string folder URL.
-     */
-    public static function controlURL()
+    public static function getURL()
     {
         return LolitaFramework::getURLByDirectory(__DIR__);
     }
@@ -118,19 +108,20 @@ abstract class Control
     }
 
     /**
-     * Get parameters dataset
-     * @return array dataset.
+     * Enqueue scripts and styles
+     * @return void
      */
-    public function getDataSet()
+    public static function enqueue()
     {
-        $result = array();
-        if (is_array($this->parameters)) {
-            foreach ($this->parameters as $key => $value) {
-                if (strpos($key, 'data-') > -1) {
-                    $result[$key] = $value;
-                }
-            }
-        }
-        return $result;
+
+    }
+
+    /**
+     * Admin enqueue scripts and styles
+     * @return void
+     */
+    public static function adminEnqueue()
+    {
+
     }
 }

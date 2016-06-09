@@ -1,5 +1,5 @@
 <?php
-namespace redbrook;
+namespace duidluck;
 
 /**
  * Lolita Framework singlton class

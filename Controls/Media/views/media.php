@@ -26,6 +26,6 @@
     </div>
     <!-- .media-preview END -->
     
-    <input <?php echo $attributes_str; ?> >
+    <input type="hidden" <?php echo $attributes_str; ?> >
 </div>
 <!-- .lolita-media-control END -->

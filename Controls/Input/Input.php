@@ -1,8 +1,8 @@
 <?php
-namespace redbrook\LolitaFramework\Controls\Input;
+namespace duidluck\LolitaFramework\Controls\Input;
 
-use \redbrook\LolitaFramework\Controls\Control as Control;
-use \redbrook\LolitaFramework\Core\HelperArray as HelperArray;
+use \duidluck\LolitaFramework\Controls\Control as Control;
+use \duidluck\LolitaFramework\Core\HelperArray as HelperArray;
 
 class Input extends Control
 {
@@ -63,7 +63,6 @@ class Input extends Control
             'class',
             'id',
             'value',
-            'style',
         );
     }
 
@@ -77,8 +76,6 @@ class Input extends Control
             $this->getAllowedAttributes(),
             $this->parameters
         );
-
-        $attributes = array_merge($this->getDataSet(), $attributes);
         $this->parameters['attributes_str'] = HelperArray::join($attributes);
         return parent::render();
     }

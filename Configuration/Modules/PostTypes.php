@@ -1,10 +1,10 @@
 <?php
-namespace redbrook\LolitaFramework\Configuration\Modules;
+namespace duidluck\LolitaFramework\Configuration\Modules;
 
-use \redbrook\LolitaFramework\Core\HelperString as HelperString;
-use \redbrook\LolitaFramework\Configuration\Init as Init;
-use \redbrook\LolitaFramework\Configuration\Configuration as Configuration;
-use \redbrook\LolitaFramework\Configuration\IModule as IModule;
+use \duidluck\LolitaFramework\Core\HelperString as HelperString;
+use \duidluck\LolitaFramework\Configuration\Init as Init;
+use \duidluck\LolitaFramework\Configuration\Configuration as Configuration;
+use \duidluck\LolitaFramework\Configuration\IModule as IModule;
 
 class PostTypes extends Init implements IModule
 {

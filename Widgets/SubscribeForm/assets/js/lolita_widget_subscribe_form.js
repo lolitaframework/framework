@@ -10,17 +10,11 @@ var LolitaFramework;
             this.$error_message = '';
             this.$form = '';
             this.$input = '';
-            this.type = 'default';
-            this.mailchimp_api_key = '';
-            this.mailchimp_list_id = '';
             this.$widget = jQuery('.lolita-subscribe');
             this.$success_message = jQuery('.lolita-subscribe-success-message');
             this.$error_message = jQuery('.lolita-subscribe-error-message');
             this.$form = jQuery('.lolita-subscribe-form');
             this.$input = this.$form.find('.lolita-subscribe-email');
-            this.type = this.$form.find('.lolita-subscribe-type').val();
-            this.mailchimp_api_key = this.$form.find('.lolita-subscribe-mailchimp-api-key').val();
-            this.mailchimp_list_id = this.$form.find('.lolita-subscribe-mailchimp-list-id').val();
             this.$form.on('submit', function (e) { return _this.submit(e); });
         }
         SubscribeForm.prototype.submit = function (e) {
@@ -30,10 +24,7 @@ var LolitaFramework;
             }
             this.ajax({
                 action: 'lolita_subscribe',
-                value: this.$input.val(),
-                type: this.type,
-                mailchimp_api_key: this.mailchimp_api_key,
-                mailchimp_list_id: this.mailchimp_list_id
+                value: this.$input.val()
             }, function (response) { return _this.done(response); }, function (response) { return _this.fail(response); }, function (response) { return _this.always(response); });
             e.preventDefault();
         };

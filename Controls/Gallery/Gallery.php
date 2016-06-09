@@ -1,9 +1,10 @@
 <?php
-namespace redbrook\LolitaFramework\Controls\Gallery;
+namespace duidluck\LolitaFramework\Controls\Gallery;
 
-use \redbrook\LolitaFramework\Controls\Control as Control;
-use \redbrook\LolitaFramework\Core\HelperImage as HelperImage;
-use \redbrook\LolitaFramework\Core\HelperArray as HelperArray;
+use \duidluck\LolitaFramework\Controls\Control as Control;
+use \duidluck\LolitaFramework\Core\HelperImage as HelperImage;
+use \duidluck\LolitaFramework\Core\HelperArray as HelperArray;
+use \duidluck\LolitaFramework as LolitaFramework;
 
 class Gallery extends Control
 {
@@ -14,27 +15,23 @@ class Gallery extends Control
     public function __construct(array $parameters)
     {
         parent::__construct($parameters);
-        add_action(
-            'admin_enqueue_scripts',
-            array(&$this, 'addScriptsAndStyles')
-        );
     }
 
     /**
      * Add scripts and styles
      */
-    public function addScriptsAndStyles()
+    public static function adminEnqueue()
     {
         // ==============================================================
         // Styles
         // ==============================================================
         wp_enqueue_style(
             'lolita-gallery-control',
-            $this->getURL() . '/assets/css/gallery.css'
+            LolitaFramework::getURLByDirectory(__DIR__) . '/assets/css/gallery.css'
         );
         wp_enqueue_style(
             'lolita-controls',
-            self::controlURL() . '/assets/css/controls.css'
+            self::getURL() . '/assets/css/controls.css'
         );
 
         // ==============================================================
@@ -45,7 +42,7 @@ class Gallery extends Control
         wp_enqueue_script('underscore');
         wp_enqueue_script(
             'lolita-gallery-control',
-            $this->getURL() . '/assets/js/gallery.js',
+            LolitaFramework::getURLByDirectory(__DIR__) . '/assets/js/gallery.js',
             array('jquery', 'underscore'),
             false,
             true

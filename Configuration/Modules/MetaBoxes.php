@@ -1,13 +1,13 @@
 <?php
-namespace redbrook\LolitaFramework\Configuration\Modules;
+namespace duidluck\LolitaFramework\Configuration\Modules;
 
-use \redbrook\LolitaFramework\Core\HelperString as HelperString;
-use \redbrook\LolitaFramework\Core\HelperArray as HelperArray;
-use \redbrook\LolitaFramework\Core\GlobalLocator as GlobalLocator;
-use \redbrook\LolitaFramework\Core\View as View;
-use \redbrook\LolitaFramework\Configuration\Configuration as Configuration;
-use \redbrook\LolitaFramework\Configuration\IModule as IModule;
-use \redbrook\LolitaFramework\Controls\Controls as Controls;
+use \duidluck\LolitaFramework\Core\HelperString as HelperString;
+use \duidluck\LolitaFramework\Core\HelperArray as HelperArray;
+use \duidluck\LolitaFramework\Core\GlobalLocator as GlobalLocator;
+use \duidluck\LolitaFramework\Core\View as View;
+use \duidluck\LolitaFramework\Configuration\Configuration as Configuration;
+use \duidluck\LolitaFramework\Configuration\IModule as IModule;
+use \duidluck\LolitaFramework\Controls\Controls as Controls;
 
 class MetaBoxes implements IModule
 {

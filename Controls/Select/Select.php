@@ -1,9 +1,9 @@
 <?php
-namespace redbrook\LolitaFramework\Controls\Select;
+namespace duidluck\LolitaFramework\Controls\Select;
 
-use \redbrook\LolitaFramework\Controls\Control as Control;
-use \redbrook\LolitaFramework\Core\HelperArray as HelperArray;
-use \redbrook\LolitaFramework\Core\HelperString as HelperString;
+use \duidluck\LolitaFramework\Controls\Control as Control;
+use \duidluck\LolitaFramework\Core\HelperArray as HelperArray;
+use \duidluck\LolitaFramework\Core\HelperString as HelperString;
 
 class Select extends Control
 {
