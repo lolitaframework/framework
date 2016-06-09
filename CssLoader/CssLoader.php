@@ -46,7 +46,7 @@ class CssLoader
     /**
      * Add Loader templates
      */
-    public function renderTemplates()
+    public function renderTemplates() 
     {
         echo View::make(__DIR__ . DS . 'views' . DS . 'css_loader.php');
     }

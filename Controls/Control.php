@@ -116,4 +116,21 @@ abstract class Control
             $this->parameters
         );
     }
+
+    /**
+     * Get parameters dataset
+     * @return array dataset.
+     */
+    public function getDataSet()
+    {
+        $result = array();
+        if (is_array($this->parameters)) {
+            foreach ($this->parameters as $key => $value) {
+                if (strpos($key, 'data-') > -1) {
+                    $result[$key] = $value;
+                }
+            }
+        }
+        return $result;
+    }
 }

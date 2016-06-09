@@ -46,14 +46,35 @@ namespace LolitaFramework {
         $input: any = '';
 
         /**
+         * Subscribe type
+         * @type {string}
+         */
+        type: string = 'default';
+
+        /**
+         * Mail Chimp API key
+         * @type {string}
+         */
+        mailchimp_api_key: string = '';
+
+        /**
+         * Mail Chimp List id
+         * @type {string}
+         */
+        mailchimp_list_id: string = '';
+
+        /**
          * SubscribeForm control class constructor
          */
         constructor() {
-            this.$widget          = jQuery('.lolita-subscribe');
-            this.$success_message = jQuery('.lolita-subscribe-success-message');
-            this.$error_message   = jQuery('.lolita-subscribe-error-message');
-            this.$form            = jQuery('.lolita-subscribe-form');
-            this.$input           = this.$form.find('.lolita-subscribe-email');
+            this.$widget           = jQuery('.lolita-subscribe');
+            this.$success_message  = jQuery('.lolita-subscribe-success-message');
+            this.$error_message    = jQuery('.lolita-subscribe-error-message');
+            this.$form             = jQuery('.lolita-subscribe-form');
+            this.$input            = this.$form.find('.lolita-subscribe-email');
+            this.type              = this.$form.find('.lolita-subscribe-type').val();
+            this.mailchimp_api_key = this.$form.find('.lolita-subscribe-mailchimp-api-key').val();
+            this.mailchimp_list_id = this.$form.find('.lolita-subscribe-mailchimp-list-id').val();
 
             this.$form.on(
                 'submit',
@@ -72,7 +93,10 @@ namespace LolitaFramework {
             this.ajax(
                 {
                     action: 'lolita_subscribe',
-                    value : this.$input.val()
+                    value : this.$input.val(),
+                    type : this.type,
+                    mailchimp_api_key : this.mailchimp_api_key,
+                    mailchimp_list_id : this.mailchimp_list_id
                 },
                 (response: any) => this.done(response),
                 (response: any) => this.fail(response),

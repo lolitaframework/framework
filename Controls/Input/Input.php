@@ -63,6 +63,7 @@ class Input extends Control
             'class',
             'id',
             'value',
+            'style',
         );
     }
 
@@ -76,6 +77,8 @@ class Input extends Control
             $this->getAllowedAttributes(),
             $this->parameters
         );
+
+        $attributes = array_merge($this->getDataSet(), $attributes);
         $this->parameters['attributes_str'] = HelperArray::join($attributes);
         return parent::render();
     }

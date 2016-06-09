@@ -33,8 +33,7 @@ class Widgets
      *
      * @return array
      */
-    public static function getAllClasses()
-    {
+    public static function getAllClasses() {
         $result  = array();
         $folders = (array) glob(dirname(__FILE__) . '/*', GLOB_ONLYDIR);
         foreach ($folders as $folder) {
@@ -52,9 +51,8 @@ class Widgets
     /**
      * Load classes
      */
-    public function load()
-    {
-        foreach ($this->data as $class) {
+    public function load() {
+        foreach ( $this->data as $class ) {
             register_widget($class);
         }
     }

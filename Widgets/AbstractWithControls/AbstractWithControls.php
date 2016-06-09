@@ -5,16 +5,16 @@ use \redbrook\LolitaFramework\Core\HelperArray as HelperArray;
 use \redbrook\LolitaFramework\Core\HelperString as HelperString;
 use \redbrook\LolitaFramework\Core\View as View;
 use \redbrook\LolitaFramework\Controls\Controls as Controls;
+use \redbrook\LolitaFramework as LolitaFramework;
 
-abstract class AbstractWithControls extends \WP_Widget
-{
+abstract class AbstractWithControls extends \WP_Widget{
 
     /**
      * Register widget with WordPress.
      */
     public function __construct($name, $widget_options = array(), $id_base = '', $control_options = array())
     {
-        if ('' === $id_base) {
+        if ( '' === $id_base) {
             $id_base = HelperString::sentenceToSnake($name);
         }
         parent::__construct(
@@ -23,6 +23,25 @@ abstract class AbstractWithControls extends \WP_Widget
             $widget_options,
             $control_options
         );
+    }
+
+    /**
+     * Get widget URL
+     * @return string widget url.
+     */
+    public function getURL()
+    {
+        return LolitaFramework::getURLByDirectory($this->getDir()) . DS;
+    }
+
+    /**
+     * Get class directory
+     * @return string class directory.
+     */
+    public function getDir()
+    {
+        $reflector = new \ReflectionClass(get_class($this));
+        return dirname($reflector->getFileName());
     }
 
     /**
@@ -39,8 +58,7 @@ abstract class AbstractWithControls extends \WP_Widget
      * @param array $args     Widget arguments.
      * @param array $instance Saved values from database.
      */
-    public function widget($args, $instance)
-    {
+    public function widget( $args, $instance ) {
         echo View::make(dirname(__FILE__) . DS . 'views' . DS . 'default.php');
     }
 
@@ -51,8 +69,7 @@ abstract class AbstractWithControls extends \WP_Widget
      *
      * @param array $instance Previously saved values from database.
      */
-    public function form($instance)
-    {
+    public function form($instance) {
         $controls = new Controls;
         $controls->generateControls($this->getControlsData());
 
@@ -67,11 +84,12 @@ abstract class AbstractWithControls extends \WP_Widget
                 // ==============================================================
                 // Fill new attributes
                 // ==============================================================
+                $css_class = $control->getName() . '-class widefat '. HelperArray::get($control->parameters, 'class', '');
                 $control->parameters = array_merge(
                     $control->parameters,
                     array(
-                        'class' => $control->getName() . '-class widefat',
-                        'id' => $this->get_field_id($control->getName()),
+                        'class' => $css_class,
+                        'id'    => $this->get_field_id($control->getName()),
                     )
                 );
                 // ==============================================================
