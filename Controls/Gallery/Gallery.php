@@ -1,12 +1,15 @@
 <?php
 namespace duidluck\LolitaFramework\Controls\Gallery;
 
-use \duidluck\LolitaFramework\Controls\Control as Control;
-use \duidluck\LolitaFramework\Core\HelperImage as HelperImage;
-use \duidluck\LolitaFramework\Core\HelperArray as HelperArray;
+use \duidluck\LolitaFramework\Controls\Control;
+use \duidluck\LolitaFramework\Controls\IHaveAdminEnqueue;
+use \duidluck\LolitaFramework\Core\HelperImage;
+use \duidluck\LolitaFramework\Core\HelperArray;
+use \duidluck\LolitaFramework\Core\HelperString;
+use \duidluck\LolitaFramework\Core\View;
 use \duidluck\LolitaFramework as LolitaFramework;
 
-class Gallery extends Control
+class Gallery extends Control implements iHaveAdminEnqueue
 {
     /**
      * Control constructor
@@ -15,6 +18,7 @@ class Gallery extends Control
     public function __construct(array $parameters)
     {
         parent::__construct($parameters);
+        $this->parameters['ID'] = $this->getID();
     }
 
     /**
@@ -57,10 +61,11 @@ class Gallery extends Control
     {
         $values = $this->getValue();
         $this->parameters['value'] = '';
-        $this->parameters['l10n'] = HelperArray::l10n(
-            'lolita_gallery_control_l10n',
-            array(
-                'items' => $this->getItems($values),
+        $this->parameters['items'] = $this->getItems($values);
+        $this->parameters['template'] = base64_encode(
+            View::make(
+                __DIR__ . DS . 'views' . DS . 'template.php',
+                $this->parameters
             )
         );
         return parent::render();
@@ -73,11 +78,13 @@ class Gallery extends Control
     public function getItems($values)
     {
         $result = array();
-        foreach ($values as $key => $value) {
-            $p = get_post((int) $value);
-            if (null !== $p) {
-                $p->src = HelperImage::getURL($p->ID);
-                array_push($result, $p);
+        if (is_array($values)) {
+            foreach ($values as $key => $value) {
+                $p = get_post((int) $value);
+                if (null !== $p) {
+                    $p->src = HelperImage::getURL($p->ID);
+                    array_push($result, $p);
+                }
             }
         }
         return $result;

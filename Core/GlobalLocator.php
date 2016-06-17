@@ -33,4 +33,14 @@ class GlobalLocator
         global $post;
         return $post;
     }
+
+    /**
+     * Get $wp_query
+     * @return WP_Query instance.
+     */
+    public static function wpQuery()
+    {
+        global $wp_query;
+        return $wp_query;
+    }
 }

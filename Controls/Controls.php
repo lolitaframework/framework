@@ -1,8 +1,9 @@
 <?php
 namespace duidluck\LolitaFramework\Controls;
 
-use \duidluck\LolitaFramework\Core\HelperArray as HelperArray;
-use \duidluck\LolitaFramework\Core\View as View;
+use \duidluck\LolitaFramework\Core\HelperArray;
+use \duidluck\LolitaFramework\Core\HelperClass;
+use \duidluck\LolitaFramework\Core\View;
 
 /**
  * Controls collection class
@@ -56,7 +57,7 @@ class Controls
     /**
      * Get class name from type
      * @param  string $type control type
-     * @return string 
+     * @return string
      */
     public static function getClassNameFromType($type)
     {
@@ -75,8 +76,13 @@ class Controls
     {
         foreach ($data as $arguments) {
             $class_name = self::getClassNameFromType(HelperArray::get($arguments, '__TYPE__'));
-            add_action('wp_enqueue_scripts', array($class_name, 'enqueue'));
-            add_action('admin_enqueue_scripts', array($class_name, 'adminEnqueue'));
+            if (HelperClass::isImplements($class_name, __NAMESPACE__ . NS . 'IHaveEnqueue')) {
+                add_action('wp_enqueue_scripts', array($class_name, 'enqueue'));
+            }
+
+            if (HelperClass::isImplements($class_name, __NAMESPACE__ . NS . 'IHaveAdminEnqueue')) {
+                add_action('admin_enqueue_scripts', array($class_name, 'adminEnqueue'));
+            }
         }
     }
 

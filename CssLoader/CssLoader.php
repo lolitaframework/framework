@@ -14,6 +14,7 @@ class CssLoader
         add_action('wp_enqueue_scripts', array(&$this, 'addScriptsAndStyles'));
         add_action('admin_enqueue_scripts', array(&$this, 'addScriptsAndStyles'));
         add_action('wp_head', array(&$this, 'renderTemplates'));
+        add_action('admin_head', array(&$this, 'renderTemplates'));
     }
 
     /**

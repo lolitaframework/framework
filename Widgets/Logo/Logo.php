@@ -36,7 +36,6 @@ class Logo extends AbstractWithControls
             array(
                 "name"     => "img",
                 "__TYPE__" => "Media",
-                "type"     => "text",
                 "label"    => "Image",
             ),
         );
@@ -56,7 +55,7 @@ class Logo extends AbstractWithControls
         if (0 === $src) {
             $src = 'http://placehold.it/50x50';
         } else {
-            $src = HelperImage::getURL($src);
+            $src = HelperImage::getURL($src, 'full');
         }
 
         $url = HelperArray::get($instance, 'url', '/');

@@ -63,7 +63,13 @@ abstract class AbstractWithControls extends \WP_Widget implements IHaveBeforeIni
     public function form($instance)
     {
         $controls = new Controls;
-        $controls->generateControls(static::getControlsData());
+        $controls_data = static::getControlsData();
+        foreach ($controls_data as &$control) {
+            $control['small_name'] = $control['name'];
+            $control['name'] = $this->get_field_name($control['name']);
+        }
+
+        $controls->generateControls($controls_data);
 
         if ($controls instanceof Controls) {
             foreach ($controls->collection as $control) {
@@ -71,7 +77,7 @@ abstract class AbstractWithControls extends \WP_Widget implements IHaveBeforeIni
                 // Set new value
                 // ==============================================================
                 $control->setValue(
-                    HelperArray::get($instance, $control->getName())
+                    HelperArray::get($instance, $control->parameters['small_name'])
                 );
                 // ==============================================================
                 // Fill new attributes
@@ -79,15 +85,9 @@ abstract class AbstractWithControls extends \WP_Widget implements IHaveBeforeIni
                 $control->parameters = array_merge(
                     $control->parameters,
                     array(
-                        'class' => $control->getName() . '-class widefat',
-                        'id' => $this->get_field_id($control->getName()),
+                        'class' => $control->parameters['small_name'] . '-class widefat',
+                        'id' => $this->get_field_id($control->getID()),
                     )
-                );
-                // ==============================================================
-                // Set new name
-                // ==============================================================
-                $control->setName(
-                    $this->get_field_name($control->getName())
                 );
             }
             echo $controls->render(

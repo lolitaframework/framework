@@ -1,9 +1,10 @@
 <?php
 namespace duidluck\LolitaFramework\Configuration\Modules;
 
-use \duidluck\LolitaFramework\Configuration\Configuration as Configuration;
-use \duidluck\LolitaFramework\Configuration\IModule as IModule;
-use \duidluck\LolitaFramework\Core\HelperString as HelperString;
+use \duidluck\LolitaFramework\Configuration\Configuration;
+use \duidluck\LolitaFramework\Configuration\IModule;
+use \duidluck\LolitaFramework\Core\HelperString;
+use \duidluck\LolitaFramework\Core\GlobalLocator;
 
 class Routes implements IModule
 {
@@ -37,7 +38,7 @@ class Routes implements IModule
      */
     public function customRoutes()
     {
-        global $wp_query;
+        $wp_query = GlobalLocator::wpQuery();
         $page = $wp_query->query_vars['name'];
         if (array_key_exists($page, $this->data)) {
             echo HelperString::compileVariables($this->data[ $page ]);

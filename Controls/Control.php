@@ -96,32 +96,27 @@ abstract class Control
     }
 
     /**
+     * Get HTML ID attribute
+     * @return string ID attribute
+     */
+    public function getID()
+    {
+        $name = $this->parameters['name'];
+        $name = HelperString::bracesToUnderline($name);
+        $name = str_replace('-', '_', $name);
+        return $name;
+    }
+
+    /**
      * Render control
      * @return string html code.
      */
     public function render()
     {
+        $this->parameters['me'] = $this;
         return View::make(
             $this->getDefaultViewPath(),
             $this->parameters
         );
-    }
-
-    /**
-     * Enqueue scripts and styles
-     * @return void
-     */
-    public static function enqueue()
-    {
-
-    }
-
-    /**
-     * Admin enqueue scripts and styles
-     * @return void
-     */
-    public static function adminEnqueue()
-    {
-
     }
 }

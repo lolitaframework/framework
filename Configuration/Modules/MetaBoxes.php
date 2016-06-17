@@ -51,6 +51,10 @@ class MetaBoxes implements IModule
         foreach ($this->data as $slug => &$data) {
             $data = array_merge($default, (array) $data);
             if (array_key_exists('controls', $data)) {
+                foreach ($data['controls'] as &$control) {
+                    $control['small_name'] = $control['name'];
+                    $control['name']       = $this->controlNameWithPrefix($slug, $control['name']);
+                }
                 $controls = new Controls;
                 $controls->generateControls((array) $data['controls']);
 
@@ -102,12 +106,6 @@ class MetaBoxes implements IModule
 
         if ($controls instanceof Controls) {
             foreach ($controls->collection as $control) {
-                // ==============================================================
-                // Set name with prefix
-                // ==============================================================
-                $control->setName(
-                    $this->controlNameWithPrefix($metabox_name, $control->getName())
-                );
                 // ==============================================================
                 // Set new value
                 // ==============================================================
@@ -174,8 +172,7 @@ class MetaBoxes implements IModule
 
             if (array_key_exists('controls', $data)) {
                 foreach ($data['controls'] as $arguments) {
-                    $control_name = $this->controlNameWithPrefix($slug, $arguments['name']);
-                    $this->toggleSave($control_name, $post_id);
+                    $this->toggleSave($arguments['name'], $post_id);
                 }
             }
         }

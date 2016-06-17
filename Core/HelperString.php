@@ -66,6 +66,21 @@ class HelperString
     }
 
     /**
+     * Braces to underline
+     * From: widget-lolita_logo_widget[5][gallery]
+     * To: widget-lolita_logo_widget_5_gallery
+     * @param  string $str string with braces.
+     * @return string without braces.
+     */
+    public static function bracesToUnderline($str)
+    {
+        $str = str_replace('][', '_', $str);
+        $str = str_replace('[', '_', $str);
+        $str = str_replace(']', '', $str);
+        return $str;
+    }
+
+    /**
      * Call model from string like this {{ Model::Method }}
      *
      * @param  string $path_str [description]

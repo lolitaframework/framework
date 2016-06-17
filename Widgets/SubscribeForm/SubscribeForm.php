@@ -7,19 +7,30 @@ use \duidluck\LolitaFramework\Core\HelperArray as HelperArray;
 use \duidluck\LolitaFramework\Widgets\SubscribeForm\vendor\DrewM\MailChimp\MailChimp as MailChimp;
 use \duidluck\LolitaFramework;
 
-class SubscribeForm extends AbstractWithControls{
+class SubscribeForm extends AbstractWithControls
+{
     /**
      * Register widget with WordPress.
      */
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct(
             __('Lolita subscribe form', 'lolita'),
             array('description' => __('Subscribe form widget', 'lolita'))
         );
-        add_action('wp_enqueue_scripts', array(&$this, 'addScriptsAndStyles'));
-        add_action('admin_enqueue_scripts', array(&$this, 'adminAddScriptsAndStyles'));
         add_action('wp_ajax_lolita_subscribe', array(&$this, 'subscribe'));
         add_action('wp_ajax_nopriv_lolita_subscribe', array(&$this, 'subscribe'));
+    }
+
+    /**
+     * This function run before widgets_init hook
+     * @return void
+     */
+    public static function beforeInit()
+    {
+        parent::beforeInit();
+        add_action('wp_enqueue_scripts', array(__CLASS__, 'addScriptsAndStyles'));
+        add_action('admin_enqueue_scripts', array(__CLASS__, 'adminAddScriptsAndStyles'));
     }
 
     /**
@@ -82,9 +93,9 @@ class SubscribeForm extends AbstractWithControls{
     /**
      * Add scripts and styles
      */
-    public function addScriptsAndStyles()
+    public static function addScriptsAndStyles()
     {
-        LolitaFramework::getURLByDirectory(__DIR__) . 'assets' . DS;
+        $assets = LolitaFramework::getURLByDirectory(__DIR__) . DS . 'assets' . DS;
         // ==============================================================
         // Scripts
         // ==============================================================
@@ -110,9 +121,12 @@ class SubscribeForm extends AbstractWithControls{
         );
     }
 
-    public function adminAddScriptsAndStyles()
+    /**
+     * Add scripts and styles for admin panel
+     */
+    public static function adminAddScriptsAndStyles()
     {
-        LolitaFramework::getURLByDirectory(__DIR__) . 'assets' . DS;
+        $assets = LolitaFramework::getURLByDirectory(__DIR__) . DS . 'assets' . DS;
         // ==============================================================
         // Scripts
         // ==============================================================
@@ -192,7 +206,8 @@ class SubscribeForm extends AbstractWithControls{
      * @param array $args     Widget arguments.
      * @param array $instance Saved values from database.
      */
-    public function widget( $args, $instance ) {
+    public function widget($args, $instance)
+    {
         $instance['success_message'] = HelperArray::get(
             $instance,
             'success_message',

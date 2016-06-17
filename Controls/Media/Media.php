@@ -1,12 +1,13 @@
 <?php
 namespace duidluck\LolitaFramework\Controls\Media;
 
-use \duidluck\LolitaFramework\Controls\Control as Control;
-use \duidluck\LolitaFramework\Core\HelperImage as HelperImage;
-use \duidluck\LolitaFramework\Core\HelperArray as HelperArray;
+use \duidluck\LolitaFramework\Controls\Control;
+use \duidluck\LolitaFramework\Controls\IHaveAdminEnqueue;
+use \duidluck\LolitaFramework\Core\HelperImage;
+use \duidluck\LolitaFramework\Core\HelperArray;
 use \duidluck\LolitaFramework as LolitaFramework;
 
-class Media extends Control
+class Media extends Control implements iHaveAdminEnqueue
 {
     /**
      * Control constructor

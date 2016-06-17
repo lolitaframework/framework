@@ -72,6 +72,7 @@ class Input extends Control
      */
     public function render()
     {
+        $this->parameters['id'] = $this->getID();
         $attributes = HelperArray::leaveRightKeys(
             $this->getAllowedAttributes(),
             $this->parameters

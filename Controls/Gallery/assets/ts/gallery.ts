@@ -4,7 +4,7 @@ namespace LolitaFramework {
     export class Gallery {
 
         /**
-         * Media control element
+         * Gallery control element
          * @type {any}
          */
         $el: any = null;
@@ -28,66 +28,56 @@ namespace LolitaFramework {
         $list: any = null;
 
         /**
+         * List item
+         * @type {any}
+         */
+        $list_item: any = null;
+
+        /**
+         * Underscore template
+         * @type {any}
+         */
+        item_template: any = null;
+
+        /**
          * Init a WordPress media window.
          * @type {any}
          */
         frame: any = null;
 
         /**
-         * Data from backend
-         * @type {any}
-         */
-        l10n: any = (<any>window).lolita_gallery_control_l10n.items;
-
-        /**
          * Gallery control class constructor
          */
-        constructor() {
-            this.$el = jQuery('.lolita-collection-wrapper');
+        constructor(main_selector:string, frame:any) {
+            this.frame = frame;
+            this.$el = jQuery(main_selector);
             this.$add_button = this.$el.find('#lolita-collection-add');
             this.$remove_button = this.$el.find('#lolita-collection-remove');
             this.$list = this.$el.find('.lolita-collection-list');
+            this.$list_item = this.$list.find('.lolita-collection__item');
+            this.item_template = (<any>window)._.template(atob(this.$el.find('.underscore_template').html()));
 
-            this.frame = (<any>window).wp.media({
-                // Define behaviour of the media window.
-                // 'post' if related to a WordPress post.
-                // 'select' if use outside WordPress post.
-                frame: 'select',
-                // Allow or not multiple selection.
-                multiple: true,
-                // The displayed title.
-                title: 'Insert media',
-                // The button behaviour
-                button: {
-                    text: 'Insert',
-                    close: true
-                }
-            });
-
-            this.frame.on(
-                'select',
-                (e:any) => this.select(e)
-            );
             this.$add_button.on(
                 'click',
-                (e:any) => this.add(e)
+                (e: any) => this.add(e)
             );
             this.$remove_button.on(
                 'click',
-                (e:any) => this.remove(e)
+                (e: any) => this.remove(e)
             );
-            this.loadFromL10n();
+
             this.$el.on(
                 'click',
                 '.lolita-collection-list li .lolita-collection__item',
-                (e:any) => this.clickItem(e)
+                (e: any) => this.clickItem(e)
             );
 
             this.$el.on(
                 'click',
                 '.lolita-collection-list li .lolita-collection__item.selected .check',
-                (e:any) => this.clickItemCheck(e)
+                (e: any) => this.clickItemCheck(e)
             );
+
             this.toggleCollectionContainer();
             this.sort();
         }
@@ -96,7 +86,7 @@ namespace LolitaFramework {
          * Click item check
          * @param {any} e event.
          */
-        clickItemCheck(e:any) {
+        clickItemCheck(e: any) {
             e.preventDefault();
             jQuery(e.currentTarget).closest('li').remove();
             this.toggleRemoveButton().toggleCollectionContainer();
@@ -106,28 +96,17 @@ namespace LolitaFramework {
          * Click to item event.
          * @param {any} e event.
          */
-        clickItem(e:any) {
+        clickItem(e: any) {
             jQuery(e.currentTarget).toggleClass('selected');
             this.toggleRemoveButton();
-        }
-
-        /**
-         * Load from backend
-         * @returns Gallery object.
-         */
-        loadFromL10n() {
-            var i: number;
-            for (i = 0; i < this.l10n.length; i++) {
-                this.insertItem(this.l10n[i].ID, this.l10n[i].src);
-            }
-            return this;
         }
 
         /**
          * Add button event
          * @param {any} e event.
          */
-        add(e:any) {
+        add(e: any) {
+            this.frame.current = this;
             this.frame.open();
         }
 
@@ -159,32 +138,10 @@ namespace LolitaFramework {
          * Remove button event
          * @param {any} e event.
          */
-        remove(e:any) {
+        remove(e: any) {
             this.$el.find('.lolita-collection-list li .lolita-collection__item.selected').parent().remove();
             this.toggleRemoveButton().toggleCollectionContainer();
             return this;
-        }
-
-        /**
-         * Run when an item is selected in the media library.
-         * The event is fired when the "insert" button is clicked.
-         *
-         * @returns void
-         */
-        select(e:any) {
-            var selection = this.frame.state('library').get('selection');
-
-            selection.map(
-                function(attachment:any)
-                {
-                    this.insertItem(
-                        attachment.get('id'),
-                        this.getAttachmentThumbnail(attachment)
-                    );
-                },
-                this
-            );
-            this.toggleCollectionContainer();
         }
 
         /**
@@ -193,12 +150,23 @@ namespace LolitaFramework {
          * @param attachment The attachment model from the WordPress media API.
          * @return void
          */
-        insertItem(id:string, thumbnail:string) {
-            var item = new GalleryItem(
+        insertItem(id: string, thumbnail: string) {
+            var item: any, $widget: any, parsed: any;
+            item = new GalleryItem(
                 id,
-                thumbnail
+                thumbnail,
+                this.$el.data('name') + '[]',
+                this.item_template
             );
-            this.$list.append(item.render().el);
+            item.render()
+
+            $widget = this.$list.parents('.widget');
+            if ($widget.length) {
+                parsed = this.parseWidgetId($widget.attr('id'));
+                item.setWidgetNumber(parsed.number);
+            }
+            this.$list.append(item.el);
+            return this;
         }
 
         /**
@@ -207,21 +175,18 @@ namespace LolitaFramework {
          * @param {object} attachment The attachment model.
          * @return {string} The attachment thumbnail URL.
          */
-        getAttachmentThumbnail(attachment:any) {
+        getAttachmentThumbnail(attachment: any) {
             var type = attachment.get('type'),
                 url = attachment.get('icon');
 
-            if('image' === type)
-            {
+            if ('image' === type) {
                 // Check if the thumbnail size is available.
                 var sizes = attachment.get('sizes');
 
-                if (undefined !== sizes.thumbnail)
-                {
+                if (undefined !== sizes.thumbnail) {
                     url = sizes.thumbnail.url;
                 }
-                else
-                {
+                else {
                     // Original image is less than 100px.
                     url = sizes.full.url;
                 }
@@ -237,18 +202,39 @@ namespace LolitaFramework {
          */
         sort() {
             this.$el.find('ul.lolita-collection-list').sortable({
-                helper : function(e:any, ui:any) {
+                helper: function(e: any, ui: any) {
                     ui.children().each(function() {
                         jQuery(this).width(jQuery(this).width());
                     });
                     return ui;
                 },
-                forcePlaceholderSize : true,
+                forcePlaceholderSize: true,
                 placeholder: 'lolita-collection-ui-state-highlight',
                 handle: '.lolita-collection__item'
             });
         }
-    }
 
-    (<any>window).LolitaFramework.gallery = new Gallery();
+        /**
+         * @param {String} widgetId
+         * @returns {Object}
+         */
+        parseWidgetId(widgetId: string) {
+            var matches: any, parsed: any;
+            parsed = {
+                number: null,
+                id_base: null
+            };
+
+            matches = widgetId.match(/^(.+)-(\d+)$/);
+            if (matches) {
+                parsed.id_base = matches[1];
+                parsed.number = parseInt(matches[2], 10);
+            } else {
+                // likely an old single widget
+                parsed.id_base = widgetId;
+            }
+
+            return parsed;
+        }
+    }
 }

@@ -8,6 +8,7 @@
 	},
 	"files": [
 		"gallery_item.ts",
-		"gallery.ts"
+		"gallery.ts",
+		"galleries.ts"
 	]
 }

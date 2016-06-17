@@ -12,14 +12,7 @@ var LolitaFramework;
             this.$info_path = null;
             this.$thumbnail = null;
             this.frame = null;
-            this.$el = jQuery('.lolita-media-control');
-            this.$add_button = this.$el.find('.lolita-media-add');
-            this.$remove_button = this.$el.find('.lolita-button-remove');
-            this.$preview = this.$el.find('.media-preview');
-            this.$input = this.$el.find('input');
-            this.$info_id = this.$el.find('p.info-id');
-            this.$info_path = this.$el.find('p.info-path');
-            this.$thumbnail = this.$el.find('img.media-thumbnail');
+            this.rebind('.lolita-media-control');
             this.frame = window.wp.media({
                 frame: 'select',
                 multiple: false,
@@ -33,13 +26,25 @@ var LolitaFramework;
                 }
             });
             this.frame.on('select', function (e) { return _this.select(e); });
-            this.$add_button.on('click', function (e) { return _this.add(e); });
-            this.$remove_button.on('click', function (e) { return _this.remove(e); });
+            jQuery(document).on('click', '.lolita-media-add', function (e) { return _this.add(e); });
+            jQuery(document).on('click', '.lolita-button-remove', function (e) { return _this.remove(e); });
         }
+        Media.prototype.rebind = function (main_selector) {
+            this.$el = jQuery(main_selector);
+            this.$add_button = this.$el.find('.lolita-media-add');
+            this.$remove_button = this.$el.find('.lolita-button-remove');
+            this.$preview = this.$el.find('.media-preview');
+            this.$input = this.$el.find('input');
+            this.$info_id = this.$el.find('p.info-id');
+            this.$info_path = this.$el.find('p.info-path');
+            this.$thumbnail = this.$el.find('img.media-thumbnail');
+        };
         Media.prototype.add = function (e) {
+            this.rebind(jQuery(e.currentTarget).closest('.lolita-media-control'));
             this.frame.open();
         };
         Media.prototype.remove = function (e) {
+            this.rebind(jQuery(e.currentTarget).closest('.lolita-media-control'));
             this.$input.val('');
             this.$info_id.text('');
             this.$info_path.text('');

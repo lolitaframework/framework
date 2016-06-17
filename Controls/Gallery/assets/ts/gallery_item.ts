@@ -16,6 +16,12 @@ namespace LolitaFramework {
         src: string = '';
 
         /**
+         * Gallery Item name
+         * @type {string}
+         */
+        name: string = '';
+
+        /**
          * DOM element
          * @type {any}
          */
@@ -36,10 +42,11 @@ namespace LolitaFramework {
         /**
          * GalleryItem control class constructor
          */
-        constructor(value: string, src: string) {
+        constructor(value: string, src: string, name:string, template: any) {
             this.value = value;
             this.src = src;
-            this.template = (<any>window)._.template(jQuery('#lolita-collection-item-template').html());
+            this.name = name;
+            this.template = template;
         }
 
         /**
@@ -48,10 +55,23 @@ namespace LolitaFramework {
         render() {
             this.el = this.template({
                 value: this.value,
-                image: this.src
+                image: this.src,
+                name: this.name
             });
 
             this.$el = jQuery(this.el);
+            return this;
+        }
+
+        /**
+         * Set widget number
+         * @param {number} index widget index.
+         */
+        setWidgetNumber(index:string) {
+            var new_name:string = this.$el.find('input').attr('name');
+            new_name = new_name.replace(/__i__/, index);
+            this.$el.find('input').attr('name', new_name);
+            this.el = this.$el[0].outerHTML;
             return this;
         }
     }

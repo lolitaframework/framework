@@ -62,15 +62,7 @@ namespace LolitaFramework {
          * Media control class constructor
          */
         constructor() {
-            this.$el            = jQuery('.lolita-media-control');
-            this.$add_button    = this.$el.find('.lolita-media-add');
-            this.$remove_button = this.$el.find('.lolita-button-remove');
-            this.$preview       = this.$el.find('.media-preview')
-            this.$input         = this.$el.find('input');
-            this.$info_id       = this.$el.find('p.info-id');
-            this.$info_path     = this.$el.find('p.info-path');
-            this.$thumbnail     = this.$el.find('img.media-thumbnail');
-
+            this.rebind('.lolita-media-control');
             this.frame     = (<any>window).wp.media({
                 // Define behaviour of the media window.
                 // 'post' if related to a WordPress post.
@@ -96,15 +88,34 @@ namespace LolitaFramework {
                 'select',
                 (e:any) => this.select(e)
             );
-            this.$add_button.on(
+
+            jQuery(document).on(
                 'click',
-                (e:any) => this.add(e)
-            );
-            this.$remove_button.on(
-                'click',
-                (e:any) => this.remove(e)
+                '.lolita-media-add',
+                (e: any) => this.add(e)
             );
 
+            jQuery(document).on(
+                'click',
+                '.lolita-button-remove',
+                (e: any) => this.remove(e)
+            );
+
+        }
+
+        /**
+         * Rebind variables
+         * @param {any} main_selector selector.
+         */
+        rebind(main_selector:any) {
+            this.$el = jQuery(main_selector);
+            this.$add_button = this.$el.find('.lolita-media-add');
+            this.$remove_button = this.$el.find('.lolita-button-remove');
+            this.$preview = this.$el.find('.media-preview')
+            this.$input = this.$el.find('input');
+            this.$info_id = this.$el.find('p.info-id');
+            this.$info_path = this.$el.find('p.info-path');
+            this.$thumbnail = this.$el.find('img.media-thumbnail');
         }
 
         /**
@@ -112,6 +123,7 @@ namespace LolitaFramework {
          * @param {any} e event.
          */
         add(e:any) {
+            this.rebind(jQuery(e.currentTarget).closest('.lolita-media-control'));
             this.frame.open();
         }
 
@@ -120,6 +132,7 @@ namespace LolitaFramework {
          * @param {any} e event.
          */
         remove(e:any) {
+            this.rebind(jQuery(e.currentTarget).closest('.lolita-media-control'));
             this.$input.val('');
             this.$info_id.text('');
             this.$info_path.text('');

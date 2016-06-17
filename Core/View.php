@@ -46,6 +46,7 @@ class View
         if (array_key_exists('wp_query', $GLOBALS)) {
             if (is_array($GLOBALS['wp_query']->query_vars)) {
                 $old_query_vars = $GLOBALS['wp_query']->query_vars;
+                $data['view'] = new self;
                 $GLOBALS['wp_query']->query_vars = $data;
             }
         }
