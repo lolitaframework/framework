@@ -1,9 +1,9 @@
 <?php
-namespace duidluck\LolitaFramework\Controls\Select;
+namespace franken\LolitaFramework\Controls\Select;
 
-use \duidluck\LolitaFramework\Controls\Control as Control;
-use \duidluck\LolitaFramework\Core\HelperArray as HelperArray;
-use \duidluck\LolitaFramework\Core\HelperString as HelperString;
+use \franken\LolitaFramework\Controls\Control as Control;
+use \franken\LolitaFramework\Core\HelperArray as HelperArray;
+use \franken\LolitaFramework\Core\HelperString as HelperString;
 
 class Select extends Control
 {

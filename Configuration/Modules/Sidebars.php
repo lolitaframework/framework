@@ -1,10 +1,10 @@
 <?php
-namespace duidluck\LolitaFramework\Configuration\Modules;
+namespace franken\LolitaFramework\Configuration\Modules;
 
-use \duidluck\LolitaFramework\Core\HelperString as HelperString;
-use \duidluck\LolitaFramework\Configuration\Init as Init;
-use \duidluck\LolitaFramework\Configuration\Configuration as Configuration;
-use \duidluck\LolitaFramework\Configuration\IModule as IModule;
+use \franken\LolitaFramework\Core\HelperString as HelperString;
+use \franken\LolitaFramework\Configuration\Init as Init;
+use \franken\LolitaFramework\Configuration\Configuration as Configuration;
+use \franken\LolitaFramework\Configuration\IModule as IModule;
 
 class Sidebars extends Init implements IModule
 {

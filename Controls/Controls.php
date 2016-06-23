@@ -1,9 +1,9 @@
 <?php
-namespace duidluck\LolitaFramework\Controls;
+namespace franken\LolitaFramework\Controls;
 
-use \duidluck\LolitaFramework\Core\HelperArray;
-use \duidluck\LolitaFramework\Core\HelperClass;
-use \duidluck\LolitaFramework\Core\View;
+use \franken\LolitaFramework\Core\HelperArray;
+use \franken\LolitaFramework\Core\HelperClass;
+use \franken\LolitaFramework\Core\View;
 
 /**
  * Controls collection class
@@ -57,7 +57,7 @@ class Controls
     /**
      * Get class name from type
      * @param  string $type control type
-     * @return string
+     * @return string 
      */
     public static function getClassNameFromType($type)
     {

@@ -1,8 +1,7 @@
 <?php
-namespace duidluck\LolitaFramework\Widgets;
+namespace franken\LolitaFramework\Widgets;
 
-interface IHaveBeforeInit
-{
+interface IHaveBeforeInit{
     /**
      * This function run before widgets_init hook
      * @return void

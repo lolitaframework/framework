@@ -1,8 +1,8 @@
 <?php
-namespace duidluck\LolitaFramework\Widgets;
+namespace franken\LolitaFramework\Widgets;
 
-use \duidluck\LolitaFramework\Core\GlobalLocator as GlobalLocator;
-use \duidluck\LolitaFramework\Core\HelperClass as HelperClass;
+use \franken\LolitaFramework\Core\GlobalLocator as GlobalLocator;
+use \franken\LolitaFramework\Core\HelperClass as HelperClass;
 
 class Widgets
 {

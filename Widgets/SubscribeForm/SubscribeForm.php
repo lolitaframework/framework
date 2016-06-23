@@ -1,19 +1,17 @@
 <?php
-namespace duidluck\LolitaFramework\Widgets\SubscribeForm;
+namespace franken\LolitaFramework\Widgets\SubscribeForm;
 
-use \duidluck\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls as AbstractWithControls;
-use \duidluck\LolitaFramework\Core\View as View;
-use \duidluck\LolitaFramework\Core\HelperArray as HelperArray;
-use \duidluck\LolitaFramework\Widgets\SubscribeForm\vendor\DrewM\MailChimp\MailChimp as MailChimp;
-use \duidluck\LolitaFramework;
+use \franken\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls as AbstractWithControls;
+use \franken\LolitaFramework\Core\View as View;
+use \franken\LolitaFramework\Core\HelperArray as HelperArray;
+use \franken\LolitaFramework\Widgets\SubscribeForm\vendor\DrewM\MailChimp\MailChimp as MailChimp;
+use \franken\LolitaFramework;
 
-class SubscribeForm extends AbstractWithControls
-{
+class SubscribeForm extends AbstractWithControls{
     /**
      * Register widget with WordPress.
      */
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct(
             __('Lolita subscribe form', 'lolita'),
             array('description' => __('Subscribe form widget', 'lolita'))
@@ -206,8 +204,7 @@ class SubscribeForm extends AbstractWithControls
      * @param array $args     Widget arguments.
      * @param array $instance Saved values from database.
      */
-    public function widget($args, $instance)
-    {
+    public function widget( $args, $instance ) {
         $instance['success_message'] = HelperArray::get(
             $instance,
             'success_message',

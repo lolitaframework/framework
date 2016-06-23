@@ -1,10 +1,10 @@
 <?php
-namespace duidluck\LolitaFramework\Controls;
+namespace franken\LolitaFramework\Controls;
 
-use \duidluck\LolitaFramework\Core\HelperString as HelperString;
-use \duidluck\LolitaFramework\Core\HelperArray as HelperArray;
-use \duidluck\LolitaFramework\Core\View as View;
-use \duidluck\LolitaFramework as LolitaFramework;
+use \franken\LolitaFramework\Core\HelperString as HelperString;
+use \franken\LolitaFramework\Core\HelperArray as HelperArray;
+use \franken\LolitaFramework\Core\View as View;
+use \franken\LolitaFramework as LolitaFramework;
 
 abstract class Control
 {

@@ -1,9 +1,9 @@
 <?php
-namespace duidluck\LolitaFramework\Configuration\Modules;
+namespace franken\LolitaFramework\Configuration\Modules;
 
-use \duidluck\LolitaFramework\Core\HelperString as HelperString;
-use \duidluck\LolitaFramework\Configuration\Configuration as Configuration;
-use \duidluck\LolitaFramework\Configuration\IModule as IModule;
+use \franken\LolitaFramework\Core\HelperString as HelperString;
+use \franken\LolitaFramework\Configuration\Configuration as Configuration;
+use \franken\LolitaFramework\Configuration\IModule as IModule;
 
 class Assets implements IModule
 {
@@ -98,7 +98,8 @@ class Assets implements IModule
                 if (in_array($func, $allowed_functions)) {
                     $func = str_replace($this->prefix, '', $func);
                     $called_func = HelperString::snakeToCamel($func);
-                    $this->$func($data);
+                    $called_func = lcfirst($called_func);
+                    $this->$called_func($data);
                 }
             }
         }

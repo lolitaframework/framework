@@ -1,8 +1,8 @@
 <?php
-namespace duidluck\LolitaFramework\CssLoader;
+namespace franken\LolitaFramework\CssLoader;
 
-use \duidluck\LolitaFramework as LolitaFramework;
-use \duidluck\LolitaFramework\Core\View as View;
+use \franken\LolitaFramework as LolitaFramework;
+use \franken\LolitaFramework\Core\View as View;
 
 class CssLoader
 {

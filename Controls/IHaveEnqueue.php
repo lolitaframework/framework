@@ -1,10 +1,9 @@
 <?php
-namespace duidluck\LolitaFramework\Controls;
+namespace franken\LolitaFramework\Controls;
 
-interface IHaveEnqueue
-{
-    /**
-     * Scripts and Styles to load
-     */
-    public static function enqueue();
+interface IHaveEnqueue{
+	/**
+	 * Scripts and Styles to load
+	 */
+	public static function enqueue();
 }

@@ -1,11 +1,11 @@
 <?php
-namespace duidluck\LolitaFramework\Widgets\Logo;
+namespace franken\LolitaFramework\Widgets\Logo;
 
-use \duidluck\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls as AbstractWithControls;
-use \duidluck\LolitaFramework\Core\View as View;
-use \duidluck\LolitaFramework\Core\HelperArray as HelperArray;
-use \duidluck\LolitaFramework\Core\HelperImage;
-use \duidluck\LolitaFramework as LolitaFramework;
+use \franken\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls as AbstractWithControls;
+use \franken\LolitaFramework\Core\View as View;
+use \franken\LolitaFramework\Core\HelperArray as HelperArray;
+use \franken\LolitaFramework\Core\HelperImage;
+use \franken\LolitaFramework as LolitaFramework;
 
 class Logo extends AbstractWithControls
 {

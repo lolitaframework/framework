@@ -1,5 +1,5 @@
 <?php
-namespace duidluck\LolitaFramework\Configuration;
+namespace franken\LolitaFramework\Configuration;
 
 interface IModule
 {

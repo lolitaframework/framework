@@ -1,11 +1,11 @@
 <?php
-namespace duidluck\LolitaFramework\Widgets\AbstractWithControls;
+namespace franken\LolitaFramework\Widgets\AbstractWithControls;
 
-use \duidluck\LolitaFramework\Core\HelperArray as HelperArray;
-use \duidluck\LolitaFramework\Core\HelperString as HelperString;
-use \duidluck\LolitaFramework\Core\View as View;
-use \duidluck\LolitaFramework\Controls\Controls as Controls;
-use \duidluck\LolitaFramework\Widgets\IHaveBeforeInit;
+use \franken\LolitaFramework\Core\HelperArray as HelperArray;
+use \franken\LolitaFramework\Core\HelperString as HelperString;
+use \franken\LolitaFramework\Core\View as View;
+use \franken\LolitaFramework\Controls\Controls as Controls;
+use \franken\LolitaFramework\Widgets\IHaveBeforeInit;
 
 abstract class AbstractWithControls extends \WP_Widget implements IHaveBeforeInit
 {

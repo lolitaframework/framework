@@ -1,9 +1,9 @@
 <?php
-namespace duidluck\LolitaFramework\Configuration\Modules;
+namespace franken\LolitaFramework\Configuration\Modules;
 
-use \duidluck\LolitaFramework\Configuration\Configuration as Configuration;
-use \duidluck\LolitaFramework\Configuration\IModule as IModule;
-use \duidluck\LolitaFramework\Core\HelperArray as HelperArray;
+use \franken\LolitaFramework\Configuration\Configuration as Configuration;
+use \franken\LolitaFramework\Configuration\IModule as IModule;
+use \franken\LolitaFramework\Core\HelperArray as HelperArray;
 
 class Filters implements IModule
 {

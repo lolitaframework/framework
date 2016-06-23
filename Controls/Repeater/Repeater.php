@@ -1,12 +1,12 @@
 <?php
-namespace duidluck\LolitaFramework\Controls\Repeater;
+namespace franken\LolitaFramework\Controls\Repeater;
 
-use \duidluck\LolitaFramework\Controls\Control;
-use \duidluck\LolitaFramework\Controls\Controls;
-use \duidluck\LolitaFramework\Controls\IHaveAdminEnqueue;
-use \duidluck\LolitaFramework\Core\HelperArray;
-use \duidluck\LolitaFramework;
-use \duidluck\LolitaFramework\Core\View;
+use \franken\LolitaFramework\Controls\Control;
+use \franken\LolitaFramework\Controls\Controls;
+use \franken\LolitaFramework\Controls\IHaveAdminEnqueue;
+use \franken\LolitaFramework\Core\HelperArray;
+use \franken\LolitaFramework;
+use \franken\LolitaFramework\Core\View;
 
 class Repeater extends Control implements iHaveAdminEnqueue
 {
@@ -121,7 +121,7 @@ class Repeater extends Control implements iHaveAdminEnqueue
             $template_control['name'] = sprintf(
                 '%s[%s][%s]',
                 $this->getName(),
-                '__i__',
+                '__row_index__',
                 $template_control['name']
             );
             // ==============================================================
@@ -166,7 +166,7 @@ class Repeater extends Control implements iHaveAdminEnqueue
 
     /**
      * Get value count
-     * @return integer count.
+     * @return integer count. 
      */
     private function getValueCount()
     {

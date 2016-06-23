@@ -1,10 +1,10 @@
 <?php
-namespace duidluck\LolitaFramework\Widgets\SocialNetworks;
+namespace franken\LolitaFramework\Widgets\SocialNetworks;
 
-use \duidluck\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls as AbstractWithControls;
-use \duidluck\LolitaFramework\Core\View as View;
-use \duidluck\LolitaFramework\Core\HelperArray as HelperArray;
-use \duidluck\LolitaFramework as LolitaFramework;
+use \franken\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls as AbstractWithControls;
+use \franken\LolitaFramework\Core\View as View;
+use \franken\LolitaFramework\Core\HelperArray as HelperArray;
+use \franken\LolitaFramework as LolitaFramework;
 
 class SocialNetworks extends AbstractWithControls
 {

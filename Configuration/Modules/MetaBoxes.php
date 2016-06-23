@@ -1,13 +1,13 @@
 <?php
-namespace duidluck\LolitaFramework\Configuration\Modules;
+namespace franken\LolitaFramework\Configuration\Modules;
 
-use \duidluck\LolitaFramework\Core\HelperString as HelperString;
-use \duidluck\LolitaFramework\Core\HelperArray as HelperArray;
-use \duidluck\LolitaFramework\Core\GlobalLocator as GlobalLocator;
-use \duidluck\LolitaFramework\Core\View as View;
-use \duidluck\LolitaFramework\Configuration\Configuration as Configuration;
-use \duidluck\LolitaFramework\Configuration\IModule as IModule;
-use \duidluck\LolitaFramework\Controls\Controls as Controls;
+use \franken\LolitaFramework\Core\HelperString as HelperString;
+use \franken\LolitaFramework\Core\HelperArray as HelperArray;
+use \franken\LolitaFramework\Core\GlobalLocator as GlobalLocator;
+use \franken\LolitaFramework\Core\View as View;
+use \franken\LolitaFramework\Configuration\Configuration as Configuration;
+use \franken\LolitaFramework\Configuration\IModule as IModule;
+use \franken\LolitaFramework\Controls\Controls as Controls;
 
 class MetaBoxes implements IModule
 {

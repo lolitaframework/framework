@@ -1,5 +1,5 @@
 <?php
-namespace duidluck\LolitaFramework\Core;
+namespace franken\LolitaFramework\Core;
 
 class HelperClass
 {

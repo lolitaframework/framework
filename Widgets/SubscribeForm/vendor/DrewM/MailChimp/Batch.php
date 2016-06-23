@@ -1,6 +1,6 @@
 <?php
 
-namespace duidluck\LolitaFramework\Widgets\SubscribeForm\vendor\DrewM\MailChimp;
+namespace franken\LolitaFramework\Widgets\SubscribeForm\vendor\DrewM\MailChimp;
 
 /**
  * A MailChimp Batch operation.
@@ -104,7 +104,7 @@ class Batch
      * @param string $batch_id ID of the batch about which to enquire
      * @return  array|false   Assoc array of API response, decoded from JSON
      */
-    public function checkStatus($batch_id = null)
+    public function check_status($batch_id = null)
     {
         if ($batch_id === null && $this->batch_id) {
             $batch_id = $this->batch_id;

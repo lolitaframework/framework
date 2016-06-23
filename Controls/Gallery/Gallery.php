@@ -1,13 +1,13 @@
 <?php
-namespace duidluck\LolitaFramework\Controls\Gallery;
+namespace franken\LolitaFramework\Controls\Gallery;
 
-use \duidluck\LolitaFramework\Controls\Control;
-use \duidluck\LolitaFramework\Controls\IHaveAdminEnqueue;
-use \duidluck\LolitaFramework\Core\HelperImage;
-use \duidluck\LolitaFramework\Core\HelperArray;
-use \duidluck\LolitaFramework\Core\HelperString;
-use \duidluck\LolitaFramework\Core\View;
-use \duidluck\LolitaFramework as LolitaFramework;
+use \franken\LolitaFramework\Controls\Control;
+use \franken\LolitaFramework\Controls\IHaveAdminEnqueue;
+use \franken\LolitaFramework\Core\HelperImage;
+use \franken\LolitaFramework\Core\HelperArray;
+use \franken\LolitaFramework\Core\HelperString;
+use \franken\LolitaFramework\Core\View;
+use \franken\LolitaFramework as LolitaFramework;
 
 class Gallery extends Control implements iHaveAdminEnqueue
 {

@@ -1,5 +1,5 @@
 <?php
-namespace duidluck\LolitaFramework\Core;
+namespace franken\LolitaFramework\Core;
 
 class HelperString
 {
@@ -83,7 +83,7 @@ class HelperString
     /**
      * Call model from string like this {{ Model::Method }}
      *
-     * @param  string $path_str [description]
+     * @param  string $str      [description]
      * @return [type]           [description]
      */
     public static function compileVariables($str = '')

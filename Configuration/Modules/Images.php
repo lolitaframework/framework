@@ -1,9 +1,9 @@
 <?php
-namespace duidluck\LolitaFramework\Configuration\Modules;
+namespace franken\LolitaFramework\Configuration\Modules;
 
-use \duidluck\LolitaFramework\Core\HelperString as HelperString;
-use \duidluck\LolitaFramework\Configuration\Configuration as Configuration;
-use \duidluck\LolitaFramework\Configuration\IModule as IModule;
+use \franken\LolitaFramework\Core\HelperString as HelperString;
+use \franken\LolitaFramework\Configuration\Configuration as Configuration;
+use \franken\LolitaFramework\Configuration\IModule as IModule;
 
 class Images implements IModule
 {

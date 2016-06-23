@@ -1,10 +1,10 @@
 <?php
-namespace duidluck\LolitaFramework\Configuration\Modules;
+namespace franken\LolitaFramework\Configuration\Modules;
 
-use \duidluck\LolitaFramework\Configuration\Configuration;
-use \duidluck\LolitaFramework\Configuration\IModule;
-use \duidluck\LolitaFramework\Core\HelperString;
-use \duidluck\LolitaFramework\Core\GlobalLocator;
+use \franken\LolitaFramework\Configuration\Configuration;
+use \franken\LolitaFramework\Configuration\IModule;
+use \franken\LolitaFramework\Core\HelperString;
+use \franken\LolitaFramework\Core\GlobalLocator;
 
 class Routes implements IModule
 {
@@ -28,8 +28,51 @@ class Routes implements IModule
     private function install()
     {
         add_filter('template_include', array($this, 'blockDefaultTemplates'));
+        add_filter('theme_page_templates', array($this, 'templates'), 10, 3);
         add_action('template_redirect', array(&$this, 'customRoutes'), 10, 0);
         return $this;
+    }
+
+    /**
+     * Filter theme_page_templates
+     * @param  array $page_templates page templates.
+     * @param  object $me WP_Theme class instance.
+     * @param  WP_Post $post post object.
+     * @return array page templates.
+     */
+    public function templates($page_templates, $me, $post)
+    {
+        return array_merge($page_templates, $this->getTemplateNames());
+    }
+
+    /**
+     * Get all templates from data
+     * @return array templates.
+     */
+    private function getTemplateNames()
+    {
+        $templates = array();
+        foreach ($this->data as $key => $el) {
+            if (is_array($el) && array_key_exists('template_name', $el)) {
+                $templates[$key] = $el['template_name'];
+            }
+        }
+        return $templates;
+    }
+
+    /**
+     * Get HTML from route element
+     * @param  mixed $element route element.
+     * @return string HTML code.
+     */
+    private function getHTML($element)
+    {
+        if (is_array($element)) {
+            if (array_key_exists('html', $element)) {
+                $element = $element['html'];
+            }
+        }
+        return HelperString::compileVariables($element);
     }
 
     /**
@@ -41,7 +84,7 @@ class Routes implements IModule
         $wp_query = GlobalLocator::wpQuery();
         $page = $wp_query->query_vars['name'];
         if (array_key_exists($page, $this->data)) {
-            echo HelperString::compileVariables($this->data[ $page ]);
+            echo $this->getHTML($this->data[ $page ]);
             exit;
         }
     }
@@ -53,10 +96,14 @@ class Routes implements IModule
      */
     public function blockDefaultTemplates($template_path)
     {
+        $post = GlobalLocator::post();
+        $page_template = (string) get_post_meta($post->ID, '_wp_page_template', true);
         $active = self::getActive();
 
-        if (array_key_exists($active['type'], $this->data)) {
-            echo HelperString::compileVariables($this->data[ $active['type'] ]);
+        if (array_key_exists($page_template, $this->data)) {
+            echo $this->getHTML($this->data[ $page_template ]);
+        } else if (array_key_exists($active['type'], $this->data)) {
+            echo $this->getHTML($this->data[ $active['type'] ]);
         } else {
             return $active['path_result'];
         }

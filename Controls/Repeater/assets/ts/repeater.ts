@@ -50,7 +50,6 @@ namespace LolitaFramework {
          */
         constructor(main_selector:string) {
             this.$el            = jQuery(main_selector);
-            this.template_html  = atob(this.$el.find('.underscore_template').html());
             this.template       = atob(this.$el.find('.underscore_template').html());
             this.$list          = this.$el.find('.lolita-repeater-sortable');
             this.$add_button    = this.$el.find('.lolita-repeater-main-add');
@@ -177,8 +176,10 @@ namespace LolitaFramework {
          * @param {number} index         index.
          */
         reName(repeater_name:string, el_name:string, index:number) {
+            var result_name: string;
             el_name = el_name.replace(repeater_name, '');
             el_name = el_name.replace(/^\[[0-9]*\]/, '[' + index + ']');
+            result_name = repeater_name + el_name;
             return repeater_name + el_name;
         }
 
@@ -230,11 +231,39 @@ namespace LolitaFramework {
          * Get new row
          */
         getNewRow() {
-            var template: any, next_index: number;
+            var template: any, next_index: number, $widget: any, parsed: any;
+            $widget = this.$el.parents('.widget');
             template = this.template;
             next_index = this.$list.find('.lolita-repeater-row').length + 1;
-            template = template.replace(/__i__/g, next_index);
+            template = template.replace(/__row_index__/g, next_index);
+            if ($widget.length) {
+                parsed = this.parseWidgetId($widget.attr('id'));
+                template = template.replace(/__i__/g, parsed.number);
+            }
             return template;
+        }
+
+        /**
+         * @param {String} widgetId
+         * @returns {Object}
+         */
+        parseWidgetId(widgetId: string) {
+            var matches: any, parsed: any;
+            parsed = {
+                number: null,
+                id_base: null
+            };
+
+            matches = widgetId.match(/^(.+)-(\d+)$/);
+            if (matches) {
+                parsed.id_base = matches[1];
+                parsed.number = parseInt(matches[2], 10);
+            } else {
+                // likely an old single widget
+                parsed.id_base = widgetId;
+            }
+
+            return parsed;
         }
     }
 }

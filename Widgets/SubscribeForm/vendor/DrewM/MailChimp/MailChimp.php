@@ -1,6 +1,6 @@
 <?php
 
-namespace duidluck\LolitaFramework\Widgets\SubscribeForm\vendor\DrewM\MailChimp;
+namespace franken\LolitaFramework\Widgets\SubscribeForm\vendor\DrewM\MailChimp;
 
 /**
  * Super-simple, minimum abstraction MailChimp API v3 wrapper
@@ -50,7 +50,7 @@ class MailChimp
      * @param string $batch_id Optional ID of an existing batch, if you need to check its status for example.
      * @return Batch            New Batch object.
      */
-    public function newBatch($batch_id = null)
+    public function new_batch($batch_id = null)
     {
         return new Batch($this, $batch_id);
     }
@@ -271,6 +271,7 @@ class MailChimp
         $this->last_response = $response;
 
         if (!empty($response['body'])) {
+
             $d = json_decode($response['body'], true);
 
             if (isset($d['status']) && $d['status'] != '200' && isset($d['detail'])) {

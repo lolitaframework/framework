@@ -1,5 +1,5 @@
 <?php
-namespace duidluck;
+namespace franken;
 
 /**
  * Lolita Framework singlton class
