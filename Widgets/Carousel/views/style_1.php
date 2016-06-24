@@ -1,9 +1,9 @@
-<?php if ($instance): ?>
+<?php if ($instance) :?>
     <?php echo $args['before_widget']; ?>
     <div id="sly_carousel" class="sly basic horizontal mouse touch">
         <div class="frame">
             <ul class="items">
-                <?php foreach ($instance as $el): ?>
+                <?php foreach ($instance as $el) :?>
                 <li>
                     <img src="<?php echo $el['img_src']; ?>" alt="<?php echo esc_attr($el['title']); ?>">
                     <div class="info">

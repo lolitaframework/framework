@@ -5,7 +5,7 @@
     <td class="lolita-repeater-inner">
         <table>
             <tbody>
-                <?php foreach ($template_controls->collection as $k => $control): ?>
+                <?php foreach ($template_controls->collection as $k => $control) :?>
                     <tr class="lolita-field-container">
                         <th class="lolita-label">
                             <label for="<?php echo $control->getID(); ?>"><?php echo $control->parameters['label']; ?></label>

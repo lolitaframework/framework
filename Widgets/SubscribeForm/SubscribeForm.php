@@ -7,11 +7,14 @@ use \franken\LolitaFramework\Core\HelperArray as HelperArray;
 use \franken\LolitaFramework\Widgets\SubscribeForm\vendor\DrewM\MailChimp\MailChimp as MailChimp;
 use \franken\LolitaFramework;
 
-class SubscribeForm extends AbstractWithControls{
+class SubscribeForm extends AbstractWithControls
+{
+
     /**
      * Register widget with WordPress.
      */
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct(
             __('Lolita subscribe form', 'lolita'),
             array('description' => __('Subscribe form widget', 'lolita'))
@@ -204,7 +207,8 @@ class SubscribeForm extends AbstractWithControls{
      * @param array $args     Widget arguments.
      * @param array $instance Saved values from database.
      */
-    public function widget( $args, $instance ) {
+    public function widget($args, $instance)
+    {
         $instance['success_message'] = HelperArray::get(
             $instance,
             'success_message',

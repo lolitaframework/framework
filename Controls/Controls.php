@@ -57,7 +57,7 @@ class Controls
     /**
      * Get class name from type
      * @param  string $type control type
-     * @return string 
+     * @return string class name.
      */
     public static function getClassNameFromType($type)
     {

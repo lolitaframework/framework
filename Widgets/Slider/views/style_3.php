@@ -1,7 +1,7 @@
-<?php if ($instance): ?>
+<?php if ($instance) : ?>
     <?php echo $args['before_widget']; ?>
     <ul class="bx_slider pager">
-        <?php foreach ($instance as $el): ?>
+        <?php foreach ($instance as $el) : ?>
             <li>
                 <div class="left">
                     <img src="<?php echo $el['img_src']; ?>" alt="Image" />

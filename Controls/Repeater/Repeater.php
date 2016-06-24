@@ -166,7 +166,8 @@ class Repeater extends Control implements iHaveAdminEnqueue
 
     /**
      * Get value count
-     * @return integer count. 
+     *
+     * @return integer count.
      */
     private function getValueCount()
     {
