@@ -1,11 +1,11 @@
 <?php
-namespace franken\LolitaFramework\Controls\Media;
+namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Controls\Media;
 
-use \franken\LolitaFramework\Controls\Control;
-use \franken\LolitaFramework\Controls\IHaveAdminEnqueue;
-use \franken\LolitaFramework\Core\HelperImage;
-use \franken\LolitaFramework\Core\HelperArray;
-use \franken\LolitaFramework as LolitaFramework;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Controls\Control;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Controls\IHaveAdminEnqueue;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperImage;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperArray;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework as LolitaFramework;
 
 class Media extends Control implements iHaveAdminEnqueue
 {

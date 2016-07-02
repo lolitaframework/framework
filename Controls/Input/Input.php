@@ -1,8 +1,8 @@
 <?php
-namespace franken\LolitaFramework\Controls\Input;
+namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Controls\Input;
 
-use \franken\LolitaFramework\Controls\Control as Control;
-use \franken\LolitaFramework\Core\HelperArray as HelperArray;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Controls\Control as Control;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperArray as HelperArray;
 
 class Input extends Control
 {
@@ -23,10 +23,11 @@ class Input extends Control
     private function prepareType()
     {
         $allowed = $this->getAllowedTypes();
-        if (in_array($this->parameters['type'], $allowed)) {
-            $this->parameters['type'] = $this->parameters['type'];
-        } else {
-            $this->parameters['type'] = $allowed[0];
+        $this->parameters['type'] = $allowed[0];
+        if (array_key_exists('type', $this->parameters)) {
+            if (in_array($this->parameters['type'], $allowed)) {
+                $this->parameters['type'] = $this->parameters['type'];
+            }
         }
         return $this;
     }
@@ -63,6 +64,7 @@ class Input extends Control
             'class',
             'id',
             'value',
+            'required',
         );
     }
 

@@ -1,47 +1,22 @@
 <?php
-namespace franken\LolitaFramework\Widgets\AbstractWithControls;
+namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\AbstractWithControls;
 
-use \franken\LolitaFramework\Core\HelperArray as HelperArray;
-use \franken\LolitaFramework\Core\HelperString as HelperString;
-use \franken\LolitaFramework\Core\View as View;
-use \franken\LolitaFramework\Controls\Controls as Controls;
-use \franken\LolitaFramework\Widgets\IHaveBeforeInit;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperArray;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperString;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\View;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Controls\Controls;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\IHaveBeforeInit;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\AbstractWidget\AbstractWidget;
 
-abstract class AbstractWithControls extends \WP_Widget implements IHaveBeforeInit
+abstract class AbstractWithControls extends AbstractWidget implements IHaveBeforeInit
 {
-    /**
-     * Register widget with WordPress.
-     */
-    public function __construct($name, $widget_options = array(), $id_base = '', $control_options = array())
-    {
-        if ('' === $id_base) {
-            $id_base = HelperString::sentenceToSnake($name);
-        }
-        parent::__construct(
-            $id_base,
-            $name,
-            $widget_options,
-            $control_options
-        );
-    }
-
     /**
      * Get controls data
      * @return array data to generate controls.
      */
-    abstract public static function getControlsData();
-
-    /**
-     * Front-end display of widget.
-     *
-     * @see WP_Widget::widget()
-     *
-     * @param array $args     Widget arguments.
-     * @param array $instance Saved values from database.
-     */
-    public function widget($args, $instance)
+    public static function getControlsData()
     {
-        echo View::make(dirname(__FILE__) . DS . 'views' . DS . 'default.php');
+        return array();
     }
 
     /**

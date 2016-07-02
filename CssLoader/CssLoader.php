@@ -1,8 +1,8 @@
 <?php
-namespace franken\LolitaFramework\CssLoader;
+namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\CssLoader;
 
-use \franken\LolitaFramework as LolitaFramework;
-use \franken\LolitaFramework\Core\View as View;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework as LolitaFramework;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\View as View;
 
 class CssLoader
 {
@@ -13,8 +13,8 @@ class CssLoader
     {
         add_action('wp_enqueue_scripts', array(&$this, 'addScriptsAndStyles'));
         add_action('admin_enqueue_scripts', array(&$this, 'addScriptsAndStyles'));
-        add_action('wp_head', array(&$this, 'renderTemplates'));
-        add_action('admin_head', array(&$this, 'renderTemplates'));
+        add_action('wp_footer', array(&$this, 'renderTemplates'));
+        add_action('admin_footer', array(&$this, 'renderTemplates'));
     }
 
     /**

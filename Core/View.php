@@ -1,5 +1,5 @@
 <?php
-namespace franken\LolitaFramework\Core;
+namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Core;
 
 class View
 {
@@ -65,6 +65,31 @@ class View
         }
 
         // Return the compiled view and terminate the output buffer.
-        return $result;
+        return self::minimizeBeforeOutput($result);
+    }
+
+    /**
+     * Minimize before output
+     * @param  string $buffer to minimize.
+     * @return string minimized.
+     */
+    public static function minimizeBeforeOutput($buffer)
+    {
+        if (true === WP_DEBUG) {
+            return $buffer;
+        }
+        $search = array(
+            '/\>[^\S ]+/s',  // strip whitespaces after tags, except space
+            '/[^\S ]+\</s',  // strip whitespaces before tags, except space
+            '/(\s)+/s',      // shorten multiple whitespace sequences
+        );
+
+        $replace = array(
+            '>',
+            '<',
+            '\\1',
+        );
+
+        return preg_replace($search, $replace, $buffer);
     }
 }

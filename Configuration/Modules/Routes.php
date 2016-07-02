@@ -1,10 +1,11 @@
 <?php
-namespace franken\LolitaFramework\Configuration\Modules;
+namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Configuration\Modules;
 
-use \franken\LolitaFramework\Configuration\Configuration;
-use \franken\LolitaFramework\Configuration\IModule;
-use \franken\LolitaFramework\Core\HelperString;
-use \franken\LolitaFramework\Core\GlobalLocator;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Configuration\Configuration;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Configuration\IModule;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperString;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperWP;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\GlobalLocator;
 
 class Routes implements IModule
 {
@@ -96,8 +97,12 @@ class Routes implements IModule
      */
     public function blockDefaultTemplates($template_path)
     {
-        $post = GlobalLocator::post();
-        $page_template = (string) get_post_meta($post->ID, '_wp_page_template', true);
+        $post          = GlobalLocator::post();
+        $page_template = '';
+
+        if (null !== $post) {
+            $page_template = (string) get_post_meta($post->ID, '_wp_page_template', true);
+        }
         $active = self::getActive();
 
         if (array_key_exists($page_template, $this->data)) {
@@ -117,96 +122,24 @@ class Routes implements IModule
     public static function getTempaltes()
     {
         return array(
-            array(
-                'path' => 'get_index_template',
-                'is'   => '',
-                'type' => '/',
-            ),
-            array(
-                'path' => 'get_embed_template',
-                'is'   => 'is_embed',
-                'type' => 'embed',
-            ),
-            array(
-                'path' => 'get_404_template',
-                'is'   => 'is_404',
-                'type' => '404',
-            ),
-            array(
-                'path' => 'get_search_template',
-                'is'   => 'is_search',
-                'type' => 'search',
-            ),
-            array(
-                'path' => 'get_front_page_template',
-                'is'   => 'is_front_page',
-                'type' => 'front_page',
-            ),
-            array(
-                'path' => 'get_home_template',
-                'is'   => 'is_home',
-                'type' => 'home',
-            ),
-            array(
-                'path' => 'get_post_type_archive_template',
-                'is'   => 'is_post_type_archive',
-                'type' => 'post_type_archive',
-            ),
-            array(
-                'path' => 'get_taxonomy_template',
-                'is'   => 'is_tax',
-                'type' => 'taxonomy',
-            ),
-            array(
-                'path' => 'get_attachment_template',
-                'is'   => 'is_attachment',
-                'type' => 'attachment',
-            ),
-            array(
-                'path' => 'get_single_template',
-                'is'   => 'is_single',
-                'type' => 'single',
-            ),
-            array(
-                'path' => 'get_page_template',
-                'is'   => 'is_page',
-                'type' => 'page',
-            ),
-            array(
-                'path' => 'get_singular_template',
-                'is'   => 'is_singular',
-                'type' => 'singular',
-            ),
-            array(
-                'path' => 'get_category_template',
-                'is'   => 'is_category',
-                'type' => 'category',
-            ),
-            array(
-                'path' => 'get_tag_template',
-                'is'   => 'is_tag',
-                'type' => 'tag',
-            ),
-            array(
-                'path' => 'get_author_template',
-                'is'   => 'is_author',
-                'type' => 'author',
-            ),
-            array(
-                'path' => 'get_date_template',
-                'is'   => 'is_date',
-                'type' => 'date',
-            ),
-            array(
-                'path' => 'get_archive_template',
-                'is'   => 'is_archive',
-                'type' => 'archive',
-            ),
-            array(
-                'path' => 'get_paged_template',
-                'is'   => 'is_paged',
-                'type' => 'paged',
-            ),
+            '/'                 => 'get_index_template',
+            'embed'             => 'get_embed_template',
+            '404'               => 'get_404_template',
+            'search'            => 'get_search_template',
+            'front_page'        => 'get_front_page_template',
+            'home'              => 'get_home_template',
+            'post_type_archive' => 'get_post_type_archive_template',
+            'taxonomy'          => 'get_taxonomy_template',
+            'attachment'        => 'get_attachment_template',
+            'single'            => 'get_single_template',
+            'page'              => 'get_page_template',
+            'singular'          => 'get_singular_template',
+            'category'          => 'get_category_template',
+            'tag'               => 'get_tag_template',
+            'author'            => 'get_author_template',
+            'date'              => 'get_date_template',
+            'archive'           => 'get_archive_template',
+            'paged'             => 'get_paged_template',
         );
     }
 
@@ -216,19 +149,23 @@ class Routes implements IModule
      */
     public static function getActive()
     {
+        $route_type = HelperWP::wpRouteType();
         $templates = self::getTempaltes();
-        foreach ($templates as $template) {
-            if (array_key_exists('is', $template) && '' !== $template['is']) {
-                $template['is_result'] = $template['is']();
-                if ($template['is_result']) {
-                    $template['path_result'] = $template['path']();
-                    if ('' !== $template['path_result']) {
-                        return $template;
-                    }
-                }
-            }
+
+        $type          = key($templates);
+        $template_func = current($templates);
+        $template_path = $template_func();
+
+        if (array_key_exists($route_type, $templates)) {
+            $type = $route_type;
+            $template_func = $templates[ $route_type ];
+            $template_path = $template_func();
         }
-        return $templates;
+        return array(
+            'type'        => $type,
+            'path'        => $template_func,
+            'path_result' => $template_path,
+        );
     }
 
     /**

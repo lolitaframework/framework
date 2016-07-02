@@ -1,6 +1,6 @@
 <?php
 
-namespace franken\LolitaFramework\Widgets\SubscribeForm\vendor\DrewM\MailChimp;
+namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\SubscribeForm\vendor\DrewM\MailChimp;
 
 /**
  * Super-simple, minimum abstraction MailChimp API v3 wrapper

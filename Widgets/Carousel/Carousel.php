@@ -1,11 +1,11 @@
 <?php
-namespace franken\LolitaFramework\Widgets\Carousel;
+namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\Carousel;
 
-use \franken\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls;
-use \franken\LolitaFramework\Core\View;
-use \franken\LolitaFramework\Core\HelperArray;
-use \franken\LolitaFramework\Core\HelperImage;
-use \franken\LolitaFramework as LolitaFramework;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\View;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperArray;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperImage;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework as LolitaFramework;
 
 class Carousel extends AbstractWithControls
 {

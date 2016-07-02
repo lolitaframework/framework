@@ -1,10 +1,10 @@
 <?php
-namespace franken\LolitaFramework\Controls;
+namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Controls;
 
-use \franken\LolitaFramework\Core\HelperString as HelperString;
-use \franken\LolitaFramework\Core\HelperArray as HelperArray;
-use \franken\LolitaFramework\Core\View as View;
-use \franken\LolitaFramework as LolitaFramework;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperString as HelperString;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperArray as HelperArray;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\View as View;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework as LolitaFramework;
 
 abstract class Control
 {

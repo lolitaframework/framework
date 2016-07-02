@@ -1,5 +1,5 @@
 <?php
-namespace franken\LolitaFramework\Widgets;
+namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets;
 
 interface IHaveBeforeInit
 {

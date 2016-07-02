@@ -1,9 +1,9 @@
 <?php
-namespace franken\LolitaFramework\Configuration\Modules;
+namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Configuration\Modules;
 
-use \franken\LolitaFramework\Core\HelperString as HelperString;
-use \franken\LolitaFramework\Configuration\Configuration as Configuration;
-use \franken\LolitaFramework\Configuration\IModule as IModule;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperString as HelperString;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Configuration\Configuration as Configuration;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Configuration\IModule as IModule;
 
 class Assets implements IModule
 {
@@ -36,6 +36,7 @@ class Assets implements IModule
             add_action('wp_enqueue_scripts', array( $this, 'enqueue' ));
             add_action('admin_enqueue_scripts', array( $this, 'enqueue' ));
             add_action('login_enqueue_scripts', array( $this, 'enqueue' ));
+            add_action('wp_footer', array( $this, 'enqueue' ));
         } else {
             throw new \Exception(__('JSON can be converted to Array', 'lolita'));
         }
@@ -52,6 +53,7 @@ class Assets implements IModule
             'deregister_scripts',
             'scripts',
             'styles',
+            'styles_async',
             'localize',
             'custom',
         );
@@ -76,6 +78,9 @@ class Assets implements IModule
      */
     private function getPrefixFromAction($action)
     {
+        if ('wp_footer' === $action) {
+            return 'async_';
+        }
         $pieces = explode('_', $action);
         if ('wp' === $pieces[0]) {
             return '';

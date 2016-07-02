@@ -1,9 +1,9 @@
 <?php
-namespace franken\LolitaFramework\Controls;
+namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Controls;
 
-use \franken\LolitaFramework\Core\HelperArray;
-use \franken\LolitaFramework\Core\HelperClass;
-use \franken\LolitaFramework\Core\View;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperArray;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperClass;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\View;
 
 /**
  * Controls collection class

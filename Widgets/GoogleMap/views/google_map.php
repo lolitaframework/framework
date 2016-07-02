@@ -1,0 +1,1 @@
+<div class="lf_google_map" data-address="<?php echo esc_attr($address) ?>" data-pin-img="<?php echo $pin_img ?>" data-api-key="<?php echo $api_key ?>"></div>

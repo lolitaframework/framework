@@ -1,5 +1,5 @@
 <?php
-namespace franken\LolitaFramework\Core;
+namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Core;
 
 class HelperImage
 {

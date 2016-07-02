@@ -1,8 +1,8 @@
 <?php
-namespace franken\LolitaFramework\Controls\Textarea;
+namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Controls\Textarea;
 
-use \franken\LolitaFramework\Controls\Control as Control;
-use \franken\LolitaFramework\Core\HelperArray as HelperArray;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Controls\Control as Control;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperArray as HelperArray;
 
 class Textarea extends Control
 {

@@ -1,5 +1,5 @@
 <?php
-namespace franken;
+namespace zorgboerderij_lenteheuvel_wp;
 
 /**
  * Lolita Framework singlton class

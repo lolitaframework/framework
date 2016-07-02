@@ -1,0 +1,12 @@
+{
+	"compilerOptions": {
+		"noImplicitAny": true,
+		"removeComments": true,
+		"preserveConstEnums": true,
+		"out": "../js/lf_google_map.js",
+		"sourceMap": true
+	},
+	"files": [
+		"lf_google_map.ts"
+	]
+}

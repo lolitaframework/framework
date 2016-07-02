@@ -1,11 +1,11 @@
 <?php
-namespace franken\LolitaFramework\Widgets\SubscribeForm;
+namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\SubscribeForm;
 
-use \franken\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls as AbstractWithControls;
-use \franken\LolitaFramework\Core\View as View;
-use \franken\LolitaFramework\Core\HelperArray as HelperArray;
-use \franken\LolitaFramework\Widgets\SubscribeForm\vendor\DrewM\MailChimp\MailChimp as MailChimp;
-use \franken\LolitaFramework;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls as AbstractWithControls;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\View as View;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperArray as HelperArray;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\SubscribeForm\vendor\DrewM\MailChimp\MailChimp as MailChimp;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework;
 
 class SubscribeForm extends AbstractWithControls
 {

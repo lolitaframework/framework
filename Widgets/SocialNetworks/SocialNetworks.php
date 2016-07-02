@@ -1,10 +1,10 @@
 <?php
-namespace franken\LolitaFramework\Widgets\SocialNetworks;
+namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\SocialNetworks;
 
-use \franken\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls as AbstractWithControls;
-use \franken\LolitaFramework\Core\View as View;
-use \franken\LolitaFramework\Core\HelperArray as HelperArray;
-use \franken\LolitaFramework as LolitaFramework;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls as AbstractWithControls;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\View as View;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperArray as HelperArray;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework as LolitaFramework;
 
 class SocialNetworks extends AbstractWithControls
 {
@@ -15,15 +15,28 @@ class SocialNetworks extends AbstractWithControls
     {
         parent::__construct(
             __('Lolita Social networks', 'lolita'),
-            array('description' => __('Social networks widget', 'lolita'))
+            array(
+                'description' => __('Social networks widget', 'lolita'),
+                'classname'   => 'lf_social_networks',
+            )
         );
-        add_action('wp_enqueue_scripts', array(&$this, 'addScriptsAndStyles'));
+        
+    }
+
+    /**
+     * This function run before widgets_init hook
+     * @return void
+     */
+    public static function beforeInit()
+    {
+        parent::beforeInit();
+        add_action('wp_footer', array(__CLASS__, 'addScriptsAndStyles'));
     }
 
     /**
      * Add scripts and styles
      */
-    public function addScriptsAndStyles()
+    public static function addScriptsAndStyles()
     {
         $font_awesome_url =
             LolitaFramework::getURLByDirectory(__DIR__) . DS .
@@ -43,51 +56,48 @@ class SocialNetworks extends AbstractWithControls
     {
         return array(
             array(
+                "name"     => "title",
+                "__TYPE__" => "Input",
+                "label"    => "Title",
+            ),
+            array(
                 "name"     => "twitter",
                 "__TYPE__" => "Input",
-                "type"     => "text",
                 "label"    => "Twitter",
             ),
             array(
                 "name"     => "facebook",
                 "__TYPE__" => "Input",
-                "type"     => "text",
                 "label"    => "Facebook",
             ),
             array(
                 "name"     => "google-plus",
                 "__TYPE__" => "Input",
-                "type"     => "text",
                 "label"    => "Google plus",
             ),
             array(
                 "name"     => "vk",
                 "__TYPE__" => "Input",
-                "type"     => "text",
                 "label"    => "Vkontakte",
             ),
             array(
                 "name"     => "instagram",
                 "__TYPE__" => "Input",
-                "type"     => "text",
                 "label"    => "Instagram",
             ),
             array(
                 "name"     => "pinterest",
                 "__TYPE__" => "Input",
-                "type"     => "text",
                 "label"    => "Pinterest",
             ),
             array(
                 "name"     => "youtube",
                 "__TYPE__" => "Input",
-                "type"     => "text",
                 "label"    => "YouTube",
             ),
             array(
                 "name"     => "linkedin",
                 "__TYPE__" => "Input",
-                "type"     => "text",
                 "label"    => "LinkedIn",
             ),
         );
@@ -121,9 +131,12 @@ class SocialNetworks extends AbstractWithControls
      */
     public function widget($args, $instance)
     {
+        $title = HelperArray::get($instance, 'title', '');
+        $instance['title'] = '';
         echo View::make(
             dirname(__FILE__) . DS . 'views' . DS . 'social_networks.php',
             array(
+                'title'    => $title,
                 'instance' => HelperArray::removeEmpty($instance),
                 'args'     => $args,
                 'icons'    => $this->getIconsClasses(),

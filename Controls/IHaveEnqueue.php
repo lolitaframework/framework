@@ -1,5 +1,5 @@
 <?php
-namespace franken\LolitaFramework\Controls;
+namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Controls;
 
 interface IHaveEnqueue
 {

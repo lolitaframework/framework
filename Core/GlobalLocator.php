@@ -1,5 +1,5 @@
 <?php
-namespace franken\LolitaFramework\Core;
+namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Core;
 
 class GlobalLocator
 {
@@ -42,5 +42,15 @@ class GlobalLocator
     {
         global $wp_query;
         return $wp_query;
+    }
+
+    /**
+     * Get $wp_rewrite
+     * @return WP_Rewrite instance.
+     */
+    public static function wpRewrite()
+    {
+        global $wp_rewrite;
+        return $wp_rewrite;
     }
 }

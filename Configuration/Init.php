@@ -1,5 +1,5 @@
 <?php
-namespace franken\LolitaFramework\Configuration;
+namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Configuration;
 
 abstract class Init
 {

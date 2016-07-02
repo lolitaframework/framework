@@ -1,9 +1,9 @@
 <?php
-namespace franken\LolitaFramework\Controls\Select;
+namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Controls\Select;
 
-use \franken\LolitaFramework\Controls\Control as Control;
-use \franken\LolitaFramework\Core\HelperArray as HelperArray;
-use \franken\LolitaFramework\Core\HelperString as HelperString;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Controls\Control as Control;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperArray as HelperArray;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperString as HelperString;
 
 class Select extends Control
 {

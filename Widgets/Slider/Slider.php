@@ -1,11 +1,11 @@
 <?php
-namespace franken\LolitaFramework\Widgets\Slider;
+namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\Slider;
 
-use \franken\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls as AbstractWithControls;
-use \franken\LolitaFramework\Core\View;
-use \franken\LolitaFramework\Core\HelperArray;
-use \franken\LolitaFramework\Core\HelperImage;
-use \franken\LolitaFramework as LolitaFramework;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls as AbstractWithControls;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\View;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperArray;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperImage;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework as LolitaFramework;
 
 class Slider extends AbstractWithControls
 {
@@ -91,6 +91,29 @@ class Slider extends AbstractWithControls
                     '1' => __('Style 1', 'lolita'),
                     '2' => __('Style 2', 'lolita'),
                     '3' => __('Style 3', 'lolita'),
+                ),
+            ),
+            array(
+                'name'     => 'style_1',
+                '__TYPE__' => 'Repeater',
+                'label'    => 'Style 1',
+                'controls' => array(
+                    array(
+                        'name'     => 'url',
+                        '__TYPE__' => 'Input',
+                        'type'     => 'text',
+                        'label'    => 'Link',
+                    ),
+                    array(
+                        'name'     => 'img',
+                        '__TYPE__' => 'Media',
+                        'label'    => 'Image',
+                    ),
+                    array(
+                        'name'     => 'logo',
+                        '__TYPE__' => 'Media',
+                        'label'    => 'Logo',
+                    ),
                 ),
             ),
             array(
@@ -204,6 +227,13 @@ class Slider extends AbstractWithControls
             if (array_key_exists('background', $list)) {
                 $list['background_src'] = HelperImage::getURL(
                     (int) $list['background'],
+                    'full'
+                );
+            }
+
+            if (array_key_exists('logo', $list)) {
+                $list['logo_src'] = HelperImage::getURL(
+                    (int) $list['logo'],
                     'full'
                 );
             }

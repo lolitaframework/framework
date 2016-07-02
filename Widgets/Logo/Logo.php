@@ -1,11 +1,11 @@
 <?php
-namespace franken\LolitaFramework\Widgets\Logo;
+namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\Logo;
 
-use \franken\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls as AbstractWithControls;
-use \franken\LolitaFramework\Core\View as View;
-use \franken\LolitaFramework\Core\HelperArray as HelperArray;
-use \franken\LolitaFramework\Core\HelperImage;
-use \franken\LolitaFramework as LolitaFramework;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls as AbstractWithControls;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\View as View;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperArray as HelperArray;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperImage;
+use \zorgboerderij_lenteheuvel_wp\LolitaFramework as LolitaFramework;
 
 class Logo extends AbstractWithControls
 {
@@ -16,7 +16,10 @@ class Logo extends AbstractWithControls
     {
         parent::__construct(
             __('Lolita logo widget', 'lolita'),
-            array('description' => __('Lolita logo widget', 'lolita'))
+            array(
+                'description' => __('Lolita logo widget', 'lolita'),
+                'classname' => 'lf_logo',
+            )
         );
     }
 
