@@ -15,12 +15,16 @@ abstract class Trail
 
     /**
      * Compile trail
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return Trail instance.
      */
     abstract public function compile();
 
     /**
      * Crumb class constructor
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param string $label crumb label.
      * @param mixed $link  url.
      */

@@ -5,6 +5,8 @@ class HelperImage
 {
     /**
      * Get image url
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param  integer $attachment_id attachment id.
      * @param  string  $size          image size
      * @return string image url.

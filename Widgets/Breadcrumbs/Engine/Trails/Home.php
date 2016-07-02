@@ -8,6 +8,8 @@ class Home extends Trail
 
     /**
      * Compile home crumbs
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return Home instance.
      */
     public function compile()

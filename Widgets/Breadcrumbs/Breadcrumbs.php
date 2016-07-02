@@ -9,6 +9,8 @@ class Breadcrumbs extends AbstractWithControls
 {
     /**
      * Register widget with WordPress.
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      */
     public function __construct()
     {
@@ -26,6 +28,8 @@ class Breadcrumbs extends AbstractWithControls
      *
      * @see WP_Widget::form()
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
+     *
      * @param array $instance Previously saved values from database.
      */
     public function form($instance)
@@ -36,6 +40,8 @@ class Breadcrumbs extends AbstractWithControls
      * Front-end display of widget.
      *
      * @see WP_Widget::widget()
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      *
      * @param array $args     Widget arguments.
      * @param array $instance Saved values from database.

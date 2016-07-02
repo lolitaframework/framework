@@ -34,6 +34,7 @@ abstract class Init
     /**
      * Initialize new LF_Init class
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @throws Exception JSON can be converted to Array.
      * @return void
      */

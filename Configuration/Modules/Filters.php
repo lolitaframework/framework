@@ -10,6 +10,7 @@ class Filters implements IModule
     /**
      * Filters class constructor
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param array $data engine data.
      */
     public function __construct($data = null)
@@ -22,6 +23,8 @@ class Filters implements IModule
 
     /**
      * Add shortcodes
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return Filters instance.
      */
     private function install()
@@ -34,6 +37,8 @@ class Filters implements IModule
 
     /**
      * Prepare data
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return Filters instance.
      */
     private function prepare()
@@ -50,6 +55,8 @@ class Filters implements IModule
 
     /**
      * Module priority
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return [int] priority, the smaller number the faster boot.
      */
     public static function getPriority()

@@ -11,6 +11,8 @@ class Carousel extends AbstractWithControls
 {
     /**
      * Register widget with WordPress.
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      */
     public function __construct()
     {
@@ -22,6 +24,8 @@ class Carousel extends AbstractWithControls
 
     /**
      * This function run before widgets_init hook
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return void
      */
     public static function beforeInit()
@@ -33,6 +37,8 @@ class Carousel extends AbstractWithControls
 
     /**
      * Add scripts and styles to wp admin
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      */
     public static function wpAddScriptsAndStyles()
     {
@@ -59,6 +65,8 @@ class Carousel extends AbstractWithControls
 
     /**
      * Add scripts and styles to wp admin
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      */
     public static function adminAddScriptsAndStyles()
     {
@@ -78,6 +86,8 @@ class Carousel extends AbstractWithControls
 
     /**
      * Get controls data
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return array data to generate controls.
      */
     public static function getControlsData()
@@ -123,6 +133,8 @@ class Carousel extends AbstractWithControls
      *
      * @see WP_Widget::widget()
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
+     *
      * @param array $args     Widget arguments.
      * @param array $instance Saved values from database.
      */
@@ -143,8 +155,10 @@ class Carousel extends AbstractWithControls
 
     /**
      * Prepare data per style
-     * @param  [type] $instance [description]
-     * @return [type]           [description]
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
+     * @param  array $instance data.
+     * @return array prepared data.
      */
     private function prepareInstance($instance)
     {

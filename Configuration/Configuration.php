@@ -36,6 +36,11 @@ class Configuration
      */
     private $prepared_modules = array();
 
+    /**
+     * Configureation class constructor
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
+     */
     public function __construct()
     {
         $this->settings_path = $this->getDefaultSettingsPath();
@@ -44,6 +49,8 @@ class Configuration
 
     /**
      * Prepare our configuration modules
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return [Configuration] $this object.
      */
     public function prepareModules()
@@ -70,6 +77,7 @@ class Configuration
     /**
      * Load all modules with config files
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return [Configuration] $this object.
      */
     public function load()
@@ -90,7 +98,8 @@ class Configuration
     /**
      * Get class name from module path
      *
-     * @param  [type] $module file path.
+     * @author Guriev Eugen <gurievcreative@gmail.com>
+     * @param  string $module file path.
      * @return class name.
      */
     private function getClassName($module)
@@ -101,7 +110,8 @@ class Configuration
     /**
      * Get config path
      *
-     * @param  [type] $class name.
+     * @author Guriev Eugen <gurievcreative@gmail.com>
+     * @param  string $class name.
      * @return config path
      */
     private function getConfigPath($module)
@@ -113,7 +123,8 @@ class Configuration
     /**
      * Get config data from file
      *
-     * @param  [type] $config_path config file path.
+     * @author Guriev Eugen <gurievcreative@gmail.com>
+     * @param  string $config_path config file path.
      * @return config file data.
      */
     private function getConfigData($config_path)
@@ -132,6 +143,7 @@ class Configuration
     /**
      * Set new settings path
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param [string] $path settings.
      * @return [Configuration] instance.
      */
@@ -144,6 +156,7 @@ class Configuration
     /**
      * Get default settings path
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return default settings path.
      */
     private function getDefaultSettingsPath()
@@ -154,6 +167,7 @@ class Configuration
     /**
      * Get all configuration modules
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return array configuration modules.
      */
     private function getAllConfigurationModules()
@@ -165,6 +179,8 @@ class Configuration
 
     /**
      * Get configuration folder
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return [string] folder.
      */
     public static function getFolder()

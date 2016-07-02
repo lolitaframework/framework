@@ -9,6 +9,8 @@ class Select extends Control
 {
     /**
      * Get allowed attributes
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return array allowed list.
      */
     private function getAllowedAttributes()
@@ -23,6 +25,8 @@ class Select extends Control
 
     /**
      * Prepare options
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return void
      */
     private function prepareOptions()
@@ -38,6 +42,8 @@ class Select extends Control
 
     /**
      * Render control
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return string html code.
      */
     public function render()

@@ -10,6 +10,8 @@ class GoogleMap extends AbstractWithControls
 {
     /**
      * Register widget with WordPress.
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      */
     public function __construct()
     {
@@ -24,6 +26,8 @@ class GoogleMap extends AbstractWithControls
 
     /**
      * This function run before widgets_init hook
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return void
      */
     public static function beforeInit()
@@ -34,6 +38,8 @@ class GoogleMap extends AbstractWithControls
 
     /**
      * Add scripts and styles to wp admin
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      */
     public static function wpAddScriptsAndStyles()
     {
@@ -53,6 +59,8 @@ class GoogleMap extends AbstractWithControls
 
     /**
      * Get controls data
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return array data to generate controls.
      */
     public static function getControlsData()
@@ -82,6 +90,8 @@ class GoogleMap extends AbstractWithControls
      * Front-end display of widget.
      *
      * @see WP_Widget::widget()
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      *
      * @param array $args     Widget arguments.
      * @param array $instance Saved values from database.

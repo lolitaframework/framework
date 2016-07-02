@@ -7,8 +7,9 @@ class HelperClass
     /**
      * Is $interface implements in this $class
      *
-     * @param  [type]  $class     to check.
-     * @param  [type]  $interface implements.
+     * @author Guriev Eugen <gurievcreative@gmail.com>
+     * @param  mixed  $class     to check.
+     * @param  mixed  $interface implements.
      * @return boolean true if implements | false if not.
      */
     public static function isImplements($class, $interface)
@@ -19,8 +20,9 @@ class HelperClass
     /**
      * Get all methods from class
      *
-     * @param  [type] $class   name
-     * @param  [type] $options methods access.
+     * @author Guriev Eugen <gurievcreative@gmail.com>
+     * @param  mixed $class   name
+     * @param  integer $options methods access.
      * @return array methods.
      */
     public static function getAllMethods($class, $options = null)

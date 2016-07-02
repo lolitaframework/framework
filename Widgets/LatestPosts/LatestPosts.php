@@ -11,6 +11,8 @@ class LatestPosts extends AbstractWithControls
 {
     /**
      * Register widget with WordPress.
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      */
     public function __construct()
     {
@@ -25,6 +27,8 @@ class LatestPosts extends AbstractWithControls
 
     /**
      * Get controls data
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return array data to generate controls.
      */
     public static function getControlsData()
@@ -55,6 +59,8 @@ class LatestPosts extends AbstractWithControls
 
     /**
      * Get post types for select control
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return array options.
      */
     public static function getPostTypeOptions()
@@ -70,6 +76,8 @@ class LatestPosts extends AbstractWithControls
 
     /**
      * Get post type
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param  array $instance data.
      * @return string post type.
      */
@@ -83,6 +91,8 @@ class LatestPosts extends AbstractWithControls
 
     /**
      * Get post per widget
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param  array $instance data.
      * @return int post per widget.
      */
@@ -97,6 +107,8 @@ class LatestPosts extends AbstractWithControls
 
     /**
      * Get posts
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param  string $post_type post type.
      * @param  integer $count posts per widget.
      * @return posts.
@@ -128,6 +140,8 @@ class LatestPosts extends AbstractWithControls
 
     /**
      * Get view style
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param  array $instance data.
      * @return string view style.
      */
@@ -143,6 +157,8 @@ class LatestPosts extends AbstractWithControls
      * Front-end display of widget.
      *
      * @see WP_Widget::widget()
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      *
      * @param array $args     Widget arguments.
      * @param array $instance Saved values from database.

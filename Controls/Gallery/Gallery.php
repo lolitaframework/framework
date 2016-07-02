@@ -13,6 +13,8 @@ class Gallery extends Control implements iHaveAdminEnqueue
 {
     /**
      * Control constructor
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param array $parameters control parameters.
      */
     public function __construct(array $parameters)
@@ -23,6 +25,8 @@ class Gallery extends Control implements iHaveAdminEnqueue
 
     /**
      * Add scripts and styles
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      */
     public static function adminEnqueue()
     {
@@ -55,6 +59,8 @@ class Gallery extends Control implements iHaveAdminEnqueue
 
     /**
      * Render our control
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return string HTML control code.
      */
     public function render()
@@ -73,6 +79,8 @@ class Gallery extends Control implements iHaveAdminEnqueue
 
     /**
      * All gallery items
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return array all items.
      */
     public function getItems($values)

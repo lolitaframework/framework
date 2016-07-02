@@ -12,6 +12,7 @@ class PostTypes extends Init implements IModule
     /**
      * Sidebars class constructor
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param array $data engine data.
      */
     public function __construct($data = null)
@@ -24,6 +25,7 @@ class PostTypes extends Init implements IModule
      * Run by the 'init' hook.
      * Execute the "register_sidebar" function from WordPress.
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return void
      */
     public function install()
@@ -41,6 +43,8 @@ class PostTypes extends Init implements IModule
 
     /**
      * Check post type parameters by errors
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param  [array] $args parameters
      */
     private function checkPostTypeParams($args)
@@ -66,6 +70,8 @@ class PostTypes extends Init implements IModule
 
     /**
      * Get required post type parameters
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return [array] required parameters.
      */
     private function getRequiredParameters()
@@ -79,6 +85,8 @@ class PostTypes extends Init implements IModule
 
     /**
      * Get arguments to registering our post type.
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param  [array] $post_type_args parameters.
      * @return [array] compiled.
      */
@@ -99,6 +107,7 @@ class PostTypes extends Init implements IModule
     /**
      * Get the custom post type default arguments.
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param [type] $plural The post type plural display name.
      * @param [type] $singular The post type singular display name.
      * @return array
@@ -133,6 +142,8 @@ class PostTypes extends Init implements IModule
 
     /**
      * Module priority
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return [int] priority, the smaller number the faster boot.
      */
     public static function getPriority()

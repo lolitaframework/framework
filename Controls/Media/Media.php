@@ -11,6 +11,8 @@ class Media extends Control implements iHaveAdminEnqueue
 {
     /**
      * Control constructor
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param string $name control name.
      */
     public function __construct(array $parameters)
@@ -22,6 +24,8 @@ class Media extends Control implements iHaveAdminEnqueue
 
     /**
      * Add scripts and styles
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      */
     public static function adminEnqueue()
     {
@@ -48,6 +52,8 @@ class Media extends Control implements iHaveAdminEnqueue
 
     /**
      * Get allowed attributes
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return array allowed list.
      */
     private function getAllowedAttributes()
@@ -61,6 +67,8 @@ class Media extends Control implements iHaveAdminEnqueue
 
     /**
      * Render control
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return string html code.
      */
     public function render()
@@ -81,8 +89,10 @@ class Media extends Control implements iHaveAdminEnqueue
 
     /**
      * Get attachment title
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param  integer $post_id post id
-     * @return [type]        [description]
+     * @return mixed
      */
     private function getAttachmentTitle($post_id)
     {
@@ -95,6 +105,8 @@ class Media extends Control implements iHaveAdminEnqueue
 
     /**
      * Hide add button
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return string css class.
      */
     private function addButtonHide()
@@ -104,6 +116,8 @@ class Media extends Control implements iHaveAdminEnqueue
 
     /**
      * Hide preview
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return string css class.
      */
     private function previewHide()

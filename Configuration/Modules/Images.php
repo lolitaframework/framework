@@ -10,6 +10,7 @@ class Images implements IModule
     /**
      * Images class constructor
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param array $data engine data.
      */
     public function __construct($data = null)
@@ -21,6 +22,7 @@ class Images implements IModule
     /**
      * Add custom image sizes.
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return \Themosis\Configuration\Images
      */
     public function make()
@@ -37,6 +39,7 @@ class Images implements IModule
     /**
      * Loop through the registered image sizes and add them.
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return void
      */
     private function addImages()
@@ -50,6 +53,7 @@ class Images implements IModule
     /**
      * Add image sizes to the media size dropdown list.
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param array $sizes The existing sizes.
      * @return array
      */
@@ -84,6 +88,7 @@ class Images implements IModule
      * Clean the image slug for display.
      * Remove '-', '_' and set first character to uppercase.
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param type $text The text to clean.
      * @return string
      */
@@ -94,6 +99,8 @@ class Images implements IModule
 
     /**
      * Module priority
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return [int] priority, the smaller number the faster boot.
      */
     public static function getPriority()

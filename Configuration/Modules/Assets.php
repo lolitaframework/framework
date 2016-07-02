@@ -11,6 +11,7 @@ class Assets implements IModule
     /**
      * Key prefix.
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @var string
      */
     private $prefix = '';
@@ -18,6 +19,7 @@ class Assets implements IModule
     /**
      * Save the data list
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @var array
      */
     private $data = array();
@@ -25,6 +27,7 @@ class Assets implements IModule
     /**
      * Assets class constructor
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param string $data config file data.
      * @return void
      */
@@ -45,6 +48,7 @@ class Assets implements IModule
     /**
      * Get allowed keys to assets config
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return array
      */
     public function getAllowedKeys()
@@ -63,6 +67,7 @@ class Assets implements IModule
     /**
      * Add prefix to element
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param [string] $el element.
      */
     public function addPrefix($el)
@@ -73,6 +78,7 @@ class Assets implements IModule
     /**
      * Get prefix from action name
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param  [string] $action name.
      * @return [string] prefix.
      */
@@ -92,6 +98,7 @@ class Assets implements IModule
      * Run by wp_enqueue_scripts action
      * Enqueue scripts and styles
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return void
      */
     public function enqueue()
@@ -113,6 +120,7 @@ class Assets implements IModule
     /**
      * Deregistered some scripts
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param [type] $handles deregister script handles.
      * @return void
      */
@@ -128,6 +136,7 @@ class Assets implements IModule
     /**
      * Enqueue scripts
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param  array $scripts parameters.
      * @return void
      */
@@ -145,6 +154,7 @@ class Assets implements IModule
     /**
      * Enqueue styles
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param  array $styles parameters.
      * @return void
      */
@@ -162,6 +172,7 @@ class Assets implements IModule
     /**
      * Localize scripts
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param  array $localizes parameters.
      * @return void
      */
@@ -188,6 +199,7 @@ class Assets implements IModule
     /**
      * Run custom functions in wp_enqueue_scripts action
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param array $functions custom function.
      * @return void
      */
@@ -204,6 +216,8 @@ class Assets implements IModule
 
     /**
      * Module priority
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return [int] priority, the smaller number the faster boot.
      */
     public static function getPriority()

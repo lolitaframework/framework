@@ -18,6 +18,8 @@ class Controls
 
     /**
      * Create control
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param  string $class_name control class name.
      * @param  array $parameters parameters.
      * @return mixed
@@ -32,6 +34,8 @@ class Controls
 
     /**
      * Generate controls from data
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param  array  $data from we want to generate controls.
      * @return Controls $this.
      */
@@ -56,6 +60,8 @@ class Controls
 
     /**
      * Get class name from type
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param  string $type control type
      * @return string class name.
      */
@@ -69,6 +75,8 @@ class Controls
 
     /**
      * Load all scripts and styles from each control
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param  array  $data controls data.
      * @return void.
      */
@@ -88,6 +96,8 @@ class Controls
 
     /**
      * Render each control
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param  string $collection_view path to collection view.
      * @param  string $control_view    path to control view.
      * @return string                  rendered content HTML.

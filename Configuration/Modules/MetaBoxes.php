@@ -19,6 +19,7 @@ class MetaBoxes implements IModule
     /**
      * Metaboxes class constructor
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param array $data engine data.
      */
     public function __construct($data = null)
@@ -34,6 +35,8 @@ class MetaBoxes implements IModule
 
     /**
      * Init hooks
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      */
     private function init()
     {
@@ -43,6 +46,8 @@ class MetaBoxes implements IModule
 
     /**
      * Prepare data before render
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return MetaBoxes $this.
      */
     private function prepareData()
@@ -70,6 +75,8 @@ class MetaBoxes implements IModule
 
     /**
      * Get default add_meta_box parameters
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return [array] default parameters.
      */
     private function getDefaults()
@@ -94,6 +101,8 @@ class MetaBoxes implements IModule
 
     /**
      * Meta box controls
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param  object $post The post object currently being edited.
      * @param  array $metabox Specific information about the meta box being loaded.
      * @return void
@@ -135,6 +144,8 @@ class MetaBoxes implements IModule
 
     /**
      * Add prefix to name
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param  string $prefix prefix.
      * @param  string $name   name.
      * @return string         name with prefix.
@@ -150,6 +161,8 @@ class MetaBoxes implements IModule
 
     /**
      * Save row meta
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param  integer $post_id post id.
      * @param  string $post     post type.
      */
@@ -180,6 +193,8 @@ class MetaBoxes implements IModule
 
     /**
      * Toggle save
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param  string $name    $_POST key.
      * @param  string $post_id post id.
      * @return boolean true = saved / false = deleted.
@@ -197,6 +212,8 @@ class MetaBoxes implements IModule
 
     /**
      * Add metaboxes
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      */
     public function addMetaBoxes()
     {
@@ -215,6 +232,8 @@ class MetaBoxes implements IModule
 
     /**
      * Module priority
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return [int] priority, the smaller number the faster boot.
      */
     public static function getPriority()

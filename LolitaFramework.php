@@ -8,6 +8,8 @@ class LolitaFramework
 {
     /**
      * Get class instance only once
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return [LolitaFramewor] object.
      */
     public static function getInstance()
@@ -22,6 +24,8 @@ class LolitaFramework
 
     /**
      * Autoload class constructor
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      */
     private function __construct()
     {
@@ -31,6 +35,8 @@ class LolitaFramework
 
     /**
      * Define some constants
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      */
     public function constants()
     {
@@ -51,6 +57,7 @@ class LolitaFramework
     /**
      * Autoload my classes
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return void
      */
     public function autoload($class)
@@ -64,7 +71,8 @@ class LolitaFramework
     /**
      * Create module instance
      *
-     * @param [string] $module_name Module / Folder name.
+     * @author Guriev Eugen <gurievcreative@gmail.com>
+     * @param string $module_name Module / Folder name.
      */
     public function addModule($module_name)
     {
@@ -77,8 +85,9 @@ class LolitaFramework
     /**
      * Get URL by directory
      *
-     * @param  [string] $dir path.
-     * @return [string] URL.
+     * @author Guriev Eugen <gurievcreative@gmail.com>
+     * @param  string $dir path.
+     * @return string URL.
      */
     public static function getURLByDirectory($dir)
     {

@@ -11,6 +11,8 @@ class Logo extends AbstractWithControls
 {
     /**
      * Register widget with WordPress.
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      */
     public function __construct()
     {
@@ -25,6 +27,8 @@ class Logo extends AbstractWithControls
 
     /**
      * Get controls data
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return array data to generate controls.
      */
     public static function getControlsData()
@@ -48,6 +52,8 @@ class Logo extends AbstractWithControls
      * Front-end display of widget.
      *
      * @see WP_Widget::widget()
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      *
      * @param array $args     Widget arguments.
      * @param array $instance Saved values from database.

@@ -8,6 +8,8 @@ class Input extends Control
 {
     /**
      * Input constructor
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param array $parameters control parameters.
      */
     public function __construct(array $parameters)
@@ -18,6 +20,8 @@ class Input extends Control
 
     /**
      * Prepare Input type
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return Input instance.
      */
     private function prepareType()
@@ -34,7 +38,9 @@ class Input extends Control
 
     /**
      * Get all allowed types
-     * @return [array] allowed types.
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
+     * @return array allowed types.
      */
     private function getAllowedTypes()
     {
@@ -54,6 +60,8 @@ class Input extends Control
 
     /**
      * Get allowed attributes
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return array allowed list.
      */
     private function getAllowedAttributes()
@@ -70,6 +78,8 @@ class Input extends Control
 
     /**
      * Render control
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return string html code.
      */
     public function render()

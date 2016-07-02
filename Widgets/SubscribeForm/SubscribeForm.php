@@ -12,6 +12,8 @@ class SubscribeForm extends AbstractWithControls
 
     /**
      * Register widget with WordPress.
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      */
     public function __construct()
     {
@@ -25,6 +27,8 @@ class SubscribeForm extends AbstractWithControls
 
     /**
      * This function run before widgets_init hook
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return void
      */
     public static function beforeInit()
@@ -36,6 +40,8 @@ class SubscribeForm extends AbstractWithControls
 
     /**
      * Subscribe our user
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      */
     public function subscribe()
     {
@@ -58,6 +64,8 @@ class SubscribeForm extends AbstractWithControls
 
     /**
      * Subscribe default type
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param  array $response request response.
      * @return boolean result.
      */
@@ -72,6 +80,8 @@ class SubscribeForm extends AbstractWithControls
 
     /**
      * Subscribe mailchimp type
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param  array $response request response.
      * @return boolean result.
      */
@@ -93,6 +103,8 @@ class SubscribeForm extends AbstractWithControls
 
     /**
      * Add scripts and styles
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      */
     public static function addScriptsAndStyles()
     {
@@ -124,6 +136,8 @@ class SubscribeForm extends AbstractWithControls
 
     /**
      * Add scripts and styles for admin panel
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      */
     public static function adminAddScriptsAndStyles()
     {
@@ -143,6 +157,8 @@ class SubscribeForm extends AbstractWithControls
 
     /**
      * Get controls data
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return array data to generate controls.
      */
     public static function getControlsData()
@@ -203,6 +219,8 @@ class SubscribeForm extends AbstractWithControls
      * Front-end display of widget.
      *
      * @see WP_Widget::widget()
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      *
      * @param array $args     Widget arguments.
      * @param array $instance Saved values from database.

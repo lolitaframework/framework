@@ -12,6 +12,8 @@ class Repeater extends Control implements iHaveAdminEnqueue
 {
     /**
      * Repeater constructor
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param array $parameters control parameters.
      */
     public function __construct(array $parameters)
@@ -22,6 +24,8 @@ class Repeater extends Control implements iHaveAdminEnqueue
 
     /**
      * Add scripts and styles
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      */
     public static function adminEnqueue()
     {
@@ -54,6 +58,8 @@ class Repeater extends Control implements iHaveAdminEnqueue
 
     /**
      * Get control value
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return string value.
      */
     public function getValue()
@@ -66,6 +72,8 @@ class Repeater extends Control implements iHaveAdminEnqueue
 
     /**
      * Prepare control data
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return Repeater instance
      */
     private function prepare()
@@ -146,6 +154,8 @@ class Repeater extends Control implements iHaveAdminEnqueue
 
     /**
      * Render control
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return string html code.
      */
     public function render()
@@ -167,6 +177,7 @@ class Repeater extends Control implements iHaveAdminEnqueue
     /**
      * Get value count
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return integer count.
      */
     private function getValueCount()

@@ -9,6 +9,8 @@ class Category extends Trail
 
     /**
      * Compile Category crumbs
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return Category instance.
      */
     public function compile()

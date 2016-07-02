@@ -10,6 +10,8 @@ class Engine
 
     /**
      * Get trail
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return mixed Trail class or null.
      */
     public static function getTrail()
@@ -23,6 +25,8 @@ class Engine
 
     /**
      * Compile trail
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return mixed Trail or Null.
      */
     public static function compile()
@@ -38,6 +42,8 @@ class Engine
 
     /**
      * Get route function
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return string route function.
      */
     public static function getRouteClass()

@@ -32,6 +32,7 @@ class Customs implements IModule
     /**
      * Customs class constructor
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param string $data config file data.
      * @return void
      */
@@ -50,6 +51,7 @@ class Customs implements IModule
     /**
      * Autoload my classes
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return void
      */
     public function autoload($class)
@@ -66,6 +68,7 @@ class Customs implements IModule
     /**
      * Get all classes from folders.
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return [array] classes.
      */
     private function getClasses()
@@ -89,6 +92,7 @@ class Customs implements IModule
      * Get all folders
      * Where we want load classes
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return [array] folders paths.
      */
     private function getFolders()
@@ -104,6 +108,8 @@ class Customs implements IModule
 
     /**
      * Module priority
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return [int] priority, the smaller number the faster boot.
      */
     public static function getPriority()

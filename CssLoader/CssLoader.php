@@ -8,6 +8,8 @@ class CssLoader
 {
     /**
      * CssLoader class constructor
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      */
     public function __construct()
     {
@@ -19,6 +21,8 @@ class CssLoader
 
     /**
      * Add scripts and styles
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      */
     public function addScriptsAndStyles()
     {
@@ -46,6 +50,8 @@ class CssLoader
 
     /**
      * Add Loader templates
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      */
     public function renderTemplates()
     {

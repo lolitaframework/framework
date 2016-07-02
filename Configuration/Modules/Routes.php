@@ -12,6 +12,7 @@ class Routes implements IModule
     /**
      * Routes class constructor
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param array $data engine data.
      */
     public function __construct($data = null)
@@ -24,6 +25,8 @@ class Routes implements IModule
 
     /**
      * Install our configuration
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return Routes instance.
      */
     private function install()
@@ -36,6 +39,8 @@ class Routes implements IModule
 
     /**
      * Filter theme_page_templates
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param  array $page_templates page templates.
      * @param  object $me WP_Theme class instance.
      * @param  WP_Post $post post object.
@@ -48,6 +53,8 @@ class Routes implements IModule
 
     /**
      * Get all templates from data
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return array templates.
      */
     private function getTemplateNames()
@@ -63,6 +70,8 @@ class Routes implements IModule
 
     /**
      * Get HTML from route element
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param  mixed $element route element.
      * @return string HTML code.
      */
@@ -78,6 +87,8 @@ class Routes implements IModule
 
     /**
      * Render custom routes.
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return void
      */
     public function customRoutes()
@@ -92,6 +103,8 @@ class Routes implements IModule
 
     /**
      * Block default template
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param  string $template_path default template path.
      * @return string empty.
      */
@@ -117,6 +130,8 @@ class Routes implements IModule
 
     /**
      * Get all potential templates
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return array potential templates
      */
     public static function getTempaltes()
@@ -145,6 +160,8 @@ class Routes implements IModule
 
     /**
      * Get active template info
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return array template info.
      */
     public static function getActive()
@@ -170,6 +187,8 @@ class Routes implements IModule
 
     /**
      * Module priority
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return [int] priority, the smaller number the faster boot.
      */
     public static function getPriority()

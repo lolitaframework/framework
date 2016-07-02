@@ -10,12 +10,16 @@ abstract class Control
 {
     /**
      * Data to insert in view
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @var array
      */
     public $parameters = array();
 
     /**
      * Control constructor
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param array $parameters control parameters.
      */
     public function __construct(array $parameters)
@@ -26,6 +30,8 @@ abstract class Control
 
     /**
      * Set name
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param string $name control name.
      */
     public function setName($name)
@@ -38,6 +44,8 @@ abstract class Control
 
     /**
      * Get control name
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return string control name.
      */
     public function getName()
@@ -47,6 +55,8 @@ abstract class Control
 
     /**
      * Set control value
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param string $value control value.
      */
     public function setValue($value)
@@ -56,6 +66,8 @@ abstract class Control
 
     /**
      * Get control value
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return string value.
      */
     public function getValue()
@@ -65,6 +77,8 @@ abstract class Control
 
     /**
      * Get default view path
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return string default view path
      */
     public function getDefaultViewPath()
@@ -79,6 +93,8 @@ abstract class Control
 
     /**
      * Get current class directory
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return string directory path.
      */
     public static function getDIR()
@@ -88,6 +104,8 @@ abstract class Control
 
     /**
      * Get url to control
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return string url.
      */
     public static function getURL()
@@ -97,6 +115,8 @@ abstract class Control
 
     /**
      * Get HTML ID attribute
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return string ID attribute
      */
     public function getID()
@@ -109,6 +129,8 @@ abstract class Control
 
     /**
      * Render control
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return string html code.
      */
     public function render()

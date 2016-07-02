@@ -8,6 +8,8 @@ class Single extends Trail
 
     /**
      * Compile single crumbs
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return Single instance.
      */
     public function compile()

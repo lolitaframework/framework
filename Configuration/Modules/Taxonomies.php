@@ -12,6 +12,7 @@ class Taxonomies extends Init implements IModule
     /**
      * Taxonomies class constructor
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param array $data engine data.
      */
     public function __construct($data = null)
@@ -24,6 +25,7 @@ class Taxonomies extends Init implements IModule
      * Run by the 'init' hook.
      * Execute the "add_theme_support" function from WordPress.
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return void
      */
     public function install()

@@ -12,6 +12,8 @@ abstract class AbstractWithControls extends AbstractWidget implements IHaveBefor
 {
     /**
      * Get controls data
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return array data to generate controls.
      */
     public static function getControlsData()
@@ -21,6 +23,8 @@ abstract class AbstractWithControls extends AbstractWidget implements IHaveBefor
 
     /**
      * This function run before widgets_init hook
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return void
      */
     public static function beforeInit()
@@ -32,6 +36,8 @@ abstract class AbstractWithControls extends AbstractWidget implements IHaveBefor
      * Back-end widget form.
      *
      * @see WP_Widget::form()
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      *
      * @param array $instance Previously saved values from database.
      */

@@ -6,6 +6,7 @@ class GlobalLocator
     /**
      * Get wp_filesystem
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return Object
      */
     public static function wpFilesystem()
@@ -26,6 +27,8 @@ class GlobalLocator
 
     /**
      * Get post
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return WP_Post current post object.
      */
     public static function post()
@@ -36,6 +39,8 @@ class GlobalLocator
 
     /**
      * Get $wp_query
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return WP_Query instance.
      */
     public static function wpQuery()
@@ -46,6 +51,8 @@ class GlobalLocator
 
     /**
      * Get $wp_rewrite
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return WP_Rewrite instance.
      */
     public static function wpRewrite()

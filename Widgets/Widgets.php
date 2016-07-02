@@ -21,6 +21,8 @@ class Widgets
 
     /**
      * Widgets class constructor
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      */
     public function __construct()
     {
@@ -32,6 +34,7 @@ class Widgets
     /**
      * Get all paths to classes
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return array
      */
     public static function getAllClasses()
@@ -52,6 +55,8 @@ class Widgets
 
     /**
      * Load classes
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      */
     public function load()
     {
@@ -62,6 +67,8 @@ class Widgets
 
     /**
      * This function run before widgets_init hook
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return void
      */
     public function runBeforeInits()

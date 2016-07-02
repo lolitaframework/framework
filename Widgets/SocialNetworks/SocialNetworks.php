@@ -10,6 +10,8 @@ class SocialNetworks extends AbstractWithControls
 {
     /**
      * Register widget with WordPress.
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      */
     public function __construct()
     {
@@ -25,6 +27,8 @@ class SocialNetworks extends AbstractWithControls
 
     /**
      * This function run before widgets_init hook
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return void
      */
     public static function beforeInit()
@@ -35,6 +39,8 @@ class SocialNetworks extends AbstractWithControls
 
     /**
      * Add scripts and styles
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      */
     public static function addScriptsAndStyles()
     {
@@ -50,6 +56,8 @@ class SocialNetworks extends AbstractWithControls
 
     /**
      * Get controls data
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return array data to generate controls.
      */
     public static function getControlsData()
@@ -105,7 +113,9 @@ class SocialNetworks extends AbstractWithControls
 
     /**
      * Get icons
-     * @return array font awesome icons classes
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
+     * @return array font awesome icons classes.
      */
     private function getIconsClasses()
     {
@@ -125,6 +135,8 @@ class SocialNetworks extends AbstractWithControls
      * Front-end display of widget.
      *
      * @see WP_Widget::widget()
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      *
      * @param array $args     Widget arguments.
      * @param array $instance Saved values from database.

@@ -11,6 +11,7 @@ class Languages extends Init implements IModule
     /**
      * Languages class constructor
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param array $data engine data.
      */
     public function __construct($data = null)
@@ -24,6 +25,7 @@ class Languages extends Init implements IModule
      * Run by the 'init' hook.
      * Execute the "add_theme_support" function from WordPress.
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return void
      */
     public function install()
@@ -41,6 +43,8 @@ class Languages extends Init implements IModule
 
     /**
      * Module priority
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return [int] priority, the smaller number the faster boot.
      */
     public static function getPriority()

@@ -9,6 +9,8 @@ abstract class AbstractWidget extends WP_Widget
 {
     /**
      * Register widget with WordPress.
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      */
     public function __construct($name, $widget_options = array(), $id_base = '', $control_options = array())
     {
@@ -25,6 +27,8 @@ abstract class AbstractWidget extends WP_Widget
 
     /**
      * Get view
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param  string $file view file.
      * @param  array $arguments arguments.
      * @return string view HTML code.
@@ -41,6 +45,8 @@ abstract class AbstractWidget extends WP_Widget
 
     /**
      * Render view
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param  string $file view file.
      * @param  array $arguments arguments.
      * @return void.
@@ -55,6 +61,7 @@ abstract class AbstractWidget extends WP_Widget
      *
      * @see WP_Widget::widget()
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param array $args     Widget arguments.
      * @param array $instance Saved values from database.
      */
@@ -67,6 +74,8 @@ abstract class AbstractWidget extends WP_Widget
      * Back-end widget form.
      *
      * @see WP_Widget::form()
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      *
      * @param array $instance Previously saved values from database.
      */

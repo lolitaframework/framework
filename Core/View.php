@@ -6,7 +6,8 @@ class View
     /**
      * Is path have extension?
      *
-     * @param  [type]  $path file.
+     * @author Guriev Eugen <gurievcreative@gmail.com>
+     * @param  string  $path file.
      * @return boolean YES / NO.
      */
     public static function isHaveExtension($path)
@@ -18,7 +19,8 @@ class View
     /**
      * Get default view folder
      *
-     * @return [string] default folder.
+     * @author Guriev Eugen <gurievcreative@gmail.com>
+     * @return string default folder.
      */
     public static function getDefaultFolder()
     {
@@ -31,6 +33,7 @@ class View
     /**
      * Render view
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param type $path view path.
      * @param  array $data include data.
      * @return rendered html
@@ -70,6 +73,8 @@ class View
 
     /**
      * Minimize before output
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param  string $buffer to minimize.
      * @return string minimized.
      */

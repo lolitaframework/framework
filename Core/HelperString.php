@@ -5,6 +5,8 @@ class HelperString
 {
     /**
      * Sentence like : "Hello i'm here" to snake "hello_im_here"
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param  string $val    sentence
      * @param  string $symbol snake symbol, default _.
      * @return sentence in snake case.
@@ -43,8 +45,9 @@ class HelperString
     /**
      * Take a string_like_this and return a StringLikeThis
      *
-     * @param  [string] $val string_like_this.
-     * @return [string] StringLikeThis.
+     * @author Guriev Eugen <gurievcreative@gmail.com>
+     * @param  string $val string_like_this.
+     * @return string StringLikeThis.
      */
     public static function snakeToCamel($val)
     {
@@ -53,8 +56,10 @@ class HelperString
 
     /**
      * Take a StringLikeThis and return a string_like_this
-     * @param  [string] $val StringLikeThis.
-     * @return [string] string_like_this.
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
+     * @param  string $val StringLikeThis.
+     * @return string string_like_this.
      */
     public static function camelToSnake($val)
     {
@@ -69,6 +74,8 @@ class HelperString
      * Braces to underline
      * From: widget-lolita_logo_widget[5][gallery]
      * To: widget-lolita_logo_widget_5_gallery
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param  string $str string with braces.
      * @return string without braces.
      */
@@ -83,6 +90,7 @@ class HelperString
     /**
      * Call model from string like this {{ Model::Method }}
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param  string $str      [description]
      * @return [type]           [description]
      */

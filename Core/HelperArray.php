@@ -6,6 +6,7 @@ class HelperArray
     /**
      * Try get value by key from array
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param  array $array values list.
      * @param  type  $key value key.
      * @param  type  $default default value.
@@ -26,6 +27,7 @@ class HelperArray
     /**
      * Join array to string
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param  array $arr --- array like 'key' => 'value'.
      * @return string --- joined string
      */
@@ -42,6 +44,7 @@ class HelperArray
     /**
      * Remove empty elements
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param  array $arr --- array with empty elements.
      * @return array --- array without empty elements
      */
@@ -54,6 +57,7 @@ class HelperArray
      * Check if empty.
      * It's need for PHP 5.2.4 version
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param  [type] $var variable.
      * @return boolean
      */
@@ -65,6 +69,7 @@ class HelperArray
     /**
      * Lave just right keys in array
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param  array $right_keys right keys to leave.
      * @param  array $array list.
      * @return array
@@ -86,6 +91,7 @@ class HelperArray
     /**
      * Remove some keys form array
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param  [type] $right_keys keys to remove.
      * @param  [type] $array      where we want remove this keys.
      * @return array without keys
@@ -106,6 +112,8 @@ class HelperArray
 
     /**
      * Making l10n script data from array
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param  array $l10n array to convert into l10n script.
      * @return string l10n string.
      */

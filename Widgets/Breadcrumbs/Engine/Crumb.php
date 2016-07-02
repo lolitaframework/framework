@@ -18,6 +18,8 @@ class Crumb
 
     /**
      * Crumb class constructor
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param string $label crumb label.
      * @param mixed $link  url.
      */
@@ -29,6 +31,8 @@ class Crumb
 
     /**
      * Is this crumb have URL?
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return boolean true if have / false if not.
      */
     public function isHaveURL()
@@ -38,6 +42,8 @@ class Crumb
 
     /**
      * Get crumb label
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return string crumb label.
      */
     public function getLabel()
@@ -47,6 +53,8 @@ class Crumb
 
     /**
      * Get crumb link
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return mixed crumb link.
      */
     public function getLink()
@@ -56,6 +64,8 @@ class Crumb
 
     /**
      * Set link parameter
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param mixed $link link parameter.
      * @return Crumb instance.
      */

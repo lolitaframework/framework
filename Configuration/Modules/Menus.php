@@ -12,6 +12,7 @@ class Menus extends Init implements IModule
     /**
      * Menus class constructor
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param string $data config file data.
      */
     public function __construct($data = null)
@@ -24,6 +25,7 @@ class Menus extends Init implements IModule
      * Run by the 'init' hook.
      * Execute the "register_nav_menus" function from WordPress
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return void
      */
     public function install()
@@ -41,6 +43,8 @@ class Menus extends Init implements IModule
 
     /**
      * Module priority
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return [int] priority, the smaller number the faster boot.
      */
     public static function getPriority()
