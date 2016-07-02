@@ -5,7 +5,7 @@
             <div class="inner">
                 <h3><?php echo get_the_title($item->ID) ?></h3>
                 <?php $subtitle = (string) get_post_meta($item->ID, 'post_additional_settings_subtitle', true) ?>
-                <?php if ('' !== $subtitle): ?>
+                <?php if ('' !== $subtitle) : ?>
                     <h5><?php echo $subtitle ?></h5>
                 <?php endif ?>
                 <div class="text">

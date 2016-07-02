@@ -3,7 +3,8 @@ namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\Breadcrumbs\Engin
 
 use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\Breadcrumbs\Engine\Crumb;
 
-class FrontPage extends Trail {
+class FrontPage extends Trail
+{
 
     /**
      * Compile front page crumbs

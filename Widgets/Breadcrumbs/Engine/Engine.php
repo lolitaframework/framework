@@ -5,7 +5,8 @@ use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperWP;
 use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperString;
 use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\Breadcrumbs\Engine\Trails\Trail;
 
-class Engine {
+class Engine
+{
 
     /**
      * Get trail

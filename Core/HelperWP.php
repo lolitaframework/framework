@@ -1,7 +1,8 @@
 <?php
 namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Core;
 
-class HelperWP {
+class HelperWP
+{
 
     public static function getBranchWithLargestAncestors(array $object_ids, $object_type, $resource_type)
     {

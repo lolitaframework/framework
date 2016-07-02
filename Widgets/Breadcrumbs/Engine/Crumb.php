@@ -1,7 +1,8 @@
 <?php
 namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\Breadcrumbs\Engine;
 
-class Crumb {
+class Crumb
+{
     /**
      * Crumb label.
      * It is required!

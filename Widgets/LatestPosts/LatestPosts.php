@@ -118,10 +118,10 @@ class LatestPosts extends AbstractWithControls
                 'post_type'        => $post_type,
                 'post_mime_type'   => '',
                 'post_parent'      => '',
-                'author'       => '',
+                'author'           => '',
                 'author_name'      => '',
                 'post_status'      => 'publish',
-                'suppress_filters' => true 
+                'suppress_filters' => true,
             )
         );
     }

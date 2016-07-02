@@ -3,7 +3,8 @@ namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\Breadcrumbs\Engin
 
 use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\Breadcrumbs\Engine\Crumb;
 
-class Single extends Trail {
+class Single extends Trail
+{
 
     /**
      * Compile single crumbs
