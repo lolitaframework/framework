@@ -1,10 +1,10 @@
 <?php
-namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\GoogleMap;
+namespace MyProject\LolitaFramework\Widgets\GoogleMap;
 
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperArray;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperImage;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework;
+use \MyProject\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls;
+use \MyProject\LolitaFramework\Core\HelperArray;
+use \MyProject\LolitaFramework\Core\HelperImage;
+use \MyProject\LolitaFramework;
 
 class GoogleMap extends AbstractWithControls
 {
@@ -22,18 +22,6 @@ class GoogleMap extends AbstractWithControls
                 'classname' => 'lf_google_map',
             )
         );
-    }
-
-    /**
-     * This function run before widgets_init hook
-     *
-     * @author Guriev Eugen <gurievcreative@gmail.com>
-     * @return void
-     */
-    public static function beforeInit()
-    {
-        parent::beforeInit();
-        add_action('wp_enqueue_scripts', array(__CLASS__, 'wpAddScriptsAndStyles'));
     }
 
     /**
@@ -98,8 +86,17 @@ class GoogleMap extends AbstractWithControls
      */
     public function widget($args, $instance)
     {
+        self::wpAddScriptsAndStyles();
+
+        $pin_img    = '';
         $pin_img_id = HelperArray::get($instance, 'pin_img');
-        $pin_img    = HelperImage::getURL($pin_img_id);
+        $api_key    = HelperArray::get($instance, 'api_key', 'AIzaSyCjQ9_UJojrZjefOFVVp6YBvoZ1Sd00_Lg');
+        if ('' === $api_key) {
+            $api_key = 'AIzaSyCjQ9_UJojrZjefOFVVp6YBvoZ1Sd00_Lg';
+        }
+        if ($pin_img_id) {
+            $pin_img = HelperImage::getURL($pin_img_id);
+        }
 
         $this->view(
             dirname(__FILE__) . DS . 'views' . DS . 'google_map.php',
@@ -107,7 +104,7 @@ class GoogleMap extends AbstractWithControls
                 'address' => HelperArray::get($instance, 'address'),
                 'pin_id'  => $pin_img_id,
                 'pin_img' => $pin_img,
-                'api_key' => HelperArray::get($instance, 'api_key'),
+                'api_key' => $api_key,
             )
         );
     }

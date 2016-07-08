@@ -1,11 +1,11 @@
 <?php
-namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\Carousel;
+namespace MyProject\LolitaFramework\Widgets\Carousel;
 
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\View;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperArray;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperImage;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework as LolitaFramework;
+use \MyProject\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls;
+use \MyProject\LolitaFramework\Core\View;
+use \MyProject\LolitaFramework\Core\HelperArray;
+use \MyProject\LolitaFramework\Core\HelperImage;
+use \MyProject\LolitaFramework as LolitaFramework;
 
 class Carousel extends AbstractWithControls
 {
@@ -18,7 +18,10 @@ class Carousel extends AbstractWithControls
     {
         parent::__construct(
             __('Lolita carousel widget', 'lolita'),
-            array('description' => __('Lolita carousel widget', 'lolita'))
+            array(
+                'description' => __('Lolita carousel widget', 'lolita'),
+                'classname'   => 'lf_carousel',
+            )
         );
     }
 
@@ -32,7 +35,6 @@ class Carousel extends AbstractWithControls
     {
         parent::beforeInit();
         add_action('admin_enqueue_scripts', array(__CLASS__, 'adminAddScriptsAndStyles'));
-        add_action('wp_enqueue_scripts', array(__CLASS__, 'wpAddScriptsAndStyles'));
     }
 
     /**
@@ -99,6 +101,7 @@ class Carousel extends AbstractWithControls
                 'label'    => __('Carousel type', 'lolita'),
                 'options'  => array(
                     '1' => __('Style 1', 'lolita'),
+                    '2' => __('Style 2', 'lolita'),
                 ),
             ),
             array(
@@ -125,6 +128,28 @@ class Carousel extends AbstractWithControls
                     ),
                 ),
             ),
+            array(
+                'name'     => 'style_2',
+                '__TYPE__' => 'Repeater',
+                'label'    => __('Style 2', 'lolita'),
+                'controls' => array(
+                    array(
+                        'name'     => 'title',
+                        '__TYPE__' => 'Input',
+                        'label'    => __('Title', 'lolita'),
+                    ),
+                    array(
+                        'name'     => 'url',
+                        '__TYPE__' => 'Input',
+                        'label'    => __('Link', 'lolita'),
+                    ),
+                    array(
+                        'name'     => 'img',
+                        '__TYPE__' => 'Media',
+                        'label'    => __('Image', 'lolita'),
+                    ),
+                ),
+            ),
         );
     }
 
@@ -140,6 +165,7 @@ class Carousel extends AbstractWithControls
      */
     public function widget($args, $instance)
     {
+        add_action('wp_footer', array(__CLASS__, 'wpAddScriptsAndStyles'));
         echo View::make(
             sprintf(
                 '%sstyle_%s.php',

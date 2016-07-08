@@ -168,10 +168,10 @@ namespace LolitaFramework {
                 // Check if the defined size is available.
                 var sizes = selection.get('sizes');
 
-                if (undefined !== sizes.thumbnail) {
+                try{
                     thumb_url = sizes.thumbnail.url;
-                } else {
-                    thumb_url = sizes.full.url;
+                } catch (err) {
+                    thumb_url = selection.get('icon');
                 }
             }
 

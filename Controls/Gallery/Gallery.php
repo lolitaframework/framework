@@ -1,13 +1,13 @@
 <?php
-namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Controls\Gallery;
+namespace MyProject\LolitaFramework\Controls\Gallery;
 
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Controls\Control;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Controls\IHaveAdminEnqueue;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperImage;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperArray;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperString;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\View;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework as LolitaFramework;
+use \MyProject\LolitaFramework\Controls\Control;
+use \MyProject\LolitaFramework\Controls\IHaveAdminEnqueue;
+use \MyProject\LolitaFramework\Core\HelperImage;
+use \MyProject\LolitaFramework\Core\HelperArray;
+use \MyProject\LolitaFramework\Core\HelperString;
+use \MyProject\LolitaFramework\Core\View;
+use \MyProject\LolitaFramework as LolitaFramework;
 
 class Gallery extends Control implements iHaveAdminEnqueue
 {

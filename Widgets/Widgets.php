@@ -1,8 +1,8 @@
 <?php
-namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets;
+namespace MyProject\LolitaFramework\Widgets;
 
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\GlobalLocator as GlobalLocator;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperClass as HelperClass;
+use \MyProject\LolitaFramework\Core\GlobalLocator as GlobalLocator;
+use \MyProject\LolitaFramework\Core\HelperClass as HelperClass;
 
 class Widgets
 {

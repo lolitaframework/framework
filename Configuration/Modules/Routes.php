@@ -1,11 +1,11 @@
 <?php
-namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Configuration\Modules;
+namespace MyProject\LolitaFramework\Configuration\Modules;
 
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Configuration\Configuration;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Configuration\IModule;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperString;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperWP;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\GlobalLocator;
+use \MyProject\LolitaFramework\Configuration\Configuration;
+use \MyProject\LolitaFramework\Configuration\IModule;
+use \MyProject\LolitaFramework\Core\HelperString;
+use \MyProject\LolitaFramework\Core\HelperWP;
+use \MyProject\LolitaFramework\Core\GlobalLocator;
 
 class Routes implements IModule
 {
@@ -111,19 +111,32 @@ class Routes implements IModule
     public function blockDefaultTemplates($template_path)
     {
         $post          = GlobalLocator::post();
+        $route_type    = HelperWP::wpRouteType();
+        $templates     = $this->getTempaltes();
         $page_template = '';
 
         if (null !== $post) {
             $page_template = (string) get_post_meta($post->ID, '_wp_page_template', true);
         }
-        $active = self::getActive();
 
         if (array_key_exists($page_template, $this->data)) {
+            // ==============================================================
+            // Page from template option
+            // ==============================================================
+
             echo $this->getHTML($this->data[ $page_template ]);
-        } else if (array_key_exists($active['type'], $this->data)) {
-            echo $this->getHTML($this->data[ $active['type'] ]);
-        } else {
-            return $active['path_result'];
+        } else if (array_key_exists($route_type, $this->data)) {
+            // ==============================================================
+            // Page from routes.json
+            // ==============================================================
+
+            echo $this->getHTML($this->data[ $route_type ]);
+        } else if (array_key_exists($route_type, $templates)) {
+            // ==============================================================
+            // Page from native wordpress route system
+            // ==============================================================
+
+            return $templates[ $route_type ]();
         }
         return '';
     }
@@ -155,33 +168,6 @@ class Routes implements IModule
             'date'              => 'get_date_template',
             'archive'           => 'get_archive_template',
             'paged'             => 'get_paged_template',
-        );
-    }
-
-    /**
-     * Get active template info
-     *
-     * @author Guriev Eugen <gurievcreative@gmail.com>
-     * @return array template info.
-     */
-    public static function getActive()
-    {
-        $route_type = HelperWP::wpRouteType();
-        $templates = self::getTempaltes();
-
-        $type          = key($templates);
-        $template_func = current($templates);
-        $template_path = $template_func();
-
-        if (array_key_exists($route_type, $templates)) {
-            $type = $route_type;
-            $template_func = $templates[ $route_type ];
-            $template_path = $template_func();
-        }
-        return array(
-            'type'        => $type,
-            'path'        => $template_func,
-            'path_result' => $template_path,
         );
     }
 

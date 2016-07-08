@@ -1,6 +1,6 @@
 <?php
 
-namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\SubscribeForm\vendor\DrewM\MailChimp;
+namespace MyProject\LolitaFramework\Widgets\SubscribeForm\vendor\DrewM\MailChimp;
 
 /**
  * A MailChimp Batch operation.

@@ -1,5 +1,5 @@
 <?php
-namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Configuration;
+namespace MyProject\LolitaFramework\Configuration;
 
 interface IModule
 {

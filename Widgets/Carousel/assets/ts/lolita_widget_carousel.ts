@@ -8,6 +8,157 @@ namespace LolitaFramework {
          */
         constructor() {
 
+            var me = this;
+
+            // Init jQuery SLY triggers
+            //============================================================================================//
+            jQuery('.lf_carousel_style2__container').each(function() {
+
+                var $frame = jQuery(this);
+                var $wrap = $frame.parent();
+
+                // Call Sly on frame
+                $frame.sly({
+                    horizontal: 1,
+                    itemNav: 'forceCentered',
+                    smart: 1,
+                    activateOn: 'click',
+                    mouseDragging: 1,
+                    touchDragging: 1,
+                    releaseSwing: 1,
+                    startAt: 2,
+                    // scrollBar: $wrap.find('.scrollbar'),
+                    scrollBy: 1,
+                    pagesBar: $wrap.find('.pages'),
+                    activatePageOn: 'click',
+                    speed: 300,
+                    elasticBounds: 1,
+                    // easing: 'easeOutExpo',
+                    dragHandle: 1,
+                    dynamicHandle: 1,
+                    clickBar: 1,
+
+                    // Cycling
+                    cycleBy: 'pages',
+                    cycleInterval: 1000,
+                    pauseOnHover: 1,
+                    startPaused: 1,
+                });
+
+            });
+
+
+            // Init bxSlider triggers
+            //============================================================================================//
+            jQuery('.lf_slider_style2').find('.bx_slider').each(function() {
+
+                jQuery(this).find('.lf_slider_style2_inner_container').append('<div class="lf_slider_style2__controls"></div>');
+
+                var $options = {
+
+                    // GENERAL
+                    mode: 'fade',
+                    slideSelector: '',
+                    infiniteLoop: true,
+                    hideControlOnEnd: false,
+                    speed: 500,
+                    easing: 'swing',
+                    slideMargin: 0,
+                    startSlide: 0,
+                    randomStart: false,
+                    captions: false,
+                    ticker: false,
+                    tickerHover: false,
+                    adaptiveHeight: false,
+                    adaptiveHeightSpeed: 500,
+                    video: false,
+                    useCSS: true,
+                    preloadImages: 'visible',
+                    responsive: true,
+                    slideZIndex: 50,
+                    wrapperClass: 'bx-wrapper',
+
+                    // TOUCH
+                    touchEnabled: false,
+                    swipeThreshold: 50,
+                    oneToOneTouch: true,
+                    preventDefaultSwipeX: true,
+                    preventDefaultSwipeY: false,
+
+                    // KEYBOARD
+                    keyboardEnabled: false,
+
+                    // PAGER
+                    pager: false,
+                    pagerType: 'full',
+                    pagerShortSeparator: ' / ',
+                    pagerSelector: null,
+                    buildPager: null,
+                    pagerCustom: null,
+
+                    // CONTROLS
+                    controls: false,
+                    nextText: 'Next',
+                    prevText: 'Prev',
+                    nextSelector: jQuery(this).find('.lf_slider_style2__controls'),
+                    prevSelector: jQuery(this).find('.lf_slider_style2__controls'),
+                    autoControls: false,
+                    startText: 'Start',
+                    stopText: 'Stop',
+                    autoControlsCombine: false,
+                    autoControlsSelector: null,
+
+                    // AUTO
+                    auto: false,
+                    pause: 7000,
+                    autoStart: true,
+                    autoDirection: 'next',
+                    autoHover: false,
+                    autoDelay: 0,
+                    autoSlideForOnePage: false,
+
+                    // CAROUSEL
+                    minSlides: 1,
+                    maxSlides: 1,
+                    moveSlides: 0,
+                    slideWidth: 0,
+
+                    // CALLBACKS
+                    onSliderLoad: function() {
+                        return true
+                    },
+                    onSlideBefore: function() {
+                        return true
+                    },
+                    onSlideAfter: function() {
+                        return true
+                    },
+                    onSlideNext: function() {
+                        return true
+                    },
+                    onSlidePrev: function() {
+                        return true
+                    },
+                    onSliderResize: function() {
+                        return true
+                    }
+                };
+
+                if (jQuery(this).hasClass('pager')) {
+                    $options.pager = true;
+                }
+
+                if (jQuery(this).hasClass('controls')) {
+                    $options.controls = true;
+                }
+
+                if (jQuery(this).hasClass('auto')) {
+                    $options.auto = true;
+                }
+
+                jQuery(this).bxSlider($options);
+            });
+
             // Init jQuery SLY triggers
             //============================================================================================//
             jQuery('.sly').each(function() {

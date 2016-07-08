@@ -1,8 +1,8 @@
 <?php
-namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\AbstractWidget;
+namespace MyProject\LolitaFramework\Widgets\AbstractWidget;
 
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperString;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\View;
+use \MyProject\LolitaFramework\Core\HelperString;
+use \MyProject\LolitaFramework\Core\View;
 use \WP_Widget;
 
 abstract class AbstractWidget extends WP_Widget

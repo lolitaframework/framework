@@ -1,9 +1,9 @@
 <?php
-namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Configuration\Modules;
+namespace MyProject\LolitaFramework\Configuration\Modules;
 
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Configuration\Configuration as Configuration;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Configuration\IModule as IModule;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperArray as HelperArray;
+use \MyProject\LolitaFramework\Configuration\Configuration as Configuration;
+use \MyProject\LolitaFramework\Configuration\IModule as IModule;
+use \MyProject\LolitaFramework\Core\HelperArray as HelperArray;
 
 class Actions implements IModule
 {

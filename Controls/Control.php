@@ -1,10 +1,10 @@
 <?php
-namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Controls;
+namespace MyProject\LolitaFramework\Controls;
 
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperString as HelperString;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperArray as HelperArray;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\View as View;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework as LolitaFramework;
+use \MyProject\LolitaFramework\Core\HelperString;
+use \MyProject\LolitaFramework\Core\HelperArray;
+use \MyProject\LolitaFramework\Core\View;
+use \MyProject\LolitaFramework;
 
 abstract class Control
 {
@@ -72,7 +72,7 @@ abstract class Control
      */
     public function getValue()
     {
-        return $this->parameters['value'];
+        return HelperArray::get($this->parameters, 'value', '');
     }
 
     /**

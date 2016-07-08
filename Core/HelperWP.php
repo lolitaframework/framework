@@ -1,5 +1,5 @@
 <?php
-namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Core;
+namespace MyProject\LolitaFramework\Core;
 
 class HelperWP
 {
@@ -48,17 +48,18 @@ class HelperWP
      * Get wp route type
      *
      * @author Guriev Eugen <gurievcreative@gmail.com>
+     * @param boolean $only_base only base.
      * @return string route type.
      */
-    public static function wpRouteType()
+    public static function wpRouteType($only_base = false)
     {
         $types = array(
             'embed'             => 'is_embed',
             '404'               => 'is_404',
             'search'            => 'is_search',
-            'home'              => 'is_home',
-            'front_page'        => 'is_front_page',
             'post_type_archive' => 'is_post_type_archive',
+            'front_page'        => 'is_front_page',
+            'home'              => 'is_home',
             'tax'               => 'is_tax',
             'attachment'        => 'is_attachment',
             'single'            => 'is_single',
@@ -76,6 +77,20 @@ class HelperWP
             'archive'           => 'is_archive',
             'paged'             => 'is_paged',
         );
+
+        if (!$only_base) {
+            $post_type  = get_post_type();
+            $post_types = (array) get_post_types(array('_builtin' => false));
+
+            if (in_array($post_type, $post_types)) {
+                $types = array_merge(array($post_type => 'is_single'), $types);
+            }
+
+            $qo = get_queried_object();
+            if (!empty($qo->slug)) {
+                $types = array_merge(array($qo->taxonomy => 'is_tax'), $types);
+            }
+        }
 
         foreach ($types as $type => $func) {
             if ($func()) {

@@ -1,8 +1,9 @@
 <?php
-namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\CssLoader;
+namespace MyProject\LolitaFramework\CssLoader;
 
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework as LolitaFramework;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\View as View;
+use \MyProject\LolitaFramework;
+use \MyProject\LolitaFramework\Core\HelperArray;
+use \MyProject\LolitaFramework\Core\View;
 
 class CssLoader
 {
@@ -17,6 +18,18 @@ class CssLoader
         add_action('admin_enqueue_scripts', array(&$this, 'addScriptsAndStyles'));
         add_action('wp_footer', array(&$this, 'renderTemplates'));
         add_action('admin_footer', array(&$this, 'renderTemplates'));
+        $this->addShortcodes();
+    }
+
+    /**
+     * Add all shortcodes
+     */
+    public function addShortcodes()
+    {
+        add_shortcode('lf_css_loader_hide', array(&$this, 'renderHide'));
+        for ($i = 1; $i <= 11; $i++) {
+            add_shortcode('lf_css_loader_' . $i, array(&$this, 'renderTemplate'));
+        }
     }
 
     /**
@@ -38,7 +51,18 @@ class CssLoader
             false,
             true
         );
+    }
 
+    /**
+     * Add Loader templates
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
+     */
+    public function renderTemplates()
+    {
+        echo View::make(__DIR__ . DS . 'views' . DS . 'lf_css_loader.php');
+
+        $assets = LolitaFramework::getURLByDirectory(__DIR__) . DS . 'assets' . DS;
         // ==============================================================
         // Styles
         // ==============================================================
@@ -49,12 +73,41 @@ class CssLoader
     }
 
     /**
-     * Add Loader templates
-     *
-     * @author Guriev Eugen <gurievcreative@gmail.com>
+     * Render loader template
+     * @param  array $atts attributes.
+     * @param  mixed $tmp  some shit.
+     * @param  string $tag  shortcode name.
+     * @return string html code.
      */
-    public function renderTemplates()
+    public function renderTemplate($atts, $tmp, $tag)
     {
-        echo View::make(__DIR__ . DS . 'views' . DS . 'css_loader.php');
+        $GLOBALS['lf_start_time'] = microtime(true);
+        return View::make(
+            __DIR__ . DS . 'views' . DS . $tag . '.php',
+            array(
+                'class' => HelperArray::get($atts, 'class'),
+                'bg'    => HelperArray::get($atts, 'bg', '#fff'),
+                'color' => HelperArray::get($atts, 'color', '#000'),
+            )
+        );
+    }
+
+    /**
+     * Hide loader
+     * @param  array $atts attributes.
+     * @return string html code.
+     */
+    public function renderHide($atts)
+    {
+        echo View::make(
+            __DIR__ . DS . 'views' . DS . 'lf_css_loader_hide.php',
+            array(
+                'delay' => HelperArray::get($atts, 'delay', 0),
+                'spent_time' => sprintf(
+                    'Time spent %.4F seconds.',
+                    microtime(true) - HelperArray::get($GLOBALS, 'lf_start_time', 0)
+                ),
+            )
+        );
     }
 }

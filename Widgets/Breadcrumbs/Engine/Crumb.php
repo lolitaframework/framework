@@ -1,5 +1,5 @@
 <?php
-namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\Breadcrumbs\Engine;
+namespace MyProject\LolitaFramework\Widgets\Breadcrumbs\Engine;
 
 class Crumb
 {

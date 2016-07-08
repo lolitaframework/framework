@@ -1,8 +1,8 @@
 <?php
-namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Controls\Input;
+namespace MyProject\LolitaFramework\Controls\Input;
 
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Controls\Control as Control;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperArray as HelperArray;
+use \MyProject\LolitaFramework\Controls\Control;
+use \MyProject\LolitaFramework\Core\HelperArray;
 
 class Input extends Control
 {

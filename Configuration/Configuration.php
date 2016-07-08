@@ -1,8 +1,8 @@
 <?php
-namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Configuration;
+namespace MyProject\LolitaFramework\Configuration;
 
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\GlobalLocator as GlobalLocator;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperClass as HelperClass;
+use \MyProject\LolitaFramework\Core\GlobalLocator as GlobalLocator;
+use \MyProject\LolitaFramework\Core\HelperClass as HelperClass;
 
 class Configuration
 {

@@ -1,8 +1,8 @@
 <?php
-namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\Breadcrumbs\Engine\Trails;
+namespace MyProject\LolitaFramework\Widgets\Breadcrumbs\Engine\Trails;
 
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\Breadcrumbs\Engine\Crumb;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperWP;
+use \MyProject\LolitaFramework\Widgets\Breadcrumbs\Engine\Crumb;
+use \MyProject\LolitaFramework\Core\HelperWP;
 
 abstract class Trail
 {

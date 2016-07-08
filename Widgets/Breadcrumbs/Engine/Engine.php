@@ -1,9 +1,9 @@
 <?php
-namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\Breadcrumbs\Engine;
+namespace MyProject\LolitaFramework\Widgets\Breadcrumbs\Engine;
 
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperWP;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperString;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\Breadcrumbs\Engine\Trails\Trail;
+use \MyProject\LolitaFramework\Core\HelperWP;
+use \MyProject\LolitaFramework\Core\HelperString;
+use \MyProject\LolitaFramework\Widgets\Breadcrumbs\Engine\Trails\Trail;
 
 class Engine
 {

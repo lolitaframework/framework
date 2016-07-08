@@ -1,12 +1,12 @@
 <?php
-namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Controls\Repeater;
+namespace MyProject\LolitaFramework\Controls\Repeater;
 
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Controls\Control;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Controls\Controls;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Controls\IHaveAdminEnqueue;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperArray;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\View;
+use \MyProject\LolitaFramework\Controls\Control;
+use \MyProject\LolitaFramework\Controls\Controls;
+use \MyProject\LolitaFramework\Controls\IHaveAdminEnqueue;
+use \MyProject\LolitaFramework\Core\HelperArray;
+use \MyProject\LolitaFramework;
+use \MyProject\LolitaFramework\Core\View;
 
 class Repeater extends Control implements iHaveAdminEnqueue
 {

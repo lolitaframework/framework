@@ -1,9 +1,9 @@
 <?php
-namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\Breadcrumbs;
+namespace MyProject\LolitaFramework\Widgets\Breadcrumbs;
 
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\Breadcrumbs\Engine\Engine;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\View;
+use \MyProject\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls;
+use \MyProject\LolitaFramework\Widgets\Breadcrumbs\Engine\Engine;
+use \MyProject\LolitaFramework\Core\View;
 
 class Breadcrumbs extends AbstractWithControls
 {

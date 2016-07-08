@@ -1,11 +1,11 @@
 <?php
-namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\LatestPosts;
+namespace MyProject\LolitaFramework\Widgets\LatestPosts;
 
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\View;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperArray;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperImage;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework;
+use \MyProject\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls;
+use \MyProject\LolitaFramework\Core\View;
+use \MyProject\LolitaFramework\Core\HelperArray;
+use \MyProject\LolitaFramework\Core\HelperImage;
+use \MyProject\LolitaFramework;
 
 class LatestPosts extends AbstractWithControls
 {
@@ -41,6 +41,7 @@ class LatestPosts extends AbstractWithControls
                 'options'  => array(
                     'style_1' => 'Style 1',
                     'style_2' => 'Style 2',
+                    'style_3' => 'Style 3',
                 ),
             ),
             array(

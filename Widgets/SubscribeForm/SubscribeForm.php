@@ -1,11 +1,11 @@
 <?php
-namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\SubscribeForm;
+namespace MyProject\LolitaFramework\Widgets\SubscribeForm;
 
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls as AbstractWithControls;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\View as View;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperArray as HelperArray;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\SubscribeForm\vendor\DrewM\MailChimp\MailChimp as MailChimp;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework;
+use \MyProject\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls as AbstractWithControls;
+use \MyProject\LolitaFramework\Core\View as View;
+use \MyProject\LolitaFramework\Core\HelperArray as HelperArray;
+use \MyProject\LolitaFramework\Widgets\SubscribeForm\vendor\DrewM\MailChimp\MailChimp as MailChimp;
+use \MyProject\LolitaFramework;
 
 class SubscribeForm extends AbstractWithControls
 {
@@ -34,7 +34,6 @@ class SubscribeForm extends AbstractWithControls
     public static function beforeInit()
     {
         parent::beforeInit();
-        add_action('wp_enqueue_scripts', array(__CLASS__, 'addScriptsAndStyles'));
         add_action('admin_enqueue_scripts', array(__CLASS__, 'adminAddScriptsAndStyles'));
     }
 
@@ -227,6 +226,7 @@ class SubscribeForm extends AbstractWithControls
      */
     public function widget($args, $instance)
     {
+        add_action('wp_enqueue_scripts', array(__CLASS__, 'addScriptsAndStyles'));
         $instance['success_message'] = HelperArray::get(
             $instance,
             'success_message',

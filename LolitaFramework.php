@@ -1,5 +1,5 @@
 <?php
-namespace zorgboerderij_lenteheuvel_wp;
+namespace MyProject;
 
 /**
  * Lolita Framework singlton class
@@ -31,6 +31,7 @@ class LolitaFramework
     {
         $this->constants();
         spl_autoload_register(array( &$this, 'autoload' ));
+        load_theme_textdomain('lolita', __DIR__ . DS . 'languages');
     }
 
     /**

@@ -1,5 +1,5 @@
 <?php
-namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Core;
+namespace MyProject\LolitaFramework\Core;
 
 class View
 {
@@ -46,29 +46,14 @@ class View
             $path = self::getDefaultFolder() . $path . '.php';
         }
         // Add parameters to temporary query variable.
-        if (array_key_exists('wp_query', $GLOBALS)) {
-            if (is_array($GLOBALS['wp_query']->query_vars)) {
-                $old_query_vars = $GLOBALS['wp_query']->query_vars;
-                $data['view'] = new self;
-                $GLOBALS['wp_query']->query_vars = $data;
-            }
-        }
+        $data['view'] = new self;
 
+        extract($data);
         ob_start();
-        load_template($path, false);
-        $result = ltrim(ob_get_clean());
-
-        /**
-         * Remove temporary wp query variable
-         */
-        if (array_key_exists('wp_query', $GLOBALS)) {
-            if (is_array($GLOBALS['wp_query']->query_vars)) {
-                $GLOBALS['wp_query']->query_vars = $old_query_vars;
-            }
-        }
+        require($path);
 
         // Return the compiled view and terminate the output buffer.
-        return self::minimizeBeforeOutput($result);
+        return self::minimizeBeforeOutput(ltrim(ob_get_clean()));
     }
 
     /**

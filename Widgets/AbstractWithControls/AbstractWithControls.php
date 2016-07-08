@@ -1,12 +1,12 @@
 <?php
-namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\AbstractWithControls;
+namespace MyProject\LolitaFramework\Widgets\AbstractWithControls;
 
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperArray;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperString;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\View;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Controls\Controls;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\IHaveBeforeInit;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\AbstractWidget\AbstractWidget;
+use \MyProject\LolitaFramework\Core\HelperArray;
+use \MyProject\LolitaFramework\Core\HelperString;
+use \MyProject\LolitaFramework\Core\View;
+use \MyProject\LolitaFramework\Controls\Controls;
+use \MyProject\LolitaFramework\Widgets\IHaveBeforeInit;
+use \MyProject\LolitaFramework\Widgets\AbstractWidget\AbstractWidget;
 
 abstract class AbstractWithControls extends AbstractWidget implements IHaveBeforeInit
 {

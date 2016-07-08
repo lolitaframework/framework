@@ -1,11 +1,11 @@
 <?php
-namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\Slider;
+namespace MyProject\LolitaFramework\Widgets\Slider;
 
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls as AbstractWithControls;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\View;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperArray;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperImage;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework as LolitaFramework;
+use \MyProject\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls as AbstractWithControls;
+use \MyProject\LolitaFramework\Core\View;
+use \MyProject\LolitaFramework\Core\HelperArray;
+use \MyProject\LolitaFramework\Core\HelperImage;
+use \MyProject\LolitaFramework as LolitaFramework;
 
 class Slider extends AbstractWithControls
 {
@@ -32,7 +32,6 @@ class Slider extends AbstractWithControls
     {
         parent::beforeInit();
         add_action('admin_enqueue_scripts', array(__CLASS__, 'adminAddScriptsAndStyles'));
-        add_action('wp_enqueue_scripts', array(__CLASS__, 'wpAddScriptsAndStyles'));
     }
 
     /**
@@ -206,6 +205,7 @@ class Slider extends AbstractWithControls
      */
     public function widget($args, $instance)
     {
+        add_action('wp_enqueue_scripts', array(__CLASS__, 'wpAddScriptsAndStyles'));
         echo View::make(
             sprintf(
                 '%sstyle_%s.php',

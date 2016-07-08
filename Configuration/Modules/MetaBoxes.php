@@ -1,13 +1,13 @@
 <?php
-namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Configuration\Modules;
+namespace MyProject\LolitaFramework\Configuration\Modules;
 
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperString as HelperString;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperArray as HelperArray;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\GlobalLocator as GlobalLocator;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\View as View;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Configuration\Configuration as Configuration;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Configuration\IModule as IModule;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Controls\Controls as Controls;
+use \MyProject\LolitaFramework\Core\HelperString as HelperString;
+use \MyProject\LolitaFramework\Core\HelperArray as HelperArray;
+use \MyProject\LolitaFramework\Core\GlobalLocator as GlobalLocator;
+use \MyProject\LolitaFramework\Core\View as View;
+use \MyProject\LolitaFramework\Configuration\Configuration as Configuration;
+use \MyProject\LolitaFramework\Configuration\IModule as IModule;
+use \MyProject\LolitaFramework\Controls\Controls as Controls;
 
 class MetaBoxes implements IModule
 {

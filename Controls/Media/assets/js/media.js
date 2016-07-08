@@ -63,11 +63,11 @@ var LolitaFramework;
             title = selection.get('title');
             if ('image' === type) {
                 var sizes = selection.get('sizes');
-                if (undefined !== sizes.thumbnail) {
+                try {
                     thumb_url = sizes.thumbnail.url;
                 }
-                else {
-                    thumb_url = sizes.full.url;
+                catch (err) {
+                    thumb_url = selection.get('icon');
                 }
             }
             this.$input.val(value);

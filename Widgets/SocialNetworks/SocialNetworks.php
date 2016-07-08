@@ -1,10 +1,10 @@
 <?php
-namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\SocialNetworks;
+namespace MyProject\LolitaFramework\Widgets\SocialNetworks;
 
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls as AbstractWithControls;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\View as View;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperArray as HelperArray;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework as LolitaFramework;
+use \MyProject\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls;
+use \MyProject\LolitaFramework\Core\View;
+use \MyProject\LolitaFramework\Core\HelperArray;
+use \MyProject\LolitaFramework;
 
 class SocialNetworks extends AbstractWithControls
 {
@@ -26,32 +26,13 @@ class SocialNetworks extends AbstractWithControls
     }
 
     /**
-     * This function run before widgets_init hook
-     *
-     * @author Guriev Eugen <gurievcreative@gmail.com>
-     * @return void
-     */
-    public static function beforeInit()
-    {
-        parent::beforeInit();
-        add_action('wp_footer', array(__CLASS__, 'addScriptsAndStyles'));
-    }
-
-    /**
      * Add scripts and styles
      *
      * @author Guriev Eugen <gurievcreative@gmail.com>
      */
     public static function addScriptsAndStyles()
     {
-        $font_awesome_url =
-            LolitaFramework::getURLByDirectory(__DIR__) . DS .
-            'assets' . DS .
-            'font-awesome-4.6.3' . DS .
-            'css' . DS .
-            'font-awesome.min.css';
-       
-        wp_enqueue_style('font-awesome', $font_awesome_url);
+        wp_enqueue_style('font-awesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css');
     }
 
     /**
@@ -69,65 +50,27 @@ class SocialNetworks extends AbstractWithControls
                 "label"    => "Title",
             ),
             array(
-                "name"     => "twitter",
-                "__TYPE__" => "Input",
-                "label"    => "Twitter",
+                "name"     => "collection",
+                "__TYPE__" => "Repeater",
+                "label"    => "Social networks",
+                "controls" => array(
+                    array(
+                        "name"     => "url",
+                        "__TYPE__" => "Input",
+                        "label"    => "Link",
+                    ),
+                    array(
+                        "name"     => "content",
+                        "__TYPE__" => "Input",
+                        "label"    => "Content",
+                    ),
+                    array(
+                        "name"     => "icon_css",
+                        "__TYPE__" => "Icons",
+                        "label"    => "Icon css class",
+                    ),
+                ),
             ),
-            array(
-                "name"     => "facebook",
-                "__TYPE__" => "Input",
-                "label"    => "Facebook",
-            ),
-            array(
-                "name"     => "google-plus",
-                "__TYPE__" => "Input",
-                "label"    => "Google plus",
-            ),
-            array(
-                "name"     => "vk",
-                "__TYPE__" => "Input",
-                "label"    => "Vkontakte",
-            ),
-            array(
-                "name"     => "instagram",
-                "__TYPE__" => "Input",
-                "label"    => "Instagram",
-            ),
-            array(
-                "name"     => "pinterest",
-                "__TYPE__" => "Input",
-                "label"    => "Pinterest",
-            ),
-            array(
-                "name"     => "youtube",
-                "__TYPE__" => "Input",
-                "label"    => "YouTube",
-            ),
-            array(
-                "name"     => "linkedin",
-                "__TYPE__" => "Input",
-                "label"    => "LinkedIn",
-            ),
-        );
-    }
-
-    /**
-     * Get icons
-     *
-     * @author Guriev Eugen <gurievcreative@gmail.com>
-     * @return array font awesome icons classes.
-     */
-    private function getIconsClasses()
-    {
-        return array(
-            'twitter'     => 'fa fa-twitter',
-            'facebook'    => 'fa fa-facebook',
-            'google-plus' => 'fa fa-google-plus',
-            'vk'          => 'fa fa-vk',
-            'instagram'   => 'fa fa-instagram',
-            'pinterest'   => 'fa fa-pinterest-p',
-            'youtube'     => 'fa fa-youtube',
-            'linkedin'    => 'fa fa-linkedin',
         );
     }
 
@@ -143,15 +86,16 @@ class SocialNetworks extends AbstractWithControls
      */
     public function widget($args, $instance)
     {
+        add_action('wp_footer', array(__CLASS__, 'addScriptsAndStyles'));
         $title = HelperArray::get($instance, 'title', '');
         $instance['title'] = '';
-        echo View::make(
+        $this->view(
             dirname(__FILE__) . DS . 'views' . DS . 'social_networks.php',
             array(
                 'title'    => $title,
-                'instance' => HelperArray::removeEmpty($instance),
+                'instance' => $instance,
                 'args'     => $args,
-                'icons'    => $this->getIconsClasses(),
+                'icons'    => HelperArray::get($instance, 'collection', array()),
                 'id_base'  => $this->id_base,
             )
         );

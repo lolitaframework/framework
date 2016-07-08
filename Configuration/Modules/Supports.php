@@ -1,10 +1,10 @@
 <?php
-namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Configuration\Modules;
+namespace MyProject\LolitaFramework\Configuration\Modules;
 
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperString as HelperString;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Configuration\Init as Init;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Configuration\Configuration as Configuration;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Configuration\IModule as IModule;
+use \MyProject\LolitaFramework\Core\HelperString as HelperString;
+use \MyProject\LolitaFramework\Configuration\Init as Init;
+use \MyProject\LolitaFramework\Configuration\Configuration as Configuration;
+use \MyProject\LolitaFramework\Configuration\IModule as IModule;
 
 class Supports extends Init implements IModule
 {

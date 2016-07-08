@@ -1,11 +1,11 @@
 <?php
-namespace zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\Logo;
+namespace MyProject\LolitaFramework\Widgets\Logo;
 
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls as AbstractWithControls;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\View as View;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperArray as HelperArray;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework\Core\HelperImage;
-use \zorgboerderij_lenteheuvel_wp\LolitaFramework as LolitaFramework;
+use \MyProject\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls;
+use \MyProject\LolitaFramework\Core\View;
+use \MyProject\LolitaFramework\Core\HelperArray;
+use \MyProject\LolitaFramework\Core\HelperImage;
+use \MyProject\LolitaFramework;
 
 class Logo extends AbstractWithControls
 {
@@ -37,7 +37,6 @@ class Logo extends AbstractWithControls
             array(
                 "name"     => "url",
                 "__TYPE__" => "Input",
-                "type"     => "text",
                 "label"    => "URL",
             ),
             array(
@@ -71,6 +70,7 @@ class Logo extends AbstractWithControls
         if ('' === $url) {
             $url = '/';
         }
+
         echo View::make(
             dirname(__FILE__) . DS . 'views' . DS . 'logo.php',
             array(
