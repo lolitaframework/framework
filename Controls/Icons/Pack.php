@@ -47,6 +47,7 @@ class Pack
     /**
      * Get package title
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return string package title.
      */
     public function getTitle()
@@ -57,6 +58,7 @@ class Pack
     /**
      * Get URL
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return string CSS url.
      */
     public function getURL()
@@ -67,6 +69,7 @@ class Pack
     /**
      * Package icons
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return array icons.
      */
     public function getIcons()
@@ -77,6 +80,7 @@ class Pack
     /**
      * Enqueue css file.
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return Pack instance.
      */
     public function enqueue()
@@ -88,6 +92,7 @@ class Pack
     /**
      * Render pack
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return string rendered pack.
      */
     public function render()

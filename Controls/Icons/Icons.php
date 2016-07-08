@@ -36,6 +36,8 @@ class Icons extends Control implements iHaveAdminEnqueue
 
     /**
      * Render css files
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return Icons instance
      */
     public function renderStylesForIcons()
@@ -49,6 +51,7 @@ class Icons extends Control implements iHaveAdminEnqueue
     /**
      * Get data files
      *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return array data files.
      */
     private function getDataFiles()
