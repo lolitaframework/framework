@@ -3,6 +3,7 @@ namespace MyProject\LolitaFramework\Widgets\GoogleMap;
 
 use \MyProject\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls;
 use \MyProject\LolitaFramework\Core\HelperArray;
+use \MyProject\LolitaFramework\Core\View;
 use \MyProject\LolitaFramework\Core\HelperImage;
 use \MyProject\LolitaFramework;
 
@@ -42,6 +43,30 @@ class GoogleMap extends AbstractWithControls
             array('jquery'),
             false,
             true
+        );
+        wp_localize_script(
+            'lf_google_map',
+            'lf_google_map_l10n',
+            array(
+                'is_mobile' => wp_is_mobile(),
+                'styles'    => self::getGMapStyles(),
+            )
+        );
+    }
+
+    /**
+     * Get gmap styles
+     * @return array object.
+     */
+    public static function getGMapStyles()
+    {
+        return apply_filters(
+            'lf_google_map_styles',
+            json_decode(
+                View::make(
+                    __DIR__ . DS . 'views' . DS . 'default_styles.json'
+                )
+            )
         );
     }
 
