@@ -188,18 +188,6 @@ class Str
     }
 
     /**
-     * Parse a Class@method style callback into class and method.
-     *
-     * @param  string  $callback
-     * @param  string  $default
-     * @return array
-     */
-    public static function parseCallback($callback, $default)
-    {
-        return static::contains($callback, '@') ? explode('@', $callback, 2) : [$callback, $default];
-    }
-
-    /**
      * Get the plural form of an English word.
      *
      * @param  string  $value
@@ -233,19 +221,6 @@ class Str
     }
 
     /**
-     * Generate a more truly "random" bytes.
-     *
-     * @param  int  $length
-     * @return string
-     *
-     * @deprecated since version 5.2. Use random_bytes instead.
-     */
-    public static function randomBytes($length = 16)
-    {
-        return random_bytes($length);
-    }
-
-    /**
      * Generate a "random" alpha-numeric string.
      *
      * Should not be considered sufficient for cryptography, etc.
@@ -258,62 +233,6 @@ class Str
         $pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
         return static::substr(str_shuffle(str_repeat($pool, $length)), 0, $length);
-    }
-
-    /**
-     * Compares two strings using a constant-time algorithm.
-     *
-     * Note: This method will leak length information.
-     *
-     * Note: Adapted from Symfony\Component\Security\Core\Util\StringUtils.
-     *
-     * @param  string  $knownString
-     * @param  string  $userInput
-     * @return bool
-     *
-     * @deprecated since version 5.2. Use hash_equals instead.
-     */
-    public static function equals($knownString, $userInput)
-    {
-        return hash_equals($knownString, $userInput);
-    }
-
-    /**
-     * Replace the first occurrence of a given value in the string.
-     *
-     * @param  string  $search
-     * @param  string  $replace
-     * @param  string  $subject
-     * @return string
-     */
-    public static function replaceFirst($search, $replace, $subject)
-    {
-        $position = strpos($subject, $search);
-
-        if ($position !== false) {
-            return substr_replace($subject, $replace, $position, strlen($search));
-        }
-
-        return $subject;
-    }
-
-    /**
-     * Replace the last occurrence of a given value in the string.
-     *
-     * @param  string  $search
-     * @param  string  $replace
-     * @param  string  $subject
-     * @return string
-     */
-    public static function replaceLast($search, $replace, $subject)
-    {
-        $position = strrpos($subject, $search);
-
-        if ($position !== false) {
-            return substr_replace($subject, $replace, $position, strlen($search));
-        }
-
-        return $subject;
     }
 
     /**
@@ -692,6 +611,6 @@ class Str
      */
     public static function value($value)
     {
-        return $value instanceof Closure ? $value() : $value;
+        return $value instanceof \Closure ? $value() : $value;
     }
 }

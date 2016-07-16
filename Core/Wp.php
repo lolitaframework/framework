@@ -54,7 +54,6 @@ class Wp
     public static function wpRouteType($only_base = false)
     {
         $types = array(
-            'embed'             => 'is_embed',
             '404'               => 'is_404',
             'search'            => 'is_search',
             'post_type_archive' => 'is_post_type_archive',
