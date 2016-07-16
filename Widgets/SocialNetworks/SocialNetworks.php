@@ -22,7 +22,6 @@ class SocialNetworks extends AbstractWithControls
                 'classname'   => 'lf_social_networks',
             )
         );
-        
     }
 
     /**
