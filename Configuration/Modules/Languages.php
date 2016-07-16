@@ -1,10 +1,10 @@
 <?php
 namespace MyProject\LolitaFramework\Configuration\Modules;
 
-use \MyProject\LolitaFramework\Core\HelperString as HelperString;
-use \MyProject\LolitaFramework\Configuration\Init as Init;
-use \MyProject\LolitaFramework\Configuration\Configuration as Configuration;
-use \MyProject\LolitaFramework\Configuration\IModule as IModule;
+use \MyProject\LolitaFramework\Core\Str;
+use \MyProject\LolitaFramework\Configuration\Init;
+use \MyProject\LolitaFramework\Configuration\Configuration;
+use \MyProject\LolitaFramework\Configuration\IModule;
 
 class Languages extends Init implements IModule
 {
@@ -36,7 +36,7 @@ class Languages extends Init implements IModule
                  * Make theme available for translation.
                  * Translations can be filed in the /languages/ directory.
                  */
-                load_theme_textdomain($domain, HelperString::compileVariables($path));
+                load_theme_textdomain($domain, Str::compileVariables($path));
             }
         }
     }

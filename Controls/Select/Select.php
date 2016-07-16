@@ -1,43 +1,48 @@
 <?php
 namespace MyProject\LolitaFramework\Controls\Select;
 
-use \MyProject\LolitaFramework\Controls\Control as Control;
-use \MyProject\LolitaFramework\Core\HelperArray as HelperArray;
-use \MyProject\LolitaFramework\Core\HelperString as HelperString;
+use \MyProject\LolitaFramework\Controls\Control;
+use \MyProject\LolitaFramework\Core\Arr;
 
 class Select extends Control
 {
     /**
-     * Get allowed attributes
+     * Radio options
+     * @var array
+     */
+    public $options = array();
+
+    /**
+     * Control constructor
      *
      * @author Guriev Eugen <gurievcreative@gmail.com>
-     * @return array allowed list.
+     * @param string $name control name.
+     * @param mixed $value contro value.
      */
-    private function getAllowedAttributes()
+    public function __construct($name, array $options, $value = '', $attributes = array(), $label = '', $description = '')
     {
-        return array(
-            'type',
-            'name',
-            'class',
-            'id',
-        );
+        $this->setName($name);
+        $this->setValue($value);
+        $this->setAttributes($attributes);
+        $this->setOptions($options);
+        $this->label       = $label;
+        $this->description = $description;
     }
 
     /**
-     * Prepare options
+     * Set options
      *
      * @author Guriev Eugen <gurievcreative@gmail.com>
-     * @return void
+     * @param mixed $options options to set. It can be array or function.
      */
-    private function prepareOptions()
+    public function setOptions($options)
     {
-        if (array_key_exists('options', $this->parameters)) {
-            if (!is_array($this->parameters['options'])) {
-                $this->parameters['options'] = HelperString::compileVariables($this->parameters['options']);
-            }
+        if (is_callable($options)) {
+            $this->options = $options();
         } else {
-            $this->parameters['options'] = array();
+            $this->options = $options;
         }
+        return $this;
     }
 
     /**
@@ -48,12 +53,15 @@ class Select extends Control
      */
     public function render()
     {
-        $this->prepareOptions();
-        $attributes = HelperArray::leaveRightKeys(
-            $this->getAllowedAttributes(),
-            $this->parameters
+        $this->setAttributes(
+            array_merge(
+                $this->getAttributes(),
+                array(
+                    'name' => $this->getName(),
+                    'id'   => $this->getID(),
+                )
+            )
         );
-        $this->parameters['attributes_str'] = HelperArray::join($attributes);
         return parent::render();
     }
 }

@@ -2,10 +2,6 @@
 namespace MyProject\LolitaFramework\Widgets\LatestPosts;
 
 use \MyProject\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls;
-use \MyProject\LolitaFramework\Core\View;
-use \MyProject\LolitaFramework\Core\HelperArray;
-use \MyProject\LolitaFramework\Core\HelperImage;
-use \MyProject\LolitaFramework;
 
 class LatestPosts extends AbstractWithControls
 {
@@ -51,9 +47,9 @@ class LatestPosts extends AbstractWithControls
                 'options'  => self::getPostTypeOptions(),
             ),
             array(
-                "name"     => "count",
-                "__TYPE__" => "Input",
-                "label"    => "Count",
+                'name'     => 'count',
+                '__TYPE__' => 'Text',
+                'label'    => 'Count',
             ),
         );
     }

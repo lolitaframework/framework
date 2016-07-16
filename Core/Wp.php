@@ -1,7 +1,7 @@
 <?php
 namespace MyProject\LolitaFramework\Core;
 
-class HelperWP
+class Wp
 {
     /**
      * Get branch with largest ancestors

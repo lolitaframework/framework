@@ -4,22 +4,41 @@ namespace MyProject\LolitaFramework\Controls\Repeater;
 use \MyProject\LolitaFramework\Controls\Control;
 use \MyProject\LolitaFramework\Controls\Controls;
 use \MyProject\LolitaFramework\Controls\IHaveAdminEnqueue;
-use \MyProject\LolitaFramework\Core\HelperArray;
+use \MyProject\LolitaFramework\Core\Arr;
 use \MyProject\LolitaFramework;
 use \MyProject\LolitaFramework\Core\View;
 
 class Repeater extends Control implements iHaveAdminEnqueue
 {
     /**
-     * Repeater constructor
+     * Repeater controls
+     * @var null
+     */
+    public $controls = null;
+
+    /**
+     * [$rows description]
+     * @var array
+     */
+    public $rows = array();
+
+    /**
+     * Controls for template
+     * @var array
+     */
+    public $template_controls = array();
+
+    /**
+     * Control constructor
      *
      * @author Guriev Eugen <gurievcreative@gmail.com>
-     * @param array $parameters control parameters.
+     * @param string $name control name.
+     * @param mixed $value contro value.
      */
-    public function __construct(array $parameters)
+    public function __construct($name, array $controls, $value = '', $attributes = array(), $label = '', $description = '')
     {
-        parent::__construct($parameters);
-        $this->parameters['me'] = $this;
+        $this->controls = $controls;
+        parent::__construct($name, $value, $attributes, $label, $description);
     }
 
     /**
@@ -57,20 +76,6 @@ class Repeater extends Control implements iHaveAdminEnqueue
     }
 
     /**
-     * Get control value
-     *
-     * @author Guriev Eugen <gurievcreative@gmail.com>
-     * @return string value.
-     */
-    public function getValue()
-    {
-        if (!array_key_exists('value', $this->parameters)) {
-            $this->parameters['value'] = array();
-        }
-        return $this->parameters['value'];
-    }
-
-    /**
      * Prepare control data
      *
      * @author Guriev Eugen <gurievcreative@gmail.com>
@@ -78,16 +83,9 @@ class Repeater extends Control implements iHaveAdminEnqueue
      */
     private function prepare()
     {
-        $this->parameters['value']             = $this->getValue();
-        $this->parameters['rows']              = array();
-        $this->parameters['template_controls'] = array();
-
-        if (!array_key_exists('controls', $this->parameters)) {
-            return $this;
-        }
         for ($i = 1; $i <= $this->getValueCount(); $i++) {
-            $value_by_index = HelperArray::get($this->parameters['value'], $i, array());
-            foreach ($this->parameters['controls'] as $control) {
+            $value_by_index = Arr::get($this->value, $i, array());
+            foreach ($this->controls as $control) {
                 // ==============================================================
                 // Set name with prefix
                 // ==============================================================
@@ -101,7 +99,7 @@ class Repeater extends Control implements iHaveAdminEnqueue
                 // ==============================================================
                 // Set value
                 // ==============================================================
-                $control['value'] = HelperArray::get($value_by_index, $control['small_name']);
+                $control['value'] = Arr::get($value_by_index, $control['small_name'], '');
                 // ==============================================================
                 // Fill new attributes
                 // ==============================================================
@@ -111,17 +109,17 @@ class Repeater extends Control implements iHaveAdminEnqueue
                         'class' => 'widefat',
                     )
                 );
-                $this->parameters['rows'][ $i ][] = $control;
+                $this->rows[ $i ][] = $control;
             }
             $controls = new Controls;
-            $this->parameters['rows'][ $i ] = $controls->generateControls(
-                (array) $this->parameters['rows'][ $i ]
+            $this->rows[ $i ] = $controls->generateControls(
+                (array) $this->rows[ $i ]
             );
         }
         // ==============================================================
         // Prepare controls for underscore template
         // ==============================================================
-        foreach ($this->parameters['controls'] as $template_control) {
+        foreach ($this->controls as $template_control) {
             // ==============================================================
             // Set name with prefix
             // ==============================================================
@@ -141,37 +139,31 @@ class Repeater extends Control implements iHaveAdminEnqueue
                     'class' => 'widefat',
                 )
             );
-            $this->parameters['template_controls'][] = $template_control;
+            $this->template_controls[] = $template_control;
         }
 
         $controls = new Controls;
-        $this->parameters['template_controls'] = $controls->generateControls(
-            (array) $this->parameters['template_controls']
+        $this->template_controls = $controls->generateControls(
+            (array) $this->template_controls
         );
 
         return $this;
     }
 
     /**
-     * Render control
+     * Get template
      *
      * @author Guriev Eugen <gurievcreative@gmail.com>
-     * @return string html code.
+     * @return strign underscore template.
      */
-    public function render()
+    public function getTemplate()
     {
-        if (array_key_exists('controls', $this->parameters)) {
-            $this->prepare();
-        } else {
-            throw new \Exception('Repeater control must have at least on control!');
-        }
-        $this->parameters['template'] = base64_encode(
+        return base64_encode(
             View::make(
                 __DIR__ . DS . 'views' . DS . 'template.php',
-                $this->parameters
+                array('me' => $this)
             )
         );
-        return parent::render();
     }
 
     /**
@@ -182,7 +174,18 @@ class Repeater extends Control implements iHaveAdminEnqueue
      */
     private function getValueCount()
     {
-        $count = HelperArray::get($this->parameters, 'value', array());
-        return max(1, count($count));
+        return max(1, count((array) $this->getValue()));
+    }
+
+    /**
+     * Render control
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
+     * @return string html code.
+     */
+    public function render()
+    {
+        $this->prepare();
+        return parent::render();
     }
 }

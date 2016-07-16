@@ -1,31 +1,100 @@
 <?php
 namespace MyProject\LolitaFramework\Controls;
 
-use \MyProject\LolitaFramework\Core\HelperString;
-use \MyProject\LolitaFramework\Core\HelperArray;
+use \MyProject\LolitaFramework\Core\Str;
+use \MyProject\LolitaFramework\Core\Arr;
 use \MyProject\LolitaFramework\Core\View;
 use \MyProject\LolitaFramework;
 
 abstract class Control
 {
     /**
-     * Data to insert in view
-     *
-     * @author Guriev Eugen <gurievcreative@gmail.com>
+     * Control name
+     * @var string
+     */
+    protected $name = null;
+
+    /**
+     * Control old name
+     * @var string
+     */
+    public $old_name = null;
+
+    /**
+     * Control value
+     * @var mixed
+     */
+    protected $value = null;
+
+    /**
+     * Control label.
+     * @var string
+     */
+    public $label = '';
+
+    /**
+     * Description
+     * @var string
+     */
+    public $description = '';
+
+    /**
+     * Control attributes
      * @var array
      */
-    public $parameters = array();
+    protected $attributes = array();
 
     /**
      * Control constructor
      *
      * @author Guriev Eugen <gurievcreative@gmail.com>
-     * @param array $parameters control parameters.
+     * @param string $name control name.
+     * @param mixed $value contro value.
+     * @param array $attributes control attributes.
+     * @param string $lable control label.
+     * @param string $descriptions control description.
      */
-    public function __construct(array $parameters)
+    public function __construct($name, $value = '', $attributes = array(), $label = '', $description = '')
     {
-        $this->parameters = $parameters;
-        $this->setName(HelperArray::get($parameters, 'name'));
+        $this->setName($name);
+        $this->setValue($value);
+        $this->setAttributes($attributes);
+        $this->label = $label;
+        $this->description = $description;
+    }
+
+    /**
+     * Control attributes
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
+     * @return array attributes.
+     */
+    public function getAttributes()
+    {
+        return $this->attributes;
+    }
+
+    /**
+     * Control set attributes
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
+     * @return Control $instance.
+     */
+    public function setAttributes(array $attributes = array())
+    {
+        $this->attributes = $attributes;
+        return $this;
+    }
+
+    /**
+     * Control attributes string
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
+     * @return string attributes.
+     */
+    public function getAttributesString()
+    {
+        return Arr::join($this->getAttributes());
     }
 
     /**
@@ -33,13 +102,16 @@ abstract class Control
      *
      * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param string $name control name.
+     * @return Control instance.
      */
     public function setName($name)
     {
-        if ('' === trim($this->parameters['name'])) {
+        if ('' === trim($name)) {
             throw new \Exception("Name is empty! Name parameter is required!");
         }
-        $this->parameters['name'] = $name;
+        $this->old_name = $this->name;
+        $this->name = $name;
+        return $this;
     }
 
     /**
@@ -50,7 +122,7 @@ abstract class Control
      */
     public function getName()
     {
-        return $this->parameters['name'];
+        return $this->name;
     }
 
     /**
@@ -58,10 +130,12 @@ abstract class Control
      *
      * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param string $value control value.
+     * @return Control instance.
      */
     public function setValue($value)
     {
-        $this->parameters['value'] = $value;
+        $this->value = $value;
+        return $this;
     }
 
     /**
@@ -72,7 +146,7 @@ abstract class Control
      */
     public function getValue()
     {
-        return HelperArray::get($this->parameters, 'value', '');
+        return $this->value;
     }
 
     /**
@@ -86,9 +160,10 @@ abstract class Control
         $class_path = str_replace(NS, DS, NS . get_class($this));
         $class_name = basename($class_path);
         $view_name  = lcfirst($class_name);
-        $view_name  = HelperString::camelToSnake($view_name);
+        $view_name  = Str::snake($view_name);
+        $filter_tag = sprintf('lf_%s_view', $view_name);
 
-        return __DIR__ . DS . $class_name . DS . 'views' . DS . $view_name . '.php';
+        return apply_filters($filter_tag, __DIR__ . DS . $class_name . DS . 'views' . DS . $view_name . '.php');
     }
 
     /**
@@ -121,10 +196,9 @@ abstract class Control
      */
     public function getID()
     {
-        $name = $this->parameters['name'];
-        $name = HelperString::bracesToUnderline($name);
-        $name = str_replace('-', '_', $name);
-        return $name;
+        $id = Str::bracesToUnderline($this->name);
+        $id = str_replace('-', '_', $id);
+        return $id;
     }
 
     /**
@@ -135,10 +209,9 @@ abstract class Control
      */
     public function render()
     {
-        $this->parameters['me'] = $this;
         return View::make(
             $this->getDefaultViewPath(),
-            $this->parameters
+            array('me' => $this)
         );
     }
 }

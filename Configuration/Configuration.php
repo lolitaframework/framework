@@ -1,8 +1,8 @@
 <?php
 namespace MyProject\LolitaFramework\Configuration;
 
-use \MyProject\LolitaFramework\Core\GlobalLocator as GlobalLocator;
-use \MyProject\LolitaFramework\Core\HelperClass as HelperClass;
+use \MyProject\LolitaFramework\Core\Loc;
+use \MyProject\LolitaFramework\Core\Cls;
 
 class Configuration
 {
@@ -61,7 +61,7 @@ class Configuration
             $config_path = $this->getConfigPath($module);
             $data        = $this->getConfigData($config_path);
 
-            if (HelperClass::isImplements($class_name, __NAMESPACE__ . NS . 'IModule')) {
+            if (Cls::isImplements($class_name, __NAMESPACE__ . NS . 'IModule')) {
                 $this->prepared_modules[$class_name::getPriority()][] = array(
                     'priority'    => $class_name::getPriority(),
                     'class_name'  => $class_name,
@@ -129,7 +129,7 @@ class Configuration
      */
     private function getConfigData($config_path)
     {
-        $filesystem  = GlobalLocator::wpFilesystem();
+        $filesystem  = Loc::wpFilesystem();
         $data        = null;
         if (is_file($config_path)) {
             $data = $filesystem->get_contents($config_path);

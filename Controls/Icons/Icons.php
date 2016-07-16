@@ -2,8 +2,8 @@
 namespace MyProject\LolitaFramework\Controls\Icons;
 
 use \MyProject\LolitaFramework\Controls\Control;
-use \MyProject\LolitaFramework\Core\HelperArray;
 use \MyProject\LolitaFramework\Controls\IHaveAdminEnqueue;
+use \MyProject\LolitaFramework\Core\Arr;
 use \MyProject\LolitaFramework;
 
 class Icons extends Control implements iHaveAdminEnqueue
@@ -15,16 +15,18 @@ class Icons extends Control implements iHaveAdminEnqueue
     public $packs = array();
 
     /**
-     * Icons constructor
+     * Control constructor
      *
      * @author Guriev Eugen <gurievcreative@gmail.com>
-     * @param array $parameters control parameters.
+     * @param string $name control name.
+     * @param mixed $value contro value.
+     * @param array $attributes control attributes.
+     * @param string $lable control label.
+     * @param string $descriptions control description.
      */
-    public function __construct(array $parameters)
+    public function __construct($name, $value = '', $attributes = array(), $label = '', $description = '')
     {
-        parent::__construct($parameters);
-        $this->parameters['type'] = 'text';
-
+        parent::__construct($name, $value, $attributes, $label, $description);
         $data_files = $this->getDataFiles();
         foreach ($data_files as $file) {
             $pack = new Pack($file);
@@ -32,6 +34,33 @@ class Icons extends Control implements iHaveAdminEnqueue
         }
 
         add_action('admin_footer', array(&$this, 'renderStylesForIcons'));
+    }
+    
+    /**
+     * Render control
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
+     * @return string html code.
+     */
+    public function render()
+    {
+        $this->setAttributes(
+            array_merge(
+                $this->getAttributes(),
+                array(
+                    'name' => $this->getName(),
+                    'id'   => $this->getID(),
+                    'type' => 'text',
+                )
+            )
+        );
+        if (array_key_exists('class', $this->attributes)) {
+            $this->attributes['class'] .= ' lf_icons_control';
+        } else {
+            $this->attributes['class'] = 'lf_icons_control';
+        }
+
+        return parent::render();
     }
 
     /**
@@ -89,41 +118,5 @@ class Icons extends Control implements iHaveAdminEnqueue
             false,
             true
         );
-    }
-
-    /**
-     * Get allowed attributes
-     *
-     * @author Guriev Eugen <gurievcreative@gmail.com>
-     * @return array allowed list.
-     */
-    private function getAllowedAttributes()
-    {
-        return array(
-            'type',
-            'name',
-            'class',
-            'id',
-            'value',
-            'required',
-        );
-    }
-
-    /**
-     * Render control
-     *
-     * @author Guriev Eugen <gurievcreative@gmail.com>
-     * @return string html code.
-     */
-    public function render()
-    {
-        $this->parameters['id'] = $this->getID();
-        $this->parameters['class'].= ' lf_icons_control';
-        $attributes = HelperArray::leaveRightKeys(
-            $this->getAllowedAttributes(),
-            $this->parameters
-        );
-        $this->parameters['attributes_str'] = HelperArray::join($attributes);
-        return parent::render();
     }
 }

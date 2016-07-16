@@ -2,7 +2,7 @@
 namespace MyProject\LolitaFramework\CssLoader;
 
 use \MyProject\LolitaFramework;
-use \MyProject\LolitaFramework\Core\HelperArray;
+use \MyProject\LolitaFramework\Core\Arr;
 use \MyProject\LolitaFramework\Core\View;
 
 class CssLoader
@@ -85,9 +85,9 @@ class CssLoader
         return View::make(
             __DIR__ . DS . 'views' . DS . $tag . '.php',
             array(
-                'class' => HelperArray::get($atts, 'class'),
-                'bg'    => HelperArray::get($atts, 'bg', '#fff'),
-                'color' => HelperArray::get($atts, 'color', '#000'),
+                'class' => Arr::get($atts, 'class'),
+                'bg'    => Arr::get($atts, 'bg', '#fff'),
+                'color' => Arr::get($atts, 'color', '#000'),
             )
         );
     }
@@ -102,10 +102,10 @@ class CssLoader
         echo View::make(
             __DIR__ . DS . 'views' . DS . 'lf_css_loader_hide.php',
             array(
-                'delay' => HelperArray::get($atts, 'delay', 0),
+                'delay' => Arr::get($atts, 'delay', 0),
                 'spent_time' => sprintf(
                     'Time spent %.4F seconds.',
-                    microtime(true) - HelperArray::get($GLOBALS, 'lf_start_time', 0)
+                    microtime(true) - Arr::get($GLOBALS, 'lf_start_time', 0)
                 ),
             )
         );

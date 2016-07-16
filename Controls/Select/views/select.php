@@ -1,7 +1,7 @@
-<select <?php echo $attributes_str; ?>>
-    <?php if (is_array($options)) : ?>
-        <?php foreach ($options as $key => $label) : ?>
-            <option value="<?php echo $key; ?>" <?php selected($key, $value, true); ?> >
+<select <?php echo $me->getAttributesString() ?>>
+    <?php if (is_array($me->options)) : ?>
+        <?php foreach ($me->options as $key => $label) : ?>
+            <option value="<?php echo $key; ?>" <?php selected($key, $me->getValue(), true); ?> >
                 <?php echo $label; ?>
             </option>
         <?php endforeach ?>

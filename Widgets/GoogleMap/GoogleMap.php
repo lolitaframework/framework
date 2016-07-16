@@ -2,9 +2,9 @@
 namespace MyProject\LolitaFramework\Widgets\GoogleMap;
 
 use \MyProject\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls;
-use \MyProject\LolitaFramework\Core\HelperArray;
+use \MyProject\LolitaFramework\Core\Arr;
 use \MyProject\LolitaFramework\Core\View;
-use \MyProject\LolitaFramework\Core\HelperImage;
+use \MyProject\LolitaFramework\Core\Img;
 use \MyProject\LolitaFramework;
 
 class GoogleMap extends AbstractWithControls
@@ -81,7 +81,7 @@ class GoogleMap extends AbstractWithControls
         return array(
             array(
                 "name"     => "api_key",
-                "__TYPE__" => "input",
+                "__TYPE__" => "Text",
                 "label"    => "API key",
                 'required' => 'required',
             ),
@@ -114,19 +114,19 @@ class GoogleMap extends AbstractWithControls
         self::wpAddScriptsAndStyles();
 
         $pin_img    = '';
-        $pin_img_id = HelperArray::get($instance, 'pin_img');
-        $api_key    = HelperArray::get($instance, 'api_key', 'AIzaSyCjQ9_UJojrZjefOFVVp6YBvoZ1Sd00_Lg');
+        $pin_img_id = Arr::get($instance, 'pin_img');
+        $api_key    = Arr::get($instance, 'api_key', 'AIzaSyCjQ9_UJojrZjefOFVVp6YBvoZ1Sd00_Lg');
         if ('' === $api_key) {
             $api_key = 'AIzaSyCjQ9_UJojrZjefOFVVp6YBvoZ1Sd00_Lg';
         }
         if ($pin_img_id) {
-            $pin_img = HelperImage::getURL($pin_img_id);
+            $pin_img = Img::getURL($pin_img_id);
         }
 
         $this->view(
             dirname(__FILE__) . DS . 'views' . DS . 'google_map.php',
             array(
-                'address' => HelperArray::get($instance, 'address'),
+                'address' => Arr::get($instance, 'address'),
                 'pin_id'  => $pin_img_id,
                 'pin_img' => $pin_img,
                 'api_key' => $api_key,

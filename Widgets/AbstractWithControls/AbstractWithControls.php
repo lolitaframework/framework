@@ -1,8 +1,7 @@
 <?php
 namespace MyProject\LolitaFramework\Widgets\AbstractWithControls;
 
-use \MyProject\LolitaFramework\Core\HelperArray;
-use \MyProject\LolitaFramework\Core\HelperString;
+use \MyProject\LolitaFramework\Core\Arr;
 use \MyProject\LolitaFramework\Core\View;
 use \MyProject\LolitaFramework\Controls\Controls;
 use \MyProject\LolitaFramework\Widgets\IHaveBeforeInit;
@@ -58,7 +57,7 @@ abstract class AbstractWithControls extends AbstractWidget implements IHaveBefor
                 // Set new value
                 // ==============================================================
                 $control->setValue(
-                    HelperArray::get($instance, $control->parameters['small_name'])
+                    Arr::get($instance, $control->parameters['small_name'], '')
                 );
                 // ==============================================================
                 // Fill new attributes
@@ -66,8 +65,8 @@ abstract class AbstractWithControls extends AbstractWidget implements IHaveBefor
                 $control->parameters = array_merge(
                     $control->parameters,
                     array(
-                        'class' => $control->parameters['small_name'] . '-class widefat',
-                        'id' => $this->get_field_id($control->getID()),
+                        'class' => $control->parameters['small_name'] . '-class widefat ' . Arr::get($control->parameters, 'class', ''),
+                        'id'    => $this->get_field_id($control->getID()),
                     )
                 );
             }

@@ -1,5 +1,5 @@
 <div id="<?php echo $me->getID() ?>_iw" class="lf_icons_wrapper">
-    <input <?php echo $attributes_str; ?> >
+    <input <?php echo $me->getAttributesString() ?> >
     <div class="lf_icons_control_icon"><i></i></div>
     <div class="lf_icon_packs">
         <?php foreach ($me->packs as $pack) : ?>

@@ -1,9 +1,8 @@
 <?php
 namespace MyProject\LolitaFramework\Configuration\Modules;
 
-use \MyProject\LolitaFramework\Core\HelperString as HelperString;
-use \MyProject\LolitaFramework\Configuration\Configuration as Configuration;
-use \MyProject\LolitaFramework\Configuration\IModule as IModule;
+use \MyProject\LolitaFramework\Configuration\Configuration;
+use \MyProject\LolitaFramework\Configuration\IModule;
 
 class Images implements IModule
 {

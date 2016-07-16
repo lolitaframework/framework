@@ -3,9 +3,9 @@ namespace MyProject\LolitaFramework\Widgets\Carousel;
 
 use \MyProject\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls;
 use \MyProject\LolitaFramework\Core\View;
-use \MyProject\LolitaFramework\Core\HelperArray;
-use \MyProject\LolitaFramework\Core\HelperImage;
-use \MyProject\LolitaFramework as LolitaFramework;
+use \MyProject\LolitaFramework\Core\Arr;
+use \MyProject\LolitaFramework\Core\Img;
+use \MyProject\LolitaFramework;
 
 class Carousel extends AbstractWithControls
 {
@@ -111,7 +111,7 @@ class Carousel extends AbstractWithControls
                 'controls' => array(
                     array(
                         'name'     => 'title',
-                        '__TYPE__' => 'Input',
+                        '__TYPE__' => 'Text',
                         'type'     => 'text',
                         'label'    => __('Title', 'lolita'),
                     ),
@@ -135,12 +135,12 @@ class Carousel extends AbstractWithControls
                 'controls' => array(
                     array(
                         'name'     => 'title',
-                        '__TYPE__' => 'Input',
+                        '__TYPE__' => 'Text',
                         'label'    => __('Title', 'lolita'),
                     ),
                     array(
                         'name'     => 'url',
-                        '__TYPE__' => 'Input',
+                        '__TYPE__' => 'Text',
                         'label'    => __('Link', 'lolita'),
                     ),
                     array(
@@ -166,7 +166,7 @@ class Carousel extends AbstractWithControls
     public function widget($args, $instance)
     {
         add_action('wp_footer', array(__CLASS__, 'wpAddScriptsAndStyles'));
-        echo View::make(
+        $this->view(
             sprintf(
                 '%sstyle_%s.php',
                 dirname(__FILE__) . DS . 'views' . DS,
@@ -174,7 +174,9 @@ class Carousel extends AbstractWithControls
             ),
             array(
                 'args'     => $args,
-                'instance' => $this->prepareInstance($instance),
+                'items'    => $this->prepareInstance($instance),
+                'style'    => $this->getStyleType($instance),
+                'instance' => $instance,
             )
         );
     }
@@ -189,10 +191,10 @@ class Carousel extends AbstractWithControls
     private function prepareInstance($instance)
     {
         $key  = 'style_' . $this->getStyleType($instance);
-        $data = HelperArray::get($instance, $key, array());
+        $data = Arr::get($instance, $key, array());
         foreach ($data as &$list) {
             if (array_key_exists('img', $list)) {
-                $list['img_src'] = HelperImage::getURL(
+                $list['img_src'] = Img::getURL(
                     (int) $list['img'],
                     'full'
                 );
@@ -208,6 +210,6 @@ class Carousel extends AbstractWithControls
      */
     private function getStyleType($instance)
     {
-        return max(1, (int) HelperArray::get($instance, 'carousel_type', 1));
+        return max(1, (int) Arr::get($instance, 'carousel_type', 1));
     }
 }

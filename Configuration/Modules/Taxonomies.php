@@ -1,11 +1,11 @@
 <?php
 namespace MyProject\LolitaFramework\Configuration\Modules;
 
-use \MyProject\LolitaFramework\Core\HelperString as HelperString;
-use \MyProject\LolitaFramework\Core\HelperArray as HelperArray;
-use \MyProject\LolitaFramework\Configuration\Init as Init;
-use \MyProject\LolitaFramework\Configuration\Configuration as Configuration;
-use \MyProject\LolitaFramework\Configuration\IModule as IModule;
+use \MyProject\LolitaFramework\Core\Str;
+use \MyProject\LolitaFramework\Core\Arr;
+use \MyProject\LolitaFramework\Configuration\Init;
+use \MyProject\LolitaFramework\Configuration\Configuration;
+use \MyProject\LolitaFramework\Configuration\IModule;
 
 class Taxonomies extends Init implements IModule
 {
@@ -76,10 +76,10 @@ class Taxonomies extends Init implements IModule
      */
     private function getTaxonomySlug(array $taxonomy)
     {
-        return HelperArray::get(
+        return Arr::get(
             $taxonomy,
             'slug',
-            HelperString::sentenceToSnake($taxonomy['singular'])
+            Str::sentenceToSnake($taxonomy['singular'])
         );
     }
 
@@ -94,7 +94,7 @@ class Taxonomies extends Init implements IModule
         $plural         = $taxonomy['plural'];
         $singular       = $taxonomy['singular'];
         $post_type_slug = $taxonomy['post_type_slug'];
-        $args           = HelperArray::get($taxonomy, 'args', array());
+        $args           = Arr::get($taxonomy, 'args', array());
 
         $labels = array(
             'name'              => $plural,

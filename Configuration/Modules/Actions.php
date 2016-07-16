@@ -1,9 +1,9 @@
 <?php
 namespace MyProject\LolitaFramework\Configuration\Modules;
 
-use \MyProject\LolitaFramework\Configuration\Configuration as Configuration;
-use \MyProject\LolitaFramework\Configuration\IModule as IModule;
-use \MyProject\LolitaFramework\Core\HelperArray as HelperArray;
+use \MyProject\LolitaFramework\Configuration\Configuration;
+use \MyProject\LolitaFramework\Configuration\IModule;
+use \MyProject\LolitaFramework\Core\Arr;
 
 class Actions implements IModule
 {
@@ -45,10 +45,10 @@ class Actions implements IModule
     {
         foreach ($this->data as &$data) {
             // Priority
-            $data[2] = HelperArray::get($data, 2, 10);
+            $data[2] = Arr::get($data, 2, 10);
 
             // Accepted tags
-            $data[3] = HelperArray::get($data, 3, 1);
+            $data[3] = Arr::get($data, 3, 1);
         }
         return $this;
     }

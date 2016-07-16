@@ -1,9 +1,9 @@
 <?php
 namespace MyProject\LolitaFramework\Configuration\Modules;
 
-use \MyProject\LolitaFramework\Core\HelperString as HelperString;
-use \MyProject\LolitaFramework\Configuration\Configuration as Configuration;
-use \MyProject\LolitaFramework\Configuration\IModule as IModule;
+use \MyProject\LolitaFramework\Core\Str;
+use \MyProject\LolitaFramework\Configuration\Configuration;
+use \MyProject\LolitaFramework\Configuration\IModule;
 
 class Assets implements IModule
 {
@@ -109,7 +109,7 @@ class Assets implements IModule
             foreach ($this->data as $func => $data) {
                 if (in_array($func, $allowed_functions)) {
                     $func = str_replace($this->prefix, '', $func);
-                    $called_func = HelperString::snakeToCamel($func);
+                    $called_func = Str::camel($func);
                     $called_func = lcfirst($called_func);
                     $this->$called_func($data);
                 }
@@ -146,7 +146,7 @@ class Assets implements IModule
         if (is_array($scripts) && count($scripts)) {
             foreach ($scripts as $script) {
                 list($handle, $src, $deps, $ver, $in_footer) = $script + $defaults;
-                wp_enqueue_script($handle, HelperString::compileVariables($src), $deps, $ver, $in_footer);
+                wp_enqueue_script($handle, Str::compileVariables($src), $deps, $ver, $in_footer);
             }
         }
     }
@@ -164,7 +164,7 @@ class Assets implements IModule
         if (is_array($styles) && count($styles)) {
             foreach ($styles as $style) {
                 list($handle, $src, $deps, $ver, $media) = $style + $defaults;
-                wp_enqueue_style($handle, HelperString::compileVariables($src), $deps, $ver, $media);
+                wp_enqueue_style($handle, Str::compileVariables($src), $deps, $ver, $media);
             }
         }
     }
@@ -178,7 +178,7 @@ class Assets implements IModule
      */
     public function localize($localizes)
     {
-        $class_name = get_class(new HelperString);
+        $class_name = get_class(new Str);
         if (is_array($localizes) && count($localizes)) {
             foreach ($localizes as $localize) {
                 if (is_array($localize) && 3 == count($localize)) {

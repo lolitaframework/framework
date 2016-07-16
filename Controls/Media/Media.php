@@ -2,26 +2,14 @@
 namespace MyProject\LolitaFramework\Controls\Media;
 
 use \MyProject\LolitaFramework\Controls\Control;
+use \MyProject\LolitaFramework\Core\Arr;
+use \MyProject\LolitaFramework\Core\Img;
+use \MyProject\LolitaFramework\Core\View;
 use \MyProject\LolitaFramework\Controls\IHaveAdminEnqueue;
-use \MyProject\LolitaFramework\Core\HelperImage;
-use \MyProject\LolitaFramework\Core\HelperArray;
-use \MyProject\LolitaFramework as LolitaFramework;
+use \MyProject\LolitaFramework;
 
 class Media extends Control implements iHaveAdminEnqueue
 {
-    /**
-     * Control constructor
-     *
-     * @author Guriev Eugen <gurievcreative@gmail.com>
-     * @param string $name control name.
-     */
-    public function __construct(array $parameters)
-    {
-        $parameters['value'] = HelperArray::get($parameters, 'value', '');
-        $parameters['type']  = HelperArray::get($parameters, 'type', 'hidden');
-        parent::__construct($parameters);
-    }
-
     /**
      * Add scripts and styles
      *
@@ -32,8 +20,14 @@ class Media extends Control implements iHaveAdminEnqueue
         // ==============================================================
         // Styles
         // ==============================================================
-        wp_enqueue_style('lolita-media-control', LolitaFramework::getURLByDirectory(__DIR__) . '/assets/css/media.css');
-        wp_enqueue_style('lolita-controls', self::getURL() . '/assets/css/controls.css');
+        wp_enqueue_style(
+            'lf-media-control',
+            LolitaFramework::getURLByDirectory(__DIR__) . '/assets/css/media.css'
+        );
+        wp_enqueue_style(
+            'lf-controls',
+            self::getURL() . '/assets/css/controls.css'
+        );
 
         // ==============================================================
         // Scripts
@@ -42,26 +36,11 @@ class Media extends Control implements iHaveAdminEnqueue
         wp_enqueue_script('jquery');
         wp_enqueue_script('underscore');
         wp_enqueue_script(
-            'lolita-media-control',
+            'lf-media-control',
             LolitaFramework::getURLByDirectory(__DIR__) . '/assets/js/media.js',
             array('jquery'),
             false,
             true
-        );
-    }
-
-    /**
-     * Get allowed attributes
-     *
-     * @author Guriev Eugen <gurievcreative@gmail.com>
-     * @return array allowed list.
-     */
-    private function getAllowedAttributes()
-    {
-        return array(
-            'type',
-            'name',
-            'value',
         );
     }
 
@@ -73,18 +52,24 @@ class Media extends Control implements iHaveAdminEnqueue
      */
     public function render()
     {
-        $value      = $this->getValue();
-        $attributes = HelperArray::leaveRightKeys(
-            $this->getAllowedAttributes(),
-            $this->parameters
+        $this->setAttributes(
+            array_merge(
+                $this->getAttributes(),
+                array(
+                    'name' => $this->getName(),
+                    'type' => 'hidden',
+                    'value' => $this->getValue(),
+                )
+            )
         );
-        $this->parameters['attributes_str'] = HelperArray::join($attributes);
-
-        $this->parameters['src']   = HelperImage::getURL($value);
-        $this->parameters['title'] = $this->getAttachmentTitle($value);
-        $this->parameters['add_button_hide'] = $this->addButtonHide();
-        $this->parameters['preview_hide'] = $this->previewHide();
-        return parent::render();
+        return View::make(
+            $this->getDefaultViewPath(),
+            array(
+                'me'    => $this,
+                'title' => $this->getAttachmentTitle($this->getValue()),
+                'src'   => Img::getURL($this->getValue()),
+            )
+        );
     }
 
     /**
@@ -94,7 +79,7 @@ class Media extends Control implements iHaveAdminEnqueue
      * @param  integer $post_id post id
      * @return mixed
      */
-    private function getAttachmentTitle($post_id)
+    public function getAttachmentTitle($post_id)
     {
         $post = get_post($post_id);
         if (null !== $post) {
@@ -109,7 +94,7 @@ class Media extends Control implements iHaveAdminEnqueue
      * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return string css class.
      */
-    private function addButtonHide()
+    public function addButtonHide()
     {
         return '' === $this->getValue() ? '' : 'hide';
     }
@@ -120,7 +105,7 @@ class Media extends Control implements iHaveAdminEnqueue
      * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return string css class.
      */
-    private function previewHide()
+    public function previewHide()
     {
         return '' === $this->getValue() ? 'hide' : '';
     }

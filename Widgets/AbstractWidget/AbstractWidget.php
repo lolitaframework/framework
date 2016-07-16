@@ -1,7 +1,7 @@
 <?php
 namespace MyProject\LolitaFramework\Widgets\AbstractWidget;
 
-use \MyProject\LolitaFramework\Core\HelperString;
+use \MyProject\LolitaFramework\Core\Str;
 use \MyProject\LolitaFramework\Core\View;
 use \WP_Widget;
 
@@ -15,7 +15,7 @@ abstract class AbstractWidget extends WP_Widget
     public function __construct($name, $widget_options = array(), $id_base = '', $control_options = array())
     {
         if ('' === $id_base) {
-            $id_base = HelperString::sentenceToSnake($name);
+            $id_base = Str::sentenceToSnake($name);
         }
         parent::__construct(
             $id_base,

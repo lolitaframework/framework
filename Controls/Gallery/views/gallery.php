@@ -1,7 +1,7 @@
-<div id="<?php echo $me->getID();?>" class="lolita-collection-wrapper" data-name="<?php echo $name;?>" data-control="gallery">
+<div id="<?php echo $me->getID() ?>" class="lolita-collection-wrapper" data-name="<?php echo $name ?>" data-control="gallery">
     <!-- underscore template -->
-    <div id="<?php echo $me->getID();?>_template" class="underscore_template">
-        <?php echo $template; ?>
+    <div id="<?php echo $me->getID() ?>_template" class="underscore_template">
+        <?php echo $me->getTemplate() ?>
     </div>
     <!-- /underscore template -->
 

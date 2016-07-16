@@ -3,8 +3,8 @@ namespace MyProject\LolitaFramework\Widgets\Logo;
 
 use \MyProject\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls;
 use \MyProject\LolitaFramework\Core\View;
-use \MyProject\LolitaFramework\Core\HelperArray;
-use \MyProject\LolitaFramework\Core\HelperImage;
+use \MyProject\LolitaFramework\Core\Arr;
+use \MyProject\LolitaFramework\Core\Img;
 use \MyProject\LolitaFramework;
 
 class Logo extends AbstractWithControls
@@ -35,14 +35,14 @@ class Logo extends AbstractWithControls
     {
         return array(
             array(
-                "name"     => "url",
-                "__TYPE__" => "Input",
-                "label"    => "URL",
+                'name'     => 'url',
+                '__TYPE__' => 'Text',
+                'label'    => 'URL',
             ),
             array(
-                "name"     => "img",
-                "__TYPE__" => "Media",
-                "label"    => "Image",
+                'name'     => 'img',
+                '__TYPE__' => 'Media',
+                'label'    => 'Image',
             ),
         );
     }
@@ -59,14 +59,14 @@ class Logo extends AbstractWithControls
      */
     public function widget($args, $instance)
     {
-        $src = HelperArray::get($instance, 'img', 0);
+        $src = Arr::get($instance, 'img', 0);
         if (0 === $src) {
             $src = 'http://placehold.it/50x50';
         } else {
-            $src = HelperImage::getURL($src, 'full');
+            $src = Img::getURL($src, 'full');
         }
 
-        $url = HelperArray::get($instance, 'url', '/');
+        $url = Arr::get($instance, 'url', '/');
         if ('' === $url) {
             $url = '/';
         }

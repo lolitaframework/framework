@@ -1,9 +1,9 @@
 <?php
 namespace MyProject\LolitaFramework\Controls\Icons;
 
-use \MyProject\LolitaFramework\Core\HelperArray;
-use \MyProject\LolitaFramework\Core\GlobalLocator;
-use \MyProject\LolitaFramework\Core\HelperString;
+use \MyProject\LolitaFramework\Core\Arr;
+use \MyProject\LolitaFramework\Core\Loc;
+use \MyProject\LolitaFramework\Core\Str;
 use \MyProject\LolitaFramework\Core\View;
 
 class Pack
@@ -28,8 +28,8 @@ class Pack
      */
     public function __construct($file_path)
     {
-        $fs = GlobalLocator::wpFilesystem();
-        $this->data = json_decode($fs->get_contents($file_path));
+        $fs = Loc::wpFilesystem();
+        $this->data = json_decode($fs->get_contents($file_path), true);
         $this->path = $file_path;
     }
 
@@ -52,7 +52,7 @@ class Pack
      */
     public function getTitle()
     {
-        return HelperArray::get($this->data, 'title');
+        return Arr::get($this->data, 'title');
     }
 
     /**
@@ -63,7 +63,7 @@ class Pack
      */
     public function getURL()
     {
-        return HelperString::compileVariables(HelperArray::get($this->data, 'url'));
+        return Str::compileVariables(Arr::get($this->data, 'url'));
     }
 
     /**
@@ -74,7 +74,7 @@ class Pack
      */
     public function getIcons()
     {
-        return (array) HelperArray::get($this->data, 'icons', array());
+        return (array) Arr::get($this->data, 'icons', array());
     }
 
     /**

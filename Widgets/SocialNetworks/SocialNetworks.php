@@ -3,7 +3,7 @@ namespace MyProject\LolitaFramework\Widgets\SocialNetworks;
 
 use \MyProject\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls;
 use \MyProject\LolitaFramework\Core\View;
-use \MyProject\LolitaFramework\Core\HelperArray;
+use \MyProject\LolitaFramework\Core\Arr;
 use \MyProject\LolitaFramework;
 
 class SocialNetworks extends AbstractWithControls
@@ -46,7 +46,7 @@ class SocialNetworks extends AbstractWithControls
         return array(
             array(
                 "name"     => "title",
-                "__TYPE__" => "Input",
+                "__TYPE__" => "Text",
                 "label"    => "Title",
             ),
             array(
@@ -56,12 +56,12 @@ class SocialNetworks extends AbstractWithControls
                 "controls" => array(
                     array(
                         "name"     => "url",
-                        "__TYPE__" => "Input",
+                        "__TYPE__" => "Text",
                         "label"    => "Link",
                     ),
                     array(
                         "name"     => "content",
-                        "__TYPE__" => "Input",
+                        "__TYPE__" => "Text",
                         "label"    => "Content",
                     ),
                     array(
@@ -87,7 +87,7 @@ class SocialNetworks extends AbstractWithControls
     public function widget($args, $instance)
     {
         add_action('wp_footer', array(__CLASS__, 'addScriptsAndStyles'));
-        $title = HelperArray::get($instance, 'title', '');
+        $title = Arr::get($instance, 'title', '');
         $instance['title'] = '';
         $this->view(
             dirname(__FILE__) . DS . 'views' . DS . 'social_networks.php',
@@ -95,7 +95,7 @@ class SocialNetworks extends AbstractWithControls
                 'title'    => $title,
                 'instance' => $instance,
                 'args'     => $args,
-                'icons'    => HelperArray::get($instance, 'collection', array()),
+                'icons'    => Arr::get($instance, 'collection', array()),
                 'id_base'  => $this->id_base,
             )
         );

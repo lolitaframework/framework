@@ -2,7 +2,7 @@
 namespace MyProject\LolitaFramework\Widgets\Breadcrumbs\Engine\Trails;
 
 use \MyProject\LolitaFramework\Widgets\Breadcrumbs\Engine\Crumb;
-use \MyProject\LolitaFramework\Core\HelperWP;
+use \MyProject\LolitaFramework\Core\Wp;
 
 abstract class Trail
 {
@@ -104,7 +104,7 @@ abstract class Trail
         $post_terms = wp_get_object_terms($post_id, $taxonomy_name, array('fields' => 'ids'));
 
         if (is_array($post_terms) && isset($post_terms[0])) {
-            $branch = HelperWP::getBranchWithLargestAncestors(
+            $branch = Wp::getBranchWithLargestAncestors(
                 $post_terms,
                 $taxonomy_name,
                 'taxonomy'

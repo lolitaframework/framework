@@ -1,14 +1,14 @@
-<div id="<?php echo $me->getID(); ?>"  class="lolita-repeater-container" data-name="<?php echo $name; ?>" data-small-name="<?php echo $small_name; ?>">
+<div id="<?php echo $me->getID(); ?>"  class="lolita-repeater-container" data-name="<?php echo $me->getName() ?>" data-small-name="<?php echo $me->old_name; ?>">
 
     <!-- underscore template -->
     <div id="<?php echo $me->getID();?>_template" class="underscore_template">
-        <?php echo $template; ?>
+        <?php echo $me->getTemplate() ?>
     </div>
     <!-- /underscore template -->
 
     <table class="lolita-repeater">
         <tbody class="lolita-repeater-sortable ui-sortable">
-            <?php foreach ($rows as $index => $controls) : ?>
+            <?php foreach ($me->rows as $index => $controls) : ?>
                 <tr class="lolita-repeater-row">
                     <td class="lolita-repeater-order">
                         <span><?php echo $index; ?></span>
@@ -19,10 +19,15 @@
                                 <?php foreach ($controls->collection as $k => $control) : ?>
                                     <tr class="lolita-field-container">
                                         <th class="lolita-label">
-                                            <label for="<?php echo $control->getID(); ?>"><?php echo $control->parameters['label']; ?></label>
+                                            <label for="<?php echo $control->getID(); ?>">
+                                                <?php echo $control->label ?>
+                                            </label>
                                         </th>
                                         <td>
                                             <?php echo $control->render(); ?>
+                                            <?php if ('' !== $control->description) : ?>
+                                                <small><?php echo $control->description; ?></small>
+                                            <?php endif ?>
                                         </td>
                                     </tr>
                                 <?php endforeach ?>

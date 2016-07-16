@@ -1,13 +1,11 @@
 <?php
 namespace MyProject\LolitaFramework\Configuration\Modules;
 
-use \MyProject\LolitaFramework\Core\HelperString as HelperString;
-use \MyProject\LolitaFramework\Core\HelperArray as HelperArray;
-use \MyProject\LolitaFramework\Core\GlobalLocator as GlobalLocator;
-use \MyProject\LolitaFramework\Core\View as View;
-use \MyProject\LolitaFramework\Configuration\Configuration as Configuration;
-use \MyProject\LolitaFramework\Configuration\IModule as IModule;
-use \MyProject\LolitaFramework\Controls\Controls as Controls;
+use \MyProject\LolitaFramework\Core\View;
+use \MyProject\LolitaFramework\Core\Arr;
+use \MyProject\LolitaFramework\Configuration\Configuration;
+use \MyProject\LolitaFramework\Configuration\IModule;
+use \MyProject\LolitaFramework\Controls\Controls;
 
 class MetaBoxes implements IModule
 {
@@ -57,8 +55,12 @@ class MetaBoxes implements IModule
             $data = array_merge($default, (array) $data);
             if (array_key_exists('controls', $data)) {
                 foreach ($data['controls'] as &$control) {
-                    $control['small_name'] = $control['name'];
-                    $control['name']       = $this->controlNameWithPrefix($slug, $control['name']);
+                    $name = Arr::get($control, 'name', '');
+                    if ('' === trim($name)) {
+                        throw new \Exception("Name is empty! Name parameter is required!");
+                    }
+                    $control['small_name'] = $name;
+                    $control['name']       = $this->controlNameWithPrefix($slug, $name);
                 }
                 $controls = new Controls;
                 $controls->generateControls((array) $data['controls']);
@@ -123,11 +125,13 @@ class MetaBoxes implements IModule
                 // ==============================================================
                 // Fill new attributes
                 // ==============================================================
-                $control->parameters = array_merge(
-                    $control->parameters,
-                    array(
-                        'class' => 'widefat',
-                        'id'    => $control->getName() . '-id',
+                $control->setAttributes(
+                    array_merge(
+                        $control->getAttributes(),
+                        array(
+                            'class' => 'widefat',
+                            'id'    => $control->getID(),
+                        )
                     )
                 );
             }
@@ -180,6 +184,7 @@ class MetaBoxes implements IModule
         if (!is_object($post)) {
             $post = get_post();
         }
+
         foreach ($this->data as $slug => $data) {
             $this->toggleSave($slug, $post_id);
 

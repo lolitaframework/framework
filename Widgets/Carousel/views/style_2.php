@@ -1,9 +1,9 @@
-<?php if ($instance) :?>
+<?php if ($items) :?>
     <?php echo $args['before_widget']; ?>
     <div class="lf_carousel_style2">
         <div class="lf_carousel_style2__container">
             <ul class="clearfix">
-                <?php foreach ($instance as $el) :?>
+                <?php foreach ($items as $el) :?>
                 <li>
                     <img src="<?php echo $el['img_src']; ?>" style="width: 484px;height: 275px;" alt="<?php echo esc_attr($el['title']); ?>">
                     <div class="lf_carousel_style2__info">

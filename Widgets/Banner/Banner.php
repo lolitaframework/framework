@@ -3,8 +3,8 @@ namespace MyProject\LolitaFramework\Widgets\Banner;
 
 use \MyProject\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls;
 use \MyProject\LolitaFramework\Core\View;
-use \MyProject\LolitaFramework\Core\HelperArray;
-use \MyProject\LolitaFramework\Core\HelperImage;
+use \MyProject\LolitaFramework\Core\Arr;
+use \MyProject\LolitaFramework\Core\Img;
 use \MyProject\LolitaFramework;
 
 class Banner extends AbstractWithControls
@@ -36,18 +36,24 @@ class Banner extends AbstractWithControls
         return array(
             array(
                 "name"     => "title",
-                "__TYPE__" => "Input",
+                "__TYPE__" => "Text",
                 "label"    => "Title",
             ),
             array(
                 "name"     => "url",
-                "__TYPE__" => "Input",
+                "__TYPE__" => "Text",
                 "label"    => "URL",
             ),
             array(
                 "name"     => "img",
                 "__TYPE__" => "Media",
                 "label"    => "Image",
+            ),
+            array(
+                "name"     => "content",
+                "__TYPE__" => "Textarea",
+                "label"    => "Content",
+                "rows"     => "10",
             ),
         );
     }
@@ -64,7 +70,7 @@ class Banner extends AbstractWithControls
      */
     public function widget($args, $instance)
     {
-        $url = HelperArray::get($instance, 'url', '/');
+        $url = Arr::get($instance, 'url', '/');
         if ('' === $url) {
             $url = '/';
         }
@@ -72,10 +78,11 @@ class Banner extends AbstractWithControls
         $this->view(
             dirname(__FILE__) . DS . 'views' . DS . 'banner.php',
             array(
-                'url'   => $url,
-                'img'   => HelperArray::get($instance, 'img', 0),
-                'title' => HelperArray::get($instance, 'title'),
-                'args'  => $args,
+                'url'     => $url,
+                'img'     => Arr::get($instance, 'img', 0),
+                'title'   => Arr::get($instance, 'title', ''),
+                'content' => Arr::get($instance, 'content', ''),
+                'args'    => $args,
             )
         );
     }

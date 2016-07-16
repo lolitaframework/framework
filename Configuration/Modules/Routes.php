@@ -3,9 +3,9 @@ namespace MyProject\LolitaFramework\Configuration\Modules;
 
 use \MyProject\LolitaFramework\Configuration\Configuration;
 use \MyProject\LolitaFramework\Configuration\IModule;
-use \MyProject\LolitaFramework\Core\HelperString;
-use \MyProject\LolitaFramework\Core\HelperWP;
-use \MyProject\LolitaFramework\Core\GlobalLocator;
+use \MyProject\LolitaFramework\Core\Str;
+use \MyProject\LolitaFramework\Core\Wp;
+use \MyProject\LolitaFramework\Core\Loc;
 
 class Routes implements IModule
 {
@@ -82,7 +82,7 @@ class Routes implements IModule
                 $element = $element['html'];
             }
         }
-        return HelperString::compileVariables($element);
+        return Str::compileVariables($element);
     }
 
     /**
@@ -93,7 +93,7 @@ class Routes implements IModule
      */
     public function customRoutes()
     {
-        $wp_query = GlobalLocator::wpQuery();
+        $wp_query = Loc::wpQuery();
         $page = $wp_query->query_vars['name'];
         if (array_key_exists($page, $this->data)) {
             echo $this->getHTML($this->data[ $page ]);
@@ -110,8 +110,8 @@ class Routes implements IModule
      */
     public function blockDefaultTemplates($template_path)
     {
-        $post          = GlobalLocator::post();
-        $route_type    = HelperWP::wpRouteType();
+        $post          = Loc::post();
+        $route_type    = Wp::wpRouteType();
         $templates     = $this->getTempaltes();
         $page_template = '';
 

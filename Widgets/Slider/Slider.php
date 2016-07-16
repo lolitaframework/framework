@@ -1,11 +1,11 @@
 <?php
 namespace MyProject\LolitaFramework\Widgets\Slider;
 
-use \MyProject\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls as AbstractWithControls;
+use \MyProject\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls;
 use \MyProject\LolitaFramework\Core\View;
-use \MyProject\LolitaFramework\Core\HelperArray;
-use \MyProject\LolitaFramework\Core\HelperImage;
-use \MyProject\LolitaFramework as LolitaFramework;
+use \MyProject\LolitaFramework\Core\Arr;
+use \MyProject\LolitaFramework\Core\Img;
+use \MyProject\LolitaFramework;
 
 class Slider extends AbstractWithControls
 {
@@ -109,7 +109,7 @@ class Slider extends AbstractWithControls
                 'controls' => array(
                     array(
                         'name'     => 'url',
-                        '__TYPE__' => 'Input',
+                        '__TYPE__' => 'Text',
                         'type'     => 'text',
                         'label'    => 'Link',
                     ),
@@ -132,13 +132,13 @@ class Slider extends AbstractWithControls
                 'controls' => array(
                     array(
                         'name'     => 'title',
-                        '__TYPE__' => 'Input',
+                        '__TYPE__' => 'Text',
                         'type'     => 'text',
                         'label'    => 'Title',
                     ),
                     array(
                         'name'     => 'subtitle',
-                        '__TYPE__' => 'Input',
+                        '__TYPE__' => 'Text',
                         'type'     => 'text',
                         'label'    => 'Subtitle',
                     ),
@@ -167,13 +167,13 @@ class Slider extends AbstractWithControls
                 'controls' => array(
                     array(
                         'name'     => 'title',
-                        '__TYPE__' => 'Input',
+                        '__TYPE__' => 'Text',
                         'type'     => 'text',
                         'label'    => 'Title',
                     ),
                     array(
                         'name'     => 'url',
-                        '__TYPE__' => 'Input',
+                        '__TYPE__' => 'Text',
                         'type'     => 'text',
                         'label'    => 'Link',
                     ),
@@ -229,24 +229,24 @@ class Slider extends AbstractWithControls
     private function prepareInstance($instance)
     {
         $key  = 'style_' . $this->getSliderType($instance);
-        $data = HelperArray::get($instance, $key, array());
+        $data = Arr::get($instance, $key, array());
         foreach ($data as &$list) {
             if (array_key_exists('img', $list)) {
-                $list['img_src'] = HelperImage::getURL(
+                $list['img_src'] = Img::getURL(
                     (int) $list['img'],
                     'full'
                 );
             }
 
             if (array_key_exists('background', $list)) {
-                $list['background_src'] = HelperImage::getURL(
+                $list['background_src'] = Img::getURL(
                     (int) $list['background'],
                     'full'
                 );
             }
 
             if (array_key_exists('logo', $list)) {
-                $list['logo_src'] = HelperImage::getURL(
+                $list['logo_src'] = Img::getURL(
                     (int) $list['logo'],
                     'full'
                 );
@@ -264,6 +264,6 @@ class Slider extends AbstractWithControls
      */
     private function getSliderType($instance)
     {
-        return HelperArray::get($instance, 'slider_type', 1);
+        return Arr::get($instance, 'slider_type', 1);
     }
 }

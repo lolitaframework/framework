@@ -1,8 +1,8 @@
 <?php
 namespace MyProject\LolitaFramework\Widgets;
 
-use \MyProject\LolitaFramework\Core\GlobalLocator as GlobalLocator;
-use \MyProject\LolitaFramework\Core\HelperClass as HelperClass;
+use \MyProject\LolitaFramework\Core\Loc;
+use \MyProject\LolitaFramework\Core\Cls;
 
 class Widgets
 {
@@ -74,7 +74,7 @@ class Widgets
     public function runBeforeInits()
     {
         foreach ($this->data as $class) {
-            if (HelperClass::isImplements($class, __NAMESPACE__ . NS . 'IHaveBeforeInit')) {
+            if (Cls::isImplements($class, __NAMESPACE__ . NS . 'IHaveBeforeInit')) {
                 $class::beforeInit();
             }
         }

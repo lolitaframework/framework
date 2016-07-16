@@ -1,46 +1,27 @@
 <?php
 namespace MyProject\LolitaFramework\Controls\Textarea;
 
-use \MyProject\LolitaFramework\Controls\Control as Control;
-use \MyProject\LolitaFramework\Core\HelperArray as HelperArray;
+use \MyProject\LolitaFramework\Controls\Control;
+use \MyProject\LolitaFramework\Core\Arr;
 
 class Textarea extends Control
 {
     /**
-     * Textarea constructor
-     * @param array $parameters control parameters.
-     */
-    public function __construct(array $parameters)
-    {
-        parent::__construct($parameters);
-    }
-
-    /**
-     * Get allowed attributes
-     * @return array allowed list.
-     */
-    private function getAllowedAttributes()
-    {
-        return array(
-            'name',
-            'class',
-            'id',
-            'rows',
-            'cols'
-        );
-    }
-
-    /**
      * Render control
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return string html code.
      */
     public function render()
     {
-        $attributes = HelperArray::leaveRightKeys(
-            $this->getAllowedAttributes(),
-            $this->parameters
+        $this->setAttributes(
+            array_merge(
+                $this->getAttributes(),
+                array(
+                    'name' => $this->getName(),
+                )
+            )
         );
-        $this->parameters['attributes_str'] = HelperArray::join($attributes);
         return parent::render();
     }
 }

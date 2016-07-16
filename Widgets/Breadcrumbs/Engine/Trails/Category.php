@@ -2,7 +2,7 @@
 namespace MyProject\LolitaFramework\Widgets\Breadcrumbs\Engine\Trails;
 
 use \MyProject\LolitaFramework\Widgets\Breadcrumbs\Engine\Crumb;
-use \MyProject\LolitaFramework\Core\GlobalLocator;
+use \MyProject\LolitaFramework\Core\Loc;
 
 class Category extends Trail
 {
@@ -15,7 +15,7 @@ class Category extends Trail
      */
     public function compile()
     {
-        $wp_rewrite = GlobalLocator::wpRewrite();
+        $wp_rewrite = Loc::wpRewrite();
 
         /* Get some taxonomy and term variables. */
         $term     = get_queried_object();

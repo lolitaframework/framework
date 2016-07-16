@@ -1,7 +1,7 @@
 <?php
 namespace MyProject\LolitaFramework\Core;
 
-class GlobalLocator
+class Loc
 {
     /**
      * Get wp_filesystem

@@ -1,9 +1,9 @@
 <?php
 namespace MyProject\LolitaFramework\Configuration\Modules;
 
-use \MyProject\LolitaFramework\Core\HelperString as HelperString;
-use \MyProject\LolitaFramework\Configuration\Configuration as Configuration;
-use \MyProject\LolitaFramework\Configuration\IModule as IModule;
+use \MyProject\LolitaFramework\Core\Str;
+use \MyProject\LolitaFramework\Configuration\Configuration;
+use \MyProject\LolitaFramework\Configuration\IModule;
 
 class Customs implements IModule
 {
@@ -100,7 +100,7 @@ class Customs implements IModule
         $folders = array();
         if (is_array($this->data)) {
             foreach ($this->data as $path) {
-                array_push($folders, HelperString::compileVariables($path));
+                array_push($folders, Str::compileVariables($path));
             }
         }
         return $folders;

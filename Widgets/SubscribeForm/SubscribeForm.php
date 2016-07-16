@@ -1,11 +1,10 @@
 <?php
 namespace MyProject\LolitaFramework\Widgets\SubscribeForm;
 
-use \MyProject\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls as AbstractWithControls;
-use \MyProject\LolitaFramework\Core\View as View;
-use \MyProject\LolitaFramework\Core\HelperArray as HelperArray;
-use \MyProject\LolitaFramework\Widgets\SubscribeForm\vendor\DrewM\MailChimp\MailChimp as MailChimp;
+use \MyProject\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls;
+use \MyProject\LolitaFramework\Widgets\SubscribeForm\vendor\DrewM\MailChimp\MailChimp;
 use \MyProject\LolitaFramework;
+use \MyProject\LolitaFramework\Core\Arr;
 
 class SubscribeForm extends AbstractWithControls
 {
@@ -165,7 +164,7 @@ class SubscribeForm extends AbstractWithControls
         return array(
             array(
                 'name'     => 'title',
-                '__TYPE__' => 'Input',
+                '__TYPE__' => 'Text',
                 'type'     => 'text',
                 'label'    => 'Title',
             ),
@@ -180,13 +179,13 @@ class SubscribeForm extends AbstractWithControls
             ),
             array(
                 'name'     => 'mailchimp_api_key',
-                '__TYPE__' => 'Input',
+                '__TYPE__' => 'Text',
                 'type'     => 'text',
                 'label'    => 'Mailchimp API key',
             ),
             array(
                 'name'     => 'mailchimp_list_id',
-                '__TYPE__' => 'Input',
+                '__TYPE__' => 'Text',
                 'type'     => 'text',
                 'label'    => 'Mailchimp list id',
             ),
@@ -227,32 +226,33 @@ class SubscribeForm extends AbstractWithControls
     public function widget($args, $instance)
     {
         add_action('wp_enqueue_scripts', array(__CLASS__, 'addScriptsAndStyles'));
-        $instance['success_message'] = HelperArray::get(
+        $instance['success_message'] = Arr::get(
             $instance,
             'success_message',
             'Message sent successfully.'
         );
-        $instance['error_message'] = HelperArray::get(
+        $instance['error_message'] = Arr::get(
             $instance,
             'error_message',
             'Message not sent. Please contact the administrator for help.'
         );
-        $instance['mailchimp_api_key'] = HelperArray::get(
+        $instance['mailchimp_api_key'] = Arr::get(
             $instance,
             'mailchimp_api_key',
             ''
         );
-        $instance['mailchimp_list_id'] = HelperArray::get(
+        $instance['mailchimp_list_id'] = Arr::get(
             $instance,
             'mailchimp_list_id',
             ''
         );
-        $instance['type'] = HelperArray::get(
+        $instance['type'] = Arr::get(
             $instance,
             'type',
             'default'
         );
-        echo View::make(
+
+        $this->view(
             dirname(__FILE__) . DS . 'views' . DS . $this->id_base . '.php',
             array(
                 'instance' => $instance,

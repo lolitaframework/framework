@@ -1,7 +1,7 @@
 <?php
 namespace MyProject\LolitaFramework\Core;
 
-class HelperImage
+class Img
 {
     /**
      * Get image url

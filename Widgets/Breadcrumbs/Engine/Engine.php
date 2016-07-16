@@ -1,8 +1,8 @@
 <?php
 namespace MyProject\LolitaFramework\Widgets\Breadcrumbs\Engine;
 
-use \MyProject\LolitaFramework\Core\HelperWP;
-use \MyProject\LolitaFramework\Core\HelperString;
+use \MyProject\LolitaFramework\Core\Wp;
+use \MyProject\LolitaFramework\Core\Str;
 use \MyProject\LolitaFramework\Widgets\Breadcrumbs\Engine\Trails\Trail;
 
 class Engine
@@ -48,7 +48,7 @@ class Engine
      */
     public static function getRouteClass()
     {
-        $route_class = HelperString::snakeToCamel(HelperWP::wpRouteType());
+        $route_class = Str::camel(Wp::wpRouteType());
         if ('404' === $route_class) {
             $route_class = 'Trail404';
         }

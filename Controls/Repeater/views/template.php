@@ -5,13 +5,16 @@
     <td class="lolita-repeater-inner">
         <table>
             <tbody>
-                <?php foreach ($template_controls->collection as $k => $control) :?>
+                <?php foreach ($me->template_controls->collection as $k => $control) :?>
                     <tr class="lolita-field-container">
                         <th class="lolita-label">
-                            <label for="<?php echo $control->getID(); ?>"><?php echo $control->parameters['label']; ?></label>
+                            <label for="<?php echo $control->getID(); ?>"><?php echo $control->label ?></label>
                         </th>
                         <td>
                             <?php echo $control->render(); ?>
+                            <?php if ('' !== $control->description) : ?>
+                                <small><?php echo $control->description; ?></small>
+                            <?php endif ?>
                         </td>
                     </tr>
                 <?php endforeach ?>
