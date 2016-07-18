@@ -161,7 +161,7 @@ class Configuration
      */
     private function getDefaultSettingsPath()
     {
-        return dirname(LF_DIR).'/app'.DS.'config'.DS;
+        return apply_filters('lf_configuration_settings_path', dirname(LF_DIR).'/app'.DS.'config'.DS);
     }
 
     /**
