@@ -117,7 +117,11 @@ class Configuration
     private function getConfigPath($module)
     {
         $module = strtolower($module);
-        return $this->settings_path . str_replace('.php', self::CONFIG_EXTENSION, basename($module));
+        $path   = apply_filters(
+            sprintf('lf_config_%s_path', str_replace('.php', '', basename($module))),
+            $this->settings_path . str_replace('.php', self::CONFIG_EXTENSION, basename($module))
+        );
+        return $path;
     }
 
     /**
