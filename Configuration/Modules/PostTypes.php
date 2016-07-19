@@ -4,6 +4,8 @@ namespace MyProject\LolitaFramework\Configuration\Modules;
 use \MyProject\LolitaFramework\Configuration\Init;
 use \MyProject\LolitaFramework\Configuration\Configuration;
 use \MyProject\LolitaFramework\Configuration\IModule;
+use \MyProject\LolitaFramework\Core\Arr;
+use \MyProject\LolitaFramework\Core\Str;
 
 class PostTypes extends Init implements IModule
 {
@@ -32,6 +34,9 @@ class PostTypes extends Init implements IModule
         if (is_array($this->data) && !empty($this->data)) {
             foreach ($this->data as $post_type) {
                 $args = $this->compileParameters($post_type);
+                if(!Arr::exists($post_type, 'slug')) {
+                    $post_type['slug'] = Str::slug($post_type['singular']);
+                }
                 register_post_type(
                     $post_type['slug'],
                     $args
@@ -43,15 +48,18 @@ class PostTypes extends Init implements IModule
     /**
      * Check post type parameters by errors
      *
+     * @throws Exception Parameter "%s" is required!
      * @author Guriev Eugen <gurievcreative@gmail.com>
-     * @param  [array] $args parameters
+     * @param  array $args parameters.
      */
     private function checkPostTypeParams($args)
     {
         $args = (array) $args;
         foreach ($this->getRequiredParameters() as $parameter => $value) {
             if (array_key_exists($parameter, $args)) {
-                throw new \Exception('Parameter "'.$parameter.'" is required!');
+                throw new \Exception(
+                    sprintf(__('Parameter "%s" is required!', 'lolita'), $parameter)
+                );
             }
         }
 
@@ -71,13 +79,11 @@ class PostTypes extends Init implements IModule
      * Get required post type parameters
      *
      * @author Guriev Eugen <gurievcreative@gmail.com>
-     * @return [array] required parameters.
+     * @return array required parameters.
      */
     private function getRequiredParameters()
     {
         return array(
-            'slug',
-            'plural',
             'singular',
         );
     }
@@ -86,12 +92,16 @@ class PostTypes extends Init implements IModule
      * Get arguments to registering our post type.
      *
      * @author Guriev Eugen <gurievcreative@gmail.com>
-     * @param  [array] $post_type_args parameters.
-     * @return [array] compiled.
+     * @param  array $post_type_args parameters.
+     * @return array compiled.
      */
     private function compileParameters($post_type_args)
     {
         $this->checkPostTypeParams($post_type_args);
+
+        if(!Arr::exists($post_type_args, 'plural')) {
+            $post_type_args['plural'] = Str::plural($post_type_args['singular']);
+        }
 
         $args = $this->getDefaultArguments(
             $post_type_args['plural'],

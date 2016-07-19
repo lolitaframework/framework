@@ -107,7 +107,6 @@ namespace LolitaFramework {
          * @param {any}    obj   object.
          */
         each(index:number, obj:any) {
-            console.log('each');
             this.sliders.push(jQuery(obj).bxSlider(this.options));
         }
     }

@@ -71,7 +71,6 @@ var LolitaFramework;
             });
         }
         WidgetSliderPost.prototype.each = function (index, obj) {
-            console.log('each');
             this.sliders.push(jQuery(obj).bxSlider(this.options));
         };
         return WidgetSliderPost;

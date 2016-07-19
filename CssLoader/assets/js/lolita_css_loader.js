@@ -13,7 +13,7 @@ var LolitaFramework;
                 console.log('%c This template is already displayed', 'color: red');
                 return;
             }
-            var $template = jQuery('head').find('#' + $selected_template).html();
+            var $template = jQuery('#' + $selected_template).html();
             $template = jQuery($template).addClass($selected_template);
             if ($template.length == 0) {
                 console.log('%c There is no template with specified index', 'color: red');

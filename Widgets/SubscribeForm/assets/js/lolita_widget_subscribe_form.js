@@ -13,7 +13,7 @@ var LolitaFramework;
             this.type = 'default';
             this.mailchimp_api_key = '';
             this.mailchimp_list_id = '';
-            this.$widget = jQuery('.lolita-subscribe');
+            this.$widget = jQuery('.lf_subscribe');
             this.$success_message = jQuery('.lolita-subscribe-success-message');
             this.$error_message = jQuery('.lolita-subscribe-error-message');
             this.$form = jQuery('.lolita-subscribe-form');
@@ -26,7 +26,7 @@ var LolitaFramework;
         SubscribeForm.prototype.submit = function (e) {
             var _this = this;
             if (undefined !== this.css_loader && undefined !== this.css_loader.show) {
-                this.css_loader.show();
+                this.css_loader.show(5);
             }
             this.ajax({
                 action: 'lolita_subscribe',

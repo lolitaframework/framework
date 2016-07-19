@@ -67,7 +67,7 @@ namespace LolitaFramework {
          * SubscribeForm control class constructor
          */
         constructor() {
-            this.$widget           = jQuery('.lolita-subscribe');
+            this.$widget           = jQuery('.lf_subscribe');
             this.$success_message  = jQuery('.lolita-subscribe-success-message');
             this.$error_message    = jQuery('.lolita-subscribe-error-message');
             this.$form             = jQuery('.lolita-subscribe-form');
@@ -88,7 +88,7 @@ namespace LolitaFramework {
          */
         submit(e:any) {
             if (undefined !== this.css_loader && undefined !== this.css_loader.show) {
-                this.css_loader.show();
+                this.css_loader.show(5);
             }
             this.ajax(
                 {

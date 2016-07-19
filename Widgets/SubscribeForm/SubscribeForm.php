@@ -225,7 +225,7 @@ class SubscribeForm extends AbstractWithControls
      */
     public function widget($args, $instance)
     {
-        add_action('wp_enqueue_scripts', array(__CLASS__, 'addScriptsAndStyles'));
+        add_action('wp_footer', array(__CLASS__, 'addScriptsAndStyles'));
         $instance['success_message'] = Arr::get(
             $instance,
             'success_message',

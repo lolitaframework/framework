@@ -32,9 +32,15 @@ class Taxonomies extends Init implements IModule
     {
         if (is_array($this->data)) {
             foreach ($this->data as $tax) {
+                if (array_key_exists('singular', $tax) && !array_key_exists('plural', $tax)) {
+                    $tax['plural'] = Str::plural($tax['singular']);
+                } else if (!array_key_exists('singular', $tax) && array_key_exists('plural', $tax)) {
+                    $tax['singular'] = Str::singular($tax['plural']);
+                }
+
                 $this->checkForErrors($tax);
                 register_taxonomy(
-                    $this->getTaxonomySlug($tax),
+                    Str::slug($tax['singular']),
                     $tax['post_type_slug'],
                     $this->getArguments($tax)
                 );
@@ -66,20 +72,6 @@ class Taxonomies extends Init implements IModule
             'post_type_slug',
             'singular',
             'plural',
-        );
-    }
-
-    /**
-     * Get taxonomy slug
-     * @param  array $taxonomy taxonomy arguments.
-     * @return string taxonomy slug.
-     */
-    private function getTaxonomySlug(array $taxonomy)
-    {
-        return Arr::get(
-            $taxonomy,
-            'slug',
-            Str::sentenceToSnake($taxonomy['singular'])
         );
     }
 

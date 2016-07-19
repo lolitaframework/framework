@@ -103,8 +103,9 @@ class Repeater extends Control implements iHaveAdminEnqueue
                 // ==============================================================
                 // Fill new attributes
                 // ==============================================================
-                $control = array_merge(
-                    $control,
+                $control['attributes'] = Arr::get($control, 'attributes', array());
+                $control['attributes'] = array_merge(
+                    $control['attributes'],
                     array(
                         'class' => 'widefat',
                     )
@@ -133,8 +134,9 @@ class Repeater extends Control implements iHaveAdminEnqueue
             // ==============================================================
             // Fill new attributes
             // ==============================================================
-            $template_control = array_merge(
-                $template_control,
+            $template_control['attributes'] = Arr::get($template_control, 'attributes', array());
+            $template_control['attributes'] = array_merge(
+                $template_control['attributes'],
                 array(
                     'class' => 'widefat',
                 )
