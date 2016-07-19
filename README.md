@@ -1,7 +1,7 @@
 Lolita framework
 ==================
 
-[![Build Status](https://travis-ci.org/gcofficial/lolitaframework.svg?branch=master)](https://travis-ci.org/gcofficial/lolitaframework)
+[![Build Status](https://travis-ci.org/lolitaframework/framework.svg?branch=master)](https://travis-ci.org/lolitaframework/framework)
 
 The Lolita framework is a tool aimed to WordPress developers of any levels. But the better WordPress and PHP knowledge you have the easier it is to work with.
 
