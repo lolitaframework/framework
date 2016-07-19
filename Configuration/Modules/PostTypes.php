@@ -34,7 +34,7 @@ class PostTypes extends Init implements IModule
         if (is_array($this->data) && !empty($this->data)) {
             foreach ($this->data as $post_type) {
                 $args = $this->compileParameters($post_type);
-                if(!Arr::exists($post_type, 'slug')) {
+                if (!Arr::exists($post_type, 'slug')) {
                     $post_type['slug'] = Str::slug($post_type['singular']);
                 }
                 register_post_type(
@@ -99,7 +99,7 @@ class PostTypes extends Init implements IModule
     {
         $this->checkPostTypeParams($post_type_args);
 
-        if(!Arr::exists($post_type_args, 'plural')) {
+        if (!Arr::exists($post_type_args, 'plural')) {
             $post_type_args['plural'] = Str::plural($post_type_args['singular']);
         }
 
