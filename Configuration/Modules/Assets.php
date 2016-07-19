@@ -183,13 +183,17 @@ class Assets implements IModule
             foreach ($localizes as $localize) {
                 if (is_array($localize) && 3 == count($localize)) {
                     list($handle, $object_name, $l10n) = $localize;
-                    $l10n = array_map(
-                        array(
-                            $class_name,
-                            'compileVariables'
-                        ),
-                        $l10n
-                    );
+                    if (is_array($l10n)) {
+                        $l10n = array_map(
+                            array(
+                                $class_name,
+                                'compileVariables'
+                            ),
+                            $l10n
+                        );
+                    } else {
+                        $l10n = Str::compileVariables($l10n);
+                    }
                     wp_localize_script($handle, $object_name, $l10n);
                 }
             }
