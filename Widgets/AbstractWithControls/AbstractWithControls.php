@@ -45,8 +45,8 @@ abstract class AbstractWithControls extends AbstractWidget implements IHaveBefor
         $controls = new Controls;
         $controls_data = static::getControlsData();
         foreach ($controls_data as &$control) {
-            $control['small_name'] = $control['name'];
-            $control['name'] = $this->get_field_name($control['name']);
+            $control['old_name'] = $control['name'];
+            $control['name']     = $this->get_field_name($control['name']);
         }
 
         $controls->generateControls($controls_data);
@@ -57,16 +57,19 @@ abstract class AbstractWithControls extends AbstractWidget implements IHaveBefor
                 // Set new value
                 // ==============================================================
                 $control->setValue(
-                    Arr::get($instance, $control->parameters['small_name'], '')
+                    Arr::get($instance, $control->old_name, '')
                 );
                 // ==============================================================
                 // Fill new attributes
                 // ==============================================================
-                $control->parameters = array_merge(
-                    $control->parameters,
-                    array(
-                        'class' => $control->parameters['small_name'] . '-class widefat ' . Arr::get($control->parameters, 'class', ''),
-                        'id'    => $this->get_field_id($control->getID()),
+                $attributes = $control->getAttributes();
+                $control->setAttributes(
+                    array_merge(
+                        $attributes,
+                        array(
+                            'class' => $control->old_name . '-class widefat ' . Arr::get($attributes, 'class', ''),
+                            'id'    => $this->get_field_id($control->getID()),
+                        )
                     )
                 );
             }

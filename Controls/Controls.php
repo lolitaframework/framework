@@ -82,6 +82,9 @@ class Controls
                 $class_name,
                 $arguments
             );
+            if (Arr::exists($arguments, 'old_name')) {
+                $control->old_name = $arguments['old_name'];
+            }
             if (null !== $control) {
                 $this->collection[ $arguments['name'] ] = $control;
             }

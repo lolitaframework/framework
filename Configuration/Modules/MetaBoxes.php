@@ -59,7 +59,7 @@ class MetaBoxes implements IModule
                     if ('' === trim($name)) {
                         throw new \Exception("Name is empty! Name parameter is required!");
                     }
-                    $control['small_name'] = $name;
+                    $control['old_name'] = $name;
                     $control['name']       = $this->controlNameWithPrefix($slug, $name);
                 }
                 $controls = new Controls;
