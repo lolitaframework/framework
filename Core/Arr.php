@@ -439,15 +439,16 @@ class Arr
      * @param  array   $array
      * @param  string  $key
      * @param  mixed   $value
+     * @param  string  $separator
      * @return array
      */
-    public static function set(&$array, $key, $value)
+    public static function set(&$array, $key, $value, $separator = '.')
     {
         if (is_null($key)) {
             return $array = $value;
         }
 
-        $keys = explode('.', $key);
+        $keys = explode($separator, $key);
 
         while (count($keys) > 1) {
             $key = array_shift($keys);

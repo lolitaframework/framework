@@ -2,6 +2,7 @@
 namespace MyProject\LolitaFramework\Widgets\AbstractWidget;
 
 use \MyProject\LolitaFramework\Core\Str;
+use \MyProject\LolitaFramework\Core\Arr;
 use \MyProject\LolitaFramework\Core\View;
 use \WP_Widget;
 
@@ -23,6 +24,30 @@ abstract class AbstractWidget extends WP_Widget
             $widget_options,
             $control_options
         );
+        add_shortcode($this->id_base.'_sc', array(&$this, 'widgetShortcode'));
+    }
+
+    /**
+     * Render widget in short code
+     *
+     * @param  array $atts attributes.
+     * @param  string $content content
+     * @return string rendered shortcode.
+     */
+    public function widgetShortcode($atts, $content = '')
+    {
+        $new_atts = json_decode($content, true);
+        $new_atts = array_merge(
+            array(
+                'args'     => array(),
+                'instance' => array(),
+            ),
+            (array) $new_atts
+        );
+
+        ob_start();
+        $this->widget($new_atts['args'], $new_atts['instance']);
+        return ob_get_clean();
     }
 
     /**

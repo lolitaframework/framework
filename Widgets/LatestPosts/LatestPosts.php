@@ -2,6 +2,7 @@
 namespace MyProject\LolitaFramework\Widgets\LatestPosts;
 
 use \MyProject\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls;
+use \MyProject\LolitaFramework\Core\Arr;
 
 class LatestPosts extends AbstractWithControls
 {
@@ -31,20 +32,41 @@ class LatestPosts extends AbstractWithControls
     {
         return array(
             array(
-                'name'     => 'style',
-                '__TYPE__' => 'Select',
-                'label'    => 'Render style',
-                'options'  => array(
-                    'style_1' => 'Style 1',
-                    'style_2' => 'Style 2',
-                    'style_3' => 'Style 3',
-                ),
+                'name'     => 'title',
+                '__TYPE__' => 'Text',
+                'label'    => 'Title',
             ),
             array(
                 'name'     => 'post_type',
                 '__TYPE__' => 'Select',
                 'label'    => 'Post type',
                 'options'  => self::getPostTypeOptions(),
+            ),
+            array(
+                'name'     => 'orderby',
+                '__TYPE__' => 'Select',
+                'label'    => 'Order by',
+                'options'  => array(
+                    'none'          => __('None', 'lolita'),
+                    'ID'            => __('ID', 'lolita'),
+                    'author'        => __('Author', 'lolita'),
+                    'title'         => __('Title', 'lolita'),
+                    'date'          => __('Date', 'lolita'),
+                    'modified'      => __('Modified', 'lolita'),
+                    'parent'        => __('Parent', 'lolita'),
+                    'rand'          => __('Random', 'lolita'),
+                    'comment_count' => __('Comment count', 'lolita'),
+                    'menu_order'    => __('Menu order', 'lolita'),
+                ),
+            ),
+            array(
+                'name'     => 'order',
+                '__TYPE__' => 'Select',
+                'label'    => 'Order',
+                'options'  => array(
+                    'ASC'  => __('Ascending', 'lolita'),
+                    'DESC' => __('Descending', 'lolita'),
+                ),
             ),
             array(
                 'name'     => 'count',
@@ -103,14 +125,47 @@ class LatestPosts extends AbstractWithControls
     }
 
     /**
+     * Get order by
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
+     * @param  array $instance data.
+     * @return string order by.
+     */
+    private function getOrderBy($instance)
+    {
+        $order_by = 'date';
+        if (array_key_exists('orderby', $instance)) {
+            $order_by = $instance['orderby'];
+        }
+        return $order_by;
+    }
+
+    /**
+     * Get order
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
+     * @param  array $instance data.
+     * @return string order.
+     */
+    private function getOrder($instance)
+    {
+        $order = 'DESC';
+        if (array_key_exists('order', $instance)) {
+            $order = $instance['order'];
+        }
+        return $order;
+    }
+
+    /**
      * Get posts
      *
      * @author Guriev Eugen <gurievcreative@gmail.com>
      * @param  string $post_type post type.
      * @param  integer $count posts per widget.
+     * @param  string $order_by order by.
      * @return posts.
      */
-    private function getPosts($post_type, $count)
+    private function getPosts($post_type, $count, $order_by, $order)
     {
         return get_posts(
             array(
@@ -118,8 +173,8 @@ class LatestPosts extends AbstractWithControls
                 'offset'           => 0,
                 'category'         => '',
                 'category_name'    => '',
-                'orderby'          => 'date',
-                'order'            => 'DESC',
+                'orderby'          => $order_by,
+                'order'            => $order,
                 'include'          => '',
                 'exclude'          => '',
                 'meta_key'         => '',
@@ -136,21 +191,6 @@ class LatestPosts extends AbstractWithControls
     }
 
     /**
-     * Get view style
-     *
-     * @author Guriev Eugen <gurievcreative@gmail.com>
-     * @param  array $instance data.
-     * @return string view style.
-     */
-    private function getStyle($instance)
-    {
-        if (array_key_exists('style', $instance)) {
-            return $instance['style'];
-        }
-        return 'style_1';
-    }
-
-    /**
      * Front-end display of widget.
      *
      * @see WP_Widget::widget()
@@ -162,14 +202,25 @@ class LatestPosts extends AbstractWithControls
      */
     public function widget($args, $instance)
     {
+        $post_type = $this->getPostType($instance);
+        $count     = $this->getCount($instance);
+        $orderby   = $this->getOrderBy($instance);
+        $order     = $this->getOrder($instance);
         $this->view(
-            dirname(__FILE__) . DS . 'views' . DS . $this->getStyle($instance) . '.php',
+            dirname(__FILE__) . DS . 'views' . DS . 'latest_posts.php',
             array(
-                'items' => $this->getPosts(
-                    $this->getPostType($instance),
-                    $this->getCount($instance)
+                'items'     => $this->getPosts(
+                    $post_type,
+                    $count,
+                    $orderby,
+                    $order
                 ),
-                'style' => $this->getStyle($instance),
+                'title'     => Arr::get($instance, 'title', ''),
+                'post_type' => $post_type,
+                'count'     => $count,
+                'orderby'   => $orderby,
+                'order'     => $order,
+                'args'      => $args,
             )
         );
     }
