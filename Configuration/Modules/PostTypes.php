@@ -107,9 +107,7 @@ class PostTypes extends Init implements IModule
             $post_type_args['plural'],
             $post_type_args['singular']
         );
-        if (array_key_exists('native', $post_type_args)) {
-            $args = array_merge($args, $post_type_args['native']);
-        }
+        $args = array_merge($args, $post_type_args);
         return $args;
     }
 
