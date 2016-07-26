@@ -48,10 +48,9 @@ class Wp
      * Get wp route type
      *
      * @author Guriev Eugen <gurievcreative@gmail.com>
-     * @param boolean $only_base only base.
      * @return string route type.
      */
-    public static function wpRouteType($only_base = false)
+    public static function wpRouteType()
     {
         $types = array(
             '404'               => 'is_404',
@@ -70,25 +69,25 @@ class Wp
             'month'             => 'is_month',
             'year'              => 'is_year',
             'date'              => 'is_date',
-            'minute'            => array(__CLASS__, 'isMinute'),
-            'hour'              => array(__CLASS__, 'isHour'),
-            'week'              => array(__CLASS__, 'isWeek'),
             'archive'           => 'is_archive',
             'paged'             => 'is_paged',
         );
 
-        if (!$only_base) {
-            $post_type  = get_post_type();
-            $post_types = (array) get_post_types(array('_builtin' => false));
+        $post_type  = get_post_type();
+        $post_types = (array) get_post_types(array('_builtin' => false));
 
-            if (in_array($post_type, $post_types)) {
-                $types = array_merge(array($post_type => 'is_single'), $types);
-            }
+        if (in_array($post_type, $post_types)) {
+            $types = array_merge(
+                array(
+                    $post_type => function() use($post_type) { return is_singular($post_type); }
+                ), 
+                $types
+            );
+        }
 
-            $qo = get_queried_object();
-            if (!empty($qo->slug)) {
-                $types = array_merge(array($qo->taxonomy => 'is_tax'), $types);
-            }
+        $qo = get_queried_object();
+        if (!empty($qo->slug)) {
+            $types = array_merge(array($qo->taxonomy => 'is_tax'), $types);
         }
 
         foreach ($types as $type => $func) {
@@ -97,38 +96,5 @@ class Wp
             }
         }
         return '404';
-    }
-
-    /**
-     * Is minute?
-     *
-     * @author Guriev Eugen <gurievcreative@gmail.com>
-     * @return boolean true / false.
-     */
-    public static function isMinute()
-    {
-        return false !== get_query_var('minute', false);
-    }
-
-    /**
-     * Is hour?
-     *
-     * @author Guriev Eugen <gurievcreative@gmail.com>
-     * @return boolean true / false.
-     */
-    public static function isHour()
-    {
-        return false !== get_query_var('hour', false);
-    }
-
-    /**
-     * Is week?
-     *
-     * @author Guriev Eugen <gurievcreative@gmail.com>
-     * @return boolean true / false.
-     */
-    public static function isWeek()
-    {
-        return false !== get_query_var('w', false);
     }
 }

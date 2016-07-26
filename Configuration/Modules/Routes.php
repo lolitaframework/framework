@@ -78,11 +78,36 @@ class Routes implements IModule
     private function getHTML($element)
     {
         if (is_array($element)) {
+            if (array_key_exists('class', $element)) {
+                $class = $element['class']; 
+                add_filter(
+                    'body_class',
+                    function($classes) use($class) {
+                        return $this->addBodyClass($classes, $class);
+                    }
+                );
+            }
             if (array_key_exists('html', $element)) {
                 $element = $element['html'];
             }
         }
         return Data::interpret($element);
+    }
+
+    /**
+     * Add css class to body
+     *
+     * @param array $classes
+     * @param string $class
+     * @return array
+     */
+    public function addBodyClass($classes, $class)
+    {
+        if (is_array($class)) {
+            $class = implode(' ', $class);
+        }
+        $classes[] = $class;
+        return $classes;
     }
 
     /**
@@ -112,6 +137,9 @@ class Routes implements IModule
     {
         $post          = Loc::post();
         $route_type    = Wp::wpRouteType();
+        echo '<pre>';
+        var_dump($route_type);
+        echo '</pre>';
         $templates     = $this->getTempaltes();
         $page_template = '';
 
