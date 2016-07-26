@@ -79,10 +79,10 @@ class Routes implements IModule
     {
         if (is_array($element)) {
             if (array_key_exists('class', $element)) {
-                $class = $element['class']; 
+                $class = $element['class'];
                 add_filter(
                     'body_class',
-                    function($classes) use($class) {
+                    function ($classes) use ($class) {
                         return $this->addBodyClass($classes, $class);
                     }
                 );
