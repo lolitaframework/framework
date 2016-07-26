@@ -79,7 +79,9 @@ class Wp
         if (in_array($post_type, $post_types)) {
             $types = array_merge(
                 array(
-                    $post_type => function () use ($post_type) { return is_singular($post_type); }
+                    $post_type => function () use ($post_type) {
+                        return is_singular($post_type);
+                    }
                 ),
                 $types
             );
