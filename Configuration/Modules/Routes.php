@@ -124,7 +124,7 @@ class Routes implements IModule
         $wp_query = Loc::wpQuery();
         $page = $wp_query->query_vars['name'];
         if (array_key_exists($page, $this->data)) {
-            echo $this->getHTML($this->data[ $page ]);
+            echo $this->render($this->data[ $page ]);
             exit;
         }
     }
