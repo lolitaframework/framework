@@ -75,8 +75,11 @@ class Routes implements IModule
      * @param  mixed $element route element.
      * @return string HTML code.
      */
-    private function getHTML($element)
+    private function render($element)
     {
+        if (is_callable($element)) {
+            return $element();
+        }
         if (is_array($element)) {
             if (array_key_exists('class', $element)) {
                 $class = $element['class'];
@@ -149,19 +152,18 @@ class Routes implements IModule
             // Page from template option
             // ==============================================================
 
-            echo $this->getHTML($this->data[ $page_template ]);
+            echo $this->render($this->data[ $page_template ]);
         } else if (array_key_exists($route_type, $this->data)) {
             // ==============================================================
             // Page from routes.json
             // ==============================================================
 
-            echo $this->getHTML($this->data[ $route_type ]);
+            echo $this->render($this->data[ $route_type ]);
         } else if (array_key_exists($route_type, $templates)) {
             // ==============================================================
             // Page from native wordpress route system
             // ==============================================================
-
-            return $templates[ $route_type ]();
+            $this->render($templates[ $route_type ]);
         }
         return '';
     }
