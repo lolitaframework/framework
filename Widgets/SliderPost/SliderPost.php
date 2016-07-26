@@ -242,7 +242,7 @@ class SliderPost extends AbstractWithControls
         $posts = get_posts($args);
         foreach ($posts as &$p) {
             if (has_post_thumbnail($p->ID)) {
-                $p->img    = Img::getURL(get_post_thumbnail_id($p->ID), 'full');
+                $p->img    = Img::url(get_post_thumbnail_id($p->ID), 'full');
             }
             $p->format = get_post_format($p->ID);
         }

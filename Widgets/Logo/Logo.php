@@ -63,7 +63,7 @@ class Logo extends AbstractWithControls
         if (0 === $src) {
             $src = 'http://placehold.it/50x50';
         } else {
-            $src = Img::getURL($src, 'full');
+            $src = Img::url($src, 'full');
         }
 
         $url = Arr::get($instance, 'url', '/');

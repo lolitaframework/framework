@@ -136,10 +136,7 @@ class Routes implements IModule
     public function blockDefaultTemplates($template_path)
     {
         $post          = Loc::post();
-        $route_type    = Wp::wpRouteType();
-        echo '<pre>';
-        var_dump($route_type);
-        echo '</pre>';
+        $route_type    = Wp::routeType();
         $templates     = $this->getTempaltes();
         $page_template = '';
 

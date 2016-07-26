@@ -120,7 +120,7 @@ class GoogleMap extends AbstractWithControls
             $api_key = 'AIzaSyCjQ9_UJojrZjefOFVVp6YBvoZ1Sd00_Lg';
         }
         if ($pin_img_id) {
-            $pin_img = Img::getURL($pin_img_id);
+            $pin_img = Img::url($pin_img_id);
         }
 
         $this->view(

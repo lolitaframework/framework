@@ -57,7 +57,7 @@ class Gallery extends Control implements iHaveAdminEnqueue
             foreach ($values as $key => $value) {
                 $p = get_post((int) $value);
                 if (null !== $p) {
-                    $p->src = Img::getURL($p->ID);
+                    $p->src = Img::url($p->ID);
                     array_push($result, $p);
                 }
             }

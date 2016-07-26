@@ -194,7 +194,7 @@ class Carousel extends AbstractWithControls
         $data = Arr::get($instance, $key, array());
         foreach ($data as &$list) {
             if (array_key_exists('img', $list)) {
-                $list['img_src'] = Img::getURL(
+                $list['img_src'] = Img::url(
                     (int) $list['img'],
                     'full'
                 );

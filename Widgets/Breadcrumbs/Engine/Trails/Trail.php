@@ -104,7 +104,7 @@ abstract class Trail
         $post_terms = wp_get_object_terms($post_id, $taxonomy_name, array('fields' => 'ids'));
 
         if (is_array($post_terms) && isset($post_terms[0])) {
-            $branch = Wp::getBranchWithLargestAncestors(
+            $branch = self::getBranchWithLargestAncestors(
                 $post_terms,
                 $taxonomy_name,
                 'taxonomy'
@@ -112,6 +112,51 @@ abstract class Trail
             $this->termParents(key($branch), $taxonomy_name);
         }
         return $this;
+    }
+
+
+    /**
+     * Get branch with largest ancestors
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
+     * @param  array  $object_ids    ids.
+     * @param  string $object_type   object type.
+     * @param  string $resource_type resource type.
+     * @return array largest branch.
+     */
+    public static function getBranchWithLargestAncestors(array $object_ids, $object_type, $resource_type)
+    {
+        $sorting_list = array();
+        $ancestors = self::getAncestors($object_ids, $object_type, $resource_type);
+        if (!count($ancestors)) {
+            $main_key = key($ancestors);
+        } else {
+            foreach ($ancestors as $key => $value) {
+                $sorting_list[ $key ] = count((array) $value);
+            }
+            arsort($sorting_list);
+            reset($sorting_list);
+            $main_key = key($sorting_list);
+        }
+        return array($main_key => $ancestors[ $main_key ]);
+    }
+
+    /**
+     * Get ancestors
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
+     * @param  array  $object_ids    object ids.
+     * @param  string $object_type   object type.
+     * @param  string $resource_type resource type.
+     * @return array result.
+     */
+    public static function getAncestors(array $object_ids, $object_type, $resource_type = 'taxonomy')
+    {
+        $result = array();
+        foreach ($object_ids as $id) {
+            $result[$id] = get_ancestors($id, $object_type, $resource_type);
+        }
+        return $result;
     }
 
     /**

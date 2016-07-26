@@ -48,7 +48,7 @@ class Engine
      */
     public static function getRouteClass()
     {
-        $route_class = Str::camel(Wp::wpRouteType());
+        $route_class = Str::camel(Wp::routeType());
         if ('404' === $route_class) {
             $route_class = 'Trail404';
         }

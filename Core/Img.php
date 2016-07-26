@@ -11,7 +11,7 @@ class Img
      * @param  string  $size          image size
      * @return string image url.
      */
-    public static function getURL($attachment_id = 0, $size = 'thumbnail')
+    public static function url($attachment_id = 0, $size = 'thumbnail')
     {
         if (0 === $attachment_id) {
             $attachment_id = get_post_thumbnail_id();

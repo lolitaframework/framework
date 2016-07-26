@@ -67,7 +67,7 @@ class Media extends Control implements iHaveAdminEnqueue
             array(
                 'me'    => $this,
                 'title' => $this->getAttachmentTitle($this->getValue()),
-                'src'   => Img::getURL($this->getValue()),
+                'src'   => Img::url($this->getValue()),
             )
         );
     }

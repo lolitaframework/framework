@@ -232,21 +232,21 @@ class Slider extends AbstractWithControls
         $data = Arr::get($instance, $key, array());
         foreach ($data as &$list) {
             if (array_key_exists('img', $list)) {
-                $list['img_src'] = Img::getURL(
+                $list['img_src'] = Img::url(
                     (int) $list['img'],
                     'full'
                 );
             }
 
             if (array_key_exists('background', $list)) {
-                $list['background_src'] = Img::getURL(
+                $list['background_src'] = Img::url(
                     (int) $list['background'],
                     'full'
                 );
             }
 
             if (array_key_exists('logo', $list)) {
-                $list['logo_src'] = Img::getURL(
+                $list['logo_src'] = Img::url(
                     (int) $list['logo'],
                     'full'
                 );
