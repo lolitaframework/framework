@@ -20,6 +20,6 @@ class Img
         if (is_array($thumb_url)) {
             return $thumb_url[0];
         }
-        return 'https://placeholdit.imgix.net/~text?&txt=150%C3%97150&w=150&h=150';
+        return '';
     }
 }
