@@ -3,7 +3,7 @@ namespace MyProject\LolitaFramework\Controls\Icons;
 
 use \MyProject\LolitaFramework\Core\Arr;
 use \MyProject\LolitaFramework\Core\Loc;
-use \MyProject\LolitaFramework\Core\Str;
+use \MyProject\LolitaFramework\Core\Data;
 use \MyProject\LolitaFramework\Core\View;
 
 class Pack
@@ -63,7 +63,7 @@ class Pack
      */
     public function getURL()
     {
-        return Str::compileVariables(Arr::get($this->data, 'url'));
+        return Data::interpret(Arr::get($this->data, 'url'));
     }
 
     /**

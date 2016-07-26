@@ -3,7 +3,7 @@ namespace MyProject\LolitaFramework\Configuration\Modules;
 
 use \MyProject\LolitaFramework\Configuration\Configuration;
 use \MyProject\LolitaFramework\Configuration\IModule;
-use \MyProject\LolitaFramework\Core\Str;
+use \MyProject\LolitaFramework\Core\Data;
 use \MyProject\LolitaFramework\Core\Wp;
 use \MyProject\LolitaFramework\Core\Loc;
 
@@ -82,7 +82,7 @@ class Routes implements IModule
                 $element = $element['html'];
             }
         }
-        return Str::compileVariables($element);
+        return Data::interpret($element);
     }
 
     /**

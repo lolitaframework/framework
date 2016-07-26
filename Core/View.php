@@ -25,7 +25,10 @@ class View
     public static function getDefaultFolder()
     {
         if (defined('BASE_DIR')) {
-            return BASE_DIR . DS . 'app' . DS . 'views' . DS;
+            return apply_filters(
+                'lf_default_views_folder',
+                BASE_DIR . DS . 'app' . DS . 'views' . DS
+            );
         }
         return '';
     }

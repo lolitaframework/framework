@@ -1,6 +1,8 @@
 <?php
 namespace MyProject\LolitaFramework\Core;
 
+use \MyProject\LolitaFramework;
+
 class Loc
 {
     /**
@@ -59,5 +61,16 @@ class Loc
     {
         global $wp_rewrite;
         return $wp_rewrite;
+    }
+
+    /**
+     * LolitaFramework instance
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
+     * @return LolitaFramework
+     */
+    public static function lolita()
+    {
+        return LolitaFramework::getInstance();
     }
 }

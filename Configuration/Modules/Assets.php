@@ -2,6 +2,7 @@
 namespace MyProject\LolitaFramework\Configuration\Modules;
 
 use \MyProject\LolitaFramework\Core\Str;
+use \MyProject\LolitaFramework\Core\Data;
 use \MyProject\LolitaFramework\Configuration\Configuration;
 use \MyProject\LolitaFramework\Configuration\IModule;
 
@@ -146,7 +147,7 @@ class Assets implements IModule
         if (is_array($scripts) && count($scripts)) {
             foreach ($scripts as $script) {
                 list($handle, $src, $deps, $ver, $in_footer) = $script + $defaults;
-                wp_enqueue_script($handle, Str::compileVariables($src), $deps, $ver, $in_footer);
+                wp_enqueue_script($handle, Data::interpret($src), $deps, $ver, $in_footer);
             }
         }
     }
@@ -164,7 +165,7 @@ class Assets implements IModule
         if (is_array($styles) && count($styles)) {
             foreach ($styles as $style) {
                 list($handle, $src, $deps, $ver, $media) = $style + $defaults;
-                wp_enqueue_style($handle, Str::compileVariables($src), $deps, $ver, $media);
+                wp_enqueue_style($handle, Data::interpret($src), $deps, $ver, $media);
             }
         }
     }
@@ -178,7 +179,7 @@ class Assets implements IModule
      */
     public function localize($localizes)
     {
-        $class_name = get_class(new Str);
+        $class_name = get_class(new Data);
         if (is_array($localizes) && count($localizes)) {
             foreach ($localizes as $localize) {
                 if (is_array($localize) && 3 == count($localize)) {
@@ -187,12 +188,12 @@ class Assets implements IModule
                         $l10n = array_map(
                             array(
                                 $class_name,
-                                'compileVariables'
+                                'interpret'
                             ),
                             $l10n
                         );
                     } else {
-                        $l10n = Str::compileVariables($l10n);
+                        $l10n = Data::interpret($l10n);
                     }
                     wp_localize_script($handle, $object_name, $l10n);
                 }

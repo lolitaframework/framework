@@ -513,41 +513,6 @@ class Str
     }
 
     /**
-     * Call model from string like this {{ Model::Method }}
-     *
-     * @author Guriev Eugen <gurievcreative@gmail.com>
-     * @param  string $str string to compile.
-     * @return mixed compiled string.
-     */
-    public static function compileVariables($str = '')
-    {
-        preg_match_all('/{{.*?}}/', $str, $matches);
-        if (is_array($matches)) {
-            foreach ($matches[0] as $value) {
-                $func = str_replace(array( '{{', '}}' ), '', $value);
-                $func = trim($func);
-                if (strpos($func, '::')) {
-                    $pieces = explode('::', $func);
-                    $model  = $pieces[0];
-                    $method = $pieces[1];
-                    if (class_exists($model, true)) {
-                        if (method_exists($model, $method)) {
-                            $str = $model::$method();
-                        }
-                    }
-                } else {
-                    $constants = get_defined_constants(true);
-                    $constants = $constants['user'];
-                    if (array_key_exists($func, $constants)) {
-                        $str = str_replace($value, $constants[$func], $str);
-                    }
-                }
-            }
-        }
-        return $str;
-    }
-
-    /**
      * Braces to underline
      * From: widget-lolita_logo_widget[5][gallery]
      * To: widget-lolita_logo_widget_5_gallery
@@ -601,17 +566,6 @@ class Str
         $val = trim($val, $symbol);
 
         return $val;
-    }
-
-    /**
-     * Return the default value of the given value.
-     *
-     * @param  mixed  $value
-     * @return mixed
-     */
-    public static function value($value)
-    {
-        return $value instanceof \Closure ? $value() : $value;
     }
 
     /**
