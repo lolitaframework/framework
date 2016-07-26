@@ -1,7 +1,7 @@
 <?php
 namespace MyProject\LolitaFramework\Widgets\Breadcrumbs\Engine;
 
-use \MyProject\LolitaFramework\Core\Wp;
+use \MyProject\LolitaFramework\Core\Route;
 use \MyProject\LolitaFramework\Core\Str;
 use \MyProject\LolitaFramework\Widgets\Breadcrumbs\Engine\Trails\Trail;
 
@@ -48,7 +48,7 @@ class Engine
      */
     public static function getRouteClass()
     {
-        $route_class = Str::camel(Wp::routeType());
+        $route_class = Str::camel(Route::type());
         if ('404' === $route_class) {
             $route_class = 'Trail404';
         }

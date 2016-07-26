@@ -4,7 +4,7 @@ namespace MyProject\LolitaFramework\Configuration\Modules;
 use \MyProject\LolitaFramework\Configuration\Configuration;
 use \MyProject\LolitaFramework\Configuration\IModule;
 use \MyProject\LolitaFramework\Core\Data;
-use \MyProject\LolitaFramework\Core\Wp;
+use \MyProject\LolitaFramework\Core\Route;
 use \MyProject\LolitaFramework\Core\Loc;
 
 class Routes implements IModule
@@ -138,64 +138,16 @@ class Routes implements IModule
      */
     public function blockDefaultTemplates($template_path)
     {
-        $post          = Loc::post();
-        $route_type    = Wp::routeType();
-        $templates     = $this->getTempaltes();
-        $page_template = '';
-
-        if (null !== $post) {
-            $page_template = (string) get_post_meta($post->ID, '_wp_page_template', true);
+        $types_conditions = Route::typesConditions(Loc::post());
+        foreach ($this->data as $type => $route) {
+            if (array_key_exists($type, $types_conditions)) {
+                if ($types_conditions[$type]()) {
+                    echo $this->render($route);
+                    exit;
+                }
+            }
         }
-
-        if (array_key_exists($page_template, $this->data)) {
-            // ==============================================================
-            // Page from template option
-            // ==============================================================
-
-            echo $this->render($this->data[ $page_template ]);
-        } else if (array_key_exists($route_type, $this->data)) {
-            // ==============================================================
-            // Page from routes.json
-            // ==============================================================
-
-            echo $this->render($this->data[ $route_type ]);
-        } else if (array_key_exists($route_type, $templates)) {
-            // ==============================================================
-            // Page from native wordpress route system
-            // ==============================================================
-            $this->render($templates[ $route_type ]);
-        }
-        return '';
-    }
-
-    /**
-     * Get all potential templates
-     *
-     * @author Guriev Eugen <gurievcreative@gmail.com>
-     * @return array potential templates
-     */
-    public static function getTempaltes()
-    {
-        return array(
-            '/'                 => 'get_index_template',
-            'embed'             => 'get_embed_template',
-            '404'               => 'get_404_template',
-            'search'            => 'get_search_template',
-            'front_page'        => 'get_front_page_template',
-            'home'              => 'get_home_template',
-            'post_type_archive' => 'get_post_type_archive_template',
-            'taxonomy'          => 'get_taxonomy_template',
-            'attachment'        => 'get_attachment_template',
-            'single'            => 'get_single_template',
-            'page'              => 'get_page_template',
-            'singular'          => 'get_singular_template',
-            'category'          => 'get_category_template',
-            'tag'               => 'get_tag_template',
-            'author'            => 'get_author_template',
-            'date'              => 'get_date_template',
-            'archive'           => 'get_archive_template',
-            'paged'             => 'get_paged_template',
-        );
+        return $template_path;
     }
 
     /**
