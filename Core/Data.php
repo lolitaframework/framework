@@ -2,8 +2,7 @@
 
 namespace MyProject\LolitaFramework\Core;
 
-class Data
-{
+class Data{
 
     /**
      * Interpret data to value
@@ -16,6 +15,9 @@ class Data
         if (is_callable($data)) {
             return $data();
         }
+        if (!is_string($data)) {
+            return $data;
+        }
         preg_match_all('/{{.*?}}/', $data, $matches);
         if (is_array($matches)) {
             foreach ($matches[0] as $value) {
@@ -25,7 +27,12 @@ class Data
                     list($model, $method) = explode('::', $func);
                     if (class_exists($model, true)) {
                         if (method_exists($model, $method)) {
-                            $data = str_replace($value, $model::$method(), $data);
+                            $func_result = $model::$method();
+                            if (is_string($func_result)) {
+                                $data = str_replace($value, $func_result, $data);
+                            } else {
+                                $data = $func_result;
+                            }
                         }
                     }
                 } else {
