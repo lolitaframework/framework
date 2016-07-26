@@ -2,7 +2,8 @@
 
 namespace MyProject\LolitaFramework\Core;
 
-class Data{
+class Data
+{
 
     /**
      * Interpret data to value
