@@ -6,7 +6,7 @@ class Route
 
     /**
      * Base route info
-     * 
+     *
      * @return array
      */
     public static function base()
@@ -124,9 +124,10 @@ class Route
      * Get all types and conditions $type => $condition
      *
      * @author Guriev Eugen <gurievcreative@gmail.com>
+     * @param mixes $post
      * @return array
      */
-    public static function typesConditions()
+    public static function typesConditions($post = null)
     {
         $types = Arr::pluck(self::base(), 'condition', 'type');
 
@@ -154,6 +155,20 @@ class Route
                     return is_tax($tax_name);
                 },
                 $tax_name
+            );
+        }
+
+        // ==============================================================
+        // Add template page
+        // ==============================================================
+        if (null !== $post) {
+            $page_template = (string) get_post_meta($post->ID, '_wp_page_template', true);
+            $types = Arr::prepend(
+                $types,
+                function () {
+                    return true;
+                },
+                $page_template
             );
         }
         return $types;
