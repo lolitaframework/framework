@@ -162,14 +162,16 @@ class Route
         // Add template page
         // ==============================================================
         if (null !== $post) {
-            $page_template = (string) get_post_meta($post->ID, '_wp_page_template', true);
-            $types = Arr::prepend(
-                $types,
-                function () {
-                    return true;
-                },
-                $page_template
-            );
+            $page_template = trim((string) get_post_meta($post->ID, '_wp_page_template', true));
+            if ('' !== $page_template) {
+                $types = Arr::prepend(
+                    $types,
+                    function () {
+                        return true;
+                    },
+                    $page_template
+                );
+            }
         }
         return $types;
     }
