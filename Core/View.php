@@ -56,7 +56,7 @@ class View
         require($path);
 
         // Return the compiled view and terminate the output buffer.
-        return self::minimizeBeforeOutput(ltrim(ob_get_clean()));
+        return self::minimize(ltrim(ob_get_clean()));
     }
 
     /**
@@ -66,7 +66,7 @@ class View
      * @param  string $buffer to minimize.
      * @return string minimized.
      */
-    public static function minimizeBeforeOutput($buffer)
+    public static function minimize($buffer)
     {
         if (true === WP_DEBUG) {
             return $buffer;
