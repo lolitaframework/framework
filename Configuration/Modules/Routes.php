@@ -72,6 +72,7 @@ class Routes implements IModule
      * Get HTML from route element
      *
      * @author Guriev Eugen <gurievcreative@gmail.com>
+     * @throws Route function %s not found!
      * @param  mixed $element route element.
      * @return string HTML code.
      */
@@ -94,7 +95,16 @@ class Routes implements IModule
                 $element = $element['html'];
             }
         }
-        return Data::interpret($element);
+        $rendered_data = Data::interpret($element);
+        if (!is_string($rendered_data)) {
+            throw new \Exception(
+                sprintf(
+                    __('Route function %s not found!', 'lolita'),
+                    json_encode($element)
+                )
+            );
+        }
+        return $rendered_data;
     }
 
     /**
