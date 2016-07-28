@@ -9,7 +9,7 @@
     <div class="media-preview <?php echo $me->previewHide() ?>">
         <div class="left">
             <div class="media-preview-inner">
-                <img class="media-thumbnail " alt="<?php echo esc_attr($title); ?>" src="<?php echo $src; ?>" data-id="<?php echo $value; ?>" data-src="<?php echo $src; ?>">
+                <img class="media-thumbnail " alt="<?php echo esc_attr($title); ?>" src="<?php echo $src; ?>" data-id="<?php echo $me->getValue(); ?>" data-src="<?php echo $src; ?>">
             </div>
         </div>
         <div class="right">
