@@ -8,7 +8,7 @@ use \MyProject\LolitaFramework;
 use \MyProject\LolitaFramework\Widgets\IHaveBeforeInit;
 use \MyProject\LolitaFramework\Controls\Controls;
 
-class SocialNetworks extends AbstractWithControls  implements IHaveBeforeInit
+class SocialNetworks extends AbstractWithControls implements IHaveBeforeInit
 {
     /**
      * Register widget with WordPress.
