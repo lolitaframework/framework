@@ -38,6 +38,23 @@ namespace LolitaFramework {
                 '.lf_icon_packs',
                 (e:any) => this.exit(e)
             );
+
+            jQuery(document).on(
+                'widget-updated',
+                () => this.update()
+            );
+
+            jQuery(document).on(
+                'widget-added',
+                () => this.update()
+            );
+            this.update();
+        }
+
+        /**
+         * Icon update
+         */
+        update() {
             jQuery('.lf_icons_wrapper input').each(
                 (index, obj) => this.setIcon(jQuery(obj))
             );

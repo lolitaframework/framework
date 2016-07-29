@@ -40,6 +40,7 @@ var LolitaFramework;
             this.$thumbnail = this.$el.find('img.media-thumbnail');
         };
         Media.prototype.add = function (e) {
+            console.log('click');
             this.rebind(jQuery(e.currentTarget).closest('.lolita-media-control'));
             this.frame.open();
         };

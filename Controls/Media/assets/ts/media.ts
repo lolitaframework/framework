@@ -123,6 +123,7 @@ namespace LolitaFramework {
          * @param {any} e event.
          */
         add(e:any) {
+            console.log('click');
             this.rebind(jQuery(e.currentTarget).closest('.lolita-media-control'));
             this.frame.open();
         }

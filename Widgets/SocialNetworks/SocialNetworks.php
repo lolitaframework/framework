@@ -5,8 +5,10 @@ use \MyProject\LolitaFramework\Widgets\AbstractWithControls\AbstractWithControls
 use \MyProject\LolitaFramework\Core\View;
 use \MyProject\LolitaFramework\Core\Arr;
 use \MyProject\LolitaFramework;
+use \MyProject\LolitaFramework\Widgets\IHaveBeforeInit;
+use \MyProject\LolitaFramework\Controls\Controls;
 
-class SocialNetworks extends AbstractWithControls
+class SocialNetworks extends AbstractWithControls  implements IHaveBeforeInit
 {
     /**
      * Register widget with WordPress.
@@ -19,9 +21,20 @@ class SocialNetworks extends AbstractWithControls
             __('Lolita Social networks', 'lolita'),
             array(
                 'description' => __('Social networks widget', 'lolita'),
-                'classname'   => 'lf_social_networks',
+                'classname'   => 'lf_interface_social_networks',
             )
         );
+    }
+
+    /**
+     * This function run before widgets_init hook
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
+     * @return void
+     */
+    public static function beforeInit()
+    {
+        Controls::loadScriptsAndStyles(static::getControlsData());
     }
 
     /**

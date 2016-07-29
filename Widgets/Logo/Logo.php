@@ -20,7 +20,7 @@ class Logo extends AbstractWithControls
             __('Lolita logo widget', 'lolita'),
             array(
                 'description' => __('Lolita logo widget', 'lolita'),
-                'classname' => 'lf_logo',
+                'classname' => 'lf_interface_logo',
             )
         );
     }

@@ -125,6 +125,10 @@ class Controls
             if (Cls::isImplements($class_name, __NAMESPACE__ . NS . 'IHaveAdminEnqueue')) {
                 add_action('admin_enqueue_scripts', array($class_name, 'adminEnqueue'));
             }
+
+            if ('Repeater' === $arguments['__TYPE__'] && is_array($arguments['controls'])) {
+                self::loadScriptsAndStyles($arguments['controls']);
+            }
         }
     }
 

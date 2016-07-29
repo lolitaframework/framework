@@ -9,8 +9,14 @@ var LolitaFramework;
             jQuery(document).on('keyup', '.lf_icons_wrapper input', function (e) { return _this.change(e); });
             jQuery(document).on('click', function (e) { return _this.leaveFocus(e); });
             jQuery(document).on('keydown', '.lf_icon_packs', function (e) { return _this.exit(e); });
-            jQuery('.lf_icons_wrapper input').each(function (index, obj) { return _this.setIcon(jQuery(obj)); });
+            jQuery(document).on('widget-updated', function () { return _this.update(); });
+            jQuery(document).on('widget-added', function () { return _this.update(); });
+            this.update();
         }
+        IconControl.prototype.update = function () {
+            var _this = this;
+            jQuery('.lf_icons_wrapper input').each(function (index, obj) { return _this.setIcon(jQuery(obj)); });
+        };
         IconControl.prototype.exit = function (e) {
             var me = this;
             if (27 === e.keyCode) {
