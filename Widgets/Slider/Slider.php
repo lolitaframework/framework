@@ -18,7 +18,8 @@ class Slider extends AbstractWithControls
     {
         parent::__construct(
             __('Lolita slider widget', 'lolita'),
-            array('description' => __('Lolita slider widget', 'lolita'))
+            array('description' => __('Lolita slider widget', 'lolita'),
+                  'classname' => 'lf_interface_slider',)
         );
     }
 
@@ -93,6 +94,11 @@ class Slider extends AbstractWithControls
     {
         return array(
             array(
+                'name'     => 'title',
+                '__TYPE__' => 'Text',
+                'label'    => 'Title',
+            ),
+            array(
                 'name'     => 'slider_type',
                 '__TYPE__' => 'Select',
                 'label'    => 'Slider type',
@@ -100,6 +106,8 @@ class Slider extends AbstractWithControls
                     '1' => __('Style 1', 'lolita'),
                     '2' => __('Style 2', 'lolita'),
                     '3' => __('Style 3', 'lolita'),
+                    '4' => __('Style 4', 'lolita'),
+                    '5' => __('Style 5', 'lolita'),
                 ),
             ),
             array(
@@ -190,6 +198,43 @@ class Slider extends AbstractWithControls
                     ),
                 ),
             ),
+            array(
+                'name'     => 'style_4',
+                '__TYPE__' => 'Repeater',
+                'label'    => 'Style 4',
+                'controls' => array(
+                    array(
+                        'name'     => 'img',
+                        '__TYPE__' => 'Media',
+                        'label'    => 'Image',
+                    ),
+                ),
+            ),
+            array(
+                'name'     => 'style_5',
+                '__TYPE__' => 'Repeater',
+                'label'    => 'Style 5',
+                'controls' => array(
+                    array(
+                        'name'     => 'meta',
+                        '__TYPE__' => 'Text',
+                        'type'     => 'text',
+                        'label'    => 'Meta',
+                    ),
+                    array(
+                        'name'     => 'title',
+                        '__TYPE__' => 'Text',
+                        'type'     => 'text',
+                        'label'    => 'Title',
+                    ),
+                    array(
+                        'name'     => 'file',
+                        '__TYPE__' => 'Media',
+                        'type'     => 'media',
+                        'label'    => 'File',
+                    ),
+                ),
+            ),
         );
     }
 
@@ -206,7 +251,7 @@ class Slider extends AbstractWithControls
     public function widget($args, $instance)
     {
         add_action('wp_enqueue_scripts', array(__CLASS__, 'wpAddScriptsAndStyles'));
-        echo View::make(
+        $this->view(
             sprintf(
                 '%sstyle_%s.php',
                 dirname(__FILE__) . DS . 'views' . DS,
@@ -214,7 +259,8 @@ class Slider extends AbstractWithControls
             ),
             array(
                 'args'     => $args,
-                'instance' => $this->prepareInstance($instance),
+                'instance' => $instance,
+                'prepared' => $this->prepareInstance($instance),
             )
         );
     }

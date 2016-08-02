@@ -6,7 +6,7 @@
     <ul>
     <?php foreach ($icons as $icon) : ?>
         <li class="lf_interface_social_networks__item">
-            <a href="<?php echo $icon['url']; ?>"><i class="<?php echo $icon[ 'icon_css' ]; ?>"></i><?php echo $icon['content'] ?></a>
+            <a href="<?php echo $icon['url']; ?>" target="__blank"><i class="<?php echo $icon[ 'icon_css' ]; ?>"></i><?php echo $icon['content'] ?></a>
         </li>
     <?php endforeach ?>
     </ul>
