@@ -43,6 +43,7 @@ class View
      */
     public static function make($path, array $data = array())
     {
+        $data = array_merge($data, Loc::helpers());
         // If path setted like this "someview" then
         // We need add default folder path and extension .php
         if (!self::isHaveExtension($path)) {

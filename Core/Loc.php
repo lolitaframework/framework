@@ -6,6 +6,20 @@ use \MyProject\LolitaFramework;
 class Loc
 {
     /**
+     * Get all helpers
+     *
+     * @return array Helpers.
+     */
+    public static function helpers()
+    {
+        return array(
+            'Img'  => __NAMESPACE__ . NS . 'Img',
+            'Arr'  => __NAMESPACE__ . NS . 'Arr',
+            'Str'  => __NAMESPACE__ . NS . 'Str',
+            'Data' => __NAMESPACE__ . NS . 'Data',
+        );
+    }
+    /**
      * Get wp_filesystem
      *
      * @author Guriev Eugen <gurievcreative@gmail.com>
