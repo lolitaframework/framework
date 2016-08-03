@@ -135,7 +135,7 @@ class Parser
 
     /**
      * JSON from path
-     * 
+     *
      * @return Parser instance.
      */
     private function contents()
