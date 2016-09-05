@@ -5,6 +5,7 @@ use \MyProject\LolitaFramework\Controls\Control;
 use \MyProject\LolitaFramework\Core\Arr;
 use \MyProject\LolitaFramework\Core\Img;
 use \MyProject\LolitaFramework\Core\View;
+use \MyProject\LolitaFramework\Core\Url;
 use \MyProject\LolitaFramework\Controls\IHaveAdminEnqueue;
 use \MyProject\LolitaFramework;
 
@@ -22,7 +23,7 @@ class Media extends Control implements iHaveAdminEnqueue
         // ==============================================================
         wp_enqueue_style(
             'lf-media-control',
-            LolitaFramework::getURLByDirectory(__DIR__) . '/assets/css/media.css'
+            Url::toUrl(__DIR__) . '/assets/css/media.css'
         );
         wp_enqueue_style(
             'lf-controls',
@@ -37,7 +38,7 @@ class Media extends Control implements iHaveAdminEnqueue
         wp_enqueue_script('underscore');
         wp_enqueue_script(
             'lf-media-control',
-            LolitaFramework::getURLByDirectory(__DIR__) . '/assets/js/media.js',
+            Url::toUrl(__DIR__) . '/assets/js/media.js',
             array('jquery'),
             false,
             true
@@ -56,9 +57,10 @@ class Media extends Control implements iHaveAdminEnqueue
             array_merge(
                 $this->getAttributes(),
                 array(
-                    'name' => $this->getName(),
-                    'type' => 'hidden',
-                    'value' => $this->getValue(),
+                    'name'                        => $this->getName(),
+                    'type'                        => 'hidden',
+                    'value'                       => $this->getValue(),
+                    'data-customize-setting-link' => $this->getName(),
                 )
             )
         );

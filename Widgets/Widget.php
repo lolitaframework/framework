@@ -115,7 +115,11 @@ class Widget extends WP_Widget
     public function widget($args, $instance)
     {
         if (is_callable($this->view_file)) {
-            $this->view_file($args, $instance);
+            call_user_func(
+                $this->view_file,
+                $args,
+                $instance
+            );
         } else {
             $this->view(
                 $this->view_file,
@@ -141,9 +145,15 @@ class Widget extends WP_Widget
         if ($this->controls) {
             echo $this->renderControls($instance);
         } else {
-            View::make($this->form, $instance);
+            if ($this->form) {
+                echo View::make($this->form, $instance);
+            } else {
+                echo View::make(__DIR__ . DS . 'views' . DS . 'empty_form.php');
+            }
         }
     }
+
+
 
     /**
      * Render controls if we have it

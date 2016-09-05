@@ -1,6 +1,8 @@
 <?php
 namespace MyProject\LolitaFramework\Core;
 
+use \MyProject\LolitaFramework;
+
 class View
 {
     /**
@@ -24,13 +26,10 @@ class View
      */
     public static function getDefaultFolder()
     {
-        if (defined('BASE_DIR')) {
-            return apply_filters(
-                'lf_default_views_folder',
-                BASE_DIR . DS . 'app' . DS . 'views' . DS
-            );
-        }
-        return '';
+        return apply_filters(
+            'lf_default_views_folder',
+            LolitaFramework::baseDir() . DS . 'app' . DS . 'views' . DS
+        );
     }
 
     /**
@@ -69,7 +68,7 @@ class View
      */
     public static function minimize($buffer)
     {
-        if (true === WP_DEBUG) {
+        if (true == WP_DEBUG) {
             return $buffer;
         }
         $search = array(

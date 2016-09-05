@@ -16,7 +16,7 @@
     margin-left: -20px;
     z-index: 99999;
 }
-#animation2.spinner {
+#animation2.lf_spinner {
     width: 40px;
     height: 40px;
     position: relative;
@@ -58,7 +58,7 @@
 }
 </style>
 <div class="lf_css_loader_bg <?php echo $class ?>">
-    <div id="animation2" class="spinner">
+    <div id="animation2" class="lf_spinner">
         <div class="double-bounce1"></div>
         <div class="double-bounce2"></div>
     </div>

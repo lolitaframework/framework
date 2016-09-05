@@ -135,6 +135,7 @@ namespace LolitaFramework {
             e.preventDefault();
             jQuery(e.currentTarget).closest('.lf_icons_wrapper').find('input').val(jQuery(e.currentTarget).attr('href').replace('#', ''));
             this.setIcon(jQuery(e.currentTarget).closest('.lf_icons_wrapper').find('input'));
+            jQuery(e.currentTarget).closest('.lf_icons_wrapper').find('input').trigger('change');
         }
 
         /**

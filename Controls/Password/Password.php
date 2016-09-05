@@ -18,9 +18,10 @@ class Password extends Control
             array_merge(
                 $this->getAttributes(),
                 array(
-                    'name'  => $this->getName(),
-                    'value' => $this->getValue(),
-                    'type'  => 'password',
+                    'name'                        => $this->getName(),
+                    'value'                       => $this->getValue(),
+                    'type'                        => 'password',
+                    'data-customize-setting-link' => $this->getName(),
                 )
             )
         );

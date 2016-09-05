@@ -16,7 +16,7 @@
     margin-left: -20px;
     z-index: 99999
 }
-#animation1.spinner {
+#animation1.lf_spinner {
     width: 40px;
     height: 40px;
     background-color: <?php echo $color ?>;
@@ -50,5 +50,5 @@
 }
 </style>
 <div class="lf_css_loader_bg <?php echo $class ?>">
-    <div id="animation1" class="spinner"></div>
+    <div id="animation1" class="lf_spinner"></div>
 </div>

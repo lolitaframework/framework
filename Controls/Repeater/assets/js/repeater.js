@@ -52,7 +52,6 @@ var LolitaFramework;
                 var current_index = index + 1;
                 jQuery(this).find('.lolita-repeater-order span').text(current_index);
                 jQuery(this).find('input, textarea, select').each(function () {
-                    console.log(jQuery(this).attr('name'));
                     jQuery(this).attr('name', me.reName(me.$el.data('name'), jQuery(this).attr('name'), current_index));
                     jQuery(this).attr('id', me.reID(me.$el.attr('id'), jQuery(this).attr('id'), current_index));
                 });

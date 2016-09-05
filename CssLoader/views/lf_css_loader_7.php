@@ -17,11 +17,11 @@
     margin-left: -35px;
     z-index: 99999;
 }
-#animation7.spinner {
+#animation7.lf_spinner {
     width: 70px;
     text-align: center;
 }
-#animation7.spinner > div {
+#animation7.lf_spinner > div {
     width: 18px;
     height: 18px;
     background-color: <?php echo $color ?>;
@@ -30,11 +30,11 @@
     -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
     animation: sk-bouncedelay 1.4s infinite ease-in-out both;
 }
-#animation7.spinner .bounce1 {
+#animation7.lf_spinner .bounce1 {
     -webkit-animation-delay: -0.32s;
     animation-delay: -0.32s;
 }
-#animation7.spinner .bounce2 {
+#animation7.lf_spinner .bounce2 {
     -webkit-animation-delay: -0.16s;
     animation-delay: -0.16s;
 }
@@ -58,7 +58,7 @@
 }
 </style>
 <div class="lf_css_loader_bg <?php echo $class ?>">
-    <div id="animation7" class="spinner">
+    <div id="animation7" class="lf_spinner">
         <div class="bounce1"></div>
         <div class="bounce2"></div>
         <div class="bounce3"></div>

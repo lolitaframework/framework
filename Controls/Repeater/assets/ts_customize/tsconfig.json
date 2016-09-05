@@ -1,0 +1,12 @@
+{
+	"compilerOptions": {
+		"noImplicitAny": true,
+		"removeComments": true,
+		"preserveConstEnums": true,
+		"out": "../js/customize_repeater.js",
+		"sourceMap": true
+	},
+	"files": [
+		"repeater.ts"
+	]
+}

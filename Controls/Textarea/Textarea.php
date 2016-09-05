@@ -18,7 +18,8 @@ class Textarea extends Control
             array_merge(
                 $this->getAttributes(),
                 array(
-                    'name' => $this->getName(),
+                    'name'                        => $this->getName(),
+                    'data-customize-setting-link' => $this->getName(),
                 )
             )
         );

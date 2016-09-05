@@ -86,51 +86,10 @@ class Parser
         if (array_key_exists('controls', $this->data)) {
             $this->data['form'] = array($this, 'renderForm');
         }
+        if (!array_key_exists('form', $this->data)) {
+            $this->data['form'] = null;
+        }
         return $this;
-    }
-
-    /**
-     * Render form
-     *
-     * @param  WP_Widget $me
-     * @return string HTML
-     */
-    public function renderForm($me)
-    {
-        $controls_data = $this->data['controls'];
-        $controls = new Controls;
-        foreach ($controls_data as &$control) {
-            $control['old_name'] = $control['name'];
-            $control['name']     = $me->get_field_name($control['name']);
-        }
-
-        $controls->generateControls($controls_data);
-
-        foreach ($controls->collection as $control) {
-            // ==============================================================
-            // Set new value
-            // ==============================================================
-            $control->setValue(
-                Arr::get($instance, $control->old_name, '')
-            );
-            // ==============================================================
-            // Fill new attributes
-            // ==============================================================
-            $attributes = $control->getAttributes();
-            $control->setAttributes(
-                array_merge(
-                    $attributes,
-                    array(
-                        'class' => $control->old_name . '-class widefat ' . Arr::get($attributes, 'class', ''),
-                        'id'    => $me->get_field_id($control->getID()),
-                    )
-                )
-            );
-        }
-        return $controls->render(
-            dirname(__FILE__) . DS . 'views' . DS . 'collection.php',
-            dirname(__FILE__) . DS . 'views' . DS . 'row.php'
-        );
     }
 
     /**

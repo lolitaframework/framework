@@ -17,7 +17,7 @@ class Sidebars extends Init implements IModule
      */
     public function __construct($data = null)
     {
-        $this->data = (array) $data;
+        $this->data = $data;
         $this->init();
     }
 

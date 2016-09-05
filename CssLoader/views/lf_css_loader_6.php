@@ -17,7 +17,7 @@
     margin-left: -20px;
     z-index: 99999;
 }
-#animation6.spinner {
+#animation6.lf_spinner {
     width: 40px;
     height: 40px;
     position: relative;
@@ -74,7 +74,7 @@
 }
 </style>
 <div class="lf_css_loader_bg <?php echo $class ?>">
-    <div id="animation6" class="spinner">
+    <div id="animation6" class="lf_spinner">
         <div class="dot1"></div>
         <div class="dot2"></div>
     </div>

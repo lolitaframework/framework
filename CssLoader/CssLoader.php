@@ -4,6 +4,7 @@ namespace MyProject\LolitaFramework\CssLoader;
 use \MyProject\LolitaFramework;
 use \MyProject\LolitaFramework\Core\Arr;
 use \MyProject\LolitaFramework\Core\View;
+use \MyProject\LolitaFramework\Core\Url;
 
 class CssLoader
 {
@@ -18,6 +19,8 @@ class CssLoader
         add_action('admin_enqueue_scripts', array(&$this, 'addScriptsAndStyles'));
         add_action('wp_footer', array(&$this, 'renderTemplates'));
         add_action('admin_footer', array(&$this, 'renderTemplates'));
+        add_action('customize_controls_enqueue_scripts', array(&$this, 'addScriptsAndStyles'));
+        add_action('customize_controls_enqueue_scripts', array(&$this, 'renderTemplates'));
         $this->addShortcodes();
     }
 
@@ -39,7 +42,7 @@ class CssLoader
      */
     public function addScriptsAndStyles()
     {
-        $assets = LolitaFramework::getURLByDirectory(__DIR__) . DS . 'assets' . DS;
+        $assets = Url::toUrl(__DIR__) . DS . 'assets' . DS;
         // ==============================================================
         // Scripts
         // ==============================================================
@@ -62,7 +65,7 @@ class CssLoader
     {
         echo View::make(__DIR__ . DS . 'views' . DS . 'lf_css_loader.php');
 
-        $assets = LolitaFramework::getURLByDirectory(__DIR__) . DS . 'assets' . DS;
+        $assets = Url::toUrl(__DIR__) . DS . 'assets' . DS;
         // ==============================================================
         // Styles
         // ==============================================================

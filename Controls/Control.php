@@ -4,6 +4,7 @@ namespace MyProject\LolitaFramework\Controls;
 use \MyProject\LolitaFramework\Core\Str;
 use \MyProject\LolitaFramework\Core\Arr;
 use \MyProject\LolitaFramework\Core\View;
+use \MyProject\LolitaFramework\Core\Url;
 use \MyProject\LolitaFramework;
 
 abstract class Control
@@ -59,7 +60,7 @@ abstract class Control
         $this->setName($name);
         $this->setValue($value);
         $this->setAttributes($attributes);
-        $this->label = $label;
+        $this->label       = $label;
         $this->description = $description;
     }
 
@@ -185,7 +186,7 @@ abstract class Control
      */
     public static function getURL()
     {
-        return LolitaFramework::getURLByDirectory(__DIR__);
+        return Url::toUrl(__DIR__);
     }
 
     /**

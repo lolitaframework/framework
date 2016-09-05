@@ -5,6 +5,7 @@ use \MyProject\LolitaFramework\Controls\Control;
 use \MyProject\LolitaFramework\Controls\IHaveAdminEnqueue;
 use \MyProject\LolitaFramework\Core\Arr;
 use \MyProject\LolitaFramework;
+use \MyProject\LolitaFramework\Core\Url;
 
 class Icons extends Control implements iHaveAdminEnqueue
 {
@@ -32,8 +33,8 @@ class Icons extends Control implements iHaveAdminEnqueue
             $pack = new Pack($file);
             $this->packs[ $pack->getName() ] = $pack;
         }
-
         add_action('admin_footer', array(&$this, 'renderStylesForIcons'));
+        $this->renderStylesForIcons();
     }
     
     /**
@@ -48,9 +49,10 @@ class Icons extends Control implements iHaveAdminEnqueue
             array_merge(
                 $this->getAttributes(),
                 array(
-                    'name' => $this->getName(),
-                    'id'   => $this->getID(),
-                    'type' => 'text',
+                    'name'                        => $this->getName(),
+                    'id'                          => $this->getID(),
+                    'type'                        => 'text',
+                    'data-customize-setting-link' => $this->getName(),
                 )
             )
         );
@@ -100,7 +102,7 @@ class Icons extends Control implements iHaveAdminEnqueue
         // ==============================================================
         wp_enqueue_style(
             'lf-icons-control',
-            LolitaFramework::getURLByDirectory(__DIR__) . '/assets/css/icons.css'
+            Url::toUrl(__DIR__) . '/assets/css/icons.css'
         );
         wp_enqueue_style(
             'lf-controls',
@@ -113,10 +115,16 @@ class Icons extends Control implements iHaveAdminEnqueue
         wp_enqueue_script('jquery');
         wp_enqueue_script(
             'lf-icons-control',
-            LolitaFramework::getURLByDirectory(__DIR__) . '/assets/js/icon_control.js',
+            Url::toUrl(__DIR__) . '/assets/js/icon_control.js',
             array('jquery'),
             false,
             true
+        );
+
+        wp_enqueue_script(
+            'lolita-customize-icons-control',
+            Url::toUrl(__DIR__ . DS . 'assets' . DS . 'js' . DS . 'customize_icons.js'),
+            array('jquery', 'lf-icons-control', 'customize-base', 'customize-controls')
         );
     }
 }

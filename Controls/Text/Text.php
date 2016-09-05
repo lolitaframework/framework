@@ -18,9 +18,11 @@ class Text extends Control
             array_merge(
                 $this->getAttributes(),
                 array(
-                    'name'  => $this->getName(),
-                    'value' => $this->getValue(),
-                    'type'  => 'text',
+                    'name'                        => $this->getName(),
+                    'id'                          => $this->getId(),
+                    'value'                       => $this->getValue(),
+                    'type'                        => 'text',
+                    'data-customize-setting-link' => $this->getName(),
                 )
             )
         );

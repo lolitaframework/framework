@@ -1,5 +1,4 @@
 <div id="<?php echo $me->getID(); ?>"  class="lolita-repeater-container" data-name="<?php echo $me->getName() ?>" data-small-name="<?php echo $me->old_name; ?>">
-
     <!-- underscore template -->
     <div id="<?php echo $me->getID();?>_template" class="underscore_template">
         <?php echo $me->getTemplate() ?>
@@ -18,12 +17,10 @@
                             <tbody>
                                 <?php foreach ($controls->collection as $k => $control) : ?>
                                     <tr class="lolita-field-container">
-                                        <th class="lolita-label">
-                                            <label for="<?php echo $control->getID(); ?>">
+                                        <td>
+                                            <label for="<?php echo $control->getID(); ?>" class="lolita-label">
                                                 <?php echo $control->label ?>
                                             </label>
-                                        </th>
-                                        <td>
                                             <?php echo $control->render(); ?>
                                             <?php if ('' !== $control->description) : ?>
                                                 <small><?php echo $control->description; ?></small>

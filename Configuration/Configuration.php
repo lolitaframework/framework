@@ -3,6 +3,7 @@ namespace MyProject\LolitaFramework\Configuration;
 
 use \MyProject\LolitaFramework\Core\Loc;
 use \MyProject\LolitaFramework\Core\Cls;
+use \MyProject\LolitaFramework;
 
 class Configuration
 {
@@ -165,7 +166,10 @@ class Configuration
      */
     private function getDefaultSettingsPath()
     {
-        return apply_filters('lf_configuration_settings_path', dirname(LF_DIR).'/app'.DS.'config'.DS);
+        return apply_filters(
+            'lf_configuration_settings_path',
+            LolitaFramework::baseDir() . '/app' . DS . 'config' . DS
+        );
     }
 
     /**

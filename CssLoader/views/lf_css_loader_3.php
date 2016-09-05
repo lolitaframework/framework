@@ -16,13 +16,13 @@
     margin-left: -25px;
     z-index: 99999;
 }
-#animation3.spinner {
+#animation3.lf_spinner {
     width: 50px;
     height: 40px;
     text-align: center;
     font-size: 10px;
 }
-#animation3.spinner > div {
+#animation3.lf_spinner > div {
     background-color: <?php echo $color ?>;
     height: 100%;
     width: 6px;
@@ -30,19 +30,19 @@
     -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
     animation: sk-stretchdelay 1.2s infinite ease-in-out;
 }
-#animation3.spinner .rect2 {
+#animation3.lf_spinner .rect2 {
     -webkit-animation-delay: -1.1s;
     animation-delay: -1.1s;
 }
-#animation3.spinner .rect3 {
+#animation3.lf_spinner .rect3 {
     -webkit-animation-delay: -1.0s;
     animation-delay: -1.0s;
 }
-#animation3.spinner .rect4 {
+#animation3.lf_spinner .rect4 {
     -webkit-animation-delay: -0.9s;
     animation-delay: -0.9s;
 }
-#animation3.spinner .rect5 {
+#animation3.lf_spinner .rect5 {
     -webkit-animation-delay: -0.8s;
     animation-delay: -0.8s;
 }
@@ -66,7 +66,7 @@
 }
 </style>
 <div class="lf_css_loader_bg <?php echo $class ?>">
-    <div id="animation3" class="spinner">
+    <div id="animation3" class="lf_spinner">
         <div class="rect1"></div>
         <div class="rect2"></div>
         <div class="rect3"></div>

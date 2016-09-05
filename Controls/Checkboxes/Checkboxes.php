@@ -45,9 +45,10 @@ class Checkboxes extends Control
             array_merge(
                 $this->getAttributes(),
                 array(
-                    'name' => '',
-                    'type' => 'checkbox',
-                    'id'   => '',
+                    'name'                        => '',
+                    'type'                        => 'checkbox',
+                    'id'                          => '',
+                    'data-customize-setting-link' => $this->getName(),
                 )
             )
         );

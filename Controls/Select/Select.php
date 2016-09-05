@@ -57,8 +57,9 @@ class Select extends Control
             array_merge(
                 $this->getAttributes(),
                 array(
-                    'name' => $this->getName(),
-                    'id'   => $this->getID(),
+                    'name'                        => $this->getName(),
+                    'id'                          => $this->getID(),
+                    'data-customize-setting-link' => $this->getName(),
                 )
             )
         );

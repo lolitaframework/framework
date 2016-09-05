@@ -13,7 +13,7 @@ namespace LolitaFramework {
          * Repeaters collection
          * @type {any}
          */
-        collection: any = [];
+        public collection: any = [];
 
         /**
          * Repeaters controls

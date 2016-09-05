@@ -1,16 +1,16 @@
 <script id="lolita_css_loader_tmp_1" type="text/template">
-    <div id="animation1" class="spinner"></div>
+    <div id="animation1" class="lf_spinner"></div>
 </script>
 
 <script id="lolita_css_loader_tmp_2" type="text/template">
-    <div id="animation2" class="spinner">
+    <div id="animation2" class="lf_spinner">
         <div class="double-bounce1"></div>
         <div class="double-bounce2"></div>
     </div>
 </script>
 
 <script id="lolita_css_loader_tmp_3" type="text/template">
-    <div id="animation3" class="spinner">
+    <div id="animation3" class="lf_spinner">
         <div class="rect1"></div>
         <div class="rect2"></div>
         <div class="rect3"></div>
@@ -20,25 +20,25 @@
 </script>
 
 <script id="lolita_css_loader_tmp_4" type="text/template">
-    <div id="animation4" class="spinner">
+    <div id="animation4" class="lf_spinner">
         <div class="cube1"></div>
         <div class="cube2"></div>
     </div>
 </script>
 
 <script id="lolita_css_loader_tmp_5" type="text/template">
-    <div id="animation5" class="spinner"></div>
+    <div id="animation5" class="lf_spinner"></div>
 </script>
 
 <script id="lolita_css_loader_tmp_6" type="text/template">
-    <div id="animation6" class="spinner">
+    <div id="animation6" class="lf_spinner">
         <div class="dot1"></div>
         <div class="dot2"></div>
     </div>
 </script>
 
 <script id="lolita_css_loader_tmp_7" type="text/template">
-    <div id="animation7" class="spinner">
+    <div id="animation7" class="lf_spinner">
         <div class="bounce1"></div>
         <div class="bounce2"></div>
         <div class="bounce3"></div>

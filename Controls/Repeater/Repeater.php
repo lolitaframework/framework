@@ -5,6 +5,7 @@ use \MyProject\LolitaFramework\Controls\Control;
 use \MyProject\LolitaFramework\Controls\Controls;
 use \MyProject\LolitaFramework\Controls\IHaveAdminEnqueue;
 use \MyProject\LolitaFramework\Core\Arr;
+use \MyProject\LolitaFramework\Core\Url;
 use \MyProject\LolitaFramework;
 use \MyProject\LolitaFramework\Core\View;
 
@@ -53,7 +54,7 @@ class Repeater extends Control implements iHaveAdminEnqueue
         // ==============================================================
         wp_enqueue_style(
             'lolita-repeater-control',
-            LolitaFramework::getURLByDirectory(__DIR__) . '/assets/css/repeater.css'
+            Url::toUrl(__DIR__) . '/assets/css/repeater.css'
         );
         wp_enqueue_style(
             'lolita-controls',
@@ -68,7 +69,7 @@ class Repeater extends Control implements iHaveAdminEnqueue
         wp_enqueue_script('underscore');
         wp_enqueue_script(
             'lolita-repeater-control',
-            LolitaFramework::getURLByDirectory(__DIR__) . '/assets/js/repeater.js',
+            Url::toUrl(__DIR__) . '/assets/js/repeater.js',
             array('jquery', 'underscore'),
             false,
             true

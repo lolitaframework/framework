@@ -5,6 +5,7 @@ use \MyProject\LolitaFramework\Controls\Control;
 use \MyProject\LolitaFramework\Controls\IHaveAdminEnqueue;
 use \MyProject\LolitaFramework\Core\Img;
 use \MyProject\LolitaFramework\Core\View;
+use \MyProject\LolitaFramework\Core\Url;
 use \MyProject\LolitaFramework;
 
 class Gallery extends Control implements iHaveAdminEnqueue
@@ -21,7 +22,7 @@ class Gallery extends Control implements iHaveAdminEnqueue
         // ==============================================================
         wp_enqueue_style(
             'lolita-gallery-control',
-            LolitaFramework::getURLByDirectory(__DIR__) . '/assets/css/gallery.css'
+            Url::toUrl(__DIR__) . '/assets/css/gallery.css'
         );
         wp_enqueue_style(
             'lolita-controls',
@@ -36,7 +37,7 @@ class Gallery extends Control implements iHaveAdminEnqueue
         wp_enqueue_script('underscore');
         wp_enqueue_script(
             'lolita-gallery-control',
-            LolitaFramework::getURLByDirectory(__DIR__) . '/assets/js/gallery.js',
+            Url::toUrl(__DIR__) . '/assets/js/gallery.js',
             array('jquery', 'underscore'),
             false,
             true
@@ -88,7 +89,8 @@ class Gallery extends Control implements iHaveAdminEnqueue
             array_merge(
                 $this->getAttributes(),
                 array(
-                    'name' => $this->getName(),
+                    'name'                        => $this->getName(),
+                    'data-customize-setting-link' => $this->getName(),
                 )
             )
         );

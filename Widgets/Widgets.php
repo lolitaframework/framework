@@ -4,15 +4,10 @@ namespace MyProject\LolitaFramework\Widgets;
 use \MyProject\LolitaFramework\Core\Loc;
 use \MyProject\LolitaFramework\Core\Str;
 use \MyProject\LolitaFramework\Controls\Controls;
+use \MyProject\LolitaFramework;
 
 class Widgets
 {
-    /**
-     * All loaded widgets
-     *
-     * @var null
-     */
-    private $loaded_widgets = null;
 
     /**
      * Paths to widgets JSON file
@@ -49,19 +44,27 @@ class Widgets
         add_action('widgets_init', array($this, 'register'));
     }
 
+    /**
+     * Init widgets classes
+     *
+     * @return Widgets instance.
+     */
     private function init()
     {
-        foreach ($this->parsers as $parser) {
-            $class_name = __NAMESPACE__ . NS . 'Widget';
-            $reflection = new \ReflectionClass($class_name);
-            $widget     = $reflection->newInstanceArgs(
-                $this->prepareClassParameters($class_name, $parser->data())
-            );
-            $this->widgets[] = $widget;
-            if ($widget->controls) {
-                Controls::loadScriptsAndStyles($widget->controls);
+        if (is_array($this->parsers)) {
+            foreach ($this->parsers as $parser) {
+                $class_name = __NAMESPACE__ . NS . 'Widget';
+                $reflection = new \ReflectionClass($class_name);
+                $widget     = $reflection->newInstanceArgs(
+                    $this->prepareClassParameters($class_name, $parser->data())
+                );
+                $this->widgets[] = $widget;
+                if ($widget->controls) {
+                    Controls::loadScriptsAndStyles($widget->controls);
+                }
             }
         }
+        return $this;
     }
 
     /**
@@ -71,8 +74,10 @@ class Widgets
      */
     public function register()
     {
-        foreach ($this->widgets as $widget) {
-            $widget->_register();
+        if (is_array($this->parsers)) {
+            foreach ($this->widgets as $widget) {
+                $widget->_register();
+            }
         }
     }
 
@@ -116,7 +121,7 @@ class Widgets
     {
         return apply_filters(
             'lf_widgets_settings_path',
-            dirname(LF_DIR) . '/app' . DS . 'widgets' . DS
+            LolitaFramework::dir() . '/app' . DS . 'widgets' . DS
         );
     }
 
@@ -144,8 +149,10 @@ class Widgets
      */
     private function parse()
     {
-        foreach ($this->paths as $path) {
-            $this->parsers[] = new Parser($path);
+        if (is_array($this->paths)) {
+            foreach ($this->paths as $path) {
+                $this->parsers[] = new Parser($path);
+            }
         }
         return $this;
     }

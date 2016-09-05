@@ -44,6 +44,7 @@ class Radios extends Control
                     'name' => $this->getName(),
                     'type' => 'radio',
                     'id'   => '',
+                    'data-customize-setting-link' => $this->getName(),
 
                 )
             )

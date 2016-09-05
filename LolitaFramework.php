@@ -1,6 +1,8 @@
 <?php
 namespace MyProject;
 
+use \MyProject\LolitaFramework\Core\Url;
+
 /**
  * Lolita Framework singlton class
  */
@@ -29,8 +31,8 @@ class LolitaFramework
      */
     private function __construct()
     {
-        $this->constants();
         spl_autoload_register(array( &$this, 'autoload' ));
+        $this->constants();
         load_theme_textdomain('lolita', __DIR__ . DS . 'languages');
     }
 
@@ -41,18 +43,68 @@ class LolitaFramework
      */
     public function constants()
     {
-        define('DS', DIRECTORY_SEPARATOR);
-        define('NS', '\\');
-        define('LF_DIR', dirname(__FILE__));
-        define('LF_URL', self::getURLByDirectory(LF_DIR));
-        define('BASE_DIR', dirname(LF_DIR));
-        define('BASE_URL', self::getURLByDirectory(BASE_DIR));
-        define('SITE_URL', get_bloginfo('url'));
-        define('AJAX_URL', admin_url('admin-ajax.php'));
+        self::define('DS', DIRECTORY_SEPARATOR);
+        self::define('NS', '\\');
+        self::define('SITE_URL', get_bloginfo('url'));
+        self::define('AJAX_URL', admin_url('admin-ajax.php'));
         if (!function_exists('wp_create_nonce')) {
             require_once(ABSPATH . DS . 'wp-includes' . DS . 'pluggable.php');
         }
-        define('LF_NONCE', wp_create_nonce('Lolita Framework'));
+        self::define('LF_NONCE', wp_create_nonce('Lolita Framework'));
+    }
+
+    /**
+     * LolitaFramework directory
+     *
+     * @return string
+     */
+    public static function dir()
+    {
+        return __DIR__;
+    }
+
+    /**
+     * Lolita Framework URL
+     *
+     * @return string
+     */
+    public static function url()
+    {
+        return Url::toUrl(self::dir());
+    }
+
+    /**
+     * Parent directory
+     *
+     * @return string
+     */
+    public static function baseDir()
+    {
+        return dirname(self::dir());
+    }
+
+    /**
+     * Parent url
+     *
+     * @return string
+     */
+    public static function baseUrl()
+    {
+        return Url::toUrl(self::baseDir());
+    }
+
+    /**
+     * Define constant
+     *
+     * @param  string $name
+     * @param  mixed $value
+     * @return void
+     */
+    public static function define($name, $value)
+    {
+        if (!defined($name)) {
+            define($name, $value);
+        }
     }
 
     /**
@@ -63,7 +115,7 @@ class LolitaFramework
      */
     public function autoload($class)
     {
-        $class_path = dirname(BASE_DIR) . DS . str_replace('\\', '/', $class) . '.php';
+        $class_path = dirname(dirname(__DIR__)) . DS . str_replace('\\', '/', $class) . '.php';
         if (file_exists($class_path)) {
             require_once $class_path;
         }
@@ -81,18 +133,5 @@ class LolitaFramework
             $class = __CLASS__ . NS . $module_name . NS . $module_name;
             $this->$module_name = new $class();
         }
-    }
-
-    /**
-     * Get URL by directory
-     *
-     * @author Guriev Eugen <gurievcreative@gmail.com>
-     * @param  string $dir path.
-     * @return string URL.
-     */
-    public static function getURLByDirectory($dir)
-    {
-        $url = str_replace(untrailingslashit(ABSPATH), site_url(), $dir);
-        return str_replace('\\', '/', $url);
     }
 }
