@@ -29,4 +29,4 @@ sudo: false
 script:
     # Search theme for PHP syntax errors.
     - find . \( -name '*.php' \) -exec php -lf {} \;
-    - phpcs -p -s -v -n . --standard=PSR2 --extensions=php
+    - phpcs -p -s -v -n . --standard=./ruleset.xml --extensions=php

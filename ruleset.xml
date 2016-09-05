@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<ruleset name="Lolita Standards">
+    <description>A custom set of code standard rules to check for WordPress themes based on LolitaFramework.</description>
+
+    <!-- Include the WordPress ruleset, with space for exclusions if necessary. -->
+    <rule ref="PSR2">
+        <exclude name="PSR1.Methods.CamelCapsMethodName.NotCamelCaps" />
+    </rule>
+</ruleset>
