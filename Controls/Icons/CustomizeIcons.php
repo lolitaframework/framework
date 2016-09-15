@@ -34,7 +34,7 @@ class CustomizeIcons extends \WP_Customize_Control
      */
     public function __construct($manager, $id, $args = array())
     {
-        parent::__construct( $manager, $id, $args );
+        parent::__construct($manager, $id, $args);
         $this->icons_control = new Icons(
             $this->settings['default']->id,
             $this->value(),
@@ -47,7 +47,8 @@ class CustomizeIcons extends \WP_Customize_Control
     /**
      * Enqueue control related scripts/styles.
      */
-    public function enqueue() {
+    public function enqueue()
+    {
         wp_enqueue_media();
         $this->icons_control->renderStylesForIcons();
     }
@@ -60,10 +61,11 @@ class CustomizeIcons extends \WP_Customize_Control
      *
      * @see WP_Customize_Control::to_json()
      */
-    public function to_json() {
+    public function to_json()
+    {
         parent::to_json();
-        $this->json['label'] = html_entity_decode( $this->label, ENT_QUOTES, get_bloginfo( 'charset' ) );
-        $this->json['canUpload'] = current_user_can( 'upload_files' );
+        $this->json['label'] = html_entity_decode($this->label, ENT_QUOTES, get_bloginfo('charset'));
+        $this->json['canUpload'] = current_user_can('upload_files');
 
         $value = $this->value();
     }
@@ -87,6 +89,7 @@ class CustomizeIcons extends \WP_Customize_Control
      * @since 4.1.0
      * @since 4.2.0 Moved from WP_Customize_Upload_Control.
      */
-    public function content_template() {
+    public function content_template()
+    {
     }
 }

@@ -61,7 +61,7 @@ class Post
                 OBJECT,
                 $this->properties['post_type']
             );
-            if ( null !== $post ) {
+            if (null !== $post) {
                 $this->properties['ID'] = $post->ID;
             }
         }
@@ -106,7 +106,7 @@ class Post
      */
     public function isImageType($image_type = 'custom')
     {
-        if(array_key_exists('image_type', $this->image_data)) {
+        if (array_key_exists('image_type', $this->image_data)) {
             $this->image_data['image_type'] = strtolower($this->image_data['image_type']);
             $image_type                     = strtolower($image_type);
             return $image_type === $this->image_data['image_type'];

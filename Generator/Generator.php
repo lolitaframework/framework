@@ -35,7 +35,7 @@ class Generator
             $image_args
         );
 
-        for($i = 0; $i < $count; $i++) {
+        for ($i = 0; $i < $count; $i++) {
             $new_args = $args;
             $new_args['post_title'] = str_replace('{n}', $i, $new_args['post_title']);
             $post     = new Post($new_args, $image_args, $meta_data);
@@ -76,15 +76,15 @@ class Generator
      *
      * @param  integer  $count
      * @param  array    $args
-     * @param  boolean  $unique 
-     * @param  array    $meta_data 
+     * @param  boolean  $unique
+     * @param  array    $meta_data
      * @return array
      */
     public static function terms($count, $title, $taxonomy, array $args = array(), array $meta_data = array())
     {
         $return = array();
         $count  = max(1, (int) $count);
-        for($i = 0; $i < $count; $i++) {
+        for ($i = 0; $i < $count; $i++) {
             $insert_title     = str_replace('{n}', $i, $title);
             $new_args         = $args;
             $new_args['slug'] = Str::slug($title, '_');

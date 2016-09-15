@@ -9,12 +9,13 @@ class Url
      *
      * @return string
      */
-    public static function current() {
+    public static function current()
+    {
         $pageURL = "http://";
-        if ( isset($_SERVER['HTTPS']) && $_SERVER["HTTPS"] == "on" ) {
-            $pageURL = "https://"; ;
+        if (isset($_SERVER['HTTPS']) && $_SERVER["HTTPS"] == "on") {
+            $pageURL = "https://";
         }
-        if ( isset($_SERVER["SERVER_PORT"]) && $_SERVER["SERVER_PORT"] && $_SERVER["SERVER_PORT"] != "80" ) {
+        if (isset($_SERVER["SERVER_PORT"]) && $_SERVER["SERVER_PORT"] && $_SERVER["SERVER_PORT"] != "80") {
             $pageURL .= self::host().":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
         } else {
             $pageURL .= self::host().$_SERVER["REQUEST_URI"];
@@ -30,11 +31,11 @@ class Url
      */
     public static function is($url)
     {
-        if ( !is_string($url) ) {
+        if (!is_string($url)) {
             return false;
         }
         $url = strtolower($url);
-        if ( strstr($url, '://') ) {
+        if (strstr($url, '://')) {
             return true;
         }
         return false;
@@ -45,12 +46,13 @@ class Url
      *
      * @return string
      */
-    public static function pathBase() {
+    public static function pathBase()
+    {
         $struc = get_option('permalink_structure');
         $struc = explode('/', $struc);
         $p = '/';
-        foreach ( $struc as $s ) {
-            if ( !strstr($s, '%') && strlen($s) ) {
+        foreach ($struc as $s) {
+            if (!strstr($s, '%') && strlen($s)) {
                 $p .= $s.'/';
             }
         }
@@ -67,17 +69,17 @@ class Url
     public static function relUrl($url, $force = false)
     {
         $url_info = parse_url($url);
-        if ( isset($url_info['host']) && $url_info['host'] != self::host() && !$force ) {
+        if (isset($url_info['host']) && $url_info['host'] != self::host() && !$force) {
             return $url;
         }
         $link = '';
-        if ( isset($url_info['path']) ) {
+        if (isset($url_info['path'])) {
             $link = $url_info['path'];
         }
-        if ( isset($url_info['query']) && strlen($url_info['query']) ) {
+        if (isset($url_info['query']) && strlen($url_info['query'])) {
             $link .= '?'.$url_info['query'];
         }
-        if ( isset($url_info['fragment']) && strlen($url_info['fragment']) ) {
+        if (isset($url_info['fragment']) && strlen($url_info['fragment'])) {
             $link .= '#'.$url_info['fragment'];
         }
         $link = self::removeDoubleSlashes($link);
@@ -92,10 +94,10 @@ class Url
      */
     public static function host()
     {
-        if ( isset($_SERVER['HTTP_HOST']) ) {
+        if (isset($_SERVER['HTTP_HOST'])) {
             return $_SERVER['HTTP_HOST'];
         }
-        if ( isset($_SERVER['SERVER_NAME']) ) {
+        if (isset($_SERVER['SERVER_NAME'])) {
             return $_SERVER['SERVER_NAME'];
         }
         return '';
@@ -109,7 +111,7 @@ class Url
      */
     public static function isLocal($url)
     {
-        if ( strstr($url, self::host()) ) {
+        if (strstr($url, self::host())) {
             return true;
         }
         return false;
@@ -151,7 +153,7 @@ class Url
      */
     public static function relPath($src)
     {
-        if ( strstr($src, ABSPATH) ) {
+        if (strstr($src, ABSPATH)) {
             return str_replace(ABSPATH, '', $src);
         }
         //its outside the wordpress directory, alternate setups:
@@ -168,7 +170,7 @@ class Url
     public static function removeDoubleSlashes($url)
     {
         $url = str_replace('//', '/', $url);
-        if ( strstr($url, 'http:') && !strstr($url, 'http://') ) {
+        if (strstr($url, 'http:') && !strstr($url, 'http://')) {
             $url = str_replace('http:/', 'http://', $url);
         }
         return $url;
@@ -186,10 +188,10 @@ class Url
         if (strstr(strtolower($url), 'http')) {
             $url_parts = parse_url($url);
             $url = $url_parts['scheme'].'://'.$url_parts['host'].$path.$url_parts['path'];
-            if ( isset($url_parts['query']) ) {
+            if (isset($url_parts['query'])) {
                 $url .= $url_parts['query'];
             }
-            if ( isset($url_parts['fragment']) ) {
+            if (isset($url_parts['fragment'])) {
                 $url .= $url_parts['fragment'];
             }
         } else {
@@ -206,7 +208,7 @@ class Url
      */
     public static function preslashit($path)
     {
-        if ( strpos($path, '/') != 0 ) {
+        if (strpos($path, '/') != 0) {
             $path = '/'.$path;
         }
         return $path;
@@ -268,7 +270,7 @@ class Url
     {
         $has_http = strstr(strtolower($url), 'http');
         $on_domain = strstr($url, self::host());
-        if ( $has_http && !$on_domain ) {
+        if ($has_http && !$on_domain) {
             return true;
         }
         return false;
@@ -282,7 +284,7 @@ class Url
      */
     public static function removeTrailingSlash($link)
     {
-        if ( $link != "/" ) {
+        if ($link != "/") {
             $link = untrailingslashit($link);
         }
         return $link;
@@ -300,19 +302,19 @@ class Url
     {
         $args = explode('/', trim(strtolower($_SERVER['REQUEST_URI'])));
         $newargs = array();
-        foreach ( $args as $arg ) {
-            if ( strlen($arg) ) {
+        foreach ($args as $arg) {
+            if (strlen($arg)) {
                 $newargs[] = $arg;
             }
         }
-        if ( $i === false ) {
+        if ($i === false) {
             return $newargs;
         }
-        if ( $i < 0 ) {
+        if ($i < 0) {
             //count from end
             $i = count($newargs) + $i;
         }
-        if ( isset($newargs[$i]) ) {
+        if (isset($newargs[$i])) {
             return $newargs[$i];
         }
     }
