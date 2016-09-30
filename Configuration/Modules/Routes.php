@@ -1,11 +1,11 @@
 <?php
-namespace MyProject\LolitaFramework\Configuration\Modules;
+namespace lolitatheme\LolitaFramework\Configuration\Modules;
 
-use \MyProject\LolitaFramework\Configuration\Configuration;
-use \MyProject\LolitaFramework\Configuration\IModule;
-use \MyProject\LolitaFramework\Core\Data;
-use \MyProject\LolitaFramework\Core\Route;
-use \MyProject\LolitaFramework\Core\Loc;
+use \lolitatheme\LolitaFramework\Configuration\Configuration;
+use \lolitatheme\LolitaFramework\Configuration\IModule;
+use \lolitatheme\LolitaFramework\Core\Data;
+use \lolitatheme\LolitaFramework\Core\Route;
+use \lolitatheme\LolitaFramework\Core\Loc;
 
 class Routes implements IModule
 {

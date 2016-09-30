@@ -1,5 +1,5 @@
 <?php
-namespace MyProject\LolitaFramework\Core;
+namespace lolitatheme\LolitaFramework\Core;
 
 class Route
 {

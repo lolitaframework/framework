@@ -1,9 +1,9 @@
 <?php
-namespace MyProject\LolitaFramework\Controls\Repeater;
+namespace lolitatheme\LolitaFramework\Controls\Repeater;
 
-use \MyProject\LolitaFramework\Core\Arr;
-use \MyProject\LolitaFramework\Core\Url;
-use \MyProject\LolitaFramework\Core\View;
+use \lolitatheme\LolitaFramework\Core\Arr;
+use \lolitatheme\LolitaFramework\Core\Url;
+use \lolitatheme\LolitaFramework\Core\View;
 
 /**
  * Customize Media Control class.

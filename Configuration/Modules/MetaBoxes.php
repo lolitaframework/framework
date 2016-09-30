@@ -1,11 +1,11 @@
 <?php
-namespace MyProject\LolitaFramework\Configuration\Modules;
+namespace lolitatheme\LolitaFramework\Configuration\Modules;
 
-use \MyProject\LolitaFramework\Core\View;
-use \MyProject\LolitaFramework\Core\Arr;
-use \MyProject\LolitaFramework\Configuration\Configuration;
-use \MyProject\LolitaFramework\Configuration\IModule;
-use \MyProject\LolitaFramework\Controls\Controls;
+use \lolitatheme\LolitaFramework\Core\View;
+use \lolitatheme\LolitaFramework\Core\Arr;
+use \lolitatheme\LolitaFramework\Configuration\Configuration;
+use \lolitatheme\LolitaFramework\Configuration\IModule;
+use \lolitatheme\LolitaFramework\Controls\Controls;
 
 class MetaBoxes implements IModule
 {

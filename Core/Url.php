@@ -1,6 +1,6 @@
 <?php
 
-namespace MyProject\LolitaFramework\Core;
+namespace lolitatheme\LolitaFramework\Core;
 
 class Url
 {
@@ -317,5 +317,23 @@ class Url
         if (isset($newargs[$i])) {
             return $newargs[$i];
         }
+    }
+
+    /**
+     * Get route
+     *
+     * @return string
+     */
+    public static function route()
+    {
+        $request_uri = $_SERVER['REQUEST_URI'];
+        if (Str::startsWith($request_uri, '/')) {
+            $request_uri = Str::substr($request_uri, 1);
+        }
+        $arguments_pos = strpos($request_uri, '?');
+        if ($arguments_pos > -1) {
+            $request_uri = Str::substr($request_uri, 0, $arguments_pos);
+        }
+        return $request_uri;
     }
 }

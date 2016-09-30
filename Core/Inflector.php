@@ -1,6 +1,6 @@
 <?php
 
-namespace MyProject\LolitaFramework\Core;
+namespace lolitatheme\LolitaFramework\Core;
 
 /**
  * Doctrine inflector has static methods for inflecting text.

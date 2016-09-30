@@ -1,9 +1,9 @@
 <?php
-namespace MyProject\LolitaFramework\Configuration;
+namespace lolitatheme\LolitaFramework\Configuration;
 
-use \MyProject\LolitaFramework\Core\Loc;
-use \MyProject\LolitaFramework\Core\Cls;
-use \MyProject\LolitaFramework;
+use \lolitatheme\LolitaFramework\Core\Loc;
+use \lolitatheme\LolitaFramework\Core\Cls;
+use \lolitatheme\LolitaFramework;
 
 class Configuration
 {

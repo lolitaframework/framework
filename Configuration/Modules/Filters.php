@@ -1,9 +1,9 @@
 <?php
-namespace MyProject\LolitaFramework\Configuration\Modules;
+namespace lolitatheme\LolitaFramework\Configuration\Modules;
 
-use \MyProject\LolitaFramework\Configuration\Configuration;
-use \MyProject\LolitaFramework\Configuration\IModule;
-use \MyProject\LolitaFramework\Core\Arr;
+use \lolitatheme\LolitaFramework\Configuration\Configuration;
+use \lolitatheme\LolitaFramework\Configuration\IModule;
+use \lolitatheme\LolitaFramework\Core\Arr;
 
 class Filters implements IModule
 {

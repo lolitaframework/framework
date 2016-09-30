@@ -1,8 +1,8 @@
 <?php
-namespace MyProject\LolitaFramework\Controls\Text;
+namespace lolitatheme\LolitaFramework\Controls\Text;
 
-use \MyProject\LolitaFramework\Controls\Control;
-use \MyProject\LolitaFramework\Core\Arr;
+use \lolitatheme\LolitaFramework\Controls\Control;
+use \lolitatheme\LolitaFramework\Core\Arr;
 
 class Text extends Control
 {

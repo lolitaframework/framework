@@ -1,9 +1,10 @@
 <?php
-namespace MyProject\LolitaFramework\Controls;
+namespace lolitatheme\LolitaFramework\Controls;
 
-use \MyProject\LolitaFramework\Core\Arr;
-use \MyProject\LolitaFramework\Core\Cls;
-use \MyProject\LolitaFramework\Core\View;
+use \lolitatheme\LolitaFramework\Core\Arr;
+use \lolitatheme\LolitaFramework\Core\Data;
+use \lolitatheme\LolitaFramework\Core\Cls;
+use \lolitatheme\LolitaFramework\Core\View;
 
 /**
  * Controls collection class
@@ -85,6 +86,7 @@ class Controls
             if (Arr::exists($arguments, 'old_name')) {
                 $control->old_name = $arguments['old_name'];
             }
+
             if (null !== $control) {
                 $this->collection[ $arguments['name'] ] = $control;
             }

@@ -1,9 +1,9 @@
 <?php
-namespace MyProject\LolitaFramework\Widgets;
+namespace lolitatheme\LolitaFramework\Widgets;
 
-use \MyProject\LolitaFramework\Core\Str;
-use \MyProject\LolitaFramework\Core\Arr;
-use \MyProject\LolitaFramework\Core\Loc;
+use \lolitatheme\LolitaFramework\Core\Str;
+use \lolitatheme\LolitaFramework\Core\Arr;
+use \lolitatheme\LolitaFramework\Core\Loc;
 use \WP_Widget;
 
 class Parser

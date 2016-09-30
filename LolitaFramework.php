@@ -1,7 +1,7 @@
 <?php
-namespace MyProject;
+namespace lolitatheme;
 
-use \MyProject\LolitaFramework\Core\Url;
+use \lolitatheme\LolitaFramework\Core\Url;
 
 /**
  * Lolita Framework singlton class

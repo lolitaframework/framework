@@ -1,8 +1,8 @@
 <?php
-namespace MyProject\LolitaFramework\Configuration\Modules;
+namespace lolitatheme\LolitaFramework\Configuration\Modules;
 
-use \MyProject\LolitaFramework\Configuration\Configuration as Configuration;
-use \MyProject\LolitaFramework\Configuration\IModule as IModule;
+use \lolitatheme\LolitaFramework\Configuration\Configuration as Configuration;
+use \lolitatheme\LolitaFramework\Configuration\IModule as IModule;
 
 class ShortCodes implements IModule
 {

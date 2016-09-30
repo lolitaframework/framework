@@ -1,10 +1,10 @@
 <?php
-namespace MyProject\LolitaFramework\Controls\Icons;
+namespace lolitatheme\LolitaFramework\Controls\Icons;
 
-use \MyProject\LolitaFramework\Core\Arr;
-use \MyProject\LolitaFramework\Core\Loc;
-use \MyProject\LolitaFramework\Core\Data;
-use \MyProject\LolitaFramework\Core\View;
+use \lolitatheme\LolitaFramework\Core\Arr;
+use \lolitatheme\LolitaFramework\Core\Loc;
+use \lolitatheme\LolitaFramework\Core\Data;
+use \lolitatheme\LolitaFramework\Core\View;
 
 class Pack
 {

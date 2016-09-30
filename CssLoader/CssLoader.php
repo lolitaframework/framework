@@ -1,10 +1,10 @@
 <?php
-namespace MyProject\LolitaFramework\CssLoader;
+namespace lolitatheme\LolitaFramework\CssLoader;
 
-use \MyProject\LolitaFramework;
-use \MyProject\LolitaFramework\Core\Arr;
-use \MyProject\LolitaFramework\Core\View;
-use \MyProject\LolitaFramework\Core\Url;
+use \lolitatheme\LolitaFramework;
+use \lolitatheme\LolitaFramework\Core\Arr;
+use \lolitatheme\LolitaFramework\Core\View;
+use \lolitatheme\LolitaFramework\Core\Url;
 
 class CssLoader
 {

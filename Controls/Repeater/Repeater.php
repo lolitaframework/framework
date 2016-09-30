@@ -1,13 +1,13 @@
 <?php
-namespace MyProject\LolitaFramework\Controls\Repeater;
+namespace lolitatheme\LolitaFramework\Controls\Repeater;
 
-use \MyProject\LolitaFramework\Controls\Control;
-use \MyProject\LolitaFramework\Controls\Controls;
-use \MyProject\LolitaFramework\Controls\IHaveAdminEnqueue;
-use \MyProject\LolitaFramework\Core\Arr;
-use \MyProject\LolitaFramework\Core\Url;
-use \MyProject\LolitaFramework;
-use \MyProject\LolitaFramework\Core\View;
+use \lolitatheme\LolitaFramework\Controls\Control;
+use \lolitatheme\LolitaFramework\Controls\Controls;
+use \lolitatheme\LolitaFramework\Controls\IHaveAdminEnqueue;
+use \lolitatheme\LolitaFramework\Core\Arr;
+use \lolitatheme\LolitaFramework\Core\Url;
+use \lolitatheme\LolitaFramework;
+use \lolitatheme\LolitaFramework\Core\View;
 
 class Repeater extends Control implements iHaveAdminEnqueue
 {

@@ -1,11 +1,11 @@
 <?php
-namespace MyProject\LolitaFramework\Configuration\Modules;
+namespace lolitatheme\LolitaFramework\Configuration\Modules;
 
-use \MyProject\LolitaFramework\Configuration\Init;
-use \MyProject\LolitaFramework\Configuration\Configuration;
-use \MyProject\LolitaFramework\Configuration\IModule;
-use \MyProject\LolitaFramework\Core\Arr;
-use \MyProject\LolitaFramework\Core\Str;
+use \lolitatheme\LolitaFramework\Configuration\Init;
+use \lolitatheme\LolitaFramework\Configuration\Configuration;
+use \lolitatheme\LolitaFramework\Configuration\IModule;
+use \lolitatheme\LolitaFramework\Core\Arr;
+use \lolitatheme\LolitaFramework\Core\Str;
 
 class PostTypes extends Init implements IModule
 {

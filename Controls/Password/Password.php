@@ -1,8 +1,8 @@
 <?php
-namespace MyProject\LolitaFramework\Controls\Password;
+namespace lolitatheme\LolitaFramework\Controls\Password;
 
-use \MyProject\LolitaFramework\Controls\Control;
-use \MyProject\LolitaFramework\Core\Arr;
+use \lolitatheme\LolitaFramework\Controls\Control;
+use \lolitatheme\LolitaFramework\Core\Arr;
 
 class Password extends Control
 {

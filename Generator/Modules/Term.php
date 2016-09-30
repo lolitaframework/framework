@@ -1,7 +1,7 @@
 <?php
-namespace MyProject\LolitaFramework\Generator\Modules;
+namespace lolitatheme\LolitaFramework\Generator\Modules;
 
-use \MyProject\LolitaFramework\Core\Arr;
+use \lolitatheme\LolitaFramework\Core\Arr;
 
 class Term
 {

@@ -1,8 +1,8 @@
 <?php
-namespace MyProject\LolitaFramework\Controls\Button;
+namespace lolitatheme\LolitaFramework\Controls\Button;
 
-use \MyProject\LolitaFramework\Controls\Control;
-use \MyProject\LolitaFramework\Core\Arr;
+use \lolitatheme\LolitaFramework\Controls\Control;
+use \lolitatheme\LolitaFramework\Core\Arr;
 
 class Button extends Control
 {

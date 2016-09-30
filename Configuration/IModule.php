@@ -1,5 +1,5 @@
 <?php
-namespace MyProject\LolitaFramework\Configuration;
+namespace lolitatheme\LolitaFramework\Configuration;
 
 interface IModule
 {

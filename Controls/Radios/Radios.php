@@ -1,8 +1,8 @@
 <?php
-namespace MyProject\LolitaFramework\Controls\Radios;
+namespace lolitatheme\LolitaFramework\Controls\Radios;
 
-use \MyProject\LolitaFramework\Controls\Control;
-use \MyProject\LolitaFramework\Core\Arr;
+use \lolitatheme\LolitaFramework\Controls\Control;
+use \lolitatheme\LolitaFramework\Core\Arr;
 
 class Radios extends Control
 {

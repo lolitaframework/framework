@@ -1,9 +1,9 @@
 <?php
-namespace MyProject\LolitaFramework\Configuration\Modules;
+namespace lolitatheme\LolitaFramework\Configuration\Modules;
 
-use \MyProject\LolitaFramework\Core\Data;
-use \MyProject\LolitaFramework\Configuration\Configuration;
-use \MyProject\LolitaFramework\Configuration\IModule;
+use \lolitatheme\LolitaFramework\Core\Data;
+use \lolitatheme\LolitaFramework\Configuration\Configuration;
+use \lolitatheme\LolitaFramework\Configuration\IModule;
 
 class Customs implements IModule
 {

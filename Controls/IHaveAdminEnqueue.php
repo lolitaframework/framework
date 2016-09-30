@@ -1,5 +1,5 @@
 <?php
-namespace MyProject\LolitaFramework\Controls;
+namespace lolitatheme\LolitaFramework\Controls;
 
 interface IHaveAdminEnqueue
 {
