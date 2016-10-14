@@ -42,6 +42,7 @@ class Assets implements IModule
             add_action('admin_enqueue_scripts', array( $this, 'enqueue' ));
             add_action('login_enqueue_scripts', array( $this, 'enqueue' ));
             add_action('wp_footer', array( $this, 'enqueue' ));
+            add_action('login_footer', array( $this, 'enqueue' ));
             add_action('customize_controls_enqueue_scripts', array( $this, 'enqueue' ));
         } else {
             throw new \Exception(__('JSON can be converted to Array', 'lolita'));
@@ -49,7 +50,7 @@ class Assets implements IModule
         add_action('wp_footer', array(&$this, 'baseData'));
         add_action('admin_footer', array(&$this, 'baseData'));
         add_action('login_footer', array(&$this, 'baseData'));
-        add_action('customize_controls_enqueue_scripts', array(&$this, 'baseData'));
+        //add_action('customize_controls_enqueue_scripts', array(&$this, 'baseData'));
     }
 
     /**
@@ -62,8 +63,9 @@ class Assets implements IModule
         echo Arr::l10n(
             'lolita_framework',
             array(
-                'LF_NONCE' => LF_NONCE,
-                'SITE_URL' => SITE_URL,
+                'LF_NONCE'  => LF_NONCE,
+                'SITE_URL'  => SITE_URL,
+                'ADMIN_URL' => admin_url(),
             )
         );
     }
@@ -80,7 +82,6 @@ class Assets implements IModule
             'deregister_scripts',
             'scripts',
             'styles',
-            'styles_async',
             'localize',
             'custom',
             'customize',
@@ -108,9 +109,15 @@ class Assets implements IModule
      */
     private function getPrefixFromAction($action)
     {
-        if ('wp_footer' === $action) {
-            return 'async_';
+        $dictionary = array(
+            'wp_footer'    => 'async_',
+            'login_footer' => 'async_login_',
+            'admin_footer' => 'async_admin_',
+        );
+        if (array_key_exists($action, $dictionary)) {
+            return $dictionary[$action];
         }
+
         $pieces = explode('_', $action);
         if ('wp' === $pieces[0]) {
             return '';

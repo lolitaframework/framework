@@ -19,8 +19,9 @@ class CssLoader
         add_action('admin_enqueue_scripts', array(&$this, 'addScriptsAndStyles'));
         add_action('wp_footer', array(&$this, 'renderTemplates'));
         add_action('admin_footer', array(&$this, 'renderTemplates'));
-        add_action('customize_controls_enqueue_scripts', array(&$this, 'addScriptsAndStyles'));
-        add_action('customize_controls_enqueue_scripts', array(&$this, 'renderTemplates'));
+        add_action('login_footer', array(&$this, 'renderTemplates'));
+        // add_action('customize_controls_enqueue_scripts', array(&$this, 'addScriptsAndStyles'));
+        // add_action('customize_controls_enqueue_scripts', array(&$this, 'renderTemplates'));
         $this->addShortcodes();
     }
 
@@ -91,6 +92,7 @@ class CssLoader
                 'class' => Arr::get($atts, 'class'),
                 'bg'    => Arr::get($atts, 'bg', '#fff'),
                 'color' => Arr::get($atts, 'color', '#000'),
+                'style' => Arr::get($atts, 'style'),
             )
         );
     }

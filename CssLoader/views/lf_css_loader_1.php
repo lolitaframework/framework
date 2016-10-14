@@ -49,6 +49,6 @@
     }
 }
 </style>
-<div class="lf_css_loader_bg <?php echo $class ?>">
+<div class="lf_css_loader_bg <?php echo $class ?>" style="<?php echo $style ?>"">
     <div id="animation1" class="lf_spinner"></div>
 </div>

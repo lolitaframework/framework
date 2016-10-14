@@ -68,7 +68,6 @@ class Customize implements IModule
                 if (array_key_exists(self::SECTIONS, $panel)) {
                     $panel = $this->preparePanel($panel);
                     $this->customize->add_panel($panel['id'], $panel);
-                    
                     $this->addSections($panel['id'], $panel[self::SECTIONS]);
                 } else {
                     $this->addSections('', array($panel));
@@ -152,18 +151,17 @@ class Customize implements IModule
     {
         foreach ($controls as $control) {
             $control = $this->prepareControl($panel_id, $section_id, $control);
-            $this->customize->add_setting(
-                $control['id'],
-                array_merge(
-                    array(
-                        'default'           => '',
-                        'type'              => 'theme_mod',
-                        'capability'        => 'manage_options',
-                        'sanitize_callback' => '',
-                    ),
-                    Arr::get($control, self::SETTING, array())
-                )
+            $args = array_merge(
+                array(
+                    'default'           => '',
+                    'type'              => 'theme_mod',
+                    'capability'        => 'manage_options',
+                    'sanitize_callback' => '',
+                ),
+                Arr::get($control, self::SETTING, array())
             );
+            $args['default'] = Data::interpret($args['default']);
+            $this->customize->add_setting($control['id'], $args);
             if (array_key_exists(self::CUSTOM_CLASS, $control)) {
                 $custom_class = $control[self::CUSTOM_CLASS];
                 $this->customize->add_control(

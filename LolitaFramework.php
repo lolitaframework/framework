@@ -115,10 +115,23 @@ class LolitaFramework
      */
     public function autoload($class)
     {
-        $class_path = dirname(dirname(__DIR__)) . DS . str_replace('\\', '/', $class) . '.php';
+        $class_path = self::getClassPath($class);
         if (file_exists($class_path)) {
             require_once $class_path;
         }
+    }
+
+    /**
+     * Get class path
+     *
+     * @param  string $class
+     * @return string
+     */
+    public static function getClassPath($class)
+    {
+        $class_path = str_replace('\\', '/', $class);
+        $class_path = str_replace(__NAMESPACE__ . DS, self::baseDir() . DS, $class_path);
+        return $class_path . '.php';
     }
 
     /**

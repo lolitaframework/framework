@@ -110,6 +110,18 @@ class Loc
         global $wp_version;
         return $wp_version;
     }
+
+    /**
+     * Get global $current_site
+     *
+     * @return string
+     */
+    public static function currentSite()
+    {
+        global $current_site;
+        return $current_site;
+    }
+
     /**
      * Pagenow
      *
