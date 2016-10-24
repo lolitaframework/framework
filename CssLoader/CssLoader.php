@@ -15,8 +15,8 @@ class CssLoader
      */
     public function __construct()
     {
-        add_action('wp_enqueue_scripts', array(&$this, 'addScriptsAndStyles'));
-        add_action('admin_enqueue_scripts', array(&$this, 'addScriptsAndStyles'));
+        // add_action('wp_enqueue_scripts', array(&$this, 'addScriptsAndStyles'));
+        // add_action('admin_enqueue_scripts', array(&$this, 'addScriptsAndStyles'));
         add_action('wp_footer', array(&$this, 'renderTemplates'));
         add_action('admin_footer', array(&$this, 'renderTemplates'));
         add_action('login_footer', array(&$this, 'renderTemplates'));
@@ -65,15 +65,6 @@ class CssLoader
     public function renderTemplates()
     {
         echo View::make(__DIR__ . DS . 'views' . DS . 'lf_css_loader.php');
-
-        $assets = Url::toUrl(__DIR__) . DS . 'assets' . DS;
-        // ==============================================================
-        // Styles
-        // ==============================================================
-        wp_enqueue_style(
-            'lolita-css-loader',
-            $assets . 'css' . DS . 'lolita_css_loader.css'
-        );
     }
 
     /**
@@ -85,7 +76,6 @@ class CssLoader
      */
     public function renderTemplate($atts, $tmp, $tag)
     {
-        $GLOBALS['lf_start_time'] = microtime(true);
         return View::make(
             __DIR__ . DS . 'views' . DS . $tag . '.php',
             array(
@@ -109,8 +99,8 @@ class CssLoader
             array(
                 'delay' => Arr::get($atts, 'delay', 0),
                 'spent_time' => sprintf(
-                    'Time spent %.4F seconds.',
-                    microtime(true) - Arr::get($GLOBALS, 'lf_start_time', 0)
+                    'Time spent %s seconds.',
+                    timer_stop()
                 ),
             )
         );

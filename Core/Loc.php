@@ -123,6 +123,17 @@ class Loc
     }
 
     /**
+     * Get global wp_customize
+     *
+     * @return WP_Customize_Manager instance
+     */
+    public static function wpCustomize()
+    {
+        global $wp_customize;
+        return $wp_customize;
+    }
+
+    /**
      * Pagenow
      *
      * @return mixed

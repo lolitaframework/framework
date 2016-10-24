@@ -50,7 +50,6 @@ class Assets implements IModule
         add_action('wp_footer', array(&$this, 'baseData'));
         add_action('admin_footer', array(&$this, 'baseData'));
         add_action('login_footer', array(&$this, 'baseData'));
-        //add_action('customize_controls_enqueue_scripts', array(&$this, 'baseData'));
     }
 
     /**
