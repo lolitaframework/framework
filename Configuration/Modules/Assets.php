@@ -3,9 +3,11 @@ namespace lolitatheme\LolitaFramework\Configuration\Modules;
 
 use \lolitatheme\LolitaFramework\Core\Str;
 use \lolitatheme\LolitaFramework\Core\Arr;
+use \lolitatheme\LolitaFramework\Core\Loc;
 use \lolitatheme\LolitaFramework\Core\Data;
 use \lolitatheme\LolitaFramework\Configuration\Configuration;
 use \lolitatheme\LolitaFramework\Configuration\IModule;
+use \lolitatheme\LolitaFramework;
 
 class Assets implements IModule
 {
@@ -47,26 +49,30 @@ class Assets implements IModule
         } else {
             throw new \Exception(__('JSON can be converted to Array', 'lolita'));
         }
-        add_action('wp_footer', array(&$this, 'baseData'));
-        add_action('admin_footer', array(&$this, 'baseData'));
-        add_action('login_footer', array(&$this, 'baseData'));
+        add_action('wp_footer', array(&$this, 'base'));
+        add_action('admin_footer', array(&$this, 'base'));
+        add_action('login_footer', array(&$this, 'base'));
+        add_action('customize_controls_print_footer_scripts', array(&$this, 'base'));
     }
 
     /**
-     * Add base data
+     * Base js
      *
      * @return void
      */
-    public function baseData()
+    public function base()
     {
-        echo Arr::l10n(
-            'lolita_framework',
-            array(
-                'LF_NONCE'  => LF_NONCE,
-                'SITE_URL'  => SITE_URL,
-                'ADMIN_URL' => admin_url(),
-            )
-        );
+        if (!defined('LF_BASE_DATA')) {
+            define('LF_BASE_DATA', true);
+            echo Arr::l10n(
+                'lolita_framework',
+                array(
+                    'LF_NONCE'  => LF_NONCE,
+                    'SITE_URL'  => SITE_URL,
+                    'ADMIN_URL' => admin_url(),
+                )
+            );
+        }
     }
 
     /**

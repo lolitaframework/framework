@@ -26,12 +26,12 @@ class Img
      * Current image ID
      * @var null
      */
-    private $ID = 0;
+    public $ID = 0;
 
     /**
      * Class consructor
      *
-     * @param mixed $pid
+     * @param mixed $iid
      */
     public function __construct($iid)
     {
@@ -48,7 +48,7 @@ class Img
      */
     public function isInitialized()
     {
-        return is_integer($this->ID);
+        return is_integer($this->ID) && $this->ID > 0;
     }
 
     /**

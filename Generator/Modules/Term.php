@@ -79,6 +79,11 @@ class Term
     public function addMeta()
     {
         foreach ($this->meta_data as $key => $value) {
+            $value = stripslashes_deep($value);
+            if (is_serialized($value)) {
+                $value = maybe_unserialize($value);
+            }
+
             update_term_meta($this->inserted['term_id'], $key, $value);
         }
         return $this;

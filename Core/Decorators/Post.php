@@ -183,6 +183,14 @@ class Post
      */
     public $filter;
 
+    public $data;
+
+    /**
+     * Cached Img object
+     * @var null
+     */
+    private $img = null;
+
     /**
      * Retrieve WP_Post instance.
      *
@@ -219,6 +227,29 @@ class Post
         }
 
         return new Post($_post);
+    }
+
+    /**
+     * Sanitize post / posts
+     *
+     * @param  mixed $data
+     * @return mixed
+     */
+    public static function sanitize($data)
+    {
+        if ($data instanceof Post) {
+            return $data;
+        }
+        if ($data instanceof WP_Post) {
+            return new Post($data);
+        }
+
+        if (is_array($data)) {
+            foreach ($data as &$el) {
+                $el = self::sanitize($el);
+            }
+        }
+        return $data;
     }
 
     /**
@@ -328,6 +359,9 @@ class Post
                 $term_class_objects[ $taxonomy ] = $terms;
             }
         }
+        foreach ($term_class_objects as &$t) {
+            $t = Term::getInstance($t->term_id);
+        }
         return $term_class_objects;
     }
 
@@ -397,7 +431,7 @@ class Post
     }
 
     /**
-     * Returns the processed title to be used in templates. This returns the title of the post after WP's filters have run. This is analogous to `the_title()` in standard WP template tags.
+     * Returns the processed title to be used in templates. This returns the title of the post after WP's filters have run. This is analogous to `the_title()` in daxx WP template tags.
      *
      * @return string
      */
@@ -413,8 +447,11 @@ class Post
      */
     public function img()
     {
-        $tid = get_post_thumbnail_id($this->ID);
-        return new Img((int) $tid);
+        if (null === $this->img) {
+            $tid = get_post_thumbnail_id($this->ID);
+            $this->img = new Img((int) $tid);
+        }
+        return $this->img;
     }
 
     /**
@@ -466,10 +503,10 @@ class Post
      *
      * @return string
      */
-    public function content($wrap = false)
+    public function content($wrap = false, $suffix = '...')
     {
         if (is_integer($wrap)) {
-            return apply_filters('the_content', Str::limit($this->post_content, $wrap, ''));
+            return apply_filters('the_content', Str::limit($this->post_content, $wrap, '') . $suffix);
         }
         return apply_filters('the_content', $this->post_content);
     }

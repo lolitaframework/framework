@@ -39,6 +39,7 @@ class Widget extends WP_Widget
         $this->view_file = $view;
         $this->form      = $form;
         $this->controls  = $controls;
+        $this->prepareControls();
 
         parent::__construct(
             $id_base,
@@ -47,6 +48,22 @@ class Widget extends WP_Widget
             $control_options
         );
         add_shortcode($this->id_base.'_sc', array(&$this, 'widgetShortcode'));
+    }
+
+    /**
+     * Prepare controls
+     *
+     * @return Widget instance
+     */
+    private function prepareControls()
+    {
+        $defaults['default'] = '';
+        if (is_array($this->controls)) {
+            foreach ($this->controls as &$control) {
+                $control = array_merge($defaults, $control);
+            }
+        }
+        return $this;
     }
 
     /**
@@ -125,7 +142,7 @@ class Widget extends WP_Widget
                 $this->view_file,
                 array(
                     'args'     => $args,
-                    'instance' => $instance,
+                    'instance' => array_merge(Arr::pluck($this->controls, 'default', 'name'), $instance),
                 )
             );
         }

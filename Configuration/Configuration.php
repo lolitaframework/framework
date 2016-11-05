@@ -4,6 +4,7 @@ namespace lolitatheme\LolitaFramework\Configuration;
 use \lolitatheme\LolitaFramework\Core\Loc;
 use \lolitatheme\LolitaFramework\Core\Cls;
 use \lolitatheme\LolitaFramework;
+use \Exception;
 
 class Configuration
 {
@@ -139,6 +140,9 @@ class Configuration
         if (is_file($config_path)) {
             $data = $filesystem->get_contents($config_path);
             $data = json_decode($data, true);
+            if (null === $data || false === $data) {
+                throw new Exception('JSON can be converted to Array:' . $config_path, 1);
+            }
         } else {
             $data = false;
         }

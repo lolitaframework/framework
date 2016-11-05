@@ -579,4 +579,50 @@ class Arr
         }
         return '';
     }
+
+    /**
+     * Filter
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
+     * @param  array $array_to_filter
+     * @param  array $query
+     * @return array
+     */
+    public static function filter(array $array_to_filter, array $query)
+    {
+        return self::where(
+            $array_to_filter,
+            function ($key, $el) use ($query) {
+                foreach ($query as $options) {
+                    if (array_key_exists('key', $options) && array_key_exists('value', $options)) {
+                        $key     = $options['key'];
+                        $value   = $options['value'];
+                        $compare = Arr::get($options, 'compare', '==');
+                        switch ($compare) {
+                            case '>':
+                                if ((float) $value > (float)Arr::get($el, $key, null)) {
+                                    return false;
+                                }
+                                break;
+                            case '<':
+                                if ((float) $value < (float)Arr::get($el, $key, null)) {
+                                    return false;
+                                }
+                                break;
+                            case '!=':
+                                if ($value == Arr::get($el, $key, null)) {
+                                    return false;
+                                }
+                                break;
+                            default:
+                                if ($value != Arr::get($el, $key, null)) {
+                                    return false;
+                                }
+                        }
+                    }
+                }
+                return true;
+            }
+        );
+    }
 }

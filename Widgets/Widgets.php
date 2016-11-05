@@ -3,6 +3,7 @@ namespace lolitatheme\LolitaFramework\Widgets;
 
 use \lolitatheme\LolitaFramework\Core\Loc;
 use \lolitatheme\LolitaFramework\Core\Str;
+use \lolitatheme\LolitaFramework\Core\Ref;
 use \lolitatheme\LolitaFramework\Controls\Controls;
 use \lolitatheme\LolitaFramework;
 
@@ -53,11 +54,7 @@ class Widgets
     {
         if (is_array($this->parsers)) {
             foreach ($this->parsers as $parser) {
-                $class_name = __NAMESPACE__ . NS . 'Widget';
-                $reflection = new \ReflectionClass($class_name);
-                $widget     = $reflection->newInstanceArgs(
-                    $this->prepareClassParameters($class_name, $parser->data())
-                );
+                $widget = Ref::create(__NAMESPACE__ . NS . 'Widget', $parser->data());
                 $this->widgets[] = $widget;
                 if ($widget->controls) {
                     Controls::loadScriptsAndStyles($widget->controls);
@@ -79,36 +76,6 @@ class Widgets
                 $widget->_register();
             }
         }
-    }
-
-    /**
-     * Prepare class parameters
-     *
-     * @author Guriev Eugen <gurievcreative@gmail.com>
-     * @param  string $class_name class name.
-     * @param  array  $parameters class parameters.
-     * @return array  prepared parameters.
-     */
-    private function prepareClassParameters($class_name, array $parameters = array())
-    {
-        $return = array();
-        if (!class_exists($class_name)) {
-            throw new \Exception("Class [$class_name] doesn't exists!");
-        }
-        $reflection     = new \ReflectionClass($class_name);
-        $constructor    = $reflection->getConstructor();
-        $default_params = $constructor->getParameters();
-        foreach ($default_params as $parameter) {
-            if (array_key_exists($parameter->getName(), $parameters)) {
-                array_push($return, $parameters[ $parameter->getName() ]);
-            } else if ($parameter->isDefaultValueAvailable()) {
-                array_push($return, $parameter->getDefaultValue());
-            } else {
-                throw new \Exception("Parameter [{$parameter->getName()}] is required!");
-            }
-        }
-
-        return $return;
     }
 
     /**

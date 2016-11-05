@@ -22,4 +22,27 @@ class Img
         }
         return '';
     }
+
+    /**
+     * Get post id from thumbnail id
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
+     * @param  integer $thumbnail_id
+     * @return mixed
+     */
+    public static function getPostID($thumbnail_id)
+    {
+        $args = array(
+            'posts_per_page'   => -1,
+            'meta_key'         => '_thumbnail_id',
+            'meta_value'       => $thumbnail_id,
+            'post_type'        => 'any',
+            'post_status'      => 'any',
+        );
+        $posts_array = get_posts($args);
+        if (count($posts_array)) {
+            return $posts_array[0]->ID;
+        }
+        return false;
+    }
 }

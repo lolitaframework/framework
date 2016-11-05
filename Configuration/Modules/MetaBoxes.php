@@ -68,6 +68,7 @@ class MetaBoxes implements IModule
                 $data['callback']      = array($this, 'renderControls');
                 $data['callback_args'] = array(
                     'controls' => $controls,
+                    'data'     => $data,
                 );
                 $data['collection'] = $controls;
             }
@@ -137,10 +138,17 @@ class MetaBoxes implements IModule
             }
 
             wp_nonce_field(self::NONCE, self::NONCE);
-            echo $controls->render(
-                Configuration::getFolder() . DS . 'views' . DS . 'meta_box_with_controls.php',
-                Configuration::getFolder() . DS . 'views' . DS . 'meta_box_row.php'
-            );
+            if ('side' == $metabox['args']['data']['context']) {
+                echo $controls->render(
+                    Configuration::getFolder() . DS . 'views' . DS . 'meta_box_with_controls_side.php',
+                    Configuration::getFolder() . DS . 'views' . DS . 'meta_box_row_side.php'
+                );
+            } else {
+                echo $controls->render(
+                    Configuration::getFolder() . DS . 'views' . DS . 'meta_box_with_controls.php',
+                    Configuration::getFolder() . DS . 'views' . DS . 'meta_box_row.php'
+                );
+            }
         } else {
             throw new \Exception('Wrong $controls object');
         }

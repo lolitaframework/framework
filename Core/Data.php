@@ -155,4 +155,50 @@ class Data
         $constants = get_defined_constants(true);
         return $constants['user'];
     }
+
+    /**
+     * Is JSON data
+     *
+     * @param  mixed  $data
+     * @return boolean
+     */
+    public static function isJSON($data)
+    {
+        if (!is_string($data)) {
+            return false;
+        }
+        $result = json_decode($data);
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Maybe JSON decode
+     * Decode JSON or return inputed data.
+     *
+     * @param  mixed $data
+     * @return mixed
+     */
+    public static function maybeJSONDecode($data)
+    {
+        if (self::isJSON($data)) {
+            return json_decode($data, true);
+        }
+        return $data;
+    }
+
+    /**
+     * Maybe JSON encode
+     * @param  mixed $data
+     * @return mixed
+     */
+    public static function maybeJSONEncode($data)
+    {
+        if (is_array($data) || is_object($data)) {
+            return json_encode($data);
+        }
+        return $data;
+    }
 }

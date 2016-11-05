@@ -3,12 +3,14 @@ namespace lolitatheme\LolitaFramework\Configuration\Modules;
 
 use \lolitatheme\LolitaFramework\Core\Str;
 use \lolitatheme\LolitaFramework\Core\Arr;
+use \lolitatheme\LolitaFramework\Core\Ref;
 use \lolitatheme\LolitaFramework\Configuration\Init;
 use \lolitatheme\LolitaFramework\Configuration\Configuration;
 use \lolitatheme\LolitaFramework\Configuration\IModule;
 
 class Taxonomies extends Init implements IModule
 {
+    private $taxonomies = array();
     /**
      * Taxonomies class constructor
      *
@@ -18,7 +20,76 @@ class Taxonomies extends Init implements IModule
     public function __construct($data = null)
     {
         $this->data = $data;
+        if (is_array($this->data)) {
+            foreach ($this->data as $tax) {
+                $this->taxonomies[] = Ref::create(
+                    __NAMESPACE__ . NS . 'Elements' . NS . 'Taxonomy',
+                    $tax
+                );
+            }
+        }
+
         $this->init();
+    }
+
+    /**
+     * Prepare data
+     *
+     * @return Taxonomies instance
+     */
+    public function prepareData()
+    {
+        // if (is_array($this->data)) {
+        //     foreach ($this->data as &$tax) {
+        //         if (array_key_exists('singular', $tax) && !array_key_exists('plural', $tax)) {
+        //             $tax['plural'] = Str::plural($tax['singular']);
+        //         } else if (!array_key_exists('singular', $tax) && array_key_exists('plural', $tax)) {
+        //             $tax['singular'] = Str::singular($tax['plural']);
+        //         }
+        //         $this->checkForErrors($tax);
+        //         $tax['slug'] = Str::slug($tax['singular']);
+
+        //         if (array_key_exists('controls', $tax)) {
+
+        //             add_action($tax['slug'] . '_add_form_fields', array(&$this, 'addControls'), 10, 2 );
+
+        //             foreach ($tax['controls'] as &$control) {
+        //                 $name = Arr::get($control, 'name', '');
+        //                 $name = trim($name);
+
+        //                 if ('' === $name) {
+        //                     throw new \Exception("Name is empty! Name parameter is required!");
+        //                 }
+
+        //                 $control['old_name'] = $name;
+        //                 $control['name']     = $this->controlNameWithPrefix($tax['slug'], $name);
+        //             }
+        //             $controls = new Controls;
+        //             $controls->generateControls((array) $tax['controls']);
+        //             $tax['collection'] => $controls;
+        //         } else {
+        //             $tax['collection'] = null;
+        //         }
+        //     }
+        // }
+        // return $this;
+    }
+
+    /**
+     * Add prefix to name
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
+     * @param  string $prefix prefix.
+     * @param  string $name   name.
+     * @return string         name with prefix.
+     */
+    private function controlNameWithPrefix($prefix, $name)
+    {
+        return sprintf(
+            '%s_%s',
+            $prefix,
+            $name
+        );
     }
 
     /**
@@ -30,88 +101,11 @@ class Taxonomies extends Init implements IModule
      */
     public function install()
     {
-        if (is_array($this->data)) {
-            foreach ($this->data as $tax) {
-                if (array_key_exists('singular', $tax) && !array_key_exists('plural', $tax)) {
-                    $tax['plural'] = Str::plural($tax['singular']);
-                } else if (!array_key_exists('singular', $tax) && array_key_exists('plural', $tax)) {
-                    $tax['singular'] = Str::singular($tax['plural']);
-                }
-
-                $this->checkForErrors($tax);
-                register_taxonomy(
-                    Str::slug($tax['singular']),
-                    $tax['post_type_slug'],
-                    $this->getArguments($tax)
-                );
+        if (is_array($this->taxonomies)) {
+            foreach ($this->taxonomies as $tax) {
+                $tax->register();
             }
         }
-    }
-
-    /**
-     * Check taxonomy candidat for erros
-     * @param  array $taxonomy [description]
-     * @return [type]           [description]
-     */
-    private function checkForErrors(array $taxonomy)
-    {
-        foreach ($this->requiredKeys() as $key) {
-            if (!array_key_exists($key, $taxonomy)) {
-                throw new Exception("This key `$key` is required!");
-            }
-        }
-    }
-
-    /**
-     * Get required keys
-     * @return array required keys.
-     */
-    private function requiredKeys()
-    {
-        return array(
-            'post_type_slug',
-            'singular',
-            'plural',
-        );
-    }
-
-    /**
-     * Get the taxonomy default arguments.
-     *
-     * @param string $taxonomy taxonomy candidat arguments.
-     * @return array
-     */
-    public function getArguments(array $taxonomy)
-    {
-        $plural         = $taxonomy['plural'];
-        $singular       = $taxonomy['singular'];
-        $post_type_slug = $taxonomy['post_type_slug'];
-        $args           = Arr::get($taxonomy, 'args', array());
-
-        $labels = array(
-            'name'              => $plural,
-            'singular_name'     => $singular,
-            'search_items'      => 'Search ' . $plural,
-            'all_items'         => 'All ' . $plural,
-            'parent_item'       => 'Parent ' . $singular,
-            'parent_item_colon' => 'Parent ' . $singular . ' :',
-            'edit_item'         => 'Edit ' . $singular,
-            'update_item'       => 'Update ' . $singular,
-            'add_new_item'      => 'Add New ' . $singular,
-            'new_item_name'     => 'New ' . $singular . ' Name',
-            'menu_name'         => $plural,
-        );
-        return array_merge(
-            array(
-                'hierarchical'      => true,
-                'labels'            => $labels,
-                'show_ui'           => true,
-                'show_admin_column' => true,
-                'query_var'         => true,
-                'rewrite'           => array( 'slug' => $post_type_slug ),
-            ),
-            $args
-        );
     }
 
     /**

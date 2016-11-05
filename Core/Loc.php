@@ -13,10 +13,10 @@ class Loc
     public static function helpers()
     {
         return array(
-            'Img'  => __NAMESPACE__ . NS . 'Img',
-            'Arr'  => __NAMESPACE__ . NS . 'Arr',
-            'Str'  => __NAMESPACE__ . NS . 'Str',
-            'Data' => __NAMESPACE__ . NS . 'Data',
+            '__Img'  => __NAMESPACE__ . NS . 'Img',
+            '__Arr'  => __NAMESPACE__ . NS . 'Arr',
+            '__Str'  => __NAMESPACE__ . NS . 'Str',
+            '__Data' => __NAMESPACE__ . NS . 'Data',
         );
     }
     /**
@@ -131,6 +131,17 @@ class Loc
     {
         global $wp_customize;
         return $wp_customize;
+    }
+
+    /**
+     * Get global wp_filter
+     *
+     * @return array
+     */
+    public static function wpFilter()
+    {
+        global $wp_filter;
+        return $wp_filter;
     }
 
     /**
