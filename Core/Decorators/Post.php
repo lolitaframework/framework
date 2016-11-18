@@ -183,7 +183,11 @@ class Post
      */
     public $filter;
 
-    public $data;
+    /**
+     * Saved comments array
+     * @var null
+     */
+    public $comments = null;
 
     /**
      * Cached Img object
@@ -451,6 +455,9 @@ class Post
             $tid = get_post_thumbnail_id($this->ID);
             $this->img = new Img((int) $tid);
         }
+        if (wp_attachment_is_image($this->ID)) {
+            $this->img = new Img((int) $this->ID);
+        }
         return $this->img;
     }
 
@@ -564,6 +571,35 @@ class Post
             return true;
         }
         return false;
+    }
+
+    /**
+     * Get post comments
+     *
+     * @return array
+     */
+    public function comments()
+    {
+        if (null === $this->comments) {
+            $comment_args = array(
+                'post_id' => $this->ID,
+                'orderby' => 'comment_date_gmt',
+                'order'   => 'ASC',
+                'status'  => 'approve',
+                'parent'  => 0,
+            );
+
+            if (is_user_logged_in()) {
+                $comment_args['include_unapproved'] = get_current_user_id();
+            } else {
+                $commenter = wp_get_current_commenter();
+                if ($commenter['comment_author_email']) {
+                    $comment_args['include_unapproved'] = $commenter['comment_author_email'];
+                }
+            }
+            $this->comments = Comment::sanitize(get_comments($comment_args));
+        }
+        return $this->comments;
     }
 
     /**

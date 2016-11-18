@@ -70,6 +70,19 @@ class Img
     }
 
     /**
+     * Get image mime type
+     *
+     * @return mixed
+     */
+    public function mime()
+    {
+        if ($this->isInitialized()) {
+            return get_post_mime_type($this->ID);
+        }
+        return false;
+    }
+
+    /**
      * Image source
      *
      * @param  string $size

@@ -28,13 +28,7 @@ class Icons extends Control implements iHaveAdminEnqueue
     public function __construct($name, $value = '', $attributes = array(), $label = '', $description = '')
     {
         parent::__construct($name, $value, $attributes, $label, $description);
-        $data_files = $this->getDataFiles();
-        foreach ($data_files as $file) {
-            $pack = new Pack($file);
-            $this->packs[ $pack->getName() ] = $pack;
-        }
-        add_action('admin_footer', array(&$this, 'renderStylesForIcons'));
-        $this->renderStylesForIcons();
+        $this->packs = self::getPacks();
     }
     
     /**
@@ -66,17 +60,19 @@ class Icons extends Control implements iHaveAdminEnqueue
     }
 
     /**
-     * Render css files
+     * Get all packs
      *
-     * @author Guriev Eugen <gurievcreative@gmail.com>
-     * @return Icons instance
+     * @return array
      */
-    public function renderStylesForIcons()
+    public static function getPacks()
     {
-        foreach ($this->packs as $pack) {
-            wp_enqueue_style($pack->getName(), $pack->getURL());
+        $packs = array();
+        $data_files = self::getDataFiles();
+        foreach ($data_files as $file) {
+            $pack = new Pack($file);
+            $packs[ $pack->getName() ] = $pack;
         }
-        return $this;
+        return $packs;
     }
 
     /**
@@ -85,7 +81,7 @@ class Icons extends Control implements iHaveAdminEnqueue
      * @author Guriev Eugen <gurievcreative@gmail.com>
      * @return array data files.
      */
-    private function getDataFiles()
+    public static function getDataFiles()
     {
         return (array) glob(__DIR__ . DS . 'data' . DS . '*.json');
     }
@@ -116,7 +112,7 @@ class Icons extends Control implements iHaveAdminEnqueue
         wp_enqueue_script(
             'lf-icons-control',
             Url::toUrl(__DIR__) . '/assets/js/icon_control.js',
-            array('jquery'),
+            array(),
             false,
             true
         );
@@ -126,5 +122,9 @@ class Icons extends Control implements iHaveAdminEnqueue
             Url::toUrl(__DIR__ . DS . 'assets' . DS . 'js' . DS . 'customize_icons.js'),
             array('jquery', 'lf-icons-control', 'customize-base', 'customize-controls')
         );
+
+        foreach ((array) self::getPacks() as $pack) {
+            wp_enqueue_style($pack->getName(), $pack->getURL());
+        }
     }
 }

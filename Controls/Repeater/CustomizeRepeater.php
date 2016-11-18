@@ -4,6 +4,7 @@ namespace lolitatheme\LolitaFramework\Controls\Repeater;
 use \lolitatheme\LolitaFramework\Core\Arr;
 use \lolitatheme\LolitaFramework\Core\Url;
 use \lolitatheme\LolitaFramework\Core\View;
+use \lolitatheme\LolitaFramework\Controls\Controls;
 
 /**
  * Customize Media Control class.
@@ -67,6 +68,8 @@ class CustomizeRepeater extends \WP_Customize_Control
             Url::toUrl(__DIR__ . DS . 'assets' . DS . 'js' . DS . 'customize_repeater.js'),
             array('jquery', 'lolita-repeater-control', 'customize-base', 'customize-controls')
         );
+
+        Controls::adminEnqueue($this->control->controls);
     }
 
     /**

@@ -129,7 +129,7 @@ class LolitaFramework
      */
     public static function getClassPath($class)
     {
-        $class_path = str_replace('\\', '/', $class);
+        $class_path = str_replace('\\', DS, $class);
         $class_path = str_replace(__NAMESPACE__ . DS, self::baseDir() . DS, $class_path);
         return $class_path . '.php';
     }

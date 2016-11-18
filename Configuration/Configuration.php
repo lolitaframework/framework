@@ -63,13 +63,15 @@ class Configuration
             $config_path = $this->getConfigPath($module);
             $data        = $this->getConfigData($config_path);
 
-            if (Cls::isImplements($class_name, __NAMESPACE__ . NS . 'IModule')) {
-                $this->prepared_modules[$class_name::getPriority()][] = array(
-                    'priority'    => $class_name::getPriority(),
-                    'class_name'  => $class_name,
-                    'config_path' => $config_path,
-                    'data'        => $data,
-                );
+            if (false !== $data) {
+                if (Cls::isImplements($class_name, __NAMESPACE__ . NS . 'IModule')) {
+                    $this->prepared_modules[$class_name::getPriority()][] = array(
+                        'priority'    => $class_name::getPriority(),
+                        'class_name'  => $class_name,
+                        'config_path' => $config_path,
+                        'data'        => $data,
+                    );
+                }
             }
         }
         ksort($this->prepared_modules);

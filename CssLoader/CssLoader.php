@@ -15,7 +15,7 @@ class CssLoader
      */
     public function __construct()
     {
-        add_action('wp_enqueue_scripts', array(&$this, 'addScriptsAndStyles'));
+        add_action('wp_footer', array(&$this, 'addScriptsAndStyles'));
         add_action('admin_enqueue_scripts', array(&$this, 'addScriptsAndStyles'));
         add_action('customize_controls_enqueue_scripts', array(&$this, 'addScriptsAndStyles'));
         // add_action('customize_controls_enqueue_scripts', array(&$this, 'addScriptsAndStyles'));

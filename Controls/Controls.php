@@ -88,6 +88,26 @@ class Controls
     }
 
     /**
+     * Admin enqueue for all controls from data
+     *
+     * @param  array  $data
+     * @return mixed
+     */
+    public static function adminEnqueue(array $data)
+    {
+        if (!is_array($data)) {
+            return false;
+        }
+        foreach ($data as $arguments) {
+            $class_name = self::getClassNameFromType(Arr::get($arguments, '__TYPE__'));
+
+            if (Cls::isImplements($class_name, __NAMESPACE__ . NS . 'IHaveAdminEnqueue')) {
+                $class_name::adminEnqueue();
+            }
+        }
+    }
+
+    /**
      * Render each control
      *
      * @author Guriev Eugen <gurievcreative@gmail.com>

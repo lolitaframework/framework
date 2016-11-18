@@ -149,7 +149,6 @@ class Repeater extends Control implements iHaveAdminEnqueue
         $this->template_controls = $controls->generateControls(
             (array) $this->template_controls
         );
-
         return $this;
     }
 

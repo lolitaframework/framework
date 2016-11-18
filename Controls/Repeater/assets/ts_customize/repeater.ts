@@ -42,10 +42,10 @@ namespace LolitaFramework {
                     control.container.find('[data-customize-setting-link]').each(
                         function(index:any, data:any) {
                             element     = jQuery(this);
-                            events      = '';
+                            events      = 'lolita-repeater-row-added, lolita-repeater-row-removed';
 
                             if ( element.is('input, select, textarea') ) {
-                                events += 'change';
+                                events += ' change';
 
                                 if ( element.is('input') ) {
                                     type = element.prop('type');

@@ -36,10 +36,11 @@ class Customize implements IModule
      * @param string $data config file data.
      * @return void
      */
-    public function __construct($data = null)
+    public function __construct(array $data = null)
     {
         // Save data
         $this->data = $data;
+
         add_action('customize_register', array( $this, 'register' ));
     }
 
