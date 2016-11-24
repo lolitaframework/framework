@@ -214,7 +214,7 @@ class Assets implements IModule
      */
     public function styles($styles)
     {
-        $defaults = array( '', false, array(), false, 'all' );
+        $defaults = array( '', false, array(), false, 'none' );
         if (is_array($styles) && count($styles)) {
             foreach ($styles as $style) {
                 list($handle, $src, $deps, $ver, $media) = $style + $defaults;
