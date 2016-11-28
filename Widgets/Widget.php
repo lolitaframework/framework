@@ -1,11 +1,11 @@
 <?php
-namespace lolitatheme\LolitaFramework\Widgets;
+namespace lolita\LolitaFramework\Widgets;
 
-use \lolitatheme\LolitaFramework\Core\Str;
-use \lolitatheme\LolitaFramework\Core\Loc;
-use \lolitatheme\LolitaFramework\Core\Arr;
-use \lolitatheme\LolitaFramework\Core\View;
-use \lolitatheme\LolitaFramework\Controls\Controls;
+use \lolita\LolitaFramework\Core\Str;
+use \lolita\LolitaFramework\Core\Loc;
+use \lolita\LolitaFramework\Core\Arr;
+use \lolita\LolitaFramework\Core\View;
+use \lolita\LolitaFramework\Controls\Controls;
 use \WP_Widget;
 
 class Widget extends WP_Widget

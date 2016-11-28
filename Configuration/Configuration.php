@@ -1,9 +1,9 @@
 <?php
-namespace lolitatheme\LolitaFramework\Configuration;
+namespace lolita\LolitaFramework\Configuration;
 
-use \lolitatheme\LolitaFramework\Core\Loc;
-use \lolitatheme\LolitaFramework\Core\Cls;
-use \lolitatheme\LolitaFramework;
+use \lolita\LolitaFramework\Core\Loc;
+use \lolita\LolitaFramework\Core\Cls;
+use \lolita\LolitaFramework;
 use \Exception;
 
 class Configuration
@@ -174,7 +174,7 @@ class Configuration
     {
         return apply_filters(
             'lf_configuration_settings_path',
-            LolitaFramework::baseDir() . '/app' . DS . 'config' . DS
+            Loc::lolita()->baseDir() . '/app' . DS . 'config' . DS
         );
     }
 

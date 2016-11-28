@@ -1,10 +1,10 @@
 <?php
-namespace lolitatheme\LolitaFramework\Configuration\Modules\Elements;
+namespace lolita\LolitaFramework\Configuration\Modules\Elements;
 
-use \lolitatheme\LolitaFramework\Core\Str;
-use \lolitatheme\LolitaFramework\Core\Arr;
-use \lolitatheme\LolitaFramework\Configuration\Configuration;
-use \lolitatheme\LolitaFramework\Controls\Controls;
+use \lolita\LolitaFramework\Core\Str;
+use \lolita\LolitaFramework\Core\Arr;
+use \lolita\LolitaFramework\Configuration\Configuration;
+use \lolita\LolitaFramework\Controls\Controls;
 
 class Taxonomy
 {

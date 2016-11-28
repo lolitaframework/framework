@@ -1,8 +1,8 @@
 <?php
-namespace lolitatheme\LolitaFramework\Controls\Select;
+namespace lolita\LolitaFramework\Controls\Select;
 
-use \lolitatheme\LolitaFramework\Controls\Control;
-use \lolitatheme\LolitaFramework\Core\Arr;
+use \lolita\LolitaFramework\Controls\Control;
+use \lolita\LolitaFramework\Core\Arr;
 
 class Select extends Control
 {

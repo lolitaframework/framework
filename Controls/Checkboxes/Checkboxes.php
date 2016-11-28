@@ -1,8 +1,8 @@
 <?php
-namespace lolitatheme\LolitaFramework\Controls\Checkboxes;
+namespace lolita\LolitaFramework\Controls\Checkboxes;
 
-use \lolitatheme\LolitaFramework\Controls\Control;
-use \lolitatheme\LolitaFramework\Core\Arr;
+use \lolita\LolitaFramework\Controls\Control;
+use \lolita\LolitaFramework\Core\Arr;
 
 class Checkboxes extends Control
 {

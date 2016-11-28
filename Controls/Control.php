@@ -1,11 +1,11 @@
 <?php
-namespace lolitatheme\LolitaFramework\Controls;
+namespace lolita\LolitaFramework\Controls;
 
-use \lolitatheme\LolitaFramework\Core\Str;
-use \lolitatheme\LolitaFramework\Core\Arr;
-use \lolitatheme\LolitaFramework\Core\View;
-use \lolitatheme\LolitaFramework\Core\Url;
-use \lolitatheme\LolitaFramework;
+use \lolita\LolitaFramework\Core\Str;
+use \lolita\LolitaFramework\Core\Arr;
+use \lolita\LolitaFramework\Core\View;
+use \lolita\LolitaFramework\Core\Url;
+use \lolita\LolitaFramework;
 
 abstract class Control
 {

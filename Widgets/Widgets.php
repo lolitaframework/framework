@@ -1,11 +1,11 @@
 <?php
-namespace lolitatheme\LolitaFramework\Widgets;
+namespace lolita\LolitaFramework\Widgets;
 
-use \lolitatheme\LolitaFramework\Core\Loc;
-use \lolitatheme\LolitaFramework\Core\Str;
-use \lolitatheme\LolitaFramework\Core\Ref;
-use \lolitatheme\LolitaFramework\Controls\Controls;
-use \lolitatheme\LolitaFramework;
+use \lolita\LolitaFramework\Core\Loc;
+use \lolita\LolitaFramework\Core\Str;
+use \lolita\LolitaFramework\Core\Ref;
+use \lolita\LolitaFramework\Controls\Controls;
+use \lolita\LolitaFramework;
 
 class Widgets
 {
@@ -88,7 +88,7 @@ class Widgets
     {
         return apply_filters(
             'lf_widgets_settings_path',
-            dirname(LolitaFramework::dir()) . '/app' . DS . 'widgets' . DS
+            Loc::lolita()->baseDir() . '/app' . DS . 'widgets' . DS
         );
     }
 

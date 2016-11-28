@@ -1,9 +1,9 @@
 <?php
 
-namespace lolitatheme\LolitaFramework\Core\Decorators;
+namespace lolita\LolitaFramework\Core\Decorators;
 
-use \lolitatheme\LolitaFramework\Core\Str;
-use \lolitatheme\LolitaFramework\Core\Arr;
+use \lolita\LolitaFramework\Core\Str;
+use \lolita\LolitaFramework\Core\Arr;
 use \Exception;
 use \WP_Term;
 

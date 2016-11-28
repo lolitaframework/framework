@@ -1,8 +1,8 @@
 <?php
-namespace lolitatheme\LolitaFramework\Controls\Editor;
+namespace lolita\LolitaFramework\Controls\Editor;
 
-use \lolitatheme\LolitaFramework\Controls\Control;
-use \lolitatheme\LolitaFramework\Core\Arr;
+use \lolita\LolitaFramework\Controls\Control;
+use \lolita\LolitaFramework\Core\Arr;
 
 class Editor extends Control
 {

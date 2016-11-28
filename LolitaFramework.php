@@ -1,7 +1,7 @@
 <?php
-namespace lolitatheme;
+namespace lolita;
 
-use \lolitatheme\LolitaFramework\Core\Url;
+use \lolita\LolitaFramework\Core\Url;
 
 /**
  * Lolita Framework singlton class
@@ -9,28 +9,42 @@ use \lolitatheme\LolitaFramework\Core\Url;
 class LolitaFramework
 {
     /**
+     * Base directory
+     * It can be plugin directory or theme directory
+     * @var null
+     */
+    private $base_dir = null;
+
+    /**
+     * Instance
+     * @var null
+     */
+    private static $instance = null;
+
+    /**
      * Get class instance only once
      *
      * @author Guriev Eugen <gurievcreative@gmail.com>
+     * @param string $dir
      * @return [LolitaFramewor] object.
      */
-    public static function getInstance()
+    public static function getInstance($dir = null)
     {
-        static $instance;
-        if (isset($instance)) {
-            return $instance;
+        if (null === self::$instance) {
+            self::$instance = new self($dir);
         }
-        $self = new self();
-        return $self;
+        return self::$instance;
     }
 
     /**
      * Autoload class constructor
      *
      * @author Guriev Eugen <gurievcreative@gmail.com>
+     * @param string $dir
      */
-    private function __construct()
+    private function __construct($dir = null)
     {
+        $this->setBaseDir($dir);
         spl_autoload_register(array( &$this, 'autoload' ));
         $this->constants();
         load_theme_textdomain('lolita', __DIR__ . DS . 'languages');
@@ -74,13 +88,30 @@ class LolitaFramework
     }
 
     /**
+     * Set base dir
+     *
+     * @param string $dir
+     * @return [LolitaFramewor] object.
+     */
+    public function setBaseDir($dir = null)
+    {
+        if (is_string($dir)) {
+            $this->base_dir = $dir;
+        }
+        return $this;
+    }
+
+    /**
      * Parent directory
      *
      * @return string
      */
-    public static function baseDir()
+    public function baseDir()
     {
-        return dirname(self::dir());
+        if (null === $this->base_dir) {
+            return dirname(self::dir());
+        }
+        return $this->base_dir;
     }
 
     /**
@@ -88,9 +119,9 @@ class LolitaFramework
      *
      * @return string
      */
-    public static function baseUrl()
+    public function baseUrl()
     {
-        return Url::toUrl(self::baseDir());
+        return Url::toUrl($this->baseDir());
     }
 
     /**
@@ -116,8 +147,11 @@ class LolitaFramework
     public function autoload($class)
     {
         $class_path = self::getClassPath($class);
+        $second_chance = $this->getClassPathBase($class);
         if (file_exists($class_path)) {
             require_once $class_path;
+        } else if (file_exists($second_chance)) {
+            require_once $second_chance;
         }
     }
 
@@ -130,8 +164,17 @@ class LolitaFramework
     public static function getClassPath($class)
     {
         $class_path = str_replace('\\', DS, $class);
-        $class_path = str_replace(__NAMESPACE__ . DS, self::baseDir() . DS, $class_path);
+        $class_path = str_replace(__NAMESPACE__ . DS, dirname(__DIR__) . DS, $class_path);
         return $class_path . '.php';
+    }
+
+    public function getClassPathBase($class)
+    {
+        $class_path = str_replace('\\', DS, $class);
+        $class_path = explode(DS, $class_path);
+        unset($class_path[0]);
+        $class_path = implode(DS, $class_path);
+        return sprintf('%s.php', $this->baseDir() . DS . $class_path);
     }
 
     /**

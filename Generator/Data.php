@@ -1,7 +1,7 @@
 <?php
-namespace lolitatheme\LolitaFramework\Generator;
+namespace lolita\LolitaFramework\Generator;
 
-use \lolitatheme\LolitaFramework\Core\Arr;
+use \lolita\LolitaFramework\Core\Arr;
 
 class Data
 {

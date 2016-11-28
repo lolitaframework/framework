@@ -1,12 +1,12 @@
 <?php
-namespace lolitatheme\LolitaFramework\Controls\Gallery;
+namespace lolita\LolitaFramework\Controls\Gallery;
 
-use \lolitatheme\LolitaFramework\Controls\Control;
-use \lolitatheme\LolitaFramework\Controls\IHaveAdminEnqueue;
-use \lolitatheme\LolitaFramework\Core\Img;
-use \lolitatheme\LolitaFramework\Core\View;
-use \lolitatheme\LolitaFramework\Core\Url;
-use \lolitatheme\LolitaFramework;
+use \lolita\LolitaFramework\Controls\Control;
+use \lolita\LolitaFramework\Controls\IHaveAdminEnqueue;
+use \lolita\LolitaFramework\Core\Img;
+use \lolita\LolitaFramework\Core\View;
+use \lolita\LolitaFramework\Core\Url;
+use \lolita\LolitaFramework;
 
 class Gallery extends Control implements iHaveAdminEnqueue
 {

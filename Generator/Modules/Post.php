@@ -1,7 +1,7 @@
 <?php
-namespace lolitatheme\LolitaFramework\Generator\Modules;
+namespace lolita\LolitaFramework\Generator\Modules;
 
-use \lolitatheme\LolitaFramework\Core\Arr;
+use \lolita\LolitaFramework\Core\Arr;
 
 class Post
 {

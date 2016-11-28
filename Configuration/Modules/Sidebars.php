@@ -1,10 +1,10 @@
 <?php
-namespace lolitatheme\LolitaFramework\Configuration\Modules;
+namespace lolita\LolitaFramework\Configuration\Modules;
 
-use \lolitatheme\LolitaFramework\Core\Str;
-use \lolitatheme\LolitaFramework\Configuration\Init;
-use \lolitatheme\LolitaFramework\Configuration\Configuration;
-use \lolitatheme\LolitaFramework\Configuration\IModule;
+use \lolita\LolitaFramework\Core\Str;
+use \lolita\LolitaFramework\Configuration\Init;
+use \lolita\LolitaFramework\Configuration\Configuration;
+use \lolita\LolitaFramework\Configuration\IModule;
 
 class Sidebars extends Init implements IModule
 {

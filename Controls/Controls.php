@@ -1,11 +1,11 @@
 <?php
-namespace lolitatheme\LolitaFramework\Controls;
+namespace lolita\LolitaFramework\Controls;
 
-use \lolitatheme\LolitaFramework\Core\Arr;
-use \lolitatheme\LolitaFramework\Core\Ref;
-use \lolitatheme\LolitaFramework\Core\Data;
-use \lolitatheme\LolitaFramework\Core\Cls;
-use \lolitatheme\LolitaFramework\Core\View;
+use \lolita\LolitaFramework\Core\Arr;
+use \lolita\LolitaFramework\Core\Ref;
+use \lolita\LolitaFramework\Core\Data;
+use \lolita\LolitaFramework\Core\Cls;
+use \lolita\LolitaFramework\Core\View;
 
 /**
  * Controls collection class

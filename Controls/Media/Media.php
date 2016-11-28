@@ -1,13 +1,13 @@
 <?php
-namespace lolitatheme\LolitaFramework\Controls\Media;
+namespace lolita\LolitaFramework\Controls\Media;
 
-use \lolitatheme\LolitaFramework\Controls\Control;
-use \lolitatheme\LolitaFramework\Core\Arr;
-use \lolitatheme\LolitaFramework\Core\Img;
-use \lolitatheme\LolitaFramework\Core\View;
-use \lolitatheme\LolitaFramework\Core\Url;
-use \lolitatheme\LolitaFramework\Controls\IHaveAdminEnqueue;
-use \lolitatheme\LolitaFramework;
+use \lolita\LolitaFramework\Controls\Control;
+use \lolita\LolitaFramework\Core\Arr;
+use \lolita\LolitaFramework\Core\Img;
+use \lolita\LolitaFramework\Core\View;
+use \lolita\LolitaFramework\Core\Url;
+use \lolita\LolitaFramework\Controls\IHaveAdminEnqueue;
+use \lolita\LolitaFramework;
 
 class Media extends Control implements iHaveAdminEnqueue
 {

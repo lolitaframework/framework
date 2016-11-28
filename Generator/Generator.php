@@ -1,10 +1,10 @@
 <?php
-namespace lolitatheme\LolitaFramework\Generator;
+namespace lolita\LolitaFramework\Generator;
 
-use \lolitatheme\LolitaFramework\Core\Str;
-use \lolitatheme\LolitaFramework\Core\Arr;
-use \lolitatheme\LolitaFramework\Generator\Modules\Post;
-use \lolitatheme\LolitaFramework\Generator\Modules\Term;
+use \lolita\LolitaFramework\Core\Str;
+use \lolita\LolitaFramework\Core\Arr;
+use \lolita\LolitaFramework\Generator\Modules\Post;
+use \lolita\LolitaFramework\Generator\Modules\Term;
 
 class Generator
 {

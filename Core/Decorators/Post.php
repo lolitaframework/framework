@@ -1,9 +1,9 @@
 <?php
 
-namespace lolitatheme\LolitaFramework\Core\Decorators;
+namespace lolita\LolitaFramework\Core\Decorators;
 
-use \lolitatheme\LolitaFramework\Core\Str;
-use \lolitatheme\LolitaFramework\Core\Loc;
+use \lolita\LolitaFramework\Core\Str;
+use \lolita\LolitaFramework\Core\Loc;
 use \WP_Post;
 
 class Post

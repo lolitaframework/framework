@@ -1,9 +1,9 @@
 <?php
-namespace lolitatheme\LolitaFramework\Controls\Button;
+namespace lolita\LolitaFramework\Controls\Button;
 
-use \lolitatheme\LolitaFramework\Core\Arr;
-use \lolitatheme\LolitaFramework\Core\Url;
-use \lolitatheme\LolitaFramework\Core\View;
+use \lolita\LolitaFramework\Core\Arr;
+use \lolita\LolitaFramework\Core\Url;
+use \lolita\LolitaFramework\Core\View;
 
 class CustomizeButton extends \WP_Customize_Control
 {

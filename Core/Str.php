@@ -1,6 +1,6 @@
 <?php
 
-namespace lolitatheme\LolitaFramework\Core;
+namespace lolita\LolitaFramework\Core;
 
 class Str
 {

@@ -1,5 +1,5 @@
 <?php
-namespace lolitatheme\LolitaFramework\Configuration;
+namespace lolita\LolitaFramework\Configuration;
 
 abstract class Init
 {

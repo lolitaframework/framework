@@ -1,7 +1,7 @@
 <?php
-namespace lolitatheme\LolitaFramework\Core;
+namespace lolita\LolitaFramework\Core;
 
-use \lolitatheme\LolitaFramework;
+use \lolita\LolitaFramework;
 
 class Loc
 {

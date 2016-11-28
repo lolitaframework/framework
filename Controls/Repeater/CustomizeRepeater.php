@@ -1,10 +1,10 @@
 <?php
-namespace lolitatheme\LolitaFramework\Controls\Repeater;
+namespace lolita\LolitaFramework\Controls\Repeater;
 
-use \lolitatheme\LolitaFramework\Core\Arr;
-use \lolitatheme\LolitaFramework\Core\Url;
-use \lolitatheme\LolitaFramework\Core\View;
-use \lolitatheme\LolitaFramework\Controls\Controls;
+use \lolita\LolitaFramework\Core\Arr;
+use \lolita\LolitaFramework\Core\Url;
+use \lolita\LolitaFramework\Core\View;
+use \lolita\LolitaFramework\Controls\Controls;
 
 /**
  * Customize Media Control class.

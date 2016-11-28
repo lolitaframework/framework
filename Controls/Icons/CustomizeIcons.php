@@ -1,5 +1,5 @@
 <?php
-namespace lolitatheme\LolitaFramework\Controls\Icons;
+namespace lolita\LolitaFramework\Controls\Icons;
 
 /**
  * Customize Media Control class.

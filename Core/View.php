@@ -1,7 +1,8 @@
 <?php
-namespace lolitatheme\LolitaFramework\Core;
+namespace lolita\LolitaFramework\Core;
 
-use \lolitatheme\LolitaFramework;
+use \lolita\LolitaFramework;
+use \Exception;
 
 class View
 {
@@ -14,6 +15,9 @@ class View
      */
     public static function isHaveExtension($path)
     {
+        if (!is_string($path)) {
+            return false;
+        }
         $parts = pathinfo($path);
         return array_key_exists('extension', $parts);
     }
@@ -28,7 +32,7 @@ class View
     {
         return apply_filters(
             'lf_default_views_folder',
-            LolitaFramework::baseDir() . DS . 'app' . DS . 'views' . DS
+            Loc::lolita()->baseDir() . DS . 'app' . DS . 'views' . DS
         );
     }
 
@@ -42,7 +46,11 @@ class View
      */
     public static function make($path, array $data = array())
     {
+        if (!is_string($path)) {
+            throw new Exception('Wrong path: ' . print_r($path, true));
+        }
         $data = array_merge($data, Loc::helpers());
+        $path = (string) $path;
         // If path setted like this "someview" then
         // We need add default folder path and extension .php
         if (!self::isHaveExtension($path)) {
