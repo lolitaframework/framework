@@ -7,6 +7,7 @@ use \lolita\LolitaFramework\Core\Arr;
 
 class RemoveActions extends Actions
 {
+
     /**
      * Remove actions
      *
