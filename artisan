@@ -1,0 +1,200 @@
+#!/usr/bin/env php
+                    .                           `                                 
+                  @@'@@                        @@.                                
+                 @@   @@                      #@@@                                
+                @@`   @@                     .@@#@                                
+               `@@    @@                     @@`.#                                
+          `    @@.    @@                    @@# +.            #@                  
+         +@   `@@    +@@                    @@  @            +@@                  
+         @+   @@+    @@`                   @@.  @           `@@.                  
+         @@   @@    #@@                   ,@@  @    '@@     @@@                   
+         @@  +@@   `@@                    @@   @   @@@@    :@@                    
+         .@: @@:   @@.                   ,@@  @`   #@@.    @@@                    
+          `@'@@  +@@                     @@   @           ;@@                     
+            #@@@@;                      `@@  @            @@#                     
+            @@:                         @@. `@           ,@@                      
+            @@                `@@@      @@  @     `      @@+             ;'`      
+           +@@                @# ##    +@+ #.    @@'   @+@@:::;'+@    `@@::@@     
+           @@,               @@  `@    @@ .@    +@@     +@#.`        #@;    @.    
+           @@                @:   @   `@@ @     @@+     @@          @@:     @,    
+          '@@             @@ @   ,@   @@'@     @@@      @@         @@+      #     
+          @@             @@  @`  @.   @@@      @@:     +@;        '@@      @      
+          @@            '@@  @;  @    @@      ;@@      @@         @@      #@+     
+         #@:            @@.  @@ #'   '@@      @@;      @@        @@@     `@@     +
+         @@            `@@    @.@    @@#      @@      '@@        @@      @@'     +
+        ,@'            +@@    `@'  +@@@'     @@@      @@@       @@@     @@@     @ 
+ '@@@#. @@             @@@    @#'@+  @@'    ':@@     @+@@      ;@@@    #@@@    @. 
+ @   #@@@#             @@@   #@      @@@   .:,@@    @ +@@     ,+@@'   #,@@#   #'  
+ @     @@@@@@`         ,@@,.@@       :@@  ;'  @@+ :@  ,@@    #+ @@#  @+ @@@  @;   
+ #@  :@#  @@@@@@#:``:+  @@@@:         @@@@`   `@@@;    @@@@@@.  '@@@@'   @@@@     
+  :@@@`     #@@@@@@@@                                   ;@+`     ,@#              
+              ,@@@@@  
+<?php
+
+class Artisan {
+
+    /**
+     * Start artisan
+     *
+     * @return void
+     */
+    public static function start()
+    {
+        $method = self::getMethod();
+        if (self::isAllowed($method)) {
+            self::$method();
+        }
+    }
+
+    /**
+     * Get all allowed commands to call fro argv
+     *
+     * @return array
+     */
+    public static function allowedCommands()
+    {
+        return array(
+            'help'            => 'Help',
+            'changeNamespace' => 'Replace namespace',
+        );
+    }
+
+    /**
+     * Show string
+     *
+     * @param  string  $start
+     * @param  string  $end
+     * @param  integer $len
+     * @return void
+     */
+    public static function show($start, $end, $len = 200)
+    {
+        $sum = strlen($start.$end);
+        if ($sum < $len) {
+            echo $start;
+            echo str_repeat(' ', $len - $sum);
+            echo $end;
+        } else {
+            echo $start;
+            echo $end;
+        }
+        echo "\n";
+    }
+
+    /**
+     * Print help
+     *
+     * @return void
+     */
+    public static function help()
+    {
+        echo "\n";
+        echo "\n";
+        echo "\n";
+        foreach (self::allowedCommands() as $key => $value) {
+            self::show($key, $value);
+        }
+    }
+
+    /**
+     * Change namespace
+     *
+     * @return void
+     */
+    public static function changeNamespace()
+    {
+        $search  = isset($GLOBALS['argv'][3]) ? $GLOBALS['argv'][2] : 'lolita';
+        $replace = isset($GLOBALS['argv'][3]) ? $GLOBALS['argv'][3] : $GLOBALS['argv'][2];
+
+        $files = self::getDirContents(__DIR__);
+        foreach ($files as $f) {
+            if ('php' === pathinfo($f, PATHINFO_EXTENSION)) {
+                if (!is_file($f)) {
+                    self::show($f, '[ERROR]');
+                    continue;
+                }
+                $str = file_get_contents($f);
+                $str = self::replaceNamespace($str, $search, $replace);
+                $str = self::replaceUse($str, $search, $replace);
+                file_put_contents($f, $str);
+                self::show($f, '[OK]');
+            }
+        }
+    }
+
+    /**
+     * Replace namespace
+     *
+     * @param  string $str
+     * @param  string $search
+     * @param  string $replace
+     * @return string
+     */
+    public static function replaceNamespace($str, $search, $replace)
+    {
+        $search  = 'namespace '.$search;
+        $replace = 'namespace '.$replace;
+        return str_replace($search, $replace, $str);
+    }
+
+    /**
+     * Replace use \
+     *
+     * @param  string $str
+     * @param  string $search
+     * @param  string $replace
+     * @return string
+     */
+    public static function replaceUse($str, $search, $replace)
+    {
+        $search  = 'use \\'.$search;
+        $replace = 'use \\'.$replace;
+        return str_replace($search, $replace, $str);
+    }
+
+    /**
+     * is allowed method?
+     * @param  string $method
+     * @return boolean
+     */
+    public static function isAllowed($method)
+    {
+        return in_array($method, array_keys(self::allowedCommands()));
+    }
+
+    /**
+     * Get argv method
+     *
+     * @return array
+     */
+    public static function getMethod()
+    {
+        return isset($GLOBALS['argv'][1]) ? $GLOBALS['argv'][1] : false;
+    }
+
+    /**
+     * Get all files from dir
+     *
+     * @param  string $dir
+     * @param  array  &$results
+     * @return array
+     */
+    public static function getDirContents($dir, &$results = array())
+    {
+        $files = scandir($dir);
+
+        foreach($files as $key => $value){
+            $path = realpath($dir.DIRECTORY_SEPARATOR.$value);
+            if(!is_dir($path)) {
+                $results[] = $path;
+            } else if($value != "." && $value != "..") {
+                self::getDirContents($path, $results);
+                $results[] = $path;
+            }
+        }
+
+        return $results;
+    }
+}
+
+Artisan::start();
