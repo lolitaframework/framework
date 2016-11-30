@@ -65,7 +65,7 @@ class Img
         $meta = wp_get_attachment_metadata($image_id);
 
         // If the size does not exist
-        if(!isset($meta['sizes'][$size_id])) {
+        if (!isset($meta['sizes'][$size_id])) {
             require_once(ABSPATH . 'wp-admin/includes/image.php');
 
             $file = get_attached_file($image_id);
@@ -112,7 +112,7 @@ class Img
      */
     public static function widthFromStr($str)
     {
-        return preg_match('/ width="([0-9]+)"/',  $str, $match_width) ? (int) $match_width[1]  : 0;
+        return preg_match('/ width="([0-9]+)"/', $str, $match_width) ? (int) $match_width[1]  : 0;
     }
 
     /**
