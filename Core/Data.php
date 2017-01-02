@@ -201,4 +201,66 @@ class Data
         }
         return $data;
     }
+
+    /**
+     * Group by class property
+     *
+     * @param  array $objects
+     * @param  string $property
+     * @return array
+     */
+    public static function groupBy(array $objects = array(), $property = 'post_author')
+    {
+        $return = array();
+        foreach ($objects as $p) {
+            if (!property_exists($p, $property)) {
+                throw new Exception('Wrong property: ' . $property);
+            }
+            $return[$p->$property][] = $p;
+        }
+        return (array) $return;
+    }
+
+    /**
+     * Seconds to human date time
+     *
+     * @param  int $seconds
+     * @return string
+     */
+    public static function secondsToHumanTime($seconds, $short = false)
+    {
+        $res    = array();
+        $dtF    = new DateTime("@0");
+        $dtT    = new DateTime("@$seconds");
+        $dic    = array(
+            'y' => __('years', 'lolita'),
+            'm' => __('months', 'lolita'),
+            'd' => __('days', 'lolita'),
+            'h' => __('hours', 'lolita'),
+            'i' => __('minutes', 'lolita'),
+            's' => __('seconds', 'lolita'),
+        );
+        $sdic  = array('h', 'i', 's');
+        $diff  = $dtF->diff($dtT);
+
+        if ($short) {
+            $new_dic = $dic;
+            Arr::forget($new_dic, $sdic);
+            foreach ($new_dic as $key => $label) {
+                if (0 < $diff->$key) {
+                    $res[] = sprintf('%s %s', $diff->$key, $label);
+                }
+            }
+
+            $res[] = sprintf('%s:%s:%s', $diff->h, $diff->i, $diff->s);
+        } else {
+            foreach ($dic as $key => $label) {
+                if (0 < $diff->$key) {
+                    $res[] = sprintf('%s %s', $diff->$key, $label);
+                }
+            }
+        }
+
+        return implode(', ', $res);
+    }
 }
