@@ -435,4 +435,20 @@ class Validation
 
         return $data;
     }
+
+    /**
+     * Validate a date
+     *
+     * @param  string $date
+     * @param  string $format
+     * @return string
+     */
+    public static function validateDate($date, $format = 'Y-m-d H:i:s')
+    {
+        $d = DateTime::createFromFormat($format, $date);
+        if ($d && $d->format($format) == $date) {
+            return $date;
+        }
+        return date($format);
+    }
 }
