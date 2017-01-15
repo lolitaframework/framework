@@ -1,8 +1,9 @@
 <?php
 
-namespace lolita\LolitaFramework\Core;
+namespace elegant\LolitaFramework\Core;
 
-use Countable;
+use \Countable;
+use \DateTime;
 
 class Validation
 {
@@ -10,7 +11,6 @@ class Validation
      * Validate a value with only alphabetic characters.
      *
      * @param string $data       The data to validate.
-     *
      * @return string
      */
     public static function alpha($data)
@@ -22,7 +22,6 @@ class Validation
      * Validate a value with only numeric characters.
      *
      * @param string $data       The data to validate.
-     *
      * @return string
      */
     public static function num($data, array $attributes = [])
@@ -31,10 +30,20 @@ class Validation
     }
 
     /**
+     * Validate a value with only float type
+     *
+     * @param  string $data
+     * @return boolean
+     */
+    public static function float($data)
+    {
+        return filter_var($data, FILTER_VALIDATE_FLOAT) !== false;
+    }
+
+    /**
      * Validate a negative full number.
      *
      * @param string $data
-     *
      * @return string
      */
     public static function negnum($data)
@@ -48,10 +57,9 @@ class Validation
      * Validate a value with alphanumeric characters.
      *
      * @param string $data
-     *
      * @return string
      */
-    public static function Alnum($data)
+    public static function alnum($data)
     {
         return ctype_alnum($data);
     }
@@ -60,12 +68,11 @@ class Validation
      * Validate an email value.
      *
      * @param string $data       The data to validate.
-     *
      * @return boolean
      */
     public static function email($data)
     {
-        return is_email($email);
+        return is_email($data);
     }
 
     /**
@@ -73,7 +80,6 @@ class Validation
      *
      * @param string $data       The URL to validate.
      * @param array  $attributes
-     *
      * @return boolean
      */
     public static function url($data)
@@ -86,7 +92,6 @@ class Validation
      *
      * @param string $data       The string to evaluate.
      * @param array  $min
-     *
      * @return boolean
      */
     public static function min($data, $min = 0)
@@ -105,7 +110,6 @@ class Validation
      *
      * @param string $data
      * @param int  $max
-     *
      * @return boolean
      */
     public static function max($data, $max = 0)
@@ -125,7 +129,6 @@ class Validation
      *
      * @param string $data
      * @param array  $attributes
-     *
      * @return boolean
      */
     public static function bool($data)
@@ -142,7 +145,6 @@ class Validation
      *
      * @param string $data
      * @param array  $attributes
-     *
      * @return boolean
      */
     public static function hex($data)
@@ -154,7 +156,6 @@ class Validation
      * Validate a color hexadecimal value.
      *
      * @param string $data
-     *
      * @return boolean
      */
     public static function color($data)
@@ -167,7 +168,6 @@ class Validation
      *
      * @param string $data
      * @param array  $attributes
-     *
      * @return boolean
      */
     public static function file($data, array $attributes = array())
@@ -181,7 +181,6 @@ class Validation
      * Validate a required data.
      *
      * @param string|array $data
-     *
      * @return boolean
      */
     public static function required($data)
