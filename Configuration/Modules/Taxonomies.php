@@ -28,51 +28,8 @@ class Taxonomies extends Init implements IModule
                 );
             }
         }
-
+        $this->install();
         $this->init();
-    }
-
-    /**
-     * Prepare data
-     *
-     * @return Taxonomies instance
-     */
-    public function prepareData()
-    {
-        // if (is_array($this->data)) {
-        //     foreach ($this->data as &$tax) {
-        //         if (array_key_exists('singular', $tax) && !array_key_exists('plural', $tax)) {
-        //             $tax['plural'] = Str::plural($tax['singular']);
-        //         } else if (!array_key_exists('singular', $tax) && array_key_exists('plural', $tax)) {
-        //             $tax['singular'] = Str::singular($tax['plural']);
-        //         }
-        //         $this->checkForErrors($tax);
-        //         $tax['slug'] = Str::slug($tax['singular']);
-
-        //         if (array_key_exists('controls', $tax)) {
-
-        //             add_action($tax['slug'] . '_add_form_fields', array(&$this, 'addControls'), 10, 2 );
-
-        //             foreach ($tax['controls'] as &$control) {
-        //                 $name = Arr::get($control, 'name', '');
-        //                 $name = trim($name);
-
-        //                 if ('' === $name) {
-        //                     throw new \Exception("Name is empty! Name parameter is required!");
-        //                 }
-
-        //                 $control['old_name'] = $name;
-        //                 $control['name']     = $this->controlNameWithPrefix($tax['slug'], $name);
-        //             }
-        //             $controls = new Controls;
-        //             $controls->generateControls((array) $tax['controls']);
-        //             $tax['collection'] => $controls;
-        //         } else {
-        //             $tax['collection'] = null;
-        //         }
-        //     }
-        // }
-        // return $this;
     }
 
     /**
@@ -114,6 +71,6 @@ class Taxonomies extends Init implements IModule
      */
     public static function getPriority()
     {
-        return Configuration::DEFAULT_PRIORITY;
+        return 99;
     }
 }
