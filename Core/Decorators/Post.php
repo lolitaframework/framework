@@ -252,11 +252,11 @@ class Post
      */
     public static function sanitize($data)
     {
-        if ($data instanceof Post) {
+        if ($data instanceof self) {
             return $data;
         }
         if ($data instanceof WP_Post) {
-            return new Post($data);
+            return new self($data);
         }
 
         if (is_array($data)) {
@@ -378,6 +378,18 @@ class Post
             $t = Term::getInstance($t->term_id);
         }
         return $term_class_objects;
+    }
+
+    /**
+     * Set terms
+     *
+     * @param string | array  $terms List of terms. Can be an array or a comma separated string.
+     * @param string  $taxonomy Possible values for example: 'category', 'post_tag', 'taxonomy slug'
+     * @param boolean $append   If true, tags will be appended to the post. If false, tags will replace existing tags.
+     */
+    public function setTerms($terms, $taxonomy, $append = false)
+    {
+        return wp_set_post_terms($this->ID, $terms, $taxonomy, $append);
     }
 
     /**

@@ -37,6 +37,26 @@ class View
     }
 
     /**
+     * Get default view folder path
+     *
+     * @param  string $path
+     * @return string
+     */
+    public static function path($path)
+    {
+        if (!is_string($path)) {
+            throw new Exception('Wrong path: ' . print_r($path, true));
+        }
+        $path = (string) $path;
+        // If path setted like this "someview" then
+        // We need add default folder path and extension .php
+        if (!self::isHaveExtension($path)) {
+            $path = self::getDefaultFolder() . $path . '.php';
+        }
+        return $path;
+    }
+
+    /**
      * Render view
      *
      * @author Guriev Eugen <gurievcreative@gmail.com>
@@ -46,16 +66,9 @@ class View
      */
     public static function make($path, array $data = array())
     {
-        if (!is_string($path)) {
-            throw new Exception('Wrong path: ' . print_r($path, true));
-        }
+        $path = self::path($path);
         $data = array_merge($data, Loc::helpers());
-        $path = (string) $path;
-        // If path setted like this "someview" then
-        // We need add default folder path and extension .php
-        if (!self::isHaveExtension($path)) {
-            $path = self::getDefaultFolder() . $path . '.php';
-        }
+        
         // Add parameters to temporary query variable.
         $data['__View'] = new self;
 

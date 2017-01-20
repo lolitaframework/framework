@@ -126,11 +126,12 @@ class MetaBoxes implements IModule
                 // ==============================================================
                 // Fill new attributes
                 // ==============================================================
+                $attributes = $control->getAttributes();
                 $control->setAttributes(
                     array_merge(
                         $control->getAttributes(),
                         array(
-                            'class' => 'widefat',
+                            'class' => 'widefat ' . Arr::get($attributes, 'class'),
                             'id'    => $control->getID(),
                         )
                     )

@@ -2,6 +2,8 @@
 
 namespace lolita\LolitaFramework\Core;
 
+use \Exception;
+
 class Data
 {
     /**
@@ -214,9 +216,10 @@ class Data
         $return = array();
         foreach ($objects as $p) {
             if (!property_exists($p, $property)) {
-                throw new Exception('Wrong property: ' . $property);
+                throw new Exception('Wrong property: ' . $property . $p->$property);
+            } else {
+                $return[$p->$property][] = $p;
             }
-            $return[$p->$property][] = $p;
         }
         return (array) $return;
     }
