@@ -372,7 +372,7 @@ class Arr
             } else {
                 $itemKey = Data::get($item, $key);
 
-                $results[$itemKey] = $itemValue;
+                $results[ $itemKey ] = $itemValue;
             }
         }
 
@@ -624,5 +624,57 @@ class Arr
                 return true;
             }
         );
+    }
+
+    /**
+     * Get key position by array
+     *
+     * @param  array $array
+     * @param  mixed $key
+     * @return int | false
+     */
+    public static function keyPosition($array, $key)
+    {
+        return array_search($key, array_keys($array));
+    }
+
+    /**
+     * All items before this item key
+     *
+     * @param  array $array
+     * @param  mixed $item_key
+     * @param  boolean $inclusive
+     * @return mixed
+     */
+    public static function before(array $array, $item_key, $inclusive = false)
+    {
+        $position = self::keyPosition($array, $item_key);
+        if (false === $position) {
+            return false;
+        }
+        if ($inclusive) {
+            $position++;
+        }
+        return array_slice($array, 0, $position);
+    }
+
+    /**
+     * All items after this item key
+     *
+     * @param  array $array
+     * @param  mixed $item_key
+     * @param  boolean $inclusive
+     * @return mixed
+     */
+    public static function after(array $array, $item_key, $inclusive = false)
+    {
+        $position = self::keyPosition($array, $item_key);
+        if (false === $position) {
+            return false;
+        }
+        if ($inclusive) {
+            $position--;
+        }
+        return array_slice($array, $position+1, count($array));
     }
 }

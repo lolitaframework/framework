@@ -34,6 +34,12 @@ class Column
     private $post_type = '';
 
     /**
+     * Table type
+     * @var string
+     */
+    private $type = 'posts';
+
+    /**
      * Class constructor
      *
      * @param string $name
@@ -41,15 +47,15 @@ class Column
      * @param string $post_type
      * @param string $slug
      */
-    public function __construct($name, $callback, $post_type = 'post', $slug = '')
+    public function __construct($name, $post_type = 'post', $slug = '', $content = null)
     {
-        $this->setName($name)
-            ->setCallback($callback)
-            ->setSlug($slug);
+        $this->setName($name)->setSlug($slug);
         $this->post_type = $post_type;
 
-        add_action($this->actionColumn(), array(&$this, 'column'));
-        add_action($this->actionContent(), array(&$this, 'content'), 10, 2);
+        add_action(sprintf('manage_%s_columns', $this->post_type), array(&$this, 'column'));
+        if (is_array($content) && 4 === count($content)) {
+            add_action($content[0], $content[1], $content[2], $content[3]);
+        }
     }
 
     /**
@@ -65,40 +71,6 @@ class Column
     }
 
     /**
-     * Add content in column
-     *
-     * @param  string $column_name
-     * @param  integer $post_ID
-     * @return void
-     */
-    public function content($column_name, $post_ID)
-    {
-        if ($this->slug == $column_name) {
-            call_user_func_array($this->callback, array($column_name, $post_ID));
-        }
-    }
-
-    /**
-     * Action for add column
-     *
-     * @return string
-     */
-    public function actionColumn()
-    {
-        return sprintf('manage_%s_posts_columns', $this->post_type);
-    }
-
-    /**
-     * Action for add content
-     *
-     * @return string
-     */
-    public function actionContent()
-    {
-        return sprintf('manage_%s_posts_custom_column', $this->post_type);
-    }
-
-    /**
      * Set name
      *
      * @param string $name
@@ -110,25 +82,6 @@ class Column
             throw new Exception('Column name can not be empty!');
         }
         $this->name = $name;
-        return $this;
-    }
-
-    /**
-     * Set callback
-     *
-     * @param mixed $callback
-     */
-    public function setCallback($callback)
-    {
-        if (!is_callable($callback)) {
-            throw new Exception(
-                sprintf(
-                    __('Callback "%s" is not callable!', 'lolita'),
-                    Data::maybeJSONEncode($callback)
-                )
-            );
-        }
-        $this->callback = $callback;
         return $this;
     }
 

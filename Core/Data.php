@@ -3,6 +3,7 @@
 namespace lolita\LolitaFramework\Core;
 
 use \Exception;
+use \DateTime;
 
 class Data
 {
@@ -215,9 +216,7 @@ class Data
     {
         $return = array();
         foreach ($objects as $p) {
-            if (!property_exists($p, $property)) {
-                throw new Exception('Wrong property: ' . $property . $p->$property);
-            } else {
+            if (isset($p->$property)) {
                 $return[$p->$property][] = $p;
             }
         }
