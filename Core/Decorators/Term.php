@@ -333,4 +333,15 @@ class Term
         }
         return $data;
     }
+
+    /**
+     * Is term
+     *
+     * @param  mixed  $obj
+     * @return boolean
+     */
+    public static function is($obj)
+    {
+        return ($obj instanceof WP_Term) || ($obj instanceof self);
+    }
 }
