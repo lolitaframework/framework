@@ -4,6 +4,7 @@ namespace lolita\LolitaFramework\Configuration\Modules;
 use \lolita\LolitaFramework\Configuration\Configuration;
 use \lolita\LolitaFramework\Configuration\IModule;
 use \lolita\LolitaFramework\Core\Ref;
+use \lolita\LolitaFramework\Core\Arr;
 
 class Columns implements IModule
 {
@@ -25,7 +26,7 @@ class Columns implements IModule
         if (is_array($this->data)) {
             foreach ($this->data as $col) {
                 $this->columns[] = Ref::create(
-                    __NAMESPACE__ . NS . 'Elements' . NS . 'Column',
+                    __NAMESPACE__ . NS . 'Columns' . NS . Arr::get($col, 'type', 'PostType'),
                     $col
                 );
             }
