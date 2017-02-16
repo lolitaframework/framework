@@ -195,11 +195,13 @@ class MetaBoxes implements IModule
         }
 
         foreach ($this->data as $slug => $data) {
-            $this->toggleSave($slug, $post_id);
+            if ($this->checkCondition($data)) {
+                $this->toggleSave($slug, $post_id);
 
-            if (array_key_exists('controls', $data)) {
-                foreach ($data['controls'] as $arguments) {
-                    $this->toggleSave($arguments['name'], $post_id);
+                if (array_key_exists('controls', $data)) {
+                    foreach ($data['controls'] as $arguments) {
+                        $this->toggleSave($arguments['name'], $post_id);
+                    }
                 }
             }
         }
@@ -232,16 +234,32 @@ class MetaBoxes implements IModule
     public function addMetaBoxes()
     {
         foreach ($this->data as $slug => $data) {
-            add_meta_box(
-                $slug,
-                $data['title'],
-                $data['callback'],
-                $data['screen'],
-                $data['context'],
-                $data['priority'],
-                $data['callback_args']
-            );
+            if ($this->checkCondition($data)) {
+                add_meta_box(
+                    $slug,
+                    $data['title'],
+                    $data['callback'],
+                    $data['screen'],
+                    $data['context'],
+                    $data['priority'],
+                    $data['callback_args']
+                );
+            }
         }
+    }
+
+    /**
+     * Check condition
+     *
+     * @param  array $data
+     * @return bool
+     */
+    public function checkCondition(array $data)
+    {
+        if (array_key_exists('condition', $data) && is_callable($data['condition'])) {
+            return $data['condition']();
+        }
+        return true;
     }
 
     /**
