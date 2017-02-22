@@ -148,9 +148,15 @@ class Routes implements IModule
     {
         $wp_query = Loc::wpQuery();
         $page = $wp_query->query_vars['name'];
+        $tmpl = get_page_template_slug(get_queried_object_id());
         if (array_key_exists($page, $this->data)) {
             status_header(200);
             echo $this->render($this->data[ $page ]);
+            exit;
+        }
+        if (array_key_exists($tmpl, $this->data)) {
+            status_header(200);
+            echo $this->render($this->data[ $tmpl ]);
             exit;
         }
     }
