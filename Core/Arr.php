@@ -212,6 +212,26 @@ class Arr
     }
 
     /**
+     * Flatten a multi-dimensional array into a single level with saving keys.
+     *
+     * @param  arrya $array
+     * @param  string $prefix
+     * @return array
+     */
+    public static function flattenWithKeys($array, $prefix = '') {
+        $result = array();
+        foreach ($array as $key => $value) {
+            if (is_array($value)) {
+                $result = $result + self::flattenWithKeys($value, $prefix . $key . '_');
+            }
+            else {
+                $result[$prefix . $key] = $value;
+            }
+        }
+        return $result;
+    }
+
+    /**
      * Remove one or many array items from a given array using "dot" notation.
      *
      * @param  array  $array
