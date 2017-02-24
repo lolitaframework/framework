@@ -218,7 +218,8 @@ class Arr
      * @param  string $prefix
      * @return array
      */
-    public static function flattenWithKeys($array, $prefix = '') {
+    public static function flattenWithKeys($array, $prefix = '')
+    {
         $result = array();
         foreach ($array as $key => $value) {
             if (is_array($value)) {
