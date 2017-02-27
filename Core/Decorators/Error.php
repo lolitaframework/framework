@@ -4,7 +4,8 @@ namespace lolita\LolitaFramework\Core\Decorators;
 
 use \WP_Error;
 
-class Error extends WP_Error {
+class Error extends WP_Error
+{
     /**
      * Add an error or append additional message to an existing error.
      *

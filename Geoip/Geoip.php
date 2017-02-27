@@ -26,7 +26,7 @@ class Geoip
      */
     public static function info($ip)
     {
-        if(!Validation::ip($ip)) {
+        if (!Validation::ip($ip)) {
             return null;
         }
         // This creates the Reader object, which should be reused across

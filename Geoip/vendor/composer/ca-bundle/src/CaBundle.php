@@ -196,8 +196,7 @@ class CaBundle
         // PHP 5.3.0 - PHP 5.3.27
         // PHP 5.4.0 - PHP 5.4.22
         // PHP 5.5.0 - PHP 5.5.6
-        if (
-               (PHP_VERSION_ID < 50400 && PHP_VERSION_ID >= 50328)
+        if ((PHP_VERSION_ID < 50400 && PHP_VERSION_ID >= 50328)
             || (PHP_VERSION_ID < 50500 && PHP_VERSION_ID >= 50423)
             || (PHP_VERSION_ID < 50600 && PHP_VERSION_ID >= 50507)
         ) {
@@ -221,8 +220,7 @@ class CaBundle
         };
 
         // Hard coded list of PHP distributions with the fix backported.
-        if (
-            $compareDistroVersionPrefix('5.3.3-7+squeeze', 18) // Debian 6 (Squeeze)
+        if ($compareDistroVersionPrefix('5.3.3-7+squeeze', 18) // Debian 6 (Squeeze)
             || $compareDistroVersionPrefix('5.4.4-14+deb7u', 7) // Debian 7 (Wheezy)
             || $compareDistroVersionPrefix('5.3.10-1ubuntu3.', 9) // Ubuntu 12.04 (Precise)
         ) {
@@ -265,8 +263,7 @@ EOT;
         $output = preg_split('{\r?\n}', trim($process->getOutput()));
         $errorOutput = trim($process->getErrorOutput());
 
-        if (
-            count($output) === 3
+        if (count($output) === 3
             && $output[0] === sprintf('string(%d) "%s"', strlen(PHP_VERSION), PHP_VERSION)
             && $output[1] === 'string(27) "stefan.esser@sektioneins.de"'
             && $output[2] === 'int(-1)'

@@ -7,7 +7,8 @@ use \lolita\LolitaFramework\Core\Arr;
 use \Exception;
 use \WP_User;
 
-class User extends WP_User {
+class User extends WP_User
+{
     /**
      * Update user in db
      *
