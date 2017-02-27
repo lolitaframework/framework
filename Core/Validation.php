@@ -1,6 +1,6 @@
 <?php
 
-namespace elegant\LolitaFramework\Core;
+namespace lolita\LolitaFramework\Core;
 
 use \Countable;
 use \DateTime;
@@ -201,11 +201,25 @@ class Validation
      *
      * @param  string $date
      * @param  string $format
-     * @return string
+     * @return boolean
      */
     public static function date($date, $format = 'Y-m-d H:i:s')
     {
         $d = DateTime::createFromFormat($format, $date);
         return $d && $d->format($format) == $date;
+    }
+
+    /**
+     * Validate ip
+     *
+     * @param  mixed $data
+     * @return boolean
+     */
+    public static function ip($data)
+    {
+        return filter_var(
+            $data,
+            FILTER_VALIDATE_IP
+        ) !== false;
     }
 }

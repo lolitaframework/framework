@@ -123,7 +123,6 @@ namespace LolitaFramework {
          * @param {any} e event.
          */
         add(e:any) {
-            console.log('click');
             this.rebind(jQuery(e.currentTarget).closest('.lolita-media-control'));
             this.frame.open();
         }
@@ -164,15 +163,19 @@ namespace LolitaFramework {
             thumb_url = selection.get('icon');
             title     = selection.get('title');
 
+            console.log(selection);
+
             // If image, get a thumbnail.
             if ('image' === type) {
                 // Check if the defined size is available.
                 var sizes = selection.get('sizes');
-
-                try{
+                thumb_url = selection.get('icon');
+                if(undefined !== sizes.thumbnail) {
                     thumb_url = sizes.thumbnail.url;
-                } catch (err) {
-                    thumb_url = selection.get('icon');
+                }
+
+                if(undefined !== sizes.full) {
+                    thumb_url = sizes.full.url;
                 }
             }
 

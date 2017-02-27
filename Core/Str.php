@@ -368,6 +368,53 @@ class Str
     }
 
     /**
+     * Find position of first occurrence of string in a string
+     *
+     * @param  string  $haystack The string being checked.
+     * @param  string  $needle   The string to find in haystack. In contrast with strpos(), numeric values are not applied as the ordinal value of a character.
+     * @param  integer $offset   The search offset. If it is not specified, 0 is used. A negative offset counts from the end of the string.
+     * @return string
+     */
+    public static function position($haystack, $needle, $offset = 0)
+    {
+        return mb_strpos($haystack, $needle, $offset, 'UTF-8');
+    }
+
+    /**
+     * Before splitter
+     *
+     * @param  string $string
+     * @param  string $splitter
+     * @return string
+     */
+    public static function before($string, $splitter = '@')
+    {
+        if (false === self::position($string, $splitter)) {
+            return false;
+        }
+        return self::substr($string, 0, self::position($string, $splitter));
+    }
+
+    /**
+     * After splitter
+     *
+     * @param  string $string
+     * @param  string $splitter
+     * @return string
+     */
+    public static function after($string, $splitter = '@')
+    {
+        if (false === self::position($string, $splitter)) {
+            return false;
+        }
+        return self::substr(
+            $string,
+            self::position($string, $splitter, 0, $encoding) + 1,
+            self::length($string)
+        );
+    }
+
+    /**
      * Make a string's first character uppercase.
      *
      * @param  string  $string

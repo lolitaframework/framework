@@ -336,4 +336,50 @@ class Url
         }
         return $request_uri;
     }
+
+    /**
+     * Get guest ip
+     *
+     * @return string
+     */
+    public static function ip()
+    {
+        // check for shared internet/ISP IP
+        if (Validation::ip(Arr::get($_SERVER, 'HTTP_CLIENT_IP'))) {
+            return $_SERVER['HTTP_CLIENT_IP'];
+        }
+
+        // check for IPs passing through proxies
+        if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            // check if multiple ips exist in var
+            if (strpos($_SERVER['HTTP_X_FORWARDED_FOR'], ',') !== false) {
+                $iplist = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
+                foreach ($iplist as $ip) {
+                    if (Validation::ip($ip)) {
+                        return $ip;
+                    }
+                }
+            } else {
+                if (Validation::ip($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+                    return $_SERVER['HTTP_X_FORWARDED_FOR'];
+                }
+            }
+        }
+
+        if (Validation::ip(Arr::get($_SERVER, 'HTTP_X_FORWARDED'))) {
+            return $_SERVER['HTTP_X_FORWARDED'];
+        }
+        if (Validation::ip(Arr::get($_SERVER, 'HTTP_X_CLUSTER_CLIENT_IP'))) {
+            return $_SERVER['HTTP_X_CLUSTER_CLIENT_IP'];
+        }
+        if (Validation::ip(Arr::get($_SERVER, 'HTTP_FORWARDED_FOR'))) {
+            return $_SERVER['HTTP_FORWARDED_FOR'];
+        }
+        if (Validation::ip(Arr::get($_SERVER, 'HTTP_FORWARDED'))) {
+            return $_SERVER['HTTP_FORWARDED'];
+        }
+
+        // return unreliable ip since all else failed
+        return $_SERVER['REMOTE_ADDR'];
+    }
 }

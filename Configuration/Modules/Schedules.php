@@ -22,6 +22,11 @@ class Schedules implements IModule
      */
     const CALLABLE_O = 'callable';
 
+    /**
+     * Start time, default: time()
+     */
+    const STARTTIME  = 'starttime';
+
 
     /**
      * How often the event should reoccur. Default values:
@@ -64,6 +69,15 @@ class Schedules implements IModule
                 if (!array_key_exists(self::RECURRENCE, $event)) {
                     throw new Exception('The event must have recurrence option. Event: ' . json_encode($event));
                 }
+                if (!array_key_exists(self::STARTTIME, $event)) {
+                    $starttime = time();
+                } else {
+                    if (is_callable($event[ self::STARTTIME ])) {
+                        $starttime = $event[ self::STARTTIME ]();
+                    } else {
+                        $starttime = $event[ self::STARTTIME ];
+                    }
+                }
 
                 $callable   = $event[self::CALLABLE_O];
                 $recurrence = $event[self::RECURRENCE];
@@ -72,7 +86,7 @@ class Schedules implements IModule
                     $handler = 'schedule_event_hook_' . $index;
                     add_action($handler, $callable);
                     if (!wp_next_scheduled($handler)) {
-                        wp_schedule_event(time(), $recurrence, $handler);
+                        wp_schedule_event($starttime, $recurrence, $handler);
                     }
                 }
             }

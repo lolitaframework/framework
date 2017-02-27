@@ -54,6 +54,17 @@ class Loc
     }
 
     /**
+     * Get current user
+     *
+     * @return WP_User
+     */
+    public static function currentUser()
+    {
+        global $current_user;
+        return $current_user;
+    }
+
+    /**
      * Get $wp_query
      *
      * @author Guriev Eugen <gurievcreative@gmail.com>
@@ -142,6 +153,17 @@ class Loc
     {
         global $wp_filter;
         return $wp_filter;
+    }
+
+    /**
+     * Get global submenu
+     *
+     * @return mixed
+     */
+    public static function submenu()
+    {
+        global $submenu;
+        return $submenu;
     }
 
     /**

@@ -39,6 +39,12 @@ abstract class Column
     protected $object_type = '';
 
     /**
+     * Sortable key
+     * @var string
+     */
+    protected $sortable = '';
+
+    /**
      * Class constructor
      *
      * @param string $name
@@ -47,13 +53,14 @@ abstract class Column
      * @param mixed $cc
      * @param string $slug
      */
-    public function __construct($name, $object_type, $content_callback, $header_callback = null, $slug = '')
+    public function __construct($name, $object_type, $content_callback, $header_callback = null, $sortable = '', $slug = '')
     {
         $this
             ->setName($name)
             ->setSlug($slug)
             ->setObjectType($object_type)
-            ->setHeaderCallback($header_callback);
+            ->setHeaderCallback($header_callback)
+            ->setSortable($sortable);
         $this->content_callback = $content_callback;
 
         add_action(
@@ -137,6 +144,39 @@ abstract class Column
         }
         $this->slug = $slug;
         return $this;
+    }
+
+    /**
+     * Set sortable
+     *
+     * @param string $sortable
+     */
+    public function setSortable($sortable)
+    {
+        if ('' !== $sortable) {
+            $this->sortable = $sortable;
+            add_filter(
+                sprintf(
+                    'manage_%s_sortable_columns',
+                    $this->object_type
+                ),
+                array(&$this, 'sortable')
+            );
+        }
+    }
+
+    /**
+     * Filters the list table sortable columns for a specific screen.
+     *
+     * The dynamic portion of the hook name, `$this->screen->id`, refers
+     * to the ID of the current screen, usually a string. 
+     *
+     * @param array $sortable_columns An array of sortable columns.
+     */
+    public function sortable($sortable_columns)
+    {
+        $sortable_columns[ $this->slug ] = $this->sortable;
+        return $sortable_columns;
     }
 
     /**

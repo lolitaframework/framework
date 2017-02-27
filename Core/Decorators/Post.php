@@ -383,7 +383,7 @@ class Post
     /**
      * Set terms
      *
-     * @param string | array  $terms List of terms. Can be an array or a comma separated string.
+     * @param string | array  $terms List of terms. Can be an array or a comma separated string. 
      * @param string  $taxonomy Possible values for example: 'category', 'post_tag', 'taxonomy slug'
      * @param boolean $append   If true, tags will be appended to the post. If false, tags will replace existing tags.
      */

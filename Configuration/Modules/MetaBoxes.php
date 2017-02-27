@@ -187,14 +187,14 @@ class MetaBoxes implements IModule
         if (!isset($_POST[self::NONCE]) || !wp_verify_nonce($_POST[self::NONCE], self::NONCE)) {
             return;
         }
-        if (!current_user_can('edit_posts')) {
-            return;
-        }
         if (!is_object($post)) {
             $post = get_post();
         }
 
         foreach ($this->data as $slug => $data) {
+            if ($data['screen'] !== $post->post_type) {
+                continue;
+            }
             if ($this->checkCondition($data)) {
                 $this->toggleSave($slug, $post_id);
 

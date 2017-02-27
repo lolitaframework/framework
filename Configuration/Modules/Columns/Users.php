@@ -14,13 +14,14 @@ class Users extends Column
      * @param mixed $cc
      * @param string $slug
      */
-    public function __construct($name, $content_callback, $header_callback = null, $slug = '')
+    public function __construct($name, $content_callback, $header_callback = null, $sortable = '', $slug = '')
     {
         $this
             ->setName($name)
             ->setSlug($slug)
-            ->setObjectType('')
-            ->setHeaderCallback($header_callback);
+            ->setObjectType('users')
+            ->setHeaderCallback($header_callback)
+            ->setSortable($sortable);
         $this->content_callback = $content_callback;
 
         add_action(
@@ -44,7 +45,7 @@ class Users extends Column
      */
     public function getHeaderAction()
     {
-        return sprintf('manage_users_columns');
+        return 'manage_users_columns';
     }
 
     /**
@@ -54,6 +55,6 @@ class Users extends Column
      */
     public function getContentAction()
     {
-        return sprintf('manage_users_custom_column');
+        return 'manage_users_custom_column';
     }
 }
