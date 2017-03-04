@@ -382,4 +382,17 @@ class Url
         // return unreliable ip since all else failed
         return $_SERVER['REMOTE_ADDR'];
     }
+
+    /**
+     * Get unique file path
+     *
+     * @param  string $file_name
+     * @return string
+     */
+    public static function uniqueUploadFilePath($file_name)
+    {
+        $uploads  = wp_upload_dir(date('Y/m'));
+        $file_name = wp_unique_filename($uploads['path'], $file_name, null);
+        return $uploads['path'] . DS . $file_name;
+    }
 }
