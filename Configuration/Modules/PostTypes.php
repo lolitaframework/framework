@@ -37,12 +37,35 @@ class PostTypes extends Init implements IModule
                 if (!Arr::exists($post_type, 'slug')) {
                     $post_type['slug'] = Str::slug($post_type['singular']);
                 }
+                if (!array_key_exists('capabilities', $post_type) || !is_array(Arr::get($post_type, 'capabilities'))) {
+                    $post_type['capabilities'] = $this->capabilities($post_type['slug']);
+                }
                 register_post_type(
                     $post_type['slug'],
                     $args
                 );
             }
         }
+    }
+
+    /**
+     * Generate default capabilities
+     *
+     * @param  string $slug
+     * @return array
+     */
+    private function capabilities($slug)
+    {
+        return array(
+            'edit_post'          => sprintf('edit_%s', Str::singular($slug)),
+            'read_post'          => sprintf('read_%s', Str::singular($slug)),
+            'delete_post'        => sprintf('delete_%s', Str::singular($slug)),
+            'edit_posts'         => sprintf('edit_%s', Str::plural($slug)),
+            'edit_others_posts'  => sprintf('edit_others_%s', Str::plural($slug)),
+            'publish_posts'      => sprintf('publish_%s', Str::plural($slug)),
+            'read_private_posts' => sprintf('read_private_%s', Str::plural($slug)),
+            'create_posts'       => sprintf('edit_%s', Str::plural($slug)),
+        );
     }
 
     /**
