@@ -147,10 +147,16 @@ class Routes implements IModule
     public function customRoutes()
     {
         $wp_query = Loc::wpQuery();
-        $page = $wp_query->query['pagename'];
+
+        if ($this->hasPageNameInQuery($wp_query->query)) {
+            $page = $wp_query->query['pagename'];
+        } else {
+            $page = $wp_query->query_vars['name'];
+        }
+
         $tmpl = get_page_template_slug(get_queried_object_id());
 
-        if (array_key_exists($page, $this->data)) {
+        if ($page && array_key_exists($page, $this->data)) {
             status_header(200);
             echo $this->render($this->data[ $page ]);
             exit;
@@ -160,6 +166,17 @@ class Routes implements IModule
             echo $this->render($this->data[ $tmpl ]);
             exit;
         }
+    }
+
+    /**
+     * Check pagename value in $wp_query->query
+     * @param $query
+     * @return bool
+     */
+    private function hasPageNameInQuery($query)
+    {
+        return array_key_exists('pagename', $query)
+            && !empty($query['pagename']);
     }
 
     /**
