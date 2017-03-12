@@ -93,9 +93,7 @@ class Routes implements IModule
      */
     private function render($element)
     {
-        if (is_array($element) && array_key_exists('method', $element)
-            && array_key_exists('args', $element)) {
-
+        if (is_array($element) && array_key_exists('method', $element)) {
             if (is_callable($element['method'])) {
                 $method = $element['method'];
                 $args = $element['args'];
