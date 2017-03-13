@@ -4,11 +4,21 @@ namespace lolita\LolitaFramework\Configuration\Modules;
 use \lolita\LolitaFramework\Configuration\Configuration;
 use \lolita\LolitaFramework\Configuration\IModule;
 use \lolita\LolitaFramework\Core\Data;
-use \lolita\LolitaFramework\Core\Route;
+use \lolita\LolitaFramework\Core\Route as R;
 use \lolita\LolitaFramework\Core\Loc;
+use \lolita\LolitaFramework\Core\Ref;
+use \lolita\LolitaFramework\Core\Arr;
+use \lolita\LolitaFramework\Core\Url;
+use \lolita\LolitaFramework\Configuration\Modules\Routing\Route;
 
 class Routes implements IModule
 {
+    /**
+     * All routes
+     * @var array
+     */
+    private $routes = array();
+
     /**
      * Routes class constructor
      *
@@ -30,11 +40,18 @@ class Routes implements IModule
      */
     private function prepare()
     {
-        $prepared = array();
         foreach ($this->data as $key => $value) {
-            $prepared[ Data::interpret($key) ] = $value;
+            if (is_array($value)) {
+                $this->routes[ $key ] = new Route(
+                    Data::interpret($key),
+                    Arr::get($value, 'html', ''),
+                    (array) Arr::get($value, 'methods', array()),
+                    Arr::get($value, 'template_name')
+                );
+            } else {
+                $this->routes[ $key ] = new Route(Data::interpret($key), $value);
+            }
         }
-        $this->data = $prepared;
         return $this;
     }
 
@@ -63,89 +80,14 @@ class Routes implements IModule
      */
     public function templates($page_templates, $me, $post)
     {
-        return array_merge($page_templates, $this->getTemplateNames());
-    }
-
-    /**
-     * Get all templates from data
-     *
-     * @author Guriev Eugen <gurievcreative@gmail.com>
-     * @return array templates.
-     */
-    private function getTemplateNames()
-    {
-        $templates = array();
-        foreach ($this->data as $key => $el) {
-            if (is_array($el) && array_key_exists('template_name', $el)) {
-                $templates[$key] = $el['template_name'];
+        if ($this->routes) {
+            foreach ($this->routes as $r) {
+                if ('' !== $r->templateName()) {
+                    $page_templates[ $r->path() ] = $r->templateName();
+                }
             }
         }
-        return $templates;
-    }
-
-    /**
-     * Get HTML from route element
-     *
-     * @author Guriev Eugen <gurievcreative@gmail.com>
-     * @throws Route function %s not found!
-     * @param  mixed $element route element.
-     * @return string HTML code.
-     */
-    private function render($element)
-    {
-        if (is_array($element) && array_key_exists('method', $element)) {
-            if (is_callable($element['method'])) {
-                $method = $element['method'];
-                $args = $element['args'];
-                return forward_static_call_array($method, $args);
-            } else {
-                $element = $element['method'];
-            }
-        }
-
-        if (is_callable($element)) {
-            return $element();
-        }
-        if (is_array($element)) {
-            if (array_key_exists('class', $element)) {
-                $class = $element['class'];
-                add_filter(
-                    'body_class',
-                    function ($classes) use ($class) {
-                        return $this->addBodyClass($classes, $class);
-                    }
-                );
-            }
-            if (array_key_exists('html', $element)) {
-                $element = $element['html'];
-            }
-        }
-        $rendered_data = Data::interpret($element);
-        if (!is_string($rendered_data)) {
-            throw new \Exception(
-                sprintf(
-                    __('Route function %s not found!', 'lolita'),
-                    json_encode($element)
-                )
-            );
-        }
-        return $rendered_data;
-    }
-
-    /**
-     * Add css class to body
-     *
-     * @param array $classes
-     * @param string $class
-     * @return array
-     */
-    public function addBodyClass($classes, $class)
-    {
-        if (is_array($class)) {
-            $class = implode(' ', $class);
-        }
-        $classes[] = $class;
-        return $classes;
+        return $page_templates;
     }
 
     /**
@@ -156,130 +98,22 @@ class Routes implements IModule
      */
     public function customRoutes()
     {
-        $wp_query = Loc::wpQuery();
-
-        if ($this->hasPageNameInQuery($wp_query->query)) {
-            $page = $wp_query->query['pagename'];
-        } else {
-            $page = $wp_query->query_vars['name'];
-        }
-
-        $tmpl = get_page_template_slug(get_queried_object_id());
-
-        if ($page) {
-            if (array_key_exists($page, $this->data)) {
-                status_header(200);
-                echo $this->render($this->data[$page]);
-                exit;
-            }
-
-            $data = $this->searchMatchingWithMask($page);
-
-            if ($data) {
-                status_header(200);
-                echo $this->render($data);
-                exit;
+        $route = Url::route();
+        foreach ($this->routes as $r_obj) {
+            preg_match('/' . $r_obj->regExp() . '/', $route, $values);
+            $filterValues = array_filter(array_keys($values), 'is_string');
+            $arguments = array_intersect_key($values, array_flip($filterValues));
+            if (count($values) > 0) {
+                $method = $_SERVER['REQUEST_METHOD'];
+                if (in_array($method, $r_obj->methods())) {
+                    if (is_callable($r_obj->point())) {
+                        echo call_user_func_array($r_obj->point(), $arguments);
+                    } else {
+                        echo $r_obj->point();
+                    }
+                }
             }
         }
-
-        if ($tmpl && array_key_exists($tmpl, $this->data)) {
-            status_header(200);
-            echo $this->render($this->data[ $tmpl ]);
-            exit;
-        }
-    }
-
-    /**
-     * Search matches in routs with arguments by mask
-     *
-     * @param $page
-     * @return array
-     */
-    private function searchMatchingWithMask($page)
-    {
-        $data = array();
-
-        foreach ($this->data as $rout => $method) {
-            $rout = trim($rout, '/');
-
-            if (!$this->isRouteWithArguments($rout)) {
-                continue;
-            }
-
-            $args = $this->getRouteArgs($rout, $page);
-
-            if (!$args) {
-                continue;
-            }
-
-            $this->prepareRoutsArgs($args);
-
-            $data['method'] = $method;
-            $data['args'] = $args;
-            break;
-        }
-
-        return $data;
-    }
-
-    /**
-     * Check if rout has mask of arguments
-     *
-     * @param $rout
-     * @return bool
-     */
-    private function isRouteWithArguments($rout)
-    {
-        return preg_match("/%.*%/", $rout) != false;
-    }
-
-    /**
-     * Get routs arguments values
-     *
-     * @param $rout
-     * @param $page
-     * @return array
-     */
-    private function getRouteArgs($rout, $page)
-    {
-        $mask = str_replace('/', '\/', $rout);
-        $mask = preg_replace('/(%.*%)/U', '([^\/]*)', $mask);
-        $mask .= '$';
-
-        preg_match_all('/'.$mask.'/', $page, $matches);
-
-        array_shift($matches);
-
-        return (!isset($matches) || !$matches[0]) ? array() : $matches;
-    }
-
-    /**
-     * Prepare routs arguments array
-     *
-     * @param $args_values
-     * @return array
-     */
-    private function prepareRoutsArgs(&$arguments)
-    {
-        $args = array();
-
-        foreach ($arguments as $num => $item) {
-            $fist_element_key = 0;
-            $args[] = $item[$fist_element_key];
-        }
-
-        $arguments = $args;
-    }
-
-    /**
-     * check pagename value in $wp_query->query
-     * @param $query
-     * @return bool
-     */
-    private function hasPageNameInQuery($query)
-    {
-        return array_key_exists('pagename', $query)
-            && !empty($query['pagename']);
     }
 
     /**
@@ -291,11 +125,11 @@ class Routes implements IModule
      */
     public function blockDefaultTemplates($template_path)
     {
-        $types_conditions = Route::typesConditions(Loc::post());
-        foreach ($this->data as $type => $route) {
+        $types_conditions = R::typesConditions(Loc::post());
+        foreach ($this->routes as $type => $route) {
             if (array_key_exists($type, $types_conditions)) {
                 if ($types_conditions[$type]()) {
-                    echo $this->render($route);
+                    echo call_user_func($route->point());
                     exit;
                 }
             }
