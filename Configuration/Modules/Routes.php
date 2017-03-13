@@ -93,6 +93,16 @@ class Routes implements IModule
      */
     private function render($element)
     {
+        if (is_array($element) && array_key_exists('method', $element)) {
+            if (is_callable($element['method'])) {
+                $method = $element['method'];
+                $args = $element['args'];
+                return forward_static_call_array($method, $args);
+            } else {
+                $element = $element['method'];
+            }
+        }
+
         if (is_callable($element)) {
             return $element();
         }
@@ -147,18 +157,129 @@ class Routes implements IModule
     public function customRoutes()
     {
         $wp_query = Loc::wpQuery();
-        $page = $wp_query->query_vars['name'];
-        $tmpl = get_page_template_slug(get_queried_object_id());
-        if (array_key_exists($page, $this->data)) {
-            status_header(200);
-            echo $this->render($this->data[ $page ]);
-            exit;
+
+        if ($this->hasPageNameInQuery($wp_query->query)) {
+            $page = $wp_query->query['pagename'];
+        } else {
+            $page = $wp_query->query_vars['name'];
         }
-        if (array_key_exists($tmpl, $this->data)) {
+
+        $tmpl = get_page_template_slug(get_queried_object_id());
+
+        if ($page) {
+            if (array_key_exists($page, $this->data)) {
+                status_header(200);
+                echo $this->render($this->data[$page]);
+                exit;
+            }
+
+            $data = $this->searchMatchingWithMask($page);
+
+            if ($data) {
+                status_header(200);
+                echo $this->render($data);
+                exit;
+            }
+        }
+
+        if ($tmpl && array_key_exists($tmpl, $this->data)) {
             status_header(200);
             echo $this->render($this->data[ $tmpl ]);
             exit;
         }
+    }
+
+    /**
+     * Search matches in routs with arguments by mask
+     *
+     * @param $page
+     * @return array
+     */
+    private function searchMatchingWithMask($page)
+    {
+        $data = array();
+
+        foreach ($this->data as $rout => $method) {
+            $rout = trim($rout, '/');
+
+            if (!$this->isRouteWithArguments($rout)) {
+                continue;
+            }
+
+            $args = $this->getRouteArgs($rout, $page);
+
+            if (!$args) {
+                continue;
+            }
+
+            $this->prepareRoutsArgs($args);
+
+            $data['method'] = $method;
+            $data['args'] = $args;
+            break;
+        }
+
+        return $data;
+    }
+
+    /**
+     * Check if rout has mask of arguments
+     *
+     * @param $rout
+     * @return bool
+     */
+    private function isRouteWithArguments($rout)
+    {
+        return preg_match("/%.*%/", $rout) != false;
+    }
+
+    /**
+     * Get routs arguments values
+     *
+     * @param $rout
+     * @param $page
+     * @return array
+     */
+    private function getRouteArgs($rout, $page)
+    {
+        $mask = str_replace('/', '\/', $rout);
+        $mask = preg_replace('/(%.*%)/U', '([^\/]*)', $mask);
+        $mask .= '$';
+
+        preg_match_all('/'.$mask.'/', $page, $matches);
+
+        array_shift($matches);
+
+        return (!isset($matches) || !$matches[0]) ? array() : $matches;
+    }
+
+    /**
+     * Prepare routs arguments array
+     *
+     * @param $args_values
+     * @return array
+     */
+    private function prepareRoutsArgs(&$arguments)
+    {
+        $args = array();
+
+        foreach ($arguments as $num => $item) {
+            $fist_element_key = 0;
+            $args[] = $item[$fist_element_key];
+        }
+
+        $arguments = $args;
+    }
+
+    /**
+     * check pagename value in $wp_query->query
+     * @param $query
+     * @return bool
+     */
+    private function hasPageNameInQuery($query)
+    {
+        return array_key_exists('pagename', $query)
+            && !empty($query['pagename']);
     }
 
     /**
