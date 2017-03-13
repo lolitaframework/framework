@@ -97,7 +97,7 @@ class Routes implements IModule
             if (is_callable($element['method'])) {
                 $method = $element['method'];
                 $args = $element['args'];
-                return forward_static_call_array($method, array($args));
+                return forward_static_call_array($method, $args);
             } else {
                 $element = $element['method'];
             }
@@ -206,24 +206,16 @@ class Routes implements IModule
                 continue;
             }
 
-            $args_names = $this->getRouteArgsNames($rout);
+            $args = $this->getRouteArgs($rout, $page);
 
-            if (!$args_names) {
+            if (!$args) {
                 continue;
             }
 
-            $args_values = $this->getRouteArgsValues($rout, $page);
-
-            if (!$args_values) {
-                continue;
-            }
-
-            if (count($args_names) != count($args_values)) {
-                continue;
-            }
+            $this->prepareRoutsArgs($args);
 
             $data['method'] = $method;
-            $data['args'] = $this->prepareRoutsArgs($args_names, $args_values);
+            $data['args'] = $args;
             break;
         }
 
@@ -242,26 +234,13 @@ class Routes implements IModule
     }
 
     /**
-     * Get routs arguments names
-     *
-     * @param $rout
-     * @return array
-     */
-    private function getRouteArgsNames($rout)
-    {
-        preg_match_all("/%(.*)%/U", $rout, $matches);
-
-        return (isset($matches[1])) ? $matches[1] : array();
-    }
-
-    /**
      * Get routs arguments values
      *
      * @param $rout
      * @param $page
      * @return array
      */
-    private function getRouteArgsValues($rout, $page)
+    private function getRouteArgs($rout, $page)
     {
         $mask = str_replace('/', '\/', $rout);
         $mask = preg_replace('/(%.*%)/U', '([^\/]*)', $mask);
@@ -277,24 +256,23 @@ class Routes implements IModule
     /**
      * Prepare routs arguments array
      *
-     * @param $args_names
      * @param $args_values
      * @return array
      */
-    private function prepareRoutsArgs($args_names, $args_values)
+    private function prepareRoutsArgs(&$arguments)
     {
         $args = array();
 
-        foreach ($args_names as $num => $name) {
-            $fist_element_ket = 0;
-            $args[$name] = $args_values[$num][$fist_element_ket];
+        foreach ($arguments as $num => $item) {
+            $fist_element_key = 0;
+            $args[] = $item[$fist_element_key];
         }
 
-        return $args;
+        $arguments = $args;
     }
 
     /**
-     * Check pagename value in $wp_query->query
+     * check pagename value in $wp_query->query
      * @param $query
      * @return bool
      */
