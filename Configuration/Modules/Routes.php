@@ -106,11 +106,13 @@ class Routes implements IModule
             if (count($values) > 0) {
                 $method = $_SERVER['REQUEST_METHOD'];
                 if (in_array($method, $r_obj->methods())) {
+                    status_header(200);
                     if (is_callable($r_obj->point())) {
                         echo call_user_func_array($r_obj->point(), $arguments);
                     } else {
                         echo $r_obj->point();
                     }
+                    exit;
                 }
             }
         }
