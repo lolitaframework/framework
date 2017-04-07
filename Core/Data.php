@@ -8,6 +8,18 @@ use \DateTime;
 class Data
 {
     /**
+     * Loging
+     *
+     * @param  string $data
+     * @return void
+     */
+    public static function log($data)
+    {
+        $dir = wp_get_upload_dir();
+        file_put_contents($dir['basedir'] . DS . 'log.txt', $data . "\n" . "\n", FILE_APPEND);
+    }
+
+    /**
      * Get an item from an array or object using "dot" notation.
      *
      * @param  mixed   $target

@@ -23,11 +23,12 @@ class View extends Control
      * @param string $lable control label.
      * @param string $descriptions control description.
      */
-    public function __construct($name, $value = '', $callback = null, $attributes = array(), $label = '', $description = '')
+    public function __construct($name, $value = '', $callback = null, $attributes = array(), $label = '', $description = '', $condition = null)
     {
         $this->setName($name);
         $this->setValue($value);
         $this->setAttributes($attributes);
+        $this->setCondition($condition);
         $this->label       = $label;
         $this->description = $description;
         $this->callback    = $callback;
@@ -41,6 +42,9 @@ class View extends Control
      */
     public function render()
     {
+        if (false === $this->checkCondition()) {
+            return '';
+        }
         if (is_callable($this->callback)) {
             return call_user_func_array($this->callback, array('me' => $this));
         }

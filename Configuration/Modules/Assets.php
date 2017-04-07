@@ -85,6 +85,7 @@ class Assets implements IModule
     {
         $array = array(
             'deregister_scripts',
+            'deregister_styles',
             'scripts',
             'styles',
             'localize',
@@ -165,6 +166,22 @@ class Assets implements IModule
         if (is_array($handles) && count($handles)) {
             foreach ($handles as $handle) {
                 wp_deregister_script($handle);
+            }
+        }
+    }
+
+    /**
+     * Deregistered some styles
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
+     * @param [type] $handles deregister script handles.
+     * @return void
+     */
+    public function deregisterStyles($handles)
+    {
+        if (is_array($handles) && count($handles)) {
+            foreach ($handles as $handle) {
+                wp_deregister_style($handle);
             }
         }
     }

@@ -19,12 +19,13 @@ class Select extends Control
      * @param string $name control name.
      * @param mixed $value contro value.
      */
-    public function __construct($name, array $options, $value = '', $attributes = array(), $label = '', $description = '')
+    public function __construct($name, array $options, $value = '', $attributes = array(), $label = '', $description = '', $condition = null)
     {
         $this->setName($name);
         $this->setValue($value);
         $this->setAttributes($attributes);
         $this->setOptions($options);
+        $this->setCondition($condition);
         $this->label       = $label;
         $this->description = $description;
     }
@@ -53,6 +54,9 @@ class Select extends Control
      */
     public function render()
     {
+        if (false === $this->checkCondition()) {
+            return '';
+        }
         $this->setAttributes(
             array_merge(
                 $this->getAttributes(),

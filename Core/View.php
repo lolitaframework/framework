@@ -44,6 +44,9 @@ class View
      */
     public static function path($path)
     {
+        if (is_array($path)) {
+            $path = implode(DS, $path);
+        }
         if (!is_string($path)) {
             throw new Exception('Wrong path: ' . print_r($path, true));
         }
@@ -105,5 +108,25 @@ class View
         );
 
         return preg_replace($search, $replace, $buffer);
+    }
+
+    /**
+     * Generate HTML Tag
+     * @param  string $tag
+     * @param  string $attributes
+     * @param  string $content
+     * @return string
+     */
+    public static function tag($tag, $attributes = '', $content = '')
+    {
+        if (is_array($attributes)) {
+            $attributes = Arr::join($attributes);
+        }
+        return sprintf(
+            '<%1$s %2$s>%3$s<%1$s/>',
+            $tag,
+            $attributes,
+            $content
+        );
     }
 }

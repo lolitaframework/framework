@@ -19,11 +19,12 @@ class Radios extends Control
      * @param string $name control name.
      * @param mixed $value contro value.
      */
-    public function __construct($name, array $options, $value = '', $attributes = array(), $label = '', $description = '')
+    public function __construct($name, array $options, $value = '', $attributes = array(), $label = '', $description = '', $condition = null)
     {
         $this->setName($name);
         $this->setValue($value);
         $this->setAttributes($attributes);
+        $this->setCondition($condition);
         $this->label       = $label;
         $this->description = $description;
         $this->options     = $options;

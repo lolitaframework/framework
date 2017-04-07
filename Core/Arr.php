@@ -697,4 +697,24 @@ class Arr
         }
         return array_slice($array, $position+1, count($array));
     }
+
+    /**
+     * Rapped your array
+     *
+     * @param  array  $array
+     * @param  integer $target_sum
+     * @return array
+     */
+    public static function rapped($array, $target_sum = 0)
+    {
+        $sum = 0;
+        $rapped = array();
+        foreach ($array as $key => $value) {
+            if ($sum < $target_sum) {
+                $sum+= (float) $value;
+                $rapped[ $key ] = $value;
+            }
+        }
+        return $rapped;
+    }
 }

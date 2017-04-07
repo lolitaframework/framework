@@ -177,6 +177,17 @@ class Loc
     }
 
     /**
+     * Get global wp admin bar
+     *
+     * @return WP_Admin_Bar
+     */
+    public static function wpAdminBar()
+    {
+        global $wp_admin_bar;
+        return $wp_admin_bar;
+    }
+
+    /**
      * Browser version
      * Check if the user needs a browser update.
      *

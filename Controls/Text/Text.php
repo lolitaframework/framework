@@ -14,12 +14,15 @@ class Text extends Control
      */
     public function render()
     {
+        if (false === $this->checkCondition()) {
+            return '';
+        }
         $this->setAttributes(
             array_merge(
                 array(
                     'name'                        => $this->getName(),
                     'id'                          => $this->getId(),
-                    'value'                       => $this->getValue(),
+                    'value'                       => esc_attr($this->getValue()),
                     'type'                        => 'text',
                     'data-customize-setting-link' => $this->getName(),
                 ),

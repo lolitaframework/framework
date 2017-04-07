@@ -1,6 +1,5 @@
 <?php
-
-namespace /;
+namespace \;
 
 class ComposerAutoloaderInita21028219e6b759c7587efe72ab928aa
 {

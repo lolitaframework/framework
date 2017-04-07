@@ -36,10 +36,10 @@ class Repeater extends Control implements iHaveAdminEnqueue
      * @param string $name control name.
      * @param mixed $value contro value.
      */
-    public function __construct($name, array $controls, $value = '', $attributes = array(), $label = '', $description = '')
+    public function __construct($name, array $controls, $value = '', $attributes = array(), $label = '', $description = '', $condition = null)
     {
         $this->controls = $controls;
-        parent::__construct($name, $value, $attributes, $label, $description);
+        parent::__construct($name, $value, $attributes, $label, $description, $condition);
     }
 
     /**
@@ -187,6 +187,9 @@ class Repeater extends Control implements iHaveAdminEnqueue
      */
     public function render()
     {
+        if (false === $this->checkCondition()) {
+            return '';
+        }
         $this->prepare();
         return parent::render();
     }

@@ -53,6 +53,9 @@ class Media extends Control implements iHaveAdminEnqueue
      */
     public function render()
     {
+        if (false === $this->checkCondition()) {
+            return '';
+        }
         $this->setAttributes(
             array_merge(
                 $this->getAttributes(),

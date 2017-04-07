@@ -98,11 +98,10 @@ class Validation
     {
         $min  = (int) $min;
         $data = trim($data);
-
         if ($min <= strlen($data)) {
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     /**
@@ -118,9 +117,9 @@ class Validation
         $data = trim($data);
 
         if ($max >= strlen($data)) {
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     /**

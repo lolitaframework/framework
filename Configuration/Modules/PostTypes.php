@@ -38,7 +38,7 @@ class PostTypes extends Init implements IModule
                     $post_type['slug'] = Str::slug($post_type['singular']);
                 }
                 if (!array_key_exists('capabilities', $post_type) || !is_array(Arr::get($post_type, 'capabilities'))) {
-                    $post_type['capabilities'] = $this->capabilities($post_type['slug']);
+                    $args['capabilities'] = $this->capabilities($post_type['slug']);
                 }
                 register_post_type(
                     $post_type['slug'],

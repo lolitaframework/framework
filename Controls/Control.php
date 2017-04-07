@@ -28,6 +28,12 @@ abstract class Control
     protected $value = null;
 
     /**
+     * Condition to render
+     * @var null
+     */
+    protected $condition = null;
+
+    /**
      * Control label.
      * @var string
      */
@@ -55,11 +61,12 @@ abstract class Control
      * @param string $lable control label.
      * @param string $descriptions control description.
      */
-    public function __construct($name, $value = '', $attributes = array(), $label = '', $description = '')
+    public function __construct($name, $value = '', $attributes = array(), $label = '', $description = '', $condition = null)
     {
         $this->setName($name);
         $this->setValue($value);
         $this->setAttributes($attributes);
+        $this->setCondition($condition);
         $this->label       = $label;
         $this->description = $description;
     }
@@ -73,6 +80,32 @@ abstract class Control
     public function getAttributes()
     {
         return $this->attributes;
+    }
+
+    /**
+     * Set condition
+     *
+     * @param mixed $condition
+     */
+    public function setCondition($condition = null)
+    {
+        if (is_callable($condition)) {
+            $this->condition = $condition;
+        }
+        return $this;
+    }
+
+    /**
+     * Check condition
+     *
+     * @return boolean
+     */
+    public function checkCondition()
+    {
+        if (is_callable($this->condition)) {
+            return call_user_func($this->condition, $this);
+        }
+        return true;
     }
 
     /**
@@ -210,6 +243,9 @@ abstract class Control
      */
     public function render()
     {
+        if (false === $this->checkCondition()) {
+            return '';
+        }
         return View::make(
             $this->getDefaultViewPath(),
             array('me' => $this)

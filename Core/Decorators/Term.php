@@ -279,6 +279,19 @@ class Term
     }
 
     /**
+     * Update meta
+     *
+     * @param  string $key
+     * @param  mixed $value
+     * @return Term instance
+     */
+    public function update($key, $value)
+    {
+        update_term_meta($this->term_id, $key, $value);
+        return $this;
+    }
+
+    /**
      * Get term link
      *
      * @return string
@@ -343,5 +356,14 @@ class Term
     public static function is($obj)
     {
         return ($obj instanceof WP_Term) || ($obj instanceof self);
+    }
+
+    /**
+     * Suicide term
+     * @return void
+     */
+    public function suicide()
+    {
+        return wp_delete_term($this->term_id, $this->taxonomy, ['force_default' => true]);
     }
 }

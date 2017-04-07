@@ -652,4 +652,26 @@ class Str
 
         return $subject;
     }
+
+    /**
+     * Path from items
+     *
+     * @param  array  $items
+     * @return string
+     */
+    public static function path(array $items = array())
+    {
+        return implode(DS, $items);
+    }
+
+    /**
+     * Class path from items
+     * @param  array  $items
+     * @return string
+     */
+    public static function classPath(array $items = array())
+    {
+        $items = Arr::prepend($items, '');
+        return implode(NS, $items);
+    }
 }

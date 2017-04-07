@@ -23,11 +23,12 @@ class Checkboxes extends Control
      * @param string $description description.
      * @param array $options checkboes {[key1 => value1], [key2 => value2]}
      */
-    public function __construct($name, array $options, $value = '', $attributes = array(), $label = '', $description = '')
+    public function __construct($name, array $options, $value = '', $attributes = array(), $label = '', $description = '', $condition = null)
     {
         $this->setName($name);
         $this->setValue($value);
         $this->setAttributes($attributes);
+        $this->setCondition($condition);
         $this->label       = $label;
         $this->description = $description;
         $this->options     = $options;

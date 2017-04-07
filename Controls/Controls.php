@@ -119,7 +119,9 @@ class Controls
     {
         $rendered_controls = array();
         foreach ($this->collection as $control) {
-            $rendered_controls[] = View::make($control_view, array('control' => $control));
+            if (true === $control->checkCondition()) {
+                $rendered_controls[] = View::make($control_view, array('control' => $control));
+            }
         }
         return View::make($collection_view, array('controls' => implode('', $rendered_controls)));
     }

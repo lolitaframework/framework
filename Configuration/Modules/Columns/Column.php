@@ -7,6 +7,7 @@ use \Exception;
 
 abstract class Column
 {
+
     /**
      * Name
      * @var null
@@ -169,6 +170,7 @@ abstract class Column
      *
      * The dynamic portion of the hook name, `$this->screen->id`, refers
      * to the ID of the current screen, usually a string.
+     *
      * @param array $sortable_columns An array of sortable columns.
      */
     public function sortable($sortable_columns)

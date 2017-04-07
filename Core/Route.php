@@ -140,7 +140,7 @@ class Route
                 function () use ($post_type) {
                     return is_singular($post_type);
                 },
-                $post_type
+                'single-' . $post_type
             );
         }
 

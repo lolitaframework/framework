@@ -25,9 +25,9 @@ class Icons extends Control implements iHaveAdminEnqueue
      * @param string $lable control label.
      * @param string $descriptions control description.
      */
-    public function __construct($name, $value = '', $attributes = array(), $label = '', $description = '')
+    public function __construct($name, $value = '', $attributes = array(), $label = '', $description = '', $condition = null)
     {
-        parent::__construct($name, $value, $attributes, $label, $description);
+        parent::__construct($name, $value, $attributes, $label, $description, $condition);
         $this->packs = self::getPacks();
     }
     

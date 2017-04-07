@@ -229,8 +229,18 @@ class Post
         } else if (empty($_post->filter)) {
             $_post = sanitize_post($_post, 'raw');
         }
+        $cls = self::whoAmI();
+        return new $cls($_post);
+    }
 
-        return new Post($_post);
+    /**
+     * Get called class name
+     *
+     * @return string
+     */
+    public static function whoAmI()
+    {
+        return get_called_class();
     }
 
     /**
@@ -468,7 +478,7 @@ class Post
     }
 
     /**
-     * Get the featured image as a TimberImage
+     * Get the featured image
      *
      * @return Image instance or null
      */
@@ -482,6 +492,15 @@ class Post
             $this->img = new Img((int) $this->ID);
         }
         return $this->img;
+    }
+
+    /**
+     * Has post thumbnail
+     * @return boolean
+     */
+    public function hasThumbnail()
+    {
+        return has_post_thumbnail($this->ID);
     }
 
     /**
@@ -669,5 +688,14 @@ class Post
             $return[] = new self($p);
         }
         return $return;
+    }
+
+    /**
+     * Suicide
+     * @return void
+     */
+    public function suicide()
+    {
+        return wp_delete_post($this->ID, true);
     }
 }

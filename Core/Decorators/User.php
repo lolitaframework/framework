@@ -33,7 +33,7 @@ class User extends WP_User
      * @param  mixed  $user_candidate
      * @return boolean
      */
-    public function is($user_candidate)
+    public static function itsMe($user_candidate)
     {
         if ($user_candidate instanceof WP_User) {
             return true;
@@ -51,5 +51,15 @@ class User extends WP_User
     public function updateMeta($meta_key, $meta_value)
     {
         return update_user_meta($this->ID, $meta_key, $meta_value);
+    }
+
+    /**
+     * Suicide
+     * @return void
+     */
+    public function suicide()
+    {
+        require_once(ABSPATH . DS . 'wp-admin' . DS . 'includes' . DS . 'user.php');
+        return wp_delete_user($this->ID);
     }
 }
