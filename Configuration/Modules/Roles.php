@@ -12,6 +12,13 @@ class Roles extends Init implements IModule
 {
 
     /**
+     * Initialize action
+     *
+     * @var string
+     */
+    protected $init_action = 'switch_theme';
+
+    /**
      * Menus class constructor
      *
      * @author Guriev Eugen <gurievcreative@gmail.com>
@@ -20,7 +27,9 @@ class Roles extends Init implements IModule
     public function __construct($data = null)
     {
         $this->data = $data;
-        $this->init();
+        if (array_key_exists('update_roles', $_GET)) {
+            $this->install();
+        }
     }
 
     /**

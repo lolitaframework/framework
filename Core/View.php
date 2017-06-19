@@ -123,7 +123,7 @@ class View
             $attributes = Arr::join($attributes);
         }
         return sprintf(
-            '<%1$s %2$s>%3$s<%1$s/>',
+            '<%1$s %2$s>%3$s</%1$s>',
             $tag,
             $attributes,
             $content

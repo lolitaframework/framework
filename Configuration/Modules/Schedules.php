@@ -115,7 +115,7 @@ class Schedules implements IModule
         if ($this->hasScheduleList()) {
             return (array) $this->data[self::SCHEDULE_LIST];
         }
-        return array();
+        return [];
     }
 
     /**
@@ -128,7 +128,7 @@ class Schedules implements IModule
         if ($this->hasEventList()) {
             return (array) $this->data[self::EVENT_LIST];
         }
-        return array();
+        return [];
     }
 
     /**

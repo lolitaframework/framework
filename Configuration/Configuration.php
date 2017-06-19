@@ -43,9 +43,12 @@ class Configuration
      *
      * @author Guriev Eugen <gurievcreative@gmail.com>
      */
-    public function __construct()
+    public function __construct($settings_path = '')
     {
         $this->settings_path = $this->getDefaultSettingsPath();
+        if ('' !== $settings_path) {
+            $this->settings_path = $settings_path;
+        }
         $this->prepareModules()->load();
     }
 

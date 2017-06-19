@@ -5,6 +5,7 @@ namespace lolita\LolitaFramework\Core\Decorators;
 use \lolita\LolitaFramework\Core\Str;
 use \lolita\LolitaFramework\Core\Loc;
 use \WP_Post;
+use \stdClass;
 
 class Post
 {
@@ -216,10 +217,8 @@ class Post
         }
 
         $_post = wp_cache_get($post_id, 'posts');
-
         if (!$_post) {
             $_post = $wpdb->get_row($wpdb->prepare("SELECT * FROM $wpdb->posts WHERE ID = %d LIMIT 1", $post_id));
-
             if (!$_post) {
                 return false;
             }
@@ -229,6 +228,7 @@ class Post
         } else if (empty($_post->filter)) {
             $_post = sanitize_post($_post, 'raw');
         }
+
         $cls = self::whoAmI();
         return new $cls($_post);
     }
@@ -251,7 +251,13 @@ class Post
      */
     public static function posts(array $args = array())
     {
-        return self::sanitize(get_posts($args));
+        $key = 'posts' . md5(json_encode($args));
+        $res = wp_cache_get($key);
+        if (false === $res) {
+            $res = self::sanitize(get_posts($args));
+            wp_cache_set($key, $res);
+        }
+        return $res;
     }
 
     /**
@@ -266,7 +272,8 @@ class Post
             return $data;
         }
         if ($data instanceof WP_Post) {
-            return new self($data);
+            $cls = get_called_class();
+            return new $cls($data);
         }
 
         if (is_array($data)) {
@@ -284,9 +291,24 @@ class Post
      */
     public function __construct($post)
     {
-        foreach (get_object_vars($post) as $key => $value) {
-            $this->$key = $value;
+        if ($post instanceof WP_Post || $post instanceof stdClass) {
+            foreach (get_object_vars($post) as $key => $value) {
+                $this->$key = $value;
+            }
         }
+    }
+
+    /**
+     * Determine whether the post exists in the database.
+     *
+     * @since 3.4.0
+     * @access public
+     *
+     * @return bool True if post exists in the database, false if not.
+     */
+    public function exists()
+    {
+        return !empty($this->ID);
     }
 
     /**

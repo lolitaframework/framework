@@ -28,7 +28,7 @@ class Taxonomies extends Init implements IModule
                 );
             }
         }
-        $this->install();
+        //$this->install();
         $this->init();
     }
 

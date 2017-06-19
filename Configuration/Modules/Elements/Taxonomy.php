@@ -140,8 +140,10 @@ class Taxonomy
      */
     public function update($term_id, $tt_id)
     {
-        foreach ($this->controls->collection as $control) {
-            $this->toggleSave($control->getName(), $term_id);
+        if (is_admin()) {
+            foreach ($this->controls->collection as $control) {
+                $this->toggleSave($control->getName(), $term_id);
+            }
         }
     }
 

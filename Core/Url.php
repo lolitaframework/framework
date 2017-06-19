@@ -154,7 +154,9 @@ class Url
     public static function relPath($src)
     {
         if (strstr($src, ABSPATH)) {
-            return str_replace(ABSPATH, '', $src);
+            $src = str_replace(ABSPATH, '', $src);
+            $src = str_replace('\\', '/', $src);
+            return $src;
         }
         //its outside the wordpress directory, alternate setups:
         $src = str_replace(WP_CONTENT_DIR, '', $src);

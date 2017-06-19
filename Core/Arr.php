@@ -221,7 +221,7 @@ class Arr
     public static function flattenWithKeys($array, $prefix = '')
     {
         $result = array();
-        foreach ($array as $key => $value) {
+        foreach ((array) $array as $key => $value) {
             if (is_array($value)) {
                 $result = $result + self::flattenWithKeys($value, $prefix . $key . '_');
             } else {

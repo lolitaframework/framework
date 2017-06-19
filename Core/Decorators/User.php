@@ -62,4 +62,16 @@ class User extends WP_User
         require_once(ABSPATH . DS . 'wp-admin' . DS . 'includes' . DS . 'user.php');
         return wp_delete_user($this->ID);
     }
+
+    /**
+     * Link in admin panel
+     * @return string
+     */
+    public function adminLink()
+    {
+        return add_query_arg(
+            ['user_id' => $this->ID],
+            admin_url('user-edit.php')
+        );
+    }
 }

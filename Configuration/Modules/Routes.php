@@ -13,6 +13,8 @@ use \lolita\LolitaFramework\Configuration\Modules\Routing\Route;
 
 class Routes implements IModule
 {
+    const ROUTES_FILTER = 'lolita_routes_filter';
+
     /**
      * All routes
      * @var array
@@ -27,7 +29,8 @@ class Routes implements IModule
      */
     public function __construct($data = null)
     {
-        $this->data = $data;
+        $this->data = apply_filters(self::ROUTES_FILTER, $data);
+
         if (is_array($this->data)) {
             $this->prepare()->install();
         }
@@ -46,7 +49,9 @@ class Routes implements IModule
                     Data::interpret($key),
                     Arr::get($value, 'html', ''),
                     (array) Arr::get($value, 'methods', array()),
-                    Arr::get($value, 'template_name')
+                    Arr::get($value, 'template_name'),
+                    Arr::get($value, 'css', ''),
+                    Arr::get($value, 'title_parts', [])
                 );
             } else {
                 $this->routes[ $key ] = new Route(Data::interpret($key), $value);
@@ -100,7 +105,7 @@ class Routes implements IModule
     {
         $route = Url::route();
         foreach ($this->routes as $r_obj) {
-            preg_match('/' . $r_obj->regExp() . '/', $route, $values);
+            preg_match('/^' . $r_obj->regExp() . '/', $route, $values);
             $filterValues = array_filter(array_keys($values), 'is_string');
             $arguments = array_intersect_key($values, array_flip($filterValues));
             if (count($values) > 0) {

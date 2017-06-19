@@ -15,6 +15,12 @@ class MetaBoxes implements IModule
     const NONCE = 'LolitaFramework';
 
     /**
+     * Is data prepared
+     * @var boolean
+     */
+    private $is_data_prepared = false;
+
+    /**
      * Metaboxes class constructor
      *
      * @author Guriev Eugen <gurievcreative@gmail.com>
@@ -22,12 +28,13 @@ class MetaBoxes implements IModule
      */
     public function __construct($data = null)
     {
-        if (null !== $data) {
-            $this->data = (array) $data;
-            $this->prepareData();
-            $this->init();
-        } else {
-            throw new \Exception(__('JSON can be converted to Array', 'lolita'));
+        if (is_admin()) {
+            if (null !== $data) {
+                $this->data = (array) $data;
+                $this->init();
+            } else {
+                throw new \Exception(__('JSON can be converted to Array', 'lolita'));
+            }
         }
     }
 
@@ -50,28 +57,31 @@ class MetaBoxes implements IModule
      */
     private function prepareData()
     {
-        $default = $this->getDefaults();
-        foreach ($this->data as $slug => &$data) {
-            $data = array_merge($default, (array) $data);
-            if (array_key_exists('controls', $data)) {
-                foreach ($data['controls'] as &$control) {
-                    $name = Arr::get($control, 'name', '');
-                    if ('' === trim($name)) {
-                        throw new \Exception("Name is empty! Name parameter is required!");
+        if (!$this->is_data_prepared) {
+            $default = $this->getDefaults();
+            foreach ($this->data as $slug => &$data) {
+                $data = array_merge($default, (array) $data);
+                if (array_key_exists('controls', $data)) {
+                    foreach ($data['controls'] as &$control) {
+                        $name = Arr::get($control, 'name', '');
+                        if ('' === trim($name)) {
+                            throw new \Exception("Name is empty! Name parameter is required!");
+                        }
+                        $control['old_name'] = $name;
+                        $control['name']     = $this->controlNameWithPrefix($slug, $name);
                     }
-                    $control['old_name'] = $name;
-                    $control['name']       = $this->controlNameWithPrefix($slug, $name);
-                }
-                $controls = new Controls;
-                $controls->generateControls((array) $data['controls']);
+                    $controls = new Controls;
+                    $controls->generateControls((array) $data['controls']);
 
-                $data['callback']      = array($this, 'renderControls');
-                $data['callback_args'] = array(
-                    'controls' => $controls,
-                    'data'     => $data,
-                );
-                $data['collection'] = $controls;
+                    $data['callback']      = array($this, 'renderControls');
+                    $data['callback_args'] = array(
+                        'controls' => $controls,
+                        'data'     => $data,
+                    );
+                    $data['collection'] = $controls;
+                }
             }
+            $this->is_data_prepared = true;
         }
         return $this;
     }
@@ -190,14 +200,13 @@ class MetaBoxes implements IModule
         if (!is_object($post)) {
             $post = get_post();
         }
-
+        $this->prepareData();
         foreach ($this->data as $slug => $data) {
             if ($data['screen'] !== $post->post_type) {
                 continue;
             }
             if ($this->checkCondition($data)) {
                 $this->toggleSave($slug, $post_id);
-
                 if (array_key_exists('controls', $data)) {
                     foreach ($data['controls'] as $arguments) {
                         $this->toggleSave($arguments['name'], $post_id);
@@ -233,6 +242,7 @@ class MetaBoxes implements IModule
      */
     public function addMetaBoxes()
     {
+        $this->prepareData();
         foreach ($this->data as $slug => $data) {
             if ($this->checkCondition($data)) {
                 add_meta_box(

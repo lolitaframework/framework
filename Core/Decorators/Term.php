@@ -198,8 +198,8 @@ class Term
                 wp_cache_add($term_id, $_term, 'terms');
             }
         }
-
-        $term_obj = new Term($_term);
+        $cls = get_called_class();
+        $term_obj = new $cls($_term);
         $term_obj->filter($term_obj->filter);
 
         return $term_obj;
@@ -325,6 +325,16 @@ class Term
     }
 
     /**
+     * Terms
+     * @param  array $args
+     * @return array
+     */
+    public static function terms($args)
+    {
+        return self::sanitize(get_terms($args));
+    }
+
+    /**
      * Sanitize post / posts
      *
      * @param  mixed $data
@@ -332,11 +342,12 @@ class Term
      */
     public static function sanitize($data)
     {
-        if ($data instanceof Term) {
+        $cls = get_called_class();
+        if ($data instanceof $cls) {
             return $data;
         }
         if ($data instanceof WP_Term) {
-            return new Term($data);
+            return new $cls($data);
         }
 
         if (is_array($data)) {
