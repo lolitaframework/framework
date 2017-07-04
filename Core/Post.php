@@ -1,6 +1,6 @@
 <?php
 
-namespace lolita\LolitaFramework\Core\Decorators;
+namespace lolita\LolitaFramework\Core;
 
 use \lolita\LolitaFramework\Core\Str;
 use \lolita\LolitaFramework\Core\Loc;
@@ -15,6 +15,12 @@ class Post
      * @var int
      */
     public $ID;
+
+    /**
+     * Post blog id
+     * @var int
+     */
+    public $blog_id = 0;
 
     /**
      * ID of post author.
@@ -291,10 +297,13 @@ class Post
      */
     public function __construct($post)
     {
-        if ($post instanceof WP_Post || $post instanceof stdClass) {
+        if ($post instanceof WP_Post || $post instanceof stdClass || $post instanceof self) {
             foreach (get_object_vars($post) as $key => $value) {
                 $this->$key = $value;
             }
+        }
+        if (!$this->blog_id) {
+            $this->blog_id = get_current_blog_id();
         }
     }
 

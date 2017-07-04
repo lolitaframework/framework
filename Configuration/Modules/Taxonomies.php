@@ -28,8 +28,23 @@ class Taxonomies extends Init implements IModule
                 );
             }
         }
-        //$this->install();
         $this->init();
+    }
+
+    /**
+     * Initialize new LF_Init class
+     *
+     * @author Guriev Eugen <gurievcreative@gmail.com>
+     * @throws Exception JSON can be converted to Array.
+     * @return void
+     */
+    protected function init()
+    {
+        if (null !== $this->data) {
+            add_action('init', [&$this, 'install'], 0);
+        } else {
+            throw new \Exception(__($this->init_exp_string, 'lolita'));
+        }
     }
 
     /**

@@ -293,6 +293,14 @@ class Arr
             return $array;
         }
 
+        if (is_array($key)) {
+            $ret = [];
+            foreach ($key as $k) {
+                $ret[ $k ] = self::get($array, $k, $default);
+            }
+            return $ret;
+        }
+
         if (static::exists($array, $key)) {
             return $array[$key];
         }

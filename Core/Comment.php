@@ -1,5 +1,5 @@
 <?php
-namespace lolita\LolitaFramework\Core\Decorators;
+namespace lolita\LolitaFramework\Core;
 
 use \lolita\LolitaFramework\Core\Str;
 use \lolita\LolitaFramework\Core\Loc;

@@ -1,6 +1,6 @@
 <?php
 
-namespace lolita\LolitaFramework\Core\Decorators;
+namespace lolita\LolitaFramework\Core;
 
 use \WP_Error;
 use \lolita\LolitaFramework\Core\View;

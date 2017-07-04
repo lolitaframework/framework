@@ -41,6 +41,24 @@ class Pages implements IModule
     public function addPages()
     {
         foreach ($this->data as $add_page) {
+            if (is_multisite()) {
+                $exclude_blogs = Arr::get($add_page, 'exclude_blogs');
+                $include_blogs = Arr::get($add_page, 'include_blogs');
+                $enabled_for_current_blog = false;
+                $cu_blog_id = get_current_blog_id();
+
+                if ($include_blogs && in_array($cu_blog_id, $include_blogs)) {
+                    $enabled_for_current_blog = true;
+                }
+                $result = !$enabled_for_current_blog
+                          && $exclude_blogs
+                          && in_array($cu_blog_id, $exclude_blogs);
+
+                if ($result) {
+                    return false;
+                }
+            }
+
             if (array_key_exists('parent_slug', $add_page)) {
                 add_submenu_page(
                     $add_page['parent_slug'],

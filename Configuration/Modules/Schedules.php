@@ -27,6 +27,11 @@ class Schedules implements IModule
      */
     const STARTTIME  = 'starttime';
 
+    /**
+     * Hook name
+     */
+    const HOOK_NAME = 'hook_name';
+
 
     /**
      * How often the event should reoccur. Default values:
@@ -81,9 +86,13 @@ class Schedules implements IModule
 
                 $callable   = $event[self::CALLABLE_O];
                 $recurrence = $event[self::RECURRENCE];
-
                 if (is_callable($callable)) {
-                    $handler = 'schedule_event_hook_' . $index;
+                    if (array_key_exists(self::HOOK_NAME, $event)) {
+                        $handler = $event[ self::HOOK_NAME ];
+                    } else {
+                        $handler = 'schedule_event_hook_' . $index;
+                    }
+
                     add_action($handler, $callable);
                     if (!wp_next_scheduled($handler)) {
                         wp_schedule_event($starttime, $recurrence, $handler);
