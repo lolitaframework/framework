@@ -7,7 +7,8 @@ use \Iterator;
 use \Countable;
 use \Serializable;
 
-class Lst implements ArrayAccess, Iterator, Countable, Serializable{
+class Lst implements ArrayAccess, Iterator, Countable, Serializable
+{
 
     /**
      * Items container
@@ -159,18 +160,18 @@ class Lst implements ArrayAccess, Iterator, Countable, Serializable{
      * String representation of object
      * @return string
      */
-    public function serialize()    
-    {    
-        return serialize($this->container);    
-    }    
-        
+    public function serialize()
+    {
+        return serialize($this->container);
+    }
+
     /**
      * Constructs the object
      * @param  string
      * @return void
      */
-    public function unserialize($data)    
-    {    
-        $this->container = unserialize($data);    
-    }    
+    public function unserialize($data)
+    {
+        $this->container = unserialize($data);
+    }
 }
