@@ -45,6 +45,12 @@ abstract class Column
     protected $sortable = '';
 
     /**
+     * Column order
+     * @var boolean
+     */
+    protected $order = false;
+
+    /**
      * Class constructor
      *
      * @param string $name
@@ -53,28 +59,44 @@ abstract class Column
      * @param mixed $cc
      * @param string $slug
      */
-    public function __construct($name, $object_type, $content_callback, $header_callback = null, $sortable = '', $slug = '')
+    public function __construct($name, $object_type, $content_callback, $header_callback = null, $sortable = '', $slug = '', $order = false, $condition = null)
     {
         $this
             ->setName($name)
             ->setSlug($slug)
             ->setObjectType($object_type)
             ->setHeaderCallback($header_callback)
+            ->setOrder($order)
             ->setSortable($sortable);
         $this->content_callback = $content_callback;
 
-        add_action(
-            $this->getHeaderAction(),
-            $this->header_callback[0],
-            Arr::get($this->header_callback, 1, 10),
-            Arr::get($this->header_callback, 2, 1)
-        );
-        add_action(
-            $this->getContentAction(),
-            $this->content_callback[0],
-            Arr::get($this->content_callback, 1, 10),
-            Arr::get($this->content_callback, 2, 1)
-        );
+        if ($this->checkCondition($condition)) {
+            add_action(
+                $this->getHeaderAction(),
+                $this->header_callback[0],
+                Arr::get($this->header_callback, 1, 10),
+                Arr::get($this->header_callback, 2, 1)
+            );
+            add_action(
+                $this->getContentAction(),
+                $this->content_callback[0],
+                Arr::get($this->content_callback, 1, 10),
+                Arr::get($this->content_callback, 2, 1)
+            );
+        }
+    }
+
+    /**
+     * Check condition
+     * @param  mixed $condition
+     * @return boolean
+     */
+    public function checkCondition($condition)
+    {
+        if (!is_callable($condition)) {
+            return true;
+        }
+        return call_user_func($condition);
     }
 
     /**
@@ -90,6 +112,18 @@ abstract class Column
      * @return string
      */
     abstract public function getContentAction();
+
+    /**
+     * Set column order
+     * @param integer $order [description]
+     */
+    public function setOrder($order = 0)
+    {
+        if ((int) $order > 0) {
+            $this->order = $order;
+        }
+        return $this;
+    }
 
     /**
      * Set header callback
@@ -188,6 +222,12 @@ abstract class Column
     public function column($defaults)
     {
         $defaults[ $this->slug ] = $this->name;
+        if (false !== $this->order) {
+            return Arr::get(
+                $defaults,
+                Arr::addTo(array_keys($defaults), $this->order, $this->slug)
+            );
+        }
         return $defaults;
     }
 }

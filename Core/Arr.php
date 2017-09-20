@@ -707,6 +707,23 @@ class Arr
     }
 
     /**
+     * Add to some index
+     * @param array  $array
+     * @param int $index
+     * @param string $value
+     */
+    function addTo(array $array, $index, $value = '')
+    {
+        if (!array_key_exists($index, $array)) {
+            $array[ $index ] = $value;
+            return $array;
+        }
+        $b = self::before($array, $index);
+        $a = self::after($array, $index, true);
+        return array_merge((array) $b, [$value], (array) $a);
+    }
+
+    /**
      * Rapped your array
      *
      * @param  array  $array

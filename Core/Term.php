@@ -377,4 +377,14 @@ class Term
     {
         return wp_delete_term($this->term_id, $this->taxonomy, ['force_default' => true]);
     }
+
+    /**
+     * Markdown compil
+     * @return string
+     */
+    public function md()
+    {
+        $md = new Parsedown();
+        return $md->text($this->description);
+    }
 }

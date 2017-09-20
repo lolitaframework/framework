@@ -674,4 +674,14 @@ class Str
         $items = Arr::prepend($items, '');
         return implode(NS, $items);
     }
+
+    /**
+     * Strip only HTML tags
+     * @param  string $str
+     * @return string
+     */
+    public static function stripHTML($str)
+    {
+        return preg_replace('/<(?!\?)[^<]+?>/s', ' ', $str);
+    }
 }

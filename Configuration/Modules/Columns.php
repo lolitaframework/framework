@@ -25,12 +25,30 @@ class Columns implements IModule
         $this->data = (array) $data;
         if (is_array($this->data)) {
             foreach ($this->data as $col) {
+                if (!$this->checkCondition($data)) {
+                    continue;
+                }
+
                 $this->columns[] = Ref::create(
                     __NAMESPACE__ . NS . 'Columns' . NS . Arr::get($col, 'type', 'PostType'),
                     $col
                 );
             }
         }
+    }
+
+    /**
+     * Check condition
+     *
+     * @param  array $data
+     * @return bool
+     */
+    public function checkCondition(array $data)
+    {
+        if (array_key_exists('condition', $data) && is_callable($data['condition'])) {
+            return $data['condition']();
+        }
+        return true;
     }
 
     /**

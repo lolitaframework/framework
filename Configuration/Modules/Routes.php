@@ -70,7 +70,7 @@ class Routes implements IModule
     {
         add_filter('template_include', array($this, 'blockDefaultTemplates'));
         add_filter('theme_page_templates', array($this, 'templates'), 10, 3);
-        add_action('template_redirect', array(&$this, 'customRoutes'), 10, 0);
+        add_action('template_redirect', array(&$this, 'customRoutes'), 0, 0);
         return $this;
     }
 
@@ -103,6 +103,31 @@ class Routes implements IModule
      */
     public function customRoutes()
     {
+        if($_SERVER["REQUEST_METHOD"] == "OPTIONS") {
+            header('Access-Control-Allow-Origin: *');
+            header("Access-Control-Allow-Methods: POST, GET, OPTIONS, DELETE, PUT");
+            header('Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Authorization, Accept, Client-Security-Token, Accept-Encoding');
+            status_header(200);
+            exit(0);
+        }
+
+        if (array_key_exists('HTTP_ORIGIN', $_SERVER)) {
+            $origin = $_SERVER['HTTP_ORIGIN'];
+        }
+        else if (array_key_exists('HTTP_REFERER', $_SERVER)) {
+            $origin = $_SERVER['HTTP_REFERER'];
+        } else {
+            $origin = $_SERVER['REMOTE_ADDR'];
+        }
+
+        $allowed_http_origins   = [
+            'http://localhost:4200',
+            'http://app.codingninjas.net'
+        ];
+        if (in_array($origin, $allowed_http_origins)){  
+            header("Access-Control-Allow-Origin: " . $origin);
+        }
+        header('Access-Control-Allow-Credentials: true');
         $route = Url::route();
         foreach ($this->routes as $r_obj) {
             preg_match('/^' . $r_obj->regExp() . '/', $route, $values);

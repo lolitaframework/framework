@@ -65,7 +65,7 @@ class PostTypes extends Init implements IModule
             'edit_others_posts'  => sprintf('edit_others_%s', Str::plural($slug)),
             'publish_posts'      => sprintf('publish_%s', Str::plural($slug)),
             'read_private_posts' => sprintf('read_private_%s', Str::plural($slug)),
-            'create_posts'       => sprintf('edit_%s', Str::plural($slug)),
+            'create_posts'       => sprintf('create_%s', Str::plural($slug)),
         );
     }
 

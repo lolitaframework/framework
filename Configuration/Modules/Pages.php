@@ -3,12 +3,20 @@ namespace lolita\LolitaFramework\Configuration\Modules;
 
 use \lolita\LolitaFramework\Core\View;
 use \lolita\LolitaFramework\Core\Arr;
+use \lolita\LolitaFramework\Core\Ref;
 use \lolita\LolitaFramework\Configuration\Configuration;
 use \lolita\LolitaFramework\Configuration\IModule;
 use \lolita\LolitaFramework\Controls\Controls;
+use \lolita\LolitaFramework\Configuration\Modules\Elements\Page;
 
 class Pages implements IModule
 {
+    /**
+     * Pages
+     * @var array
+     */
+    private $pages = [];
+
     /**
      * Metaboxes class constructor
      *
@@ -41,44 +49,10 @@ class Pages implements IModule
     public function addPages()
     {
         foreach ($this->data as $add_page) {
-            if (is_multisite()) {
-                $exclude_blogs = Arr::get($add_page, 'exclude_blogs');
-                $include_blogs = Arr::get($add_page, 'include_blogs');
-                $enabled_for_current_blog = false;
-                $cu_blog_id = get_current_blog_id();
-
-                if ($include_blogs && in_array($cu_blog_id, $include_blogs)) {
-                    $enabled_for_current_blog = true;
-                }
-                $result = !$enabled_for_current_blog
-                          && $exclude_blogs
-                          && in_array($cu_blog_id, $exclude_blogs);
-
-                if ($result) {
-                    return false;
-                }
-            }
-
-            if (array_key_exists('parent_slug', $add_page)) {
-                add_submenu_page(
-                    $add_page['parent_slug'],
-                    $add_page['page_title'],
-                    $add_page['menu_title'],
-                    $add_page['capability'],
-                    $add_page['menu_slug'],
-                    $add_page['function']
-                );
-            } else {
-                add_menu_page(
-                    $add_page['page_title'],
-                    $add_page['menu_title'],
-                    $add_page['capability'],
-                    $add_page['menu_slug'],
-                    Arr::get($add_page, 'function'),
-                    Arr::get($add_page, 'icon_url'),
-                    Arr::get($add_page, 'position', null)
-                );
-            }
+            $this->pages[] = Ref::create(
+                __NAMESPACE__ . NS . 'Elements' . NS . 'Page',
+                $add_page
+            );
         }
     }
 

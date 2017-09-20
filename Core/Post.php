@@ -23,6 +23,12 @@ class Post
     public $blog_id = 0;
 
     /**
+     * Post blog
+     * @var int
+     */
+    public $blog = false;
+
+    /**
      * ID of post author.
      *
      * A numeric string, for compatibility reasons.
@@ -30,6 +36,12 @@ class Post
      * @var string
      */
     public $post_author = 0;
+
+    /**
+     * Author object
+     * @var null
+     */
+    public $author = null;
 
     /**
      * The post's local publication time.
@@ -302,6 +314,10 @@ class Post
                 $this->$key = $value;
             }
         }
+
+        if (!$this->blog && function_exists('get_current_site')) {
+            $this->blog = get_current_site();
+        }
         if (!$this->blog_id) {
             $this->blog_id = get_current_blog_id();
         }
@@ -379,6 +395,18 @@ class Post
         }
 
         return $value;
+    }
+
+    /**
+     * Author object
+     * @return mixed
+     */
+    public function author()
+    {
+        if (!$this->author) {
+            $this->author = new User($this->post_author);
+        }
+        return $this->author;
     }
 
     /**
@@ -592,6 +620,17 @@ class Post
     }
 
     /**
+     * Markdown compil
+     * @return string
+     */
+    public function md()
+    {
+        $md = new Parsedown();
+        $content = html_entity_decode($this->post_content);
+        return apply_filters('the_content', $md->text($content));
+    }
+
+    /**
      * Get the date to use in your template!
      *
      * @param string $date_format
@@ -691,6 +730,18 @@ class Post
     }
 
     /**
+     * Delete post meta
+     * @param  string $field
+     * @return Post instance
+     */
+    public function delete($field) {
+        if ($this->exists()) {
+            delete_post_meta($this->ID, $field);
+        }
+        return $this;
+    }
+
+    /**
      * Get related posts
      *
      * @param  string $taxonomies
@@ -728,5 +779,17 @@ class Post
     public function suicide()
     {
         return wp_delete_post($this->ID, true);
+    }
+
+    /**
+     * Get blog object
+     * @return WP_Site
+     */
+    public function blog()
+    {
+        if (!function_exists('get_site')) {
+            include_once ABSPATH . WPINC . DS . 'ms-blogs.php';
+        }
+        return get_site($this->blog_id);
     }
 }

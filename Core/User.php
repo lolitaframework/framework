@@ -10,6 +10,13 @@ use \WP_User;
 
 class User extends WP_User
 {
+
+    /**
+     * Affiliate Code
+     * @var boolean
+     */
+    public $affiliate_code = false;
+
     /**
      * Update user in db
      *
@@ -26,6 +33,32 @@ class User extends WP_User
                 $args
             )
         );
+    }
+
+    /**
+     * Get avatar URL
+     * @param  mixed $args
+     * @return false | string
+     */
+    public function avatarURL($args = [])
+    {
+        $args = array_merge(
+            [
+                'size'          => 96,
+                'height'        => null,
+                'width'         => null,
+                'default'       => get_option('avatar_default', 'mystery'),
+                'force_default' => false,
+                'rating'        => get_option('avatar_rating'),
+                'scheme'        => null,
+                'alt'           => '',
+                'class'         => null,
+                'force_display' => false,
+                'extra_attr'    => '',
+            ],
+            (array) $args
+        );
+        return get_avatar_url($this->ID, $args);
     }
 
     /**
@@ -92,7 +125,7 @@ class User extends WP_User
      * @param  string $login
      * @return mixed
      */
-    public static function lostPassword($login = '')
+    public static function lostPassword($login = '', $url_pattern = '')
     {
         if ('' === $login) {
             return new Error('empty_username', __('<strong>ERROR</strong>: Enter a username or email address.'));
@@ -122,11 +155,22 @@ class User extends WP_User
             return $key;
         }
 
+        $reset_url = str_replace(
+            '{{ key }}',
+            $key,
+            str_replace(
+                '{{ login }}',
+                $user_login,
+                $url_pattern
+            )
+        );
+
         $message = View::make(
-            [dirname(__DIR__), 'views', 'restore_password_message.php'],
+            [__DIR__, 'views', 'restore_password_message.php'],
             [
                 'key'        => $key,
                 'user_login' => $user_login,
+                'reset_url'  => $reset_url,
             ]
         );
 
@@ -165,8 +209,16 @@ class User extends WP_User
          * @param string  $key        The activation key.
          * @param string  $user_login The username for the user.
          * @param WP_User $user_data  WP_User object.
+         * @param string  $reset_url  Reset url
          */
-        $message = apply_filters('retrieve_password_message', $message, $key, $user_login, $user_data);
+        $message = apply_filters(
+            'retrieve_password_message',
+            $message,
+            $key,
+            $user_login,
+            $user_data,
+            $reset_url
+        );
 
         if ($message && !wp_mail($user_email, wp_specialchars_decode($title), $message)) {
             wp_die(__('The email could not be sent.') . "<br />\n" . __('Possible reason: your host may have disabled the mail() function.'));

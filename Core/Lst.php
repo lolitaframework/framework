@@ -51,7 +51,18 @@ class Lst implements ArrayAccess, Iterator, Countable, Serializable
      */
     public function map($callback)
     {
-        $this->container = array_map($callback, $this->container);
+        $this->container = array_map($callback, (array) $this->container);
+        return $this;
+    }
+
+    /**
+     * Push new value
+     * @param  mixed $val
+     * @return Instance
+     */
+    public function push($val)
+    {
+        array_push($this->container, $val);
         return $this;
     }
 
