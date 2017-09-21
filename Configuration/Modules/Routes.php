@@ -103,7 +103,7 @@ class Routes implements IModule
      */
     public function customRoutes()
     {
-        if($_SERVER["REQUEST_METHOD"] == "OPTIONS") {
+        if ($_SERVER["REQUEST_METHOD"] == "OPTIONS") {
             header('Access-Control-Allow-Origin: *');
             header("Access-Control-Allow-Methods: POST, GET, OPTIONS, DELETE, PUT");
             header('Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Authorization, Accept, Client-Security-Token, Accept-Encoding');
@@ -113,8 +113,7 @@ class Routes implements IModule
 
         if (array_key_exists('HTTP_ORIGIN', $_SERVER)) {
             $origin = $_SERVER['HTTP_ORIGIN'];
-        }
-        else if (array_key_exists('HTTP_REFERER', $_SERVER)) {
+        } else if (array_key_exists('HTTP_REFERER', $_SERVER)) {
             $origin = $_SERVER['HTTP_REFERER'];
         } else {
             $origin = $_SERVER['REMOTE_ADDR'];
@@ -124,7 +123,7 @@ class Routes implements IModule
             'http://localhost:4200',
             'http://app.codingninjas.net'
         ];
-        if (in_array($origin, $allowed_http_origins)){  
+        if (in_array($origin, $allowed_http_origins)) {
             header("Access-Control-Allow-Origin: " . $origin);
         }
         header('Access-Control-Allow-Credentials: true');

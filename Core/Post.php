@@ -734,7 +734,8 @@ class Post
      * @param  string $field
      * @return Post instance
      */
-    public function delete($field) {
+    public function delete($field)
+    {
         if ($this->exists()) {
             delete_post_meta($this->ID, $field);
         }

@@ -5,7 +5,8 @@ use \WP_Styles;
 use \WP_Scripts;
 use \lolita\LolitaFramework\Core\Arr;
 
-class ModelAssets {
+class ModelAssets
+{
 
     /**
      * Get all scripts

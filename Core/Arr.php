@@ -712,7 +712,7 @@ class Arr
      * @param int $index
      * @param string $value
      */
-    function addTo(array $array, $index, $value = '')
+    public static function addTo(array $array, $index, $value = '')
     {
         if (!array_key_exists($index, $array)) {
             $array[ $index ] = $value;

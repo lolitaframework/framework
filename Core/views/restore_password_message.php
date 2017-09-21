@@ -10,6 +10,6 @@
 
 <?php if ('' != $reset_url) : ?>
     <?php echo $reset_url; ?>
-<?php else: ?>
+<?php else : ?>
     <<?php echo network_site_url("wp-login.php?action=rp&key=$key&login=" . rawurlencode($user_login), 'login') ?>>
 <?php endif ?>

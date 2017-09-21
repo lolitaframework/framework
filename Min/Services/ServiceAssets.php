@@ -1,7 +1,8 @@
 <?php
 namespace lolita\LolitaFramework\Min\Services;
 
-class ServiceAssets {
+class ServiceAssets
+{
 
     /**
      * Add base url to css

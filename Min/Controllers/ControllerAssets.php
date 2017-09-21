@@ -7,7 +7,8 @@ use \lolita\LolitaFramework\Core\Url;
 use \lolita\LolitaFramework\Core\View;
 use \lolita\LolitaFramework\Min\Services\ServiceAssets;
 
-class ControllerAssets {
+class ControllerAssets
+{
 
     /**
      * Print scripts
@@ -48,8 +49,7 @@ class ControllerAssets {
                 if ($el->src) {
                     if (!preg_match('|^(https?:)?//|', $el->src) && ! ($content_url && 0 === strpos($el->src, $content_url))) {
                         $el->src = site_url() . $el->src;
-                        
-                    } 
+                    }
                     if (array_key_exists('data', $el->extra)) {
                         $res[] = '/** DATA */';
                         $res[] = $el->extra['data'];
@@ -120,8 +120,7 @@ class ControllerAssets {
                 if ($el->src) {
                     if (!preg_match('|^(https?:)?//|', $el->src) && ! ($content_url && 0 === strpos($el->src, $content_url))) {
                         $el->src = site_url() . $el->src;
-                        
-                    } 
+                    }
 
                     if (Url::isLocal($el->src)) {
                         $res[] = sprintf(
@@ -131,7 +130,6 @@ class ControllerAssets {
                                 file_get_contents(Url::toFileSystem($el->src)),
                                 $el->src
                             )
-                            
                         );
                     } else {
                         $res[] = sprintf(
