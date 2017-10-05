@@ -1,1 +1,0 @@
-<input <?php echo $me->getAttributesString(); ?> >

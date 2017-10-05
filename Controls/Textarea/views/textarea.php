@@ -1,1 +1,0 @@
-<textarea <?php echo $me->getAttributesString() ?>><?php echo $me->getValue(); ?></textarea>
