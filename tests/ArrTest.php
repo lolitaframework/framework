@@ -4,17 +4,18 @@ namespace Tests;
 use LolitaFramework\LF;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Testing Arr::*
+ */
 class ArrTest extends TestCase {
-    protected function setUp(): void {
-        LF::getInstance();
-    }
 
+    /**
+     * Test append function
+     */
     public function testAppend() {
-        // Arrange
-        $a = [1, 2, 3];
-        // Act
-        $x = LF::append($a, 4);
-        // Assert
-        $this->assertEquals([1, 2, 3, 4], $x);
+        $this->assertEquals(
+            [ 1, 2, 3, 4 ],
+            LF::append( [ 1, 2, 3 ], 4 )
+        );
     }
 }

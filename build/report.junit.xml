@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="php-lodash Test Suite" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.002321">
-    <testsuite name="Tests\ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.002321">
-      <testcase name="testAppend" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="12" assertions="1" time="0.002321"/>
+  <testsuite name="php-lodash Test Suite" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.002939">
+    <testsuite name="Tests\ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.002939">
+      <testcase name="testAppend" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="8" assertions="1" time="0.002939"/>
     </testsuite>
   </testsuite>
 </testsuites>

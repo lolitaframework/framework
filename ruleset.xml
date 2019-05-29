@@ -2,8 +2,10 @@
 <ruleset name="Lolita Standards">
   <description>A custom set of code standard rules to check for WordPress themes based on LolitaFramework.</description>
   <exclude-pattern>*/vendor/*</exclude-pattern>
+  <exclude-pattern>*/wpcs/*</exclude-pattern>
   <exclude-pattern>*\.(scss|css|js)</exclude-pattern>
   <arg name="extensions" value="php" />
+  <config name="installed_paths" value="wpcs" />
   <rule ref="WordPress">
     <!-- Allow less strict indenting and spacing -->
     <exclude name="Generic.WhiteSpace.ScopeIndent.Incorrect" />

@@ -1,4 +1,5 @@
 <?php
+// phpcs:ignoreFile
 namespace LolitaFramework;
 
 use \LolitaFramework\Data\Arr;
@@ -7,8 +8,10 @@ use \LolitaFramework\Data\Arr;
  * Lolita Framework singlton class
  */
 class LF {
+
     /**
      * Instance
+     *
      * @var null
      */
     private static $instance = null;
@@ -16,14 +19,13 @@ class LF {
     /**
      * Define constant
      *
-     * @param  string $name
-     * @param  mixed $value
+     * @param  string $name unique name.
+     * @param  mixed  $value some value.
      * @return void
      */
-    public static function define($name, $value)
-    {
-        if (!defined($name)) {
-            define($name, $value);
+    public static function define( $name, $value ) {
+        if ( ! defined( $name ) ) {
+            define( $name, $value );
         }
     }
 
