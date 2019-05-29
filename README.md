@@ -9,7 +9,7 @@ Lolita framework is a tool to help you develop websites, plugins and web applica
 
 Development team
 ----------------
-The framework was created by [Guriev Eugen](mailto:gurievcreative), who continues to lead the development.
+The framework was created by [Guriev Eugen](mailto:gurievcreative@gmail.com), who continues to lead the development.
 
 Contributing
 ------------
