@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 class ArrTest extends TestCase {
 
 	/**
-	 * Test append methods
+	 * Test append method
 	 */
 	public function testAppend() {
 		$this->assertEquals(
@@ -20,7 +20,7 @@ class ArrTest extends TestCase {
 	}
 
 	/**
-	 * Test compact methods
+	 * Test compact method
 	 */
 	public function testCompact() {
 		$this->assertEquals(
@@ -30,7 +30,7 @@ class ArrTest extends TestCase {
 	}
 
 	/**
-	 * Test accessible methods
+	 * Test accessible method
 	 */
 	public function testAccessible() {
 		$this->assertEquals(
@@ -45,7 +45,7 @@ class ArrTest extends TestCase {
 	}
 
 	/**
-	 * Test divide methods
+	 * Test divide method
 	 */
 	public function testDivide() {
 		$this->assertEquals(
@@ -59,6 +59,28 @@ class ArrTest extends TestCase {
 					'b' => 2,
 					'c' => 3,
 				)
+			)
+		);
+	}
+
+	/**
+	 * Test set method
+	 */
+	public function testSet() {
+		$this->assertEquals(
+			array(
+				'products' => array(
+					'desk' => array( 'price' => 'TESTING' ),
+				),
+			),
+			LF::set(
+				array(
+					'products' => array(
+						'desk' => array( 'price' => 100 ),
+					),
+				),
+				'products.desk.price',
+				'TESTING'
 			)
 		);
 	}

@@ -64,4 +64,42 @@ class Arr {
 	public static function divide( $array ) {
 		return array( array_keys( $array ), array_values( $array ) );
 	}
+
+	/**
+	 * Set an array item to a given value using "dot" notation.
+	 *
+	 * If no key is given to the method, the entire array will be replaced.
+	 *
+	 * @param  array  $array existing array.
+	 * @param  string $key path to set.
+	 * @param  mixed  $value value to set.
+	 * @param  string $separator separator.
+	 * @return array new array.
+	 */
+	public static function set( $array, $key, $value, $separator = '.' ) {
+		if ( is_null( $key ) ) {
+			$array = $value;
+			return $array;
+		}
+
+		$keys = explode( $separator, $key );
+		$count_keys = count( $keys );
+		$tmp_array = &$array;
+
+		while ( $count_keys > 1 ) {
+			$key = array_shift( $keys );
+
+			// If the key doesn't exist at this depth, we will just create an empty array
+			// to hold the next value, allowing us to create the arrays to hold final
+			// values at the correct depth. Then we'll keep digging into the array.
+			if ( ! isset( $tmp_array[ $key ] ) || ! is_array( $tmp_array[ $key ] ) ) {
+				$tmp_array[ $key ] = [];
+			}
+
+			$tmp_array = &$tmp_array[ $key ];
+		}
+
+		$tmp_array[ array_shift( $keys ) ] = $value;
+		return $array;
+	}
 }
