@@ -56,14 +56,7 @@ class Arr {
 	 * @return array
 	 */
 	public static function compact( $array = [] ) {
-		return array_values(
-			array_filter(
-				$array,
-				function( $var ) {
-					return $var;
-				}
-			)
-		);
+		return array_values( array_filter( $array ) );
 	}
 
 	/**
@@ -283,5 +276,16 @@ class Arr {
 			unset( $tmp_array[ $last_key ] );
 		}
 		return $array;
+	}
+
+	/**
+	 * Filter the array using the given callback.
+	 *
+	 * @param  array    $array input.
+	 * @param  Function $cb callback.
+	 * @return array
+	 */
+	public static function where( $array, $cb ) {
+		return array_filter( $array, $cb, ARRAY_FILTER_USE_BOTH );
 	}
 }

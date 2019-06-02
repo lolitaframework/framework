@@ -239,4 +239,23 @@ class ArrTest extends TestCase {
 			)
 		);
 	}
+
+	/**
+	 * Test where method
+	 */
+	public function testWhere() {
+		$this->assertEquals(
+			array(
+				0 => 100,
+				2 => 200,
+				4 => 300,
+			),
+			LF::where(
+				array( 100, '100', 200, '200', 300 ),
+				function( $value ) {
+					return ! is_string( $value );
+				}
+			)
+		);
+	}
 }
