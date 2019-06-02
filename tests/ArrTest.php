@@ -15,7 +15,17 @@ class ArrTest extends TestCase {
 	public function testAppend() {
 		$this->assertEquals(
 			array( 1, 2, 3, 4 ),
-			LF::append( [ 1, 2, 3 ], 4 )
+			LF::append( array( 1, 2, 3 ), 4 )
+		);
+	}
+
+	/**
+	 * Test prepend method
+	 */
+	public function testPrepend() {
+		$this->assertEquals(
+			array( 4, 1, 2, 3 ),
+			LF::prepend( array( 1, 2, 3 ), 4 )
 		);
 	}
 

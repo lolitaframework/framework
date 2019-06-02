@@ -18,8 +18,23 @@ class Arr {
 	 *
 	 * @return array
 	 */
-	public static function append( $array = [], $value = null ) {
+	public static function append( $array = array(), $value = null ) {
 		$array[] = $value;
+		return $array;
+	}
+
+	/**
+	 * Prepend item to array
+	 *
+	 * @usage lf::prepend([1, 2, 3], 4);
+	 *         >> [4, 1, 2, 3]
+	 *
+	 * @param  array $array original array.
+	 * @param  mixed $value new item or value to prepend.
+	 * @return array
+	 */
+	public static function prepend( $array = array(), $value = null ) {
+		array_unshift( $array, $value );
 		return $array;
 	}
 
@@ -84,22 +99,14 @@ class Arr {
 
 		$keys = explode( $separator, $key );
 		$count_keys = count( $keys );
+		$last_key = array_values( $keys )[ $count_keys - 1 ];
 		$tmp_array = &$array;
 
-		while ( $count_keys > 1 ) {
-			$key = array_shift( $keys );
-
-			// If the key doesn't exist at this depth, we will just create an empty array
-			// to hold the next value, allowing us to create the arrays to hold final
-			// values at the correct depth. Then we'll keep digging into the array.
-			if ( ! isset( $tmp_array[ $key ] ) || ! is_array( $tmp_array[ $key ] ) ) {
-				$tmp_array[ $key ] = [];
-			}
-
-			$tmp_array = &$tmp_array[ $key ];
+		for ( $i = 0; $i < $count_keys - 1; $i++ ) {
+			$k = $keys[ $i ];
+			$tmp_array = &$tmp_array[ $k ];
 		}
-
-		$tmp_array[ array_shift( $keys ) ] = $value;
+		$tmp_array[ $last_key ] = $value;
 		return $array;
 	}
 }
