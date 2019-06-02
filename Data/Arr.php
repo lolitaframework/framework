@@ -31,11 +31,17 @@ class Arr {
 	 *
 	 * @param  array $array original array.
 	 * @param  mixed $value new item or value to prepend.
+	 * @param  mixed $key new key of item.
 	 * @return array
 	 */
-	public static function prepend( $array = array(), $value = null ) {
-		array_unshift( $array, $value );
-		return $array;
+	public static function prepend( $array = array(), $value, $key = null ) {
+		if ( is_null( $key ) ) {
+            array_unshift( $array, $value );
+        } else {
+            $array = [ $key => $value ] + $array;
+        }
+
+        return $array;
 	}
 
 	/**
