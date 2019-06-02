@@ -203,4 +203,40 @@ class ArrTest extends TestCase {
 			)
 		);
 	}
+
+	/**
+	 * Test forget method
+	 */
+	public function testForget() {
+		$this->assertEquals(
+			array( 'products' => array() ),
+			LF::forget(
+				array( 'products' => array( 'desk' => array( 'price' => 100 ) ) ),
+				'products.desk'
+			)
+		);
+
+		$this->assertEquals(
+			array(
+				array( 'name' => 'John Doe' ),
+				array(
+					'id' => 2,
+					'name' => 'Jane Doe',
+				),
+			),
+			LF::forget(
+				array(
+					array(
+						'id' => 1,
+						'name' => 'John Doe',
+					),
+					array(
+						'id' => 2,
+						'name' => 'Jane Doe',
+					),
+				),
+				'0.id'
+			)
+		);
+	}
 }

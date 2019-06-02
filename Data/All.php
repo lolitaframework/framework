@@ -2,7 +2,7 @@
 
 namespace LolitaFramework\Data;
 
-use LolitaFramework\Data\Arr;
+use \LolitaFramework\Data\Arr;
 
 /**
  * Class for working with all data types

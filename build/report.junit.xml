@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="php-lodash Test Suite" tests="11" assertions="14" errors="0" failures="0" skipped="0" time="0.003253">
-    <testsuite name="Tests\ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" tests="11" assertions="14" errors="0" failures="0" skipped="0" time="0.003253">
-      <testcase name="testAppend" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="15" assertions="1" time="0.002277"/>
-      <testcase name="testPrepend" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="25" assertions="1" time="0.000104"/>
-      <testcase name="testCompact" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="35" assertions="1" time="0.000091"/>
-      <testcase name="testAccessible" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="45" assertions="2" time="0.000057"/>
-      <testcase name="testDivide" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="60" assertions="1" time="0.000359"/>
-      <testcase name="testSet" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="79" assertions="1" time="0.000070"/>
-      <testcase name="testGet" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="101" assertions="1" time="0.000062"/>
-      <testcase name="testHas" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="118" assertions="2" time="0.000061"/>
-      <testcase name="testIsAssoc" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="150" assertions="2" time="0.000057"/>
-      <testcase name="testOnly" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="164" assertions="1" time="0.000057"/>
-      <testcase name="testPluck" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="184" assertions="1" time="0.000058"/>
+  <testsuite name="php-lodash Test Suite" tests="12" assertions="16" errors="0" failures="0" skipped="0" time="0.003600">
+    <testsuite name="Tests\ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" tests="12" assertions="16" errors="0" failures="0" skipped="0" time="0.003600">
+      <testcase name="testAppend" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="15" assertions="1" time="0.002297"/>
+      <testcase name="testPrepend" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="25" assertions="1" time="0.000106"/>
+      <testcase name="testCompact" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="35" assertions="1" time="0.000095"/>
+      <testcase name="testAccessible" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="45" assertions="2" time="0.000086"/>
+      <testcase name="testDivide" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="60" assertions="1" time="0.000402"/>
+      <testcase name="testSet" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="79" assertions="1" time="0.000099"/>
+      <testcase name="testGet" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="101" assertions="1" time="0.000091"/>
+      <testcase name="testHas" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="118" assertions="2" time="0.000091"/>
+      <testcase name="testIsAssoc" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="150" assertions="2" time="0.000105"/>
+      <testcase name="testOnly" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="164" assertions="1" time="0.000087"/>
+      <testcase name="testPluck" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="184" assertions="1" time="0.000071"/>
+      <testcase name="testForget" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="210" assertions="2" time="0.000070"/>
     </testsuite>
   </testsuite>
 </testsuites>

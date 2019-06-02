@@ -36,12 +36,12 @@ class Arr {
 	 */
 	public static function prepend( $array = array(), $value, $key = null ) {
 		if ( is_null( $key ) ) {
-            array_unshift( $array, $value );
-        } else {
-            $array = [ $key => $value ] + $array;
-        }
+			array_unshift( $array, $value );
+		} else {
+			$array = [ $key => $value ] + $array;
+		}
 
-        return $array;
+		return $array;
 	}
 
 	/**
@@ -245,5 +245,43 @@ class Arr {
 		}
 
 		return $results;
+	}
+
+	/**
+	 * Remove one or many array items from a given array using "dot" notation.
+	 *
+	 * @param  array        $array to forget.
+	 * @param  array|string $keys to exclude.
+	 * @return void
+	 */
+	public static function forget( $array, $keys ) {
+		$tmp_array = &$array;
+
+		$keys = (array) $keys;
+
+		if ( count( $keys ) === 0 ) {
+			return;
+		}
+
+		foreach ( $keys as $key ) {
+			// if the exact key exists in the top-level, remove it.
+			if ( static::exists( $array, $key ) ) {
+				unset( $array[ $key ] );
+
+				continue;
+			}
+
+			$parts = explode( '.', $key );
+
+			$count_keys = count( $parts );
+			$last_key = array_values( $parts )[ $count_keys - 1 ];
+
+			for ( $i = 0; $i < $count_keys - 1; $i++ ) {
+				$k = $parts[ $i ];
+				$tmp_array = &$tmp_array[ $k ];
+			}
+			unset( $tmp_array[ $last_key ] );
+		}
+		return $array;
 	}
 }
