@@ -5,7 +5,7 @@ namespace LolitaFramework\Data;
 /**
  * Class for working with arrays
  */
-class Arr {
+abstract class Arr {
 
 	/**
 	 * Append item to array
