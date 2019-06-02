@@ -143,4 +143,18 @@ class ArrTest extends TestCase {
 			)
 		);
 	}
+
+	/**
+	 * Test isAssoc method
+	 */
+	public function testIsAssoc() {
+		$this->assertEquals(
+			true,
+			LF::is_assoc( array( 'key' => 'value' ) )
+		);
+		$this->assertEquals(
+			false,
+			LF::is_assoc( array( 1, 2, 3 ) )
+		);
+	}
 }

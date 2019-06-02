@@ -187,4 +187,18 @@ class Arr {
 
 		return true;
 	}
+
+	/**
+	 * Determines if an array is associative.
+	 *
+	 * An array is "associative" if it doesn't have sequential numerical keys beginning with zero.
+	 *
+	 * @param  array $array to check.
+	 * @return bool
+	 */
+	public static function is_assoc( $array ) {
+		$keys = array_keys( $array );
+
+		return array_keys( $keys ) !== $keys;
+	}
 }
