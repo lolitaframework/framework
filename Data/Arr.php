@@ -201,4 +201,43 @@ class Arr {
 
 		return array_keys( $keys ) !== $keys;
 	}
+
+	/**
+	 * Get a subset of the items from the given array.
+	 *
+	 * @param  array        $array to get.
+	 * @param  array|string $keys to filter.
+	 * @return array
+	 */
+	public static function only( $array, $keys ) {
+		return array_intersect_key( $array, array_flip( (array) $keys ) );
+	}
+
+	/**
+	 * Pluck an array of values from an array.
+	 *
+	 * @param  array             $array source.
+	 * @param  string|array      $value values.
+	 * @param  string|array|null $key keys.
+	 * @return array
+	 */
+	public static function pluck( $array, $value, $key = null ) {
+		$results = [];
+		foreach ( $array as $item ) {
+			$item_value = static::get( $item, $value );
+
+			// If the key is "null", we will just append the value to the array and keep
+			// looping. Otherwise we will key the array using the value of the key we
+			// received from the developer. Then we'll return the final array form.
+			if ( is_null( $key ) ) {
+				$results[] = $item_value;
+			} else {
+				$item_key = static::get( $item, $key );
+
+				$results[ $item_key ] = $item_value;
+			}
+		}
+
+		return $results;
+	}
 }

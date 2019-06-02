@@ -157,4 +157,50 @@ class ArrTest extends TestCase {
 			LF::is_assoc( array( 1, 2, 3 ) )
 		);
 	}
+
+	/**
+	 * Test only method
+	 */
+	public function testOnly() {
+		$this->assertEquals(
+			array(
+				'name' => 'Desk',
+				'price' => 100,
+			),
+			LF::only(
+				array(
+					'name' => 'Desk',
+					'price' => 100,
+					'orders' => 10,
+				),
+				array( 'name', 'price' )
+			)
+		);
+	}
+
+	/**
+	 * Test pluck method
+	 */
+	public function testPluck() {
+		$this->assertEquals(
+			array( 'Taylor', 'Abigail' ),
+			LF::pluck(
+				array(
+					array(
+						'developer' => array(
+							'id' => 1,
+							'name' => 'Taylor',
+						),
+					),
+					array(
+						'developer' => array(
+							'id' => 2,
+							'name' => 'Abigail',
+						),
+					),
+				),
+				'developer.name'
+			)
+		);
+	}
 }
