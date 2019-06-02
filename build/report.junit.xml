@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="php-lodash Test Suite" tests="7" assertions="8" errors="0" failures="0" skipped="0" time="0.003291">
-    <testsuite name="Tests\ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" tests="7" assertions="8" errors="0" failures="0" skipped="0" time="0.003291">
-      <testcase name="testAppend" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="15" assertions="1" time="0.002474"/>
-      <testcase name="testPrepend" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="25" assertions="1" time="0.000090"/>
-      <testcase name="testCompact" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="35" assertions="1" time="0.000081"/>
-      <testcase name="testAccessible" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="45" assertions="2" time="0.000106"/>
-      <testcase name="testDivide" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="60" assertions="1" time="0.000392"/>
-      <testcase name="testSet" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="79" assertions="1" time="0.000082"/>
-      <testcase name="testGet" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="101" assertions="1" time="0.000066"/>
+  <testsuite name="php-lodash Test Suite" tests="8" assertions="10" errors="0" failures="0" skipped="0" time="0.003334">
+    <testsuite name="Tests\ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" tests="8" assertions="10" errors="0" failures="0" skipped="0" time="0.003334">
+      <testcase name="testAppend" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="15" assertions="1" time="0.002492"/>
+      <testcase name="testPrepend" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="25" assertions="1" time="0.000105"/>
+      <testcase name="testCompact" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="35" assertions="1" time="0.000077"/>
+      <testcase name="testAccessible" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="45" assertions="2" time="0.000069"/>
+      <testcase name="testDivide" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="60" assertions="1" time="0.000374"/>
+      <testcase name="testSet" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="79" assertions="1" time="0.000076"/>
+      <testcase name="testGet" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="101" assertions="1" time="0.000078"/>
+      <testcase name="testHas" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="115" assertions="2" time="0.000063"/>
     </testsuite>
   </testsuite>
 </testsuites>

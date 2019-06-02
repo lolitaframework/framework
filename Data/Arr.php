@@ -156,4 +156,35 @@ class Arr {
 
 		return $array;
 	}
+
+	/**
+	 * Check if an item exists in an array using "dot" notation.
+	 *
+	 * @param  \ArrayAccess|array $array to check.
+	 * @param  string             $key keys with dot's.
+	 * @return bool
+	 */
+	public static function has( $array, $key ) {
+		if ( ! $array ) {
+			return false;
+		}
+
+		if ( is_null( $key ) ) {
+			return false;
+		}
+
+		if ( static::exists( $array, $key ) ) {
+			return true;
+		}
+
+		foreach ( explode( '.', $key ) as $segment ) {
+			if ( static::accessible( $array ) && static::exists( $array, $segment ) ) {
+				$array = $array[ $segment ];
+			} else {
+				return false;
+			}
+		}
+
+		return true;
+	}
 }

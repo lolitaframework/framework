@@ -111,4 +111,36 @@ class ArrTest extends TestCase {
 			)
 		);
 	}
+
+	/**
+	 * Test has method
+	 */
+	public function testHas() {
+		$this->assertEquals(
+			true,
+			LF::has(
+				array(
+					'products' => array( 'desk' => array( 'price' => 100 ) ),
+				),
+				'products.desk'
+			)
+		);
+
+		$this->assertEquals(
+			false,
+			LF::has(
+				array(
+					array(
+						'id' => 1,
+						'name' => 'John Doe',
+					),
+					array(
+						'id' => 2,
+						'name' => 'John Doe',
+					),
+				),
+				'2.name'
+			)
+		);
+	}
 }
