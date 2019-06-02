@@ -113,8 +113,8 @@ class Arr {
 	/**
 	 * Determine if the given key exists in the provided array.
 	 *
-	 * @param  \ArrayAccess|array  $array
-	 * @param  string|int  $key
+	 * @param  \ArrayAccess|array $array existing array.
+	 * @param  string|int         $key to check.
 	 * @return bool
 	 */
 	public static function exists( $array, $key ) {
@@ -128,9 +128,9 @@ class Arr {
 	/**
 	 * Get an item from an array using "dot" notation.
 	 *
-	 * @param  \ArrayAccess|array  $array
-	 * @param  string  $key
-	 * @param  mixed   $default
+	 * @param  \ArrayAccess|array $array where we want to get.
+	 * @param  string             $key key with dot's.
+	 * @param  mixed              $default value.
 	 * @return mixed
 	 */
 	public static function get( $array, $key, $default = null ) {
@@ -143,7 +143,7 @@ class Arr {
 		}
 
 		if ( static::exists( $array, $key ) ) {
-			return $array[$key];
+			return $array[ $key ];
 		}
 
 		foreach ( explode( '.', $key ) as $segment ) {
