@@ -94,4 +94,21 @@ class ArrTest extends TestCase {
 			)
 		);
 	}
+
+	/**
+	 * Test get method
+	 */
+	public function testGet() {
+		$this->assertEquals(
+			'TESTING',
+			LF::get(
+				array(
+					'products' => array(
+						'desk' => array( 'price' => 'TESTING' ),
+					),
+				),
+				'products.desk.price'
+			)
+		);
+	}
 }

@@ -109,4 +109,37 @@ class Arr {
 		$tmp_array[ $last_key ] = $value;
 		return $array;
 	}
+
+	/**
+	 * Get an item from an array using "dot" notation.
+	 *
+	 * @param  \ArrayAccess|array  $array
+	 * @param  string  $key
+	 * @param  mixed   $default
+	 * @return mixed
+	 */
+	public static function get($array, $key, $default = null)
+	{
+		if (! static::accessible($array)) {
+			return $default;
+		}
+
+		if (is_null($key)) {
+			return $array;
+		}
+
+		if (static::exists($array, $key)) {
+			return $array[$key];
+		}
+
+		foreach (explode('.', $key) as $segment) {
+			if (static::accessible($array) && static::exists($array, $segment)) {
+				$array = $array[$segment];
+			} else {
+				return $default;
+			}
+		}
+
+		return $array;
+	}
 }
