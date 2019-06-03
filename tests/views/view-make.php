@@ -1,1 +1,2 @@
-<h1><?php echo $title ?></h1>
+<?php // phpcs:ignoreFile ?>
+<h1><?php echo $title; ?></h1>

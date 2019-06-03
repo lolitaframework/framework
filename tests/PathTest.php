@@ -11,10 +11,25 @@ class PathTest extends TestCase {
   /**
    * Test join method
    */
-  public function testHas() {
-    $this->assertEquals(
-      'folder/folder',
-      Path::join( array( 'folder', 'folder' ), '/' )
-    );
-  }
+	public function testHas() {
+		$this->assertEquals(
+			'folder/folder',
+			Path::join( array( 'folder', 'folder' ), '/' )
+		);
+	}
+
+	/**
+	 * Test is_have_extension method
+	 */
+	public function testIsHaveExtension() {
+		$this->assertEquals(
+			true,
+			Path::is_have_extension( 'somefile.php' )
+		);
+
+		$this->assertEquals(
+			false,
+			Path::is_have_extension( 'somefile' )
+		);
+	}
 }
