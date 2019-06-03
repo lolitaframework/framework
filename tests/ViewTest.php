@@ -1,7 +1,7 @@
 <?php
 namespace Tests;
 
-use LolitaFramework\LF;
+use LolitaFramework\Data\View;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -10,14 +10,29 @@ use PHPUnit\Framework\TestCase;
 class ViewTest extends TestCase {
 
   /**
-   * Test append method
+   * Test minimize method
    */
   public function testMinimize() {
-    $a = LF::minimize(
-      "\n\n\n\n\n\n\nHello"
+    $this->assertEquals(
+      "1\nHello",
+      View::minimize(
+        "1\n\n\n\n\n\n\nHello"
+      )
     );
-    echo '<pre>';
-    var_dump($a);
-    echo '</pre>';
+  }
+
+  /**
+   * Test render method
+   */
+  public function testRender() {
+    $this->assertEquals(
+      '<h1>Hello it is test!</h1>',
+      View::render(
+        __DIR__ . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'view-make.php',
+        array(
+          'title' => 'Hello it is test!'
+        )
+      )
+    );
   }
 }

@@ -2,6 +2,8 @@
 
 namespace LolitaFramework\Data;
 
+use \LolitaFramework\Data\Path;
+
 /**
  * Class for working with arrays
  */

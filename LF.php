@@ -2,14 +2,10 @@
 // phpcs:ignoreFile
 namespace LolitaFramework;
 
-require_once './Data/View.php';
-
-use \LolitaFramework\Data\View;
-
 /**
  * Lolita Framework singlton class
  */
-class LF extends View {
+class LF {
 
 	/**
 	 * Instance

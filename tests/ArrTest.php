@@ -1,7 +1,7 @@
 <?php
 namespace Tests;
 
-use LolitaFramework\LF;
+use LolitaFramework\Data\Arr;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -15,7 +15,7 @@ class ArrTest extends TestCase {
 	public function testAppend() {
 		$this->assertEquals(
 			array( 1, 2, 3, 4 ),
-			LF::append( array( 1, 2, 3 ), 4 )
+			Arr::append( array( 1, 2, 3 ), 4 )
 		);
 	}
 
@@ -25,7 +25,7 @@ class ArrTest extends TestCase {
 	public function testPrepend() {
 		$this->assertEquals(
 			array( 4, 1, 2, 3 ),
-			LF::prepend( array( 1, 2, 3 ), 4 )
+			Arr::prepend( array( 1, 2, 3 ), 4 )
 		);
 	}
 
@@ -35,7 +35,7 @@ class ArrTest extends TestCase {
 	public function testCompact() {
 		$this->assertEquals(
 			array( 1, 2, 3 ),
-			LF::compact( array( 0, 1, false, 2, '', 3 ) )
+			Arr::compact( array( 0, 1, false, 2, '', 3 ) )
 		);
 	}
 
@@ -45,12 +45,12 @@ class ArrTest extends TestCase {
 	public function testAccessible() {
 		$this->assertEquals(
 			true,
-			LF::accessible( array() )
+			Arr::accessible( array() )
 		);
 
 		$this->assertEquals(
 			false,
-			LF::accessible( 0 )
+			Arr::accessible( 0 )
 		);
 	}
 
@@ -63,7 +63,7 @@ class ArrTest extends TestCase {
 				array( 'a', 'b', 'c' ),
 				array( '1', '2', '3' ),
 			),
-			LF::divide(
+			Arr::divide(
 				array(
 					'a' => 1,
 					'b' => 2,
@@ -83,7 +83,7 @@ class ArrTest extends TestCase {
 					'desk' => array( 'price' => 'TESTING' ),
 				),
 			),
-			LF::set(
+			Arr::set(
 				array(
 					'products' => array(
 						'desk' => array( 'price' => 100 ),
@@ -101,7 +101,7 @@ class ArrTest extends TestCase {
 	public function testGet() {
 		$this->assertEquals(
 			'TESTING',
-			LF::get(
+			Arr::get(
 				array(
 					'products' => array(
 						'desk' => array( 'price' => 'TESTING' ),
@@ -118,7 +118,7 @@ class ArrTest extends TestCase {
 	public function testHas() {
 		$this->assertEquals(
 			true,
-			LF::has(
+			Arr::has(
 				array(
 					'products' => array( 'desk' => array( 'price' => 100 ) ),
 				),
@@ -128,7 +128,7 @@ class ArrTest extends TestCase {
 
 		$this->assertEquals(
 			false,
-			LF::has(
+			Arr::has(
 				array(
 					array(
 						'id' => 1,
@@ -150,11 +150,11 @@ class ArrTest extends TestCase {
 	public function testIsAssoc() {
 		$this->assertEquals(
 			true,
-			LF::is_assoc( array( 'key' => 'value' ) )
+			Arr::is_assoc( array( 'key' => 'value' ) )
 		);
 		$this->assertEquals(
 			false,
-			LF::is_assoc( array( 1, 2, 3 ) )
+			Arr::is_assoc( array( 1, 2, 3 ) )
 		);
 	}
 
@@ -167,7 +167,7 @@ class ArrTest extends TestCase {
 				'name' => 'Desk',
 				'price' => 100,
 			),
-			LF::only(
+			Arr::only(
 				array(
 					'name' => 'Desk',
 					'price' => 100,
@@ -184,7 +184,7 @@ class ArrTest extends TestCase {
 	public function testPluck() {
 		$this->assertEquals(
 			array( 'Taylor', 'Abigail' ),
-			LF::pluck(
+			Arr::pluck(
 				array(
 					array(
 						'developer' => array(
@@ -210,7 +210,7 @@ class ArrTest extends TestCase {
 	public function testForget() {
 		$this->assertEquals(
 			array( 'products' => array() ),
-			LF::forget(
+			Arr::forget(
 				array( 'products' => array( 'desk' => array( 'price' => 100 ) ) ),
 				'products.desk'
 			)
@@ -224,7 +224,7 @@ class ArrTest extends TestCase {
 					'name' => 'Jane Doe',
 				),
 			),
-			LF::forget(
+			Arr::forget(
 				array(
 					array(
 						'id' => 1,
@@ -250,7 +250,7 @@ class ArrTest extends TestCase {
 				2 => 200,
 				4 => 300,
 			),
-			LF::where(
+			Arr::where(
 				array( 100, '100', 200, '200', 300 ),
 				function( $value ) {
 					return ! is_string( $value );

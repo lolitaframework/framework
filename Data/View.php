@@ -3,11 +3,12 @@
 namespace LolitaFramework\Data;
 
 use \LolitaFramework\Data\Arr;
+use \LolitaFramework\Data\Path;
 
 /**
  * Class for working with views
  */
-class View extends Arr {
+class View {
   /**
    * Render view
    *
@@ -16,19 +17,19 @@ class View extends Arr {
    * @param  array $data include data.
    * @return rendered html
    */
-  public static function make( $path, $data = array() ) {
-	  // If path setted like this "someview" then
-	  // We need add default folder path and extension .php
-	  if ( ! array_key_exists( 'extension', pathinfo( $path ) ) ) {
-		  $path = $path . '.php';
-	  }
+  public static function render( $path, $data = array() ) {
+	// If path setted like this "someview" then
+	// We need add default folder path and extension .php
+	if ( ! Path::is_have_extension( $path ) ) {
+		$path = $path . '.php';
+	}
 
-	  extract($data);
-	  ob_start();
-	  require($path);
+	extract($data);
+	ob_start();
+	require($path);
 
-	  // Return the compiled view and terminate the output buffer.
-	  return self::minimize( ltrim( ob_get_clean() ) );
+	// Return the compiled view and terminate the output buffer.
+	return self::minimize( ltrim( ob_get_clean() ) );
   }
 
 	/**
@@ -39,7 +40,7 @@ class View extends Arr {
 	 * @return string minimized.
 	 */
 	public static function minimize( $buffer ) {
-		if (true == WP_DEBUG) {
+		if (defined('WP_DEBUG') && true == WP_DEBUG) {
 			return $buffer;
 		}
 		$search = array(
