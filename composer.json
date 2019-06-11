@@ -11,7 +11,8 @@
             "./LF.php",
             "./Data/Arr.php",
             "./Data/Path.php",
-            "./Data/View.php"
+            "./Data/View.php",
+            "./Data/Chain.php"
         ]
     },
     "scripts": {
