@@ -43,19 +43,19 @@ class Chain {
 	 * @return array
 	 */
 	private function get_all_methods() {
-		$all_methods = array_map(
-			function( $el ) {
-				$reflection = new ReflectionClass( implode( '\\', array( __NAMESPACE__, $el ) ) );
-				return $reflection->getMethods( ReflectionMethod::IS_STATIC );
-			},
+		$all_methods = Arr::map(
 			array(
 				'Arr',
 				'Path',
 				'View',
-			)
+			),
+			function( $el ) {
+				$reflection = new ReflectionClass( implode( '\\', array( __NAMESPACE__, $el ) ) );
+				return $reflection->getMethods( ReflectionMethod::IS_STATIC );
+			}
 		);
 
-		$all_methods = array_reduce(
+		$all_methods = Arr::reduce(
 			$all_methods,
 			function( $accumulator, $current ) {
 				return array_merge( $accumulator, $current );
@@ -63,7 +63,7 @@ class Chain {
 			array()
 		);
 
-		$all_methods = array_reduce(
+		$all_methods = Arr::reduce(
 			$all_methods,
 			function( $accumulator, $current ) {
 				$accumulator[ $current->name ] = $current->class;
