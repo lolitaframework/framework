@@ -290,4 +290,27 @@ abstract class Arr {
 	public static function where( $array, $cb ) {
 		return array_filter( $array, $cb, ARRAY_FILTER_USE_BOTH );
 	}
+
+	/**
+	 * Applies the callback to the elements of the given arrays
+	 *
+	 * @param  array    $arr array.
+	 * @param  function $cb callback.
+	 * @return array
+	 */
+	public static function map( $arr, $cb ) {
+		return array_map( $cb, $arr );
+	}
+
+	/**
+	 * Iteratively reduce the array to a single value using a callback function.
+	 *
+	 * @param  array    $arr input.
+	 * @param  function $cb callback.
+	 * @param  mixed    $initial value.
+	 * @return mixed
+	 */
+	public static function reduce( $arr, $cb, $initial = null ) {
+		return array_reduce( $arr, $cb, $initial );
+	}
 }

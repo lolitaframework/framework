@@ -258,4 +258,35 @@ class ArrTest extends TestCase {
 			)
 		);
 	}
+
+	/**
+	 * Test map method
+	 */
+	public function testMap() {
+		$this->assertEquals(
+			array( 0, 0 ),
+			Arr::map(
+				array( 1, 1 ),
+				function( $el ) {
+					return 0;
+				}
+			)
+		);
+	}
+
+	/**
+	 * Test reduce method
+	 */
+	public function testReduce() {
+		$this->assertEquals(
+			5,
+			Arr::reduce(
+				array( 1, 2, 2 ),
+				function( $accumulator, $current ) {
+					return $accumulator + $current;
+				},
+				0
+			)
+		);
+	}
 }
