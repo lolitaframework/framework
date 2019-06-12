@@ -1,5 +1,4 @@
 <?php
-// phpcs:ignoreFile
 namespace LolitaFramework;
 
 /**
@@ -30,12 +29,11 @@ class LF {
 	/**
 	 * Get class instance only once
 	 *
-	 * @param string $dir
 	 * @return [LolitaFramewor] object.
 	 */
-	public static function getInstance($dir = null) {
-		if (null === self::$instance) {
-			self::$instance = new self($dir);
+	public static function get_instance() {
+		if ( null === self::$instance ) {
+			self::$instance = new self();
 		}
 		return self::$instance;
 	}
@@ -44,11 +42,10 @@ class LF {
 	 * Autoload class constructor
 	 *
 	 * @author Guriev Eugen <gurievcreative@gmail.com>
-	 * @param string $dir
 	 */
-	private function __construct($dir = null) {
+	private function __construct() {
 		$this->constants();
-		spl_autoload_register(array( &$this, 'autoload' ));
+		spl_autoload_register( array( &$this, 'autoload' ) );
 	}
 
 	/**
@@ -57,21 +54,20 @@ class LF {
 	 * @author Guriev Eugen <gurievcreative@gmail.com>
 	 */
 	public function constants() {
-		self::define('DS', DIRECTORY_SEPARATOR);
-		self::define('NS', '\\');
+		self::define( 'DS', DIRECTORY_SEPARATOR );
+		self::define( 'NS', '\\' );
 		return $this;
 	}
 
 	/**
 	 * Autoload my classes
 	 *
-	 * @author Guriev Eugen <gurievcreative@gmail.com>
+	 * @param  mixed $class class.
 	 * @return void
 	 */
-	public function autoload($class)
-	{
-		$class_path = self::getClassPath($class);
-		if (file_exists($class_path)) {
+	public function autoload( $class ) {
+		$class_path = self::get_class_path( $class );
+		if ( file_exists( $class_path ) ) {
 			require_once $class_path;
 		}
 	}
@@ -79,13 +75,12 @@ class LF {
 	/**
 	 * Get class path
 	 *
-	 * @param  string $class
+	 * @param  string $class name.
 	 * @return string
 	 */
-	public static function getClassPath($class)
-	{
-		$class_path = str_replace('\\', DS, $class);
-		$class_path = str_replace(__NAMESPACE__ . DS, __DIR__ . DS, $class_path);
+	public static function get_class_path( $class ) {
+		$class_path = str_replace( '\\', DS, $class );
+		$class_path = str_replace( __NAMESPACE__ . DS, __DIR__ . DS, $class_path );
 		return $class_path . '.php';
 	}
 }
