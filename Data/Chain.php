@@ -89,6 +89,15 @@ class Chain {
 	/**
 	 * Get value
 	 *
+	 * @return string
+	 */
+	public function __toString() {
+		return $this->value();
+	}
+
+	/**
+	 * Get value
+	 *
 	 * @return mixed
 	 */
 	public function value() {
