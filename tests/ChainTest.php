@@ -38,4 +38,18 @@ class ChainTest extends TestCase {
 				->value()
 		);
 	}
+
+	/**
+	 * Test chaining
+	 */
+	public function testChaining() {
+		$this->assertEquals(
+			array( 0, 1, 2, 3 ),
+			Chain::of( array( 1, 0, false, '', 2 ) )
+				->compact()
+				->append( 3 )
+				->prepend( 0 )
+				->value()
+		);
+	}
 }

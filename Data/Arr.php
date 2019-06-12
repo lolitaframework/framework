@@ -57,7 +57,7 @@ abstract class Arr {
 	 *
 	 * @return array
 	 */
-	public static function compact( $array = [] ) {
+	public static function compact( $array = array() ) {
 		return array_values( array_filter( $array ) );
 	}
 
@@ -223,7 +223,7 @@ abstract class Arr {
 	 * @return array
 	 */
 	public static function pluck( $array, $value, $key = null ) {
-		$results = [];
+		$results = array();
 		foreach ( $array as $item ) {
 			$item_value = static::get( $item, $value );
 
