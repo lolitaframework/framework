@@ -12,11 +12,11 @@ class View {
 	/**
 	 * Render view
 	 *
-	 * @param type  $path view path.
 	 * @param array $data include data.
+	 * @param type  $path view path.
 	 * @return rendered html
 	 */
-	public static function render( $path, $data = array() ) {
+	public static function render( $data = array(), $path ) {
 		// If path setted like this "someview" then.
 		// We need add default folder path and extension .php.
 		if ( ! Path::is_have_extension( $path ) ) {

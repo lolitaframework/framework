@@ -29,8 +29,8 @@ class ViewTest extends TestCase {
 		$this->assertEquals(
 			'<h1>Hello it is test!</h1>',
 			View::render(
-				Path::join( array( __DIR__, 'views', 'view-make.php' ) ),
-				array( 'title' => 'Hello it is test!' )
+				array( 'title' => 'Hello it is test!' ),
+				Path::join( array( __DIR__, 'views', 'view-make.php' ) )
 			)
 		);
 	}
