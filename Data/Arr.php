@@ -324,4 +324,15 @@ abstract class Arr {
 	public static function change_key_case( $array, $case = CASE_LOWER ) {
 		return array_change_key_case( $array, $case );
 	}
+
+	/**
+	 * Creates an array by using one array for keys and another for its values
+	 *
+	 * @param  array $keys input.
+	 * @param  array $values nput.
+	 * @return array
+	 */
+	public static function combine( $keys, $values ) {
+		return array_combine( $keys, $values );
+	}
 }

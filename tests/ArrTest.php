@@ -308,4 +308,21 @@ class ArrTest extends TestCase {
 			)
 		);
 	}
+
+	/**
+	 * Test combine method
+	 */
+	public function testCombine() {
+		$this->assertEquals(
+			array(
+				'green'  => 'avocado',
+				'red'    => 'apple',
+				'yellow' => 'banana',
+			),
+			Arr::combine(
+				array( 'green', 'red', 'yellow' ),
+				array( 'avocado', 'apple', 'banana' )
+			)
+		);
+	}
 }
