@@ -367,4 +367,30 @@ class ArrTest extends TestCase {
 			)
 		);
 	}
+
+	/**
+	 * Test diff_key method
+	 */
+	public function test_diff_key() {
+		$this->assertEquals(
+			array(
+				'blue'   => 1,
+				'red'    => 2,
+				'purple' => 4,
+			),
+			Arr::diff_key(
+				array(
+					'blue'   => 1,
+					'red'    => 2,
+					'green'  => 3,
+					'purple' => 4,
+				),
+				array(
+					'green'  => 5,
+					'yellow' => 7,
+					'cyan'   => 8,
+				)
+			)
+		);
+	}
 }
