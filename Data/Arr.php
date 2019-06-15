@@ -389,4 +389,16 @@ abstract class Arr {
 	public static function fill_keys( $keys, $value ) {
 		return array_fill_keys( $keys, $value );
 	}
+
+	/**
+	 * Fill an array with values
+	 *
+	 * @param  int   $start_index The first index of the returned array.
+	 * @param  int   $num Number of elements to insert. Must be greater than or equal to zero.
+	 * @param  mixed $value Value to use for filling.
+	 * @return array
+	 */
+	public static function fill( $start_index, $num, $value ) {
+		return array_fill( $start_index, $num, $value );
+	}
 }

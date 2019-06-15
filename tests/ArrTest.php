@@ -438,4 +438,21 @@ class ArrTest extends TestCase {
 			)
 		);
 	}
+
+	/**
+	 * Test fill method
+	 */
+	public function test_fill() {
+		$this->assertEquals(
+			array(
+				'5'  => 'banana',
+				'6'  => 'banana',
+				'7'  => 'banana',
+				'8'  => 'banana',
+				'9'  => 'banana',
+				'10' => 'banana',
+			),
+			Arr::fill( 5, 6, 'banana' )
+		);
+	}
 }
