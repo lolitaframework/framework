@@ -367,4 +367,15 @@ abstract class Arr {
 	public static function diff_key( $array1, $array2 ) {
 		return call_user_func_array( 'array_diff_key', func_get_args() );
 	}
+
+	/**
+	 * Computes the difference of arrays
+	 *
+	 * @param  array $array1 The array to compare from.
+	 * @param  array $array2 An array to compare against.
+	 * @return array
+	 */
+	public static function diff( $array1, $array2 ) {
+		return call_user_func_array( 'array_diff', func_get_args() );
+	}
 }
