@@ -378,4 +378,15 @@ abstract class Arr {
 	public static function diff( $array1, $array2 ) {
 		return call_user_func_array( 'array_diff', func_get_args() );
 	}
+
+	/**
+	 * Fill an array with values, specifying keys
+	 *
+	 * @param  array $keys Array of values that will be used as keys. Illegal values for key will be converted to string.
+	 * @param  mixed $value Value to use for filling.
+	 * @return array
+	 */
+	public static function fill_keys( $keys, $value ) {
+		return array_fill_keys( $keys, $value );
+	}
 }

@@ -415,4 +415,27 @@ class ArrTest extends TestCase {
 			)
 		);
 	}
+
+	/**
+	 * Test fill_keys method
+	 */
+	public function test_fill_keys() {
+		$this->assertEquals(
+			array(
+				'foo' => 'banana',
+				5     => 'banana',
+				10    => 'banana',
+				'bar' => 'banana',
+			),
+			Arr::fill_keys(
+				array(
+					'foo',
+					5,
+					10,
+					'bar',
+				),
+				'banana'
+			)
+		);
+	}
 }
