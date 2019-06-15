@@ -455,4 +455,24 @@ class ArrTest extends TestCase {
 			Arr::fill( 5, 6, 'banana' )
 		);
 	}
+
+	/**
+	 * Test flip method
+	 */
+	public function test_flip() {
+		$this->assertEquals(
+			array(
+				'oranges' => 0,
+				'apples'  => 1,
+				'pears'   => 2,
+			),
+			Arr::flip(
+				array(
+					'oranges',
+					'apples',
+					'pears',
+				)
+			)
+		);
+	}
 }

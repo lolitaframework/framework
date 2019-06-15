@@ -401,4 +401,14 @@ abstract class Arr {
 	public static function fill( $start_index, $num, $value ) {
 		return array_fill( $start_index, $num, $value );
 	}
+
+	/**
+	 * Exchanges all keys with their associated values in an array
+	 *
+	 * @param  array $array An array of key/value pairs to be flipped.
+	 * @return array
+	 */
+	public static function flip( $array ) {
+		return array_flip( $array );
+	}
 }
