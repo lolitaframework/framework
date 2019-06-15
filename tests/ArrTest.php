@@ -12,7 +12,7 @@ class ArrTest extends TestCase {
 	/**
 	 * Test append method
 	 */
-	public function testAppend() {
+	public function test_append() {
 		$this->assertEquals(
 			array( 1, 2, 3, 4 ),
 			Arr::append( array( 1, 2, 3 ), 4 )
@@ -22,7 +22,7 @@ class ArrTest extends TestCase {
 	/**
 	 * Test prepend method
 	 */
-	public function testPrepend() {
+	public function test_prepend() {
 		$this->assertEquals(
 			array( 4, 1, 2, 3 ),
 			Arr::prepend( array( 1, 2, 3 ), 4 )
@@ -32,7 +32,7 @@ class ArrTest extends TestCase {
 	/**
 	 * Test compact method
 	 */
-	public function testCompact() {
+	public function test_compact() {
 		$this->assertEquals(
 			array( 1, 2, 3 ),
 			Arr::compact( array( 0, 1, false, 2, '', 3 ) )
@@ -42,7 +42,7 @@ class ArrTest extends TestCase {
 	/**
 	 * Test accessible method
 	 */
-	public function testAccessible() {
+	public function test_accessible() {
 		$this->assertEquals(
 			true,
 			Arr::accessible( array() )
@@ -57,7 +57,7 @@ class ArrTest extends TestCase {
 	/**
 	 * Test divide method
 	 */
-	public function testDivide() {
+	public function test_divide() {
 		$this->assertEquals(
 			array(
 				array( 'a', 'b', 'c' ),
@@ -76,7 +76,7 @@ class ArrTest extends TestCase {
 	/**
 	 * Test set method
 	 */
-	public function testSet() {
+	public function test_set() {
 		$this->assertEquals(
 			array(
 				'products' => array(
@@ -98,7 +98,7 @@ class ArrTest extends TestCase {
 	/**
 	 * Test get method
 	 */
-	public function testGet() {
+	public function test_get() {
 		$this->assertEquals(
 			'TESTING',
 			Arr::get(
@@ -115,7 +115,7 @@ class ArrTest extends TestCase {
 	/**
 	 * Test has method
 	 */
-	public function testHas() {
+	public function test_has() {
 		$this->assertEquals(
 			true,
 			Arr::has(
@@ -147,7 +147,7 @@ class ArrTest extends TestCase {
 	/**
 	 * Test isAssoc method
 	 */
-	public function testIsAssoc() {
+	public function test_is_assoc() {
 		$this->assertEquals(
 			true,
 			Arr::is_assoc( array( 'key' => 'value' ) )
@@ -161,7 +161,7 @@ class ArrTest extends TestCase {
 	/**
 	 * Test only method
 	 */
-	public function testOnly() {
+	public function test_only() {
 		$this->assertEquals(
 			array(
 				'name' => 'Desk',
@@ -181,7 +181,7 @@ class ArrTest extends TestCase {
 	/**
 	 * Test pluck method
 	 */
-	public function testPluck() {
+	public function test_pluck() {
 		$this->assertEquals(
 			array( 'Taylor', 'Abigail' ),
 			Arr::pluck(
@@ -207,7 +207,7 @@ class ArrTest extends TestCase {
 	/**
 	 * Test forget method
 	 */
-	public function testForget() {
+	public function test_forget() {
 		$this->assertEquals(
 			array( 'products' => array() ),
 			Arr::forget(
@@ -243,7 +243,7 @@ class ArrTest extends TestCase {
 	/**
 	 * Test where method
 	 */
-	public function testWhere() {
+	public function test_where() {
 		$this->assertEquals(
 			array(
 				0 => 100,
@@ -262,7 +262,7 @@ class ArrTest extends TestCase {
 	/**
 	 * Test map method
 	 */
-	public function testMap() {
+	public function test_map() {
 		$this->assertEquals(
 			array( 0, 0 ),
 			Arr::map(
@@ -277,7 +277,7 @@ class ArrTest extends TestCase {
 	/**
 	 * Test reduce method
 	 */
-	public function testReduce() {
+	public function test_reduce() {
 		$this->assertEquals(
 			5,
 			Arr::reduce(
@@ -293,7 +293,7 @@ class ArrTest extends TestCase {
 	/**
 	 * Test change_key_case method
 	 */
-	public function testChangeKeyCase() {
+	public function test_change_key_case() {
 		$this->assertEquals(
 			array(
 				'FIRST' => 1,
@@ -312,7 +312,7 @@ class ArrTest extends TestCase {
 	/**
 	 * Test combine method
 	 */
-	public function testCombine() {
+	public function test_combine() {
 		$this->assertEquals(
 			array(
 				'green'  => 'avocado',
@@ -329,7 +329,7 @@ class ArrTest extends TestCase {
 	/**
 	 * Test count_values method
 	 */
-	public function testCountValues() {
+	public function test_count_values() {
 		$this->assertEquals(
 			array(
 				1       => 2,
@@ -338,6 +338,32 @@ class ArrTest extends TestCase {
 			),
 			Arr::count_values(
 				array( 1, 'hello', 1, 'world', 'hello' )
+			)
+		);
+	}
+
+	/**
+	 * Test diff_assoc method
+	 */
+	public function test_diff_assoc() {
+		$this->assertEquals(
+			array(
+				'b' => 'brown',
+				'c' => 'blue',
+				'0' => 'red',
+			),
+			Arr::diff_assoc(
+				array(
+					'a' => 'green',
+					'b' => 'brown',
+					'c' => 'blue',
+					'red',
+				),
+				array(
+					'a' => 'green',
+					'yellow',
+					'red',
+				)
 			)
 		);
 	}

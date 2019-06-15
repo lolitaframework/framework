@@ -345,4 +345,15 @@ abstract class Arr {
 	public static function count_values( $array ) {
 		return array_count_values( $array );
 	}
+
+	/**
+	 * Computes the difference of arrays with additional index check\
+	 *
+	 * @param  array $arr1 The array to compare from.
+	 * @param  array $arr2 An array to compare against.
+	 * @return array
+	 */
+	public static function diff_assoc( $arr1, $arr2 ) {
+		return call_user_func_array( 'array_diff_assoc', func_get_args() );
+	}
 }
