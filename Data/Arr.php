@@ -335,4 +335,14 @@ abstract class Arr {
 	public static function combine( $keys, $values ) {
 		return array_combine( $keys, $values );
 	}
+
+	/**
+	 * Counts all the values of an array
+	 *
+	 * @param  array $array input to count.
+	 * @return array
+	 */
+	public static function count_values( $array ) {
+		return array_count_values( $array );
+	}
 }

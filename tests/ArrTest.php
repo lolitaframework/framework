@@ -325,4 +325,20 @@ class ArrTest extends TestCase {
 			)
 		);
 	}
+
+	/**
+	 * Test count_values method
+	 */
+	public function testCountValues() {
+		$this->assertEquals(
+			array(
+				1       => 2,
+				'hello' => 2,
+				'world' => 1,
+			),
+			Arr::count_values(
+				array( 1, 'hello', 1, 'world', 'hello' )
+			)
+		);
+	}
 }
