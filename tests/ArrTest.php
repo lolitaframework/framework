@@ -289,4 +289,23 @@ class ArrTest extends TestCase {
 			)
 		);
 	}
+
+	/**
+	 * Test change_key_case method
+	 */
+	public function testChangeKeyCase() {
+		$this->assertEquals(
+			array(
+				'FIRST' => 1,
+				'SECOND' => 4,
+			),
+			Arr::change_key_case(
+				array(
+					'First' => 1,
+					'Second' => 4,
+				),
+				CASE_UPPER
+			)
+		);
+	}
 }

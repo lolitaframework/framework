@@ -1,35 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="php-lodash Test Suite" tests="22" assertions="27" errors="0" failures="0" skipped="0" time="0.006706">
-    <testsuite name="Tests\ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" tests="15" assertions="19" errors="0" failures="0" skipped="0" time="0.005437">
-      <testcase name="testAppend" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="15" assertions="1" time="0.002660"/>
-      <testcase name="testPrepend" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="25" assertions="1" time="0.000112"/>
-      <testcase name="testCompact" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="35" assertions="1" time="0.000073"/>
-      <testcase name="testAccessible" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="45" assertions="2" time="0.000059"/>
-      <testcase name="testDivide" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="60" assertions="1" time="0.001864"/>
-      <testcase name="testSet" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="79" assertions="1" time="0.000080"/>
-      <testcase name="testGet" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="101" assertions="1" time="0.000078"/>
-      <testcase name="testHas" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="118" assertions="2" time="0.000094"/>
-      <testcase name="testIsAssoc" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="150" assertions="2" time="0.000063"/>
-      <testcase name="testOnly" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="164" assertions="1" time="0.000058"/>
-      <testcase name="testPluck" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="184" assertions="1" time="0.000062"/>
-      <testcase name="testForget" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="210" assertions="2" time="0.000064"/>
-      <testcase name="testWhere" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="246" assertions="1" time="0.000058"/>
-      <testcase name="testMap" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="265" assertions="1" time="0.000056"/>
-      <testcase name="testReduce" class="Tests\ArrTest" classname="Tests.ArrTest" file="/Users/tatarin/work/framework/tests/ArrTest.php" line="280" assertions="1" time="0.000056"/>
+  <testsuite name="php-lodash Test Suite" tests="23" assertions="28" failures="0" errors="0" time="0.003842">
+    <testsuite name="Tests\ArrTest" file="/Users/gurieveugen/work/framework/tests/ArrTest.php" tests="16" assertions="20" failures="0" errors="0" time="0.002869">
+      <testcase name="testAppend" class="Tests\ArrTest" file="/Users/gurieveugen/work/framework/tests/ArrTest.php" line="15" assertions="1" time="0.000474"/>
+      <testcase name="testPrepend" class="Tests\ArrTest" file="/Users/gurieveugen/work/framework/tests/ArrTest.php" line="25" assertions="1" time="0.000050"/>
+      <testcase name="testCompact" class="Tests\ArrTest" file="/Users/gurieveugen/work/framework/tests/ArrTest.php" line="35" assertions="1" time="0.000047"/>
+      <testcase name="testAccessible" class="Tests\ArrTest" file="/Users/gurieveugen/work/framework/tests/ArrTest.php" line="45" assertions="2" time="0.000042"/>
+      <testcase name="testDivide" class="Tests\ArrTest" file="/Users/gurieveugen/work/framework/tests/ArrTest.php" line="60" assertions="1" time="0.001774"/>
+      <testcase name="testSet" class="Tests\ArrTest" file="/Users/gurieveugen/work/framework/tests/ArrTest.php" line="79" assertions="1" time="0.000054"/>
+      <testcase name="testGet" class="Tests\ArrTest" file="/Users/gurieveugen/work/framework/tests/ArrTest.php" line="101" assertions="1" time="0.000051"/>
+      <testcase name="testHas" class="Tests\ArrTest" file="/Users/gurieveugen/work/framework/tests/ArrTest.php" line="118" assertions="2" time="0.000050"/>
+      <testcase name="testIsAssoc" class="Tests\ArrTest" file="/Users/gurieveugen/work/framework/tests/ArrTest.php" line="150" assertions="2" time="0.000044"/>
+      <testcase name="testOnly" class="Tests\ArrTest" file="/Users/gurieveugen/work/framework/tests/ArrTest.php" line="164" assertions="1" time="0.000041"/>
+      <testcase name="testPluck" class="Tests\ArrTest" file="/Users/gurieveugen/work/framework/tests/ArrTest.php" line="184" assertions="1" time="0.000042"/>
+      <testcase name="testForget" class="Tests\ArrTest" file="/Users/gurieveugen/work/framework/tests/ArrTest.php" line="210" assertions="2" time="0.000044"/>
+      <testcase name="testWhere" class="Tests\ArrTest" file="/Users/gurieveugen/work/framework/tests/ArrTest.php" line="246" assertions="1" time="0.000042"/>
+      <testcase name="testMap" class="Tests\ArrTest" file="/Users/gurieveugen/work/framework/tests/ArrTest.php" line="265" assertions="1" time="0.000039"/>
+      <testcase name="testReduce" class="Tests\ArrTest" file="/Users/gurieveugen/work/framework/tests/ArrTest.php" line="280" assertions="1" time="0.000038"/>
+      <testcase name="testChangeKeyCase" class="Tests\ArrTest" file="/Users/gurieveugen/work/framework/tests/ArrTest.php" line="296" assertions="1" time="0.000038"/>
     </testsuite>
-    <testsuite name="Tests\ChainTest" file="/Users/tatarin/work/framework/tests/ChainTest.php" tests="3" assertions="3" errors="0" failures="0" skipped="0" time="0.000629">
-      <testcase name="testValue" class="Tests\ChainTest" classname="Tests.ChainTest" file="/Users/tatarin/work/framework/tests/ChainTest.php" line="14" assertions="1" time="0.000412"/>
-      <testcase name="testBind" class="Tests\ChainTest" classname="Tests.ChainTest" file="/Users/tatarin/work/framework/tests/ChainTest.php" line="24" assertions="1" time="0.000104"/>
-      <testcase name="testChaining" class="Tests\ChainTest" classname="Tests.ChainTest" file="/Users/tatarin/work/framework/tests/ChainTest.php" line="45" assertions="1" time="0.000113"/>
+    <testsuite name="Tests\ChainTest" file="/Users/gurieveugen/work/framework/tests/ChainTest.php" tests="3" assertions="3" failures="0" errors="0" time="0.000460">
+      <testcase name="testValue" class="Tests\ChainTest" file="/Users/gurieveugen/work/framework/tests/ChainTest.php" line="14" assertions="1" time="0.000328"/>
+      <testcase name="testBind" class="Tests\ChainTest" file="/Users/gurieveugen/work/framework/tests/ChainTest.php" line="24" assertions="1" time="0.000063"/>
+      <testcase name="testChaining" class="Tests\ChainTest" file="/Users/gurieveugen/work/framework/tests/ChainTest.php" line="45" assertions="1" time="0.000069"/>
     </testsuite>
-    <testsuite name="Tests\PathTest" file="/Users/tatarin/work/framework/tests/PathTest.php" tests="2" assertions="3" errors="0" failures="0" skipped="0" time="0.000123">
-      <testcase name="testHas" class="Tests\PathTest" classname="Tests.PathTest" file="/Users/tatarin/work/framework/tests/PathTest.php" line="14" assertions="1" time="0.000063"/>
-      <testcase name="testIsHaveExtension" class="Tests\PathTest" classname="Tests.PathTest" file="/Users/tatarin/work/framework/tests/PathTest.php" line="24" assertions="2" time="0.000060"/>
+    <testsuite name="Tests\PathTest" file="/Users/gurieveugen/work/framework/tests/PathTest.php" tests="2" assertions="3" failures="0" errors="0" time="0.000099">
+      <testcase name="testHas" class="Tests\PathTest" file="/Users/gurieveugen/work/framework/tests/PathTest.php" line="14" assertions="1" time="0.000049"/>
+      <testcase name="testIsHaveExtension" class="Tests\PathTest" file="/Users/gurieveugen/work/framework/tests/PathTest.php" line="24" assertions="2" time="0.000050"/>
     </testsuite>
-    <testsuite name="Tests\ViewTest" file="/Users/tatarin/work/framework/tests/ViewTest.php" tests="2" assertions="2" errors="0" failures="0" skipped="0" time="0.000517">
-      <testcase name="testMinimize" class="Tests\ViewTest" classname="Tests.ViewTest" file="/Users/tatarin/work/framework/tests/ViewTest.php" line="16" assertions="1" time="0.000122"/>
-      <testcase name="testRender" class="Tests\ViewTest" classname="Tests.ViewTest" file="/Users/tatarin/work/framework/tests/ViewTest.php" line="28" assertions="1" time="0.000395"/>
+    <testsuite name="Tests\ViewTest" file="/Users/gurieveugen/work/framework/tests/ViewTest.php" tests="2" assertions="2" failures="0" errors="0" time="0.000414">
+      <testcase name="testMinimize" class="Tests\ViewTest" file="/Users/gurieveugen/work/framework/tests/ViewTest.php" line="16" assertions="1" time="0.000061"/>
+      <testcase name="testRender" class="Tests\ViewTest" file="/Users/gurieveugen/work/framework/tests/ViewTest.php" line="28" assertions="1" time="0.000353"/>
     </testsuite>
   </testsuite>
 </testsuites>

@@ -313,4 +313,15 @@ abstract class Arr {
 	public static function reduce( $arr, $cb, $initial = null ) {
 		return array_reduce( $arr, $cb, $initial );
 	}
+
+	/**
+	 * Changes the case of all keys in an array
+	 *
+	 * @param  array $array input.
+	 * @param  int   $case CASE_LOWER / CASE_UPPER.
+	 * @return array
+	 */
+	public static function change_key_case( $array, $case = CASE_LOWER ) {
+		return array_change_key_case( $array, $case );
+	}
 }
