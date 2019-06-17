@@ -422,4 +422,15 @@ abstract class Arr {
 	public static function intersect_assoc( $array1, $array2 ) {
 		return call_user_func_array( 'array_intersect_assoc', func_get_args() );
 	}
+
+	/**
+	 * Computes the intersection of arrays using keys for comparison
+	 *
+	 * @param  array $array1 The array with master keys to check.
+	 * @param  array $array2 An array to compare keys against.
+	 * @return array
+	 */
+	public static function intersect_key( $array1, $array2 ) {
+		return call_user_func_array( 'array_intersect_key', func_get_args() );
+	}
 }

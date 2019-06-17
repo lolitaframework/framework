@@ -498,4 +498,30 @@ class ArrTest extends TestCase {
 			)
 		);
 	}
+
+	/**
+	 * Test intersect_assoc method
+	 */
+	public function test_intersect_key() {
+		$this->assertEquals(
+			array(
+				'blue'  => 1,
+				'green' => 3,
+			),
+			Arr::intersect_key(
+				array(
+					'blue'   => 1,
+					'red'    => 2,
+					'green'  => 3,
+					'purple' => 4,
+				),
+				array(
+					'green'  => 5,
+					'blue'   => 6,
+					'yellow' => 7,
+					'cyan'   => 8,
+				)
+			)
+		);
+	}
 }
