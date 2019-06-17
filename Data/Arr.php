@@ -383,10 +383,7 @@ abstract class Arr {
 			'array_uintersect_uassoc',
 			'array_uintersect',
 			'array_unique',
-			'array_unshift',
 			'array_values',
-			'array_walk_recursive',
-			'array_walk',
 		);
 
 		if ( self::in( $allowed_methods, $full_name ) ) {
