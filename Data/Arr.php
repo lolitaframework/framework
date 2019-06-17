@@ -340,6 +340,18 @@ abstract class Arr {
 	}
 
 	/**
+	 * Sort an array in reverse order and maintain index association
+	 *
+	 * @param  array $array The input array.
+	 * @param  int   $sort_flags You may modify the behavior of the sort using the optional parameter sort_flags, for details see sort().
+	 * @return array
+	 */
+	public static function asort( $array, $sort_flags = SORT_REGULAR ) {
+		asort( $array, $sort_flags );
+		return $array;
+	}
+
+	/**
 	 * Implement default array functions.
 	 *
 	 * @param  string $name function name like Arr::merge -> array_merge.
@@ -350,7 +362,7 @@ abstract class Arr {
 	 */
 	public static function __callStatic( $name, $arguments ) {
 		$full_name = 'array_' . $name;
-		$allowed_methods = array(
+		$allowed_array_methods = array(
 			'array_change_key_case',
 			'array_chunk',
 			'array_column',
@@ -398,7 +410,22 @@ abstract class Arr {
 			'array_values',
 		);
 
-		if ( self::in( $allowed_methods, $full_name ) ) {
+		$allowed_methods = array(
+			'count',
+			'current',
+			'end',
+			'key',
+			'next',
+			'prev',
+			'range',
+			'reset',
+		);
+
+		if ( self::in( $allowed_methods, $name ) ) {
+			return call_user_func_array( $name, $arguments );
+		}
+
+		if ( self::in( $allowed_array_methods, $full_name ) ) {
 			return call_user_func_array( $full_name, $arguments );
 		}
 		throw new Exception( 'Function:' . $full_name . '. Not Found!' );

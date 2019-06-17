@@ -295,4 +295,26 @@ class ArrTest extends TestCase {
 			)
 		);
 	}
+
+	/**
+	 * Test arsort method
+	 */
+	public function test_asort() {
+		$this->assertEquals(
+			array(
+				'c' => 'apple',
+				'b' => 'banana',
+				'd' => 'lemon',
+				'a' => 'orange',
+			),
+			Arr::arsort(
+				array(
+					'd' => 'lemon',
+					'a' => 'orange',
+					'b' => 'banana',
+					'c' => 'apple',
+				)
+			)
+		);
+	}
 }
