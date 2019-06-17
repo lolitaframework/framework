@@ -2,6 +2,7 @@
 
 namespace LolitaFramework\Data;
 
+use \Exception;
 use \LolitaFramework\Data\Path;
 
 /**
@@ -302,141 +303,87 @@ abstract class Arr {
 		return array_map( $cb, $arr );
 	}
 
-	public static function __callStatic( $name, $arguments ) {
-		echo '<pre>';
-		var_dump($name);
-		echo '</pre>';
+	/**
+	 * Checks if a value exists in an array
+	 *
+	 * @param  array   $haystack The array.
+	 * @param  string  $key The searched value.
+	 * @param  boolean $strict If the third parameter strict is set to TRUE then the in_array() function will also check the types of the needle in the haystack.
+	 * @return boolean
+	 */
+	public static function in( $haystack, $key, $strict = false ) {
+		return in_array( $key, $haystack, $strict );
 	}
 
 	/**
-	 * Iteratively reduce the array to a single value using a callback function.
+	 * Implement default array functions.
 	 *
-	 * @param  array    $arr input.
-	 * @param  function $cb callback.
-	 * @param  mixed    $initial value.
+	 * @param  string $name function name like Arr::merge -> array_merge.
+	 * @param  array  $arguments function arguments.
 	 * @return mixed
-	 */
-	public static function reduce( $arr, $cb, $initial = null ) {
-		return array_reduce( $arr, $cb, $initial );
-	}
-
-	/**
-	 * Changes the case of all keys in an array
 	 *
-	 * @param  array $array input.
-	 * @param  int   $case CASE_LOWER / CASE_UPPER.
-	 * @return array
+	 * @throws Exception Function {function_name}. Not Found.
 	 */
-	public static function change_key_case( $array, $case = CASE_LOWER ) {
-		return array_change_key_case( $array, $case );
-	}
+	public static function __callStatic( $name, $arguments ) {
+		$full_name = 'array_' . $name;
+		$allowed_methods = array(
+			'array_change_key_case',
+			'array_chunk',
+			'array_column',
+			'array_combine',
+			'array_count_values',
+			'array_diff_assoc',
+			'array_diff_key',
+			'array_diff_uassoc',
+			'array_diff_ukey',
+			'array_diff',
+			'array_fill_keys',
+			'array_fill',
+			'array_filter',
+			'array_flip',
+			'array_intersect_assoc',
+			'array_intersect_key',
+			'array_intersect_uassoc',
+			'array_intersect_ukey',
+			'array_intersect',
+			'array_key_exists',
+			'array_key_first',
+			'array_key_last',
+			'array_keys',
+			'array_map',
+			'array_merge_recursive',
+			'array_merge',
+			'array_multisort',
+			'array_pad',
+			'array_pop',
+			'array_product',
+			'array_push',
+			'array_rand',
+			'array_reduce',
+			'array_replace_recursive',
+			'array_replace',
+			'array_reverse',
+			'array_search',
+			'array_shift',
+			'array_slice',
+			'array_splice',
+			'array_sum',
+			'array_udiff_assoc',
+			'array_udiff_uassoc',
+			'array_udiff',
+			'array_uintersect_assoc',
+			'array_uintersect_uassoc',
+			'array_uintersect',
+			'array_unique',
+			'array_unshift',
+			'array_values',
+			'array_walk_recursive',
+			'array_walk',
+		);
 
-	/**
-	 * Creates an array by using one array for keys and another for its values
-	 *
-	 * @param  array $keys input.
-	 * @param  array $values nput.
-	 * @return array
-	 */
-	public static function combine( $keys, $values ) {
-		return array_combine( $keys, $values );
-	}
-
-	/**
-	 * Counts all the values of an array
-	 *
-	 * @param  array $array input to count.
-	 * @return array
-	 */
-	public static function count_values( $array ) {
-		return array_count_values( $array );
-	}
-
-	/**
-	 * Computes the difference of arrays with additional index check\
-	 *
-	 * @param  array $arr1 The array to compare from.
-	 * @param  array $arr2 An array to compare against.
-	 * @return array
-	 */
-	public static function diff_assoc( $arr1, $arr2 ) {
-		return call_user_func_array( 'array_diff_assoc', func_get_args() );
-	}
-
-	/**
-	 * Computes the difference of arrays using keys for comparison
-	 *
-	 * @param  array $array1 The array to compare from.
-	 * @param  array $array2 An array to compare against.
-	 * @return array
-	 */
-	public static function diff_key( $array1, $array2 ) {
-		return call_user_func_array( 'array_diff_key', func_get_args() );
-	}
-
-	/**
-	 * Computes the difference of arrays
-	 *
-	 * @param  array $array1 The array to compare from.
-	 * @param  array $array2 An array to compare against.
-	 * @return array
-	 */
-	public static function diff( $array1, $array2 ) {
-		return call_user_func_array( 'array_diff', func_get_args() );
-	}
-
-	/**
-	 * Fill an array with values, specifying keys
-	 *
-	 * @param  array $keys Array of values that will be used as keys. Illegal values for key will be converted to string.
-	 * @param  mixed $value Value to use for filling.
-	 * @return array
-	 */
-	public static function fill_keys( $keys, $value ) {
-		return array_fill_keys( $keys, $value );
-	}
-
-	/**
-	 * Fill an array with values
-	 *
-	 * @param  int   $start_index The first index of the returned array.
-	 * @param  int   $num Number of elements to insert. Must be greater than or equal to zero.
-	 * @param  mixed $value Value to use for filling.
-	 * @return array
-	 */
-	public static function fill( $start_index, $num, $value ) {
-		return array_fill( $start_index, $num, $value );
-	}
-
-	/**
-	 * Exchanges all keys with their associated values in an array
-	 *
-	 * @param  array $array An array of key/value pairs to be flipped.
-	 * @return array
-	 */
-	public static function flip( $array ) {
-		return array_flip( $array );
-	}
-
-	/**
-	 * Computes the intersection of arrays with additional index check
-	 *
-	 * @param  array $array1 The array with master values to check.
-	 * @param  array $array2 An array to compare values against.
-	 * @return array
-	 */
-	public static function intersect_assoc( $array1, $array2 ) {
-		return call_user_func_array( 'array_intersect_assoc', func_get_args() );
-	}
-
-	/**
-	 * Computes the intersection of arrays using keys for comparison
-	 *
-	 * @param  array $array1 The array with master keys to check.
-	 * @param  array $array2 An array to compare keys against.
-	 * @return array
-	 */
-	public static function intersect_key( $array1, $array2 ) {
-		return call_user_func_array( 'array_intersect_key', func_get_args() );
+		if ( self::in( $allowed_methods, $full_name ) ) {
+			return call_user_func_array( $full_name, $arguments );
+		}
+		throw new Exception( 'Function:' . $full_name . '. Not Found!' );
 	}
 }
