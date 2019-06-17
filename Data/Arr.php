@@ -352,6 +352,17 @@ abstract class Arr {
 	}
 
 	/**
+	 * Sort an array using a case insensitive "natural order" algorithm
+	 *
+	 * @param  array $array The input array.
+	 * @return array
+	 */
+	public static function natcasesort( $array ) {
+		natcasesort( $array );
+		return $array;
+	}
+
+	/**
 	 * Implement default array functions.
 	 *
 	 * @param  string $name function name like Arr::merge -> array_merge.

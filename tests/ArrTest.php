@@ -317,4 +317,30 @@ class ArrTest extends TestCase {
 			)
 		);
 	}
+
+	/**
+	 * Test natcasesort method
+	 */
+	public function test_natcasesort() {
+		$this->assertEquals(
+			array(
+				0 => 'IMG0.png',
+				4 => 'img1.png',
+				3 => 'img2.png',
+				5 => 'IMG3.png',
+				2 => 'img10.png',
+				1 => 'img12.png',
+			),
+			Arr::natcasesort(
+				array(
+					'IMG0.png',
+					'img12.png',
+					'img10.png',
+					'img2.png',
+					'img1.png',
+					'IMG3.png',
+				)
+			)
+		);
+	}
 }
