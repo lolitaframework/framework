@@ -387,4 +387,70 @@ class ArrTest extends TestCase {
 			)
 		);
 	}
+
+	/**
+	 * Test natsort method
+	 */
+	public function test_natsort() {
+		$this->assertEquals(
+			array(
+				3 => 'img1.png',
+				2 => 'img2.png',
+				1 => 'img10.png',
+				0 => 'img12.png',
+			),
+			Arr::natsort(
+				array(
+					'img12.png',
+					'img10.png',
+					'img2.png',
+					'img1.png',
+				)
+			)
+		);
+	}
+
+	/**
+	 * Test rsort method
+	 */
+	public function test_rsort() {
+		$this->assertEquals(
+			array(
+				'0' => 'orange',
+				'1' => 'lemon',
+				'2' => 'banana',
+				'3' => 'apple',
+			),
+			Arr::rsort(
+				array(
+					'lemon',
+					'orange',
+					'banana',
+					'apple',
+				)
+			)
+		);
+	}
+
+	/**
+	 * Test sort method
+	 */
+	public function test_sort() {
+		$this->assertEquals(
+			array(
+				'apple',
+				'banana',
+				'lemon',
+				'orange',
+			),
+			Arr::sort(
+				array(
+					'lemon',
+					'orange',
+					'banana',
+					'apple',
+				)
+			)
+		);
+	}
 }

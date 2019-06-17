@@ -387,6 +387,41 @@ abstract class Arr {
 	}
 
 	/**
+	 * Sort an array using a "natural order" algorithm
+	 *
+	 * @param  array $array The input array.
+	 * @return array
+	 */
+	public static function natsort( $array ) {
+		natsort( $array );
+		return $array;
+	}
+
+	/**
+	 * Sort an array in reverse order
+	 *
+	 * @param  array $array The input array.
+	 * @param  int   $sort_flags You may modify the behavior of the sort using the optional parameter sort_flags, for details see sort().
+	 * @return array
+	 */
+	public static function rsort( $array, $sort_flags = SORT_REGULAR ) {
+		rsort( $array, $sort_flags );
+		return $array;
+	}
+
+	/**
+	 * Sort an array
+	 *
+	 * @param  array $array The input array.
+	 * @param  int   $sort_flags You may modify the behavior of the sort using the optional parameter sort_flags, for details see sort().
+	 * @return array The optional second parameter sort_flags may be used to modify the sorting behavior using these values.
+	 */
+	public static function sort( $array, $sort_flags = SORT_REGULAR ) {
+		sort( $array, $sort_flags );
+		return $array;
+	}
+
+	/**
 	 * Implement default array functions.
 	 *
 	 * @param  string $name function name like Arr::merge -> array_merge.
