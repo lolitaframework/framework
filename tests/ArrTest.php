@@ -546,4 +546,14 @@ class ArrTest extends TestCase {
 			)
 		);
 	}
+
+	/**
+	 * Test shuffle method
+	 */
+	public function test_shuffle() {
+		$this->assertNotEquals(
+			array( 1, 2, 3 ),
+			Arr::shuffle( array( 1, 2, 3 ) )
+		);
+	}
 }

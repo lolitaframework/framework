@@ -458,6 +458,17 @@ abstract class Arr {
 	}
 
 	/**
+	 * Shuffle an array
+	 *
+	 * @param  array $array The array.
+	 * @return array
+	 */
+	public static function shuffle( $array ) {
+		shuffle( $array );
+		return $array;
+	}
+
+	/**
 	 * Implement default array functions.
 	 *
 	 * @param  string $name function name like Arr::merge -> array_merge.
