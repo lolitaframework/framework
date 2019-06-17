@@ -328,6 +328,18 @@ abstract class Arr {
 	}
 
 	/**
+	 * Sort an array in reverse order and maintain index association
+	 *
+	 * @param  array $array The input array.
+	 * @param  int   $sort_flags You may modify the behavior of the sort using the optional parameter sort_flags, for details see sort().
+	 * @return array
+	 */
+	public static function arsort( $array, $sort_flags = SORT_REGULAR ) {
+		arsort( $array, $sort_flags );
+		return $array;
+	}
+
+	/**
 	 * Implement default array functions.
 	 *
 	 * @param  string $name function name like Arr::merge -> array_merge.
