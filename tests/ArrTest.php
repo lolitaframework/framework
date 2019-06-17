@@ -453,4 +453,97 @@ class ArrTest extends TestCase {
 			)
 		);
 	}
+
+	/**
+	 * Test uasort method
+	 */
+	public function test_uasort() {
+		$this->assertEquals(
+			array(
+				'd' => -9,
+				'h' => -4,
+				'c' => -1,
+				'e' => 2,
+				'g' => 3,
+				'a' => 4,
+				'f' => 5,
+				'b' => 8,
+			),
+			Arr::uasort(
+				array(
+					'a' => 4,
+					'b' => 8,
+					'c' => -1,
+					'd' => -9,
+					'e' => 2,
+					'f' => 5,
+					'g' => 3,
+					'h' => -4,
+				),
+				function( $a, $b ) {
+					if ( $a == $b ) {
+						return 0;
+					}
+					return $a < $b ? -1 : 1;
+				}
+			)
+		);
+	}
+
+	/**
+	 * Test uksort method
+	 */
+	public function test_uksort() {
+		$this->assertEquals(
+			array(
+				'an apple'  => 3,
+				'a banana'  => 4,
+				'the Earth' => 2,
+				'John'      => 1,
+			),
+			Arr::uksort(
+				array(
+					'John'      => 1,
+					'the Earth' => 2,
+					'an apple'  => 3,
+					'a banana'  => 4,
+				),
+				function( $a, $b ) {
+					$a = preg_replace( '@^(a|an|the) @', '', $a );
+					$b = preg_replace( '@^(a|an|the) @', '', $b );
+					return strcasecmp( $a, $b );
+				}
+			)
+		);
+	}
+
+	/**
+	 * Test usort method
+	 */
+	public function test_usort() {
+		$this->assertEquals(
+			array(
+				0 => 1,
+				1 => 2,
+				2 => 3,
+				3 => 5,
+				4 => 6,
+			),
+			Arr::usort(
+				array(
+					3,
+					2,
+					5,
+					6,
+					1,
+				),
+				function( $a, $b ) {
+					if ( $a == $b ) {
+						return 0;
+					}
+					return $a < $b ? -1 : 1;
+				}
+			)
+		);
+	}
 }

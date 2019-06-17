@@ -422,6 +422,42 @@ abstract class Arr {
 	}
 
 	/**
+	 * Sort an array with a user-defined comparison function and maintain index association
+	 *
+	 * @param  array    $array The input array.
+	 * @param  callable $value_compare_func See usort() and uksort() for examples of user-defined comparison functions.
+	 * @return array
+	 */
+	public static function uasort( $array, $value_compare_func ) {
+		uasort( $array, $value_compare_func );
+		return $array;
+	}
+
+	/**
+	 * Sort an array by keys using a user-defined comparison function
+	 *
+	 * @param  array    $array The input array.
+	 * @param  callable $key_compare_func The comparison function must return an integer less than, equal to, or greater than zero if the first argument is considered to be respectively less than, equal to, or greater than the second. Note that before PHP 7.0.0 this integer had to be in the range from -2147483648 to 2147483647.
+	 * @return array
+	 */
+	public static function uksort( $array, $key_compare_func ) {
+		uksort( $array, $key_compare_func );
+		return $array;
+	}
+
+	/**
+	 * Sort an array by values using a user-defined comparison function
+	 *
+	 * @param  array    $array The input array.
+	 * @param  callable $value_compare_func The comparison function must return an integer less than, equal to, or greater than zero if the first argument is considered to be respectively less than, equal to, or greater than the second. Note that before PHP 7.0.0 this integer had to be in the range from -2147483648 to 2147483647.
+	 * @return array
+	 */
+	public static function usort( $array, $value_compare_func ) {
+		usort( $array, $value_compare_func );
+		return $array;
+	}
+
+	/**
 	 * Implement default array functions.
 	 *
 	 * @param  string $name function name like Arr::merge -> array_merge.
