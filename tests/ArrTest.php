@@ -343,4 +343,48 @@ class ArrTest extends TestCase {
 			)
 		);
 	}
+
+	/**
+	 * Test krsort method
+	 */
+	public function test_krsort() {
+		$this->assertEquals(
+			array(
+				'd' => 'lemon',
+				'c' => 'apple',
+				'b' => 'banana',
+				'a' => 'orange',
+			),
+			Arr::krsort(
+				array(
+					'd' => 'lemon',
+					'a' => 'orange',
+					'b' => 'banana',
+					'c' => 'apple',
+				)
+			)
+		);
+	}
+
+	/**
+	 * Test ksort method
+	 */
+	public function test_ksort() {
+		$this->assertEquals(
+			array(
+				'a' => 'orange',
+				'b' => 'banana',
+				'c' => 'apple',
+				'd' => 'lemon',
+			),
+			Arr::ksort(
+				array(
+					'd' => 'lemon',
+					'a' => 'orange',
+					'b' => 'banana',
+					'c' => 'apple',
+				)
+			)
+		);
+	}
 }

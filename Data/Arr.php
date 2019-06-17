@@ -363,6 +363,30 @@ abstract class Arr {
 	}
 
 	/**
+	 * Sort an array by key in reverse order
+	 *
+	 * @param  array $array The input array.
+	 * @param  int   $sort_flags You may modify the behavior of the sort using the optional parameter sort_flags, for details see sort().
+	 * @return array
+	 */
+	public static function krsort( $array, $sort_flags = SORT_REGULAR ) {
+		krsort( $array, $sort_flags );
+		return $array;
+	}
+
+	/**
+	 * Sort an array by key
+	 *
+	 * @param  array $array The input array.
+	 * @param  int   $sort_flags You may modify the behavior of the sort using the optional parameter sort_flags, for details see sort().
+	 * @return array
+	 */
+	public static function ksort( $array, $sort_flags = SORT_REGULAR ) {
+		ksort( $array, $sort_flags );
+		return $array;
+	}
+
+	/**
 	 * Implement default array functions.
 	 *
 	 * @param  string $name function name like Arr::merge -> array_merge.
