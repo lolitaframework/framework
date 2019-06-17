@@ -475,4 +475,27 @@ class ArrTest extends TestCase {
 			)
 		);
 	}
+
+	/**
+	 * Test intersect_assoc method
+	 */
+	public function test_intersect_assoc() {
+		$this->assertEquals(
+			array( 'a' => 'green' ),
+			Arr::intersect_assoc(
+				array(
+					'a' => 'green',
+					'b' => 'brown',
+					'c' => 'blue',
+					'red',
+				),
+				array(
+					'a' => 'green',
+					'b' => 'yellow',
+					'blue',
+					'red',
+				)
+			)
+		);
+	}
 }

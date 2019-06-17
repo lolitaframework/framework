@@ -411,4 +411,15 @@ abstract class Arr {
 	public static function flip( $array ) {
 		return array_flip( $array );
 	}
+
+	/**
+	 * Computes the intersection of arrays with additional index check
+	 *
+	 * @param  array $array1 The array with master values to check.
+	 * @param  array $array2 An array to compare values against.
+	 * @return array
+	 */
+	public static function intersect_assoc( $array1, $array2 ) {
+		return call_user_func_array( 'array_intersect_assoc', func_get_args() );
+	}
 }
