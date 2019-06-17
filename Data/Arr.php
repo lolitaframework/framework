@@ -316,6 +316,18 @@ abstract class Arr {
 	}
 
 	/**
+	 * Searches the array for a given value and returns the first corresponding key if successful
+	 *
+	 * @param  array   $haystack The array.
+	 * @param  string  $needle The searched value.
+	 * @param  boolean $strict If the third parameter strict is set to TRUE then the search() function will search for identical elements in the haystack. This means it will also perform a strict type comparison of the needle in the haystack, and objects must be the same instance.
+	 * @return mixed
+	 */
+	public static function search( $haystack, $needle, $strict = false ) {
+		return array_search( $needle, $haystack, $strict );
+	}
+
+	/**
 	 * Implement default array functions.
 	 *
 	 * @param  string $name function name like Arr::merge -> array_merge.
@@ -346,24 +358,20 @@ abstract class Arr {
 			'array_intersect_uassoc',
 			'array_intersect_ukey',
 			'array_intersect',
-			'array_key_exists',
 			'array_key_first',
 			'array_key_last',
 			'array_keys',
 			'array_map',
 			'array_merge_recursive',
 			'array_merge',
-			'array_multisort',
 			'array_pad',
 			'array_pop',
 			'array_product',
-			'array_push',
 			'array_rand',
 			'array_reduce',
 			'array_replace_recursive',
 			'array_replace',
 			'array_reverse',
-			'array_search',
 			'array_shift',
 			'array_slice',
 			'array_splice',
