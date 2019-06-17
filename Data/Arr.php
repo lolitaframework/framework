@@ -302,6 +302,12 @@ abstract class Arr {
 		return array_map( $cb, $arr );
 	}
 
+	public static function __callStatic( $name, $arguments ) {
+		echo '<pre>';
+		var_dump($name);
+		echo '</pre>';
+	}
+
 	/**
 	 * Iteratively reduce the array to a single value using a callback function.
 	 *
