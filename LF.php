@@ -83,4 +83,18 @@ class LF {
 		$class_path = str_replace( __NAMESPACE__ . DS, __DIR__ . DS, $class_path );
 		return $class_path . '.php';
 	}
+
+	/**
+	 * Create module instance
+	 *
+	 * @author Guriev Eugen <gurievcreative@gmail.com>
+	 * @param string $module_name Module / Folder name.
+	 */
+	public function addModule($module_name)
+	{
+		if (!property_exists($this, $module_name)) {
+			$class = __CLASS__ . NS . $module_name . NS . $module_name;
+			$this->$module_name = new $class();
+		}
+	}
 }
