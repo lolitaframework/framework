@@ -26,4 +26,5 @@ sudo: false
 script:
     # Search theme for PHP syntax errors.
     - find . \( -name '*.php' \) -exec php -lf {} \;
-    - phpcs -p -s -v -n . --standard=./ruleset.xml --extensions=php
+    - composer install-dev
+    - composer lint
