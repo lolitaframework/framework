@@ -11,8 +11,10 @@ class Assets {
 
 	/**
 	 * Allowed config keys
+	 *
+	 * @var array
 	 */
-	const KEYS = array(
+	private $keys = array(
 		'register.scripts',
 		'register.styles',
 		'deregister.scripts',
@@ -60,7 +62,7 @@ class Assets {
 	 * @return array prepared
 	 */
 	public function prepare_data( $data ) {
-		return Chain::of( self::KEYS )
+		return Chain::of( $this->keys )
 			->map(
 				function( $key ) use ( $data ) {
 					return LF::get( $data, $key, array() );
@@ -78,7 +80,7 @@ class Assets {
 			)
 			->bind(
 				function( $values ) {
-					return LF::array_combine( self::KEYS, $values );
+					return LF::array_combine( $this->keys, $values );
 				}
 			)
 			->value();
@@ -92,7 +94,7 @@ class Assets {
 	 */
 	public function launch( $data ) {
 		return function() use ( $data ) {
-			return Chain::of( self::KEYS )
+			return Chain::of( $this->keys )
 				->map(
 					function( $key ) use ( $data ) {
 						$fn = LF::str_replace( $key, '.', '_' );
