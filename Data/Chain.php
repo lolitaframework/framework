@@ -45,7 +45,7 @@ class Chain {
 	private function get_all_methods() {
 		$reflection = new ReflectionClass( implode( '\\', array( __NAMESPACE__, 'View' ) ) );
 		$all_methods = $reflection->getMethods( ReflectionMethod::IS_STATIC );
-		$all_methods = array_merge( $all_methods, View::ALLOWED_METHODS );
+		$all_methods = array_merge( $all_methods, View::allowed_methods() );
 
 		$all_methods = Base::array_reduce(
 			$all_methods,

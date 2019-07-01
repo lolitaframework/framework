@@ -28,3 +28,4 @@ script:
     - find . \( -name '*.php' \) -exec php -lf {} \;
     - composer install-dev
     - composer lint
+    - composer test

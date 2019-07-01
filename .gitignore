@@ -1,3 +1,5 @@
 /vendor/
 /wpcs/
 /build/
+composer.lock
+.phpunit.result.cache
