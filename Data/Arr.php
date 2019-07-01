@@ -494,4 +494,19 @@ abstract class Arr extends Base {
 			}
 		);
 	}
+
+	/**
+	 * Decode json to array
+	 *
+	 * @param  string $str some string.
+	 * @return array
+	 */
+	public static function json_to_array( $str ) {
+		try {
+			$result = json_decode( $str, true );
+		} catch ( Exception $e ) {
+			$result = array();
+		}
+		return $result;
+	}
 }
