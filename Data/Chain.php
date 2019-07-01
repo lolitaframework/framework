@@ -2,11 +2,11 @@
 
 namespace LolitaFramework\Data;
 
-use \LolitaFramework\Data\Arr;
-use \LolitaFramework\Data\Path;
+use \LolitaFramework\Data\Base;
 use \LolitaFramework\Data\View;
 use \ReflectionClass;
 use \ReflectionMethod;
+use \Exception;
 
 /**
  * Class for working with views
@@ -21,11 +21,11 @@ class Chain {
 	private $value;
 
 	/**
-	 * All methods.
+	 * All methods
 	 *
-	 * @var mixed
+	 * @var array
 	 */
-	private $methods;
+	private $methods = [];
 
 	/**
 	 * Class constructor
@@ -43,30 +43,18 @@ class Chain {
 	 * @return array
 	 */
 	private function get_all_methods() {
-		$all_methods = Arr::map(
-			array(
-				'Arr',
-				'Path',
-				'View',
-			),
-			function( $el ) {
-				$reflection = new ReflectionClass( implode( '\\', array( __NAMESPACE__, $el ) ) );
-				return $reflection->getMethods( ReflectionMethod::IS_STATIC );
-			}
-		);
+		$reflection = new ReflectionClass( implode( '\\', array( __NAMESPACE__, 'View' ) ) );
+		$all_methods = $reflection->getMethods( ReflectionMethod::IS_STATIC );
+		$all_methods = array_merge( $all_methods, View::ALLOWED_METHODS );
 
-		$all_methods = Arr::reduce(
+		$all_methods = Base::array_reduce(
 			$all_methods,
 			function( $accumulator, $current ) {
-				return array_merge( $accumulator, $current );
-			},
-			array()
-		);
-
-		$all_methods = Arr::reduce(
-			$all_methods,
-			function( $accumulator, $current ) {
-				$accumulator[ $current->name ] = $current->class;
+				if ( $current instanceof ReflectionMethod ) {
+					$accumulator[ $current->name ] = $current->class;
+				} else {
+					$accumulator[ $current ] = implode( '\\', array( __NAMESPACE__, 'Base' ) );
+				}
 				return $accumulator;
 			},
 			array()
@@ -105,16 +93,6 @@ class Chain {
 	}
 
 	/**
-	 * Is have method in methods
-	 *
-	 * @param  string $name method.
-	 * @return boolean
-	 */
-	private function is_have_method( $name ) {
-		return isset( $this->methods[ $name ] );
-	}
-
-	/**
 	 * Magic call
 	 *
 	 * @param  string $name method name.
@@ -124,7 +102,7 @@ class Chain {
 	 */
 	public function __call( $name, $params ) {
 		$fn = array( $this->methods[ $name ], $name );
-		if ( $this->is_have_method( $name ) && is_callable( $fn, true ) ) {
+		if ( is_callable( $fn, true ) ) {
 
 			$params = null == $params ? array() : $params;
 			$params = Arr::prepend( $params, $this->value );

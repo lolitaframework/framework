@@ -8,7 +8,7 @@ use \LolitaFramework\Data\Path;
 /**
  * Class for working with views
  */
-class View {
+class View extends Path {
 	/**
 	 * Render view
 	 *

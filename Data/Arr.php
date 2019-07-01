@@ -3,12 +3,13 @@
 namespace LolitaFramework\Data;
 
 use \Exception;
-use \LolitaFramework\Data\Path;
+use \ArrayAccess;
+use \LolitaFramework\Data\Base;
 
 /**
  * Class for working with arrays
  */
-abstract class Arr {
+abstract class Arr extends Base {
 
 	/**
 	 * Append item to array
@@ -469,82 +470,28 @@ abstract class Arr {
 	}
 
 	/**
-	 * Implement default array functions.
+	 * Run first ro second cb based on condition
 	 *
-	 * @param  string $name function name like Arr::merge -> array_merge.
-	 * @param  array  $arguments function arguments.
-	 * @return mixed
-	 *
-	 * @throws Exception Function {function_name}. Not Found.
+	 * @param  array    $array input.
+	 * @param  Function $condition    condition function.
+	 * @param  Function $true_result  if codition will return true we run this function.
+	 * @param  Function $false_result if codition will return false we run this function.
+	 * @return array
 	 */
-	public static function __callStatic( $name, $arguments ) {
-		$full_name = 'array_' . $name;
-		$allowed_array_methods = array(
-			'array_change_key_case',
-			'array_chunk',
-			'array_column',
-			'array_combine',
-			'array_count_values',
-			'array_diff_assoc',
-			'array_diff_key',
-			'array_diff_uassoc',
-			'array_diff_ukey',
-			'array_diff',
-			'array_fill_keys',
-			'array_fill',
-			'array_filter',
-			'array_flip',
-			'array_intersect_assoc',
-			'array_intersect_key',
-			'array_intersect_uassoc',
-			'array_intersect_ukey',
-			'array_intersect',
-			'array_key_first',
-			'array_key_last',
-			'array_keys',
-			'array_map',
-			'array_merge_recursive',
-			'array_merge',
-			'array_pad',
-			'array_pop',
-			'array_product',
-			'array_rand',
-			'array_reduce',
-			'array_replace_recursive',
-			'array_replace',
-			'array_reverse',
-			'array_shift',
-			'array_slice',
-			'array_splice',
-			'array_sum',
-			'array_udiff_assoc',
-			'array_udiff_uassoc',
-			'array_udiff',
-			'array_uintersect_assoc',
-			'array_uintersect_uassoc',
-			'array_uintersect',
-			'array_unique',
-			'array_values',
-		);
-
-		$allowed_methods = array(
-			'count',
-			'current',
-			'end',
-			'key',
-			'next',
-			'prev',
-			'range',
-			'reset',
-		);
-
-		if ( self::in( $allowed_methods, $name ) ) {
-			return call_user_func_array( $name, $arguments );
+	public static function iif( $array, $condition, $true_result, $false_result = null ) {
+		if ( ! is_callable( $false_result ) ) {
+			$false_result = function() {
+				return '';
+			};
 		}
-
-		if ( self::in( $allowed_array_methods, $full_name ) ) {
-			return call_user_func_array( $full_name, $arguments );
-		}
-		throw new Exception( 'Function:' . $full_name . '. Not Found!' );
+		return self::map(
+			$array,
+			function( $el ) use ( $condition, $true_result, $false_result ) {
+				if ( call_user_func( $condition, $el ) ) {
+					return call_user_func( $true_result, $el );
+				}
+				return call_user_func( $false_result, $el );
+			}
+		);
 	}
 }

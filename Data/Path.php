@@ -2,10 +2,12 @@
 
 namespace LolitaFramework\Data;
 
+use \LolitaFramework\Data\Str;
+
 /**
  * Class for working with path
  */
-abstract class Path {
+abstract class Path extends Str {
 
 	/**
 	 * Join path pieces
