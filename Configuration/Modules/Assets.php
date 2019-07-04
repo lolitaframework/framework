@@ -17,6 +17,7 @@ class Assets {
 	private $keys = array(
 		'register.scripts',
 		'register.styles',
+		'localize',
 		'deregister.scripts',
 		'deregister.styles',
 	);
@@ -68,22 +69,28 @@ class Assets {
 					return LF::get( $data, $key, array() );
 				}
 			)
-			->map(
-				function( $data ) {
-					return LF::map(
-						$data,
-						function( $values ) {
-							return LF::map( $values, array( '\\LolitaFramework\\LF', 'runOrReturn' ) );
-						}
-					);
-				}
-			)
+			->map( array( &$this, 'runOrReturnParameters' ) )
 			->bind(
 				function( $values ) {
 					return LF::array_combine( $this->keys, $values );
 				}
 			)
 			->value();
+	}
+
+	/**
+	 * Run function if parameter was function or return value if not
+	 *
+	 * @param  array $data input.
+	 * @return array
+	 */
+	public function runOrReturnParameters( $data ) {
+		return LF::map(
+			$data,
+			function( $values ) {
+				return LF::map( $values, array( '\\LolitaFramework\\LF', 'runOrReturn' ) );
+			}
+		);
 	}
 
 	/**
@@ -97,15 +104,71 @@ class Assets {
 			return Chain::of( $this->keys )
 				->map(
 					function( $key ) use ( $data ) {
-						$fn = LF::str_replace( $key, '.', '_' );
-						LF::map(
-							$data[ $key ],
-							array( &$this, $fn )
-						);
-						return $data[ $key ];
+						return $this->parse_function( $key, $data );
 					}
-				)->value();
+				)
+				->map( array( &$this, 'filter_by_condition' ) )
+				->map( array( &$this, 'run_function' ) );
 		};
+	}
+
+	/**
+	 * Run register, deregister, localize function
+	 *
+	 * @param  array $function_and_data function and data.
+	 * @return array
+	 */
+	public function run_function( $function_and_data ) {
+		list( $fn, $data ) = $function_and_data;
+		return LF::map( $data, $fn );
+	}
+
+	/**
+	 * Filter by condition
+	 *
+	 * @param  array $function_and_data function and data.
+	 * @return array
+	 */
+	public function filter_by_condition( $function_and_data ) {
+		list( $fn, $data ) = $function_and_data;
+		return array(
+			$fn,
+			Chain::of( $data )
+				->where(
+					function( $el ) {
+						return $this->check_condition( end( $el ) );
+					}
+				)
+				->compact()
+				->value()
+		);
+	}
+
+	/**
+	 * Parse function from key
+	 *
+	 * @param  string $key some key.
+	 * @param  array  $data input.
+	 * @return array
+	 */
+	public function parse_function( $key, $data ) {
+		return array(
+			array( &$this, LF::str_replace( $key, '.', '_' ) ),
+			$data[ $key ]
+		);
+	}
+
+	/**
+	 * Check condition
+	 *
+	 * @param  Closure $condition some function.
+	 * @return boolean
+	 */
+	public function check_condition( $condition ) {
+		if ( is_callable( $condition ) ) {
+			return call_user_func( $condition );
+		}
+		return true;
 	}
 
 	/**
@@ -115,7 +178,7 @@ class Assets {
 	 * @return array
 	 */
 	public function register_scripts( $el ) {
-		list( $handle, $src, $deps, $ver, $media ) = $el + array( '', false, array(), false, false );
+		list( $handle, $src, $deps, $ver, $media ) = $el + array( '', false, array(), false, false, null );
 		wp_enqueue_script( $handle, $src, $deps, $ver, $media );
 		return $el;
 	}
@@ -127,8 +190,20 @@ class Assets {
 	 * @return array
 	 */
 	public function register_styles( $el ) {
-		list( $handle, $src, $deps, $ver, $media ) = $el + array( '', false, array(), false, 'all' );
+		list( $handle, $src, $deps, $ver, $media ) = $el + array( '', false, array(), false, 'all', null );
 		wp_enqueue_style( $handle, $src, $deps, $ver, $media );
+		return $el;
+	}
+
+	/**
+	 * Localizes a registered script with data for a JavaScript variable.
+	 *
+	 * @param  array $el arguments for wp_localize_script
+	 * @return array
+	 */
+	public function localize( $el ) {
+		list( $handle, $object_name, $l10n ) = $el + array( '', '', array(), null );
+		wp_localize_script( $handle, $object_name, $l10n );
 		return $el;
 	}
 
