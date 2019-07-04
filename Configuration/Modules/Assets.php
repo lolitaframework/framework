@@ -69,7 +69,7 @@ class Assets {
 					return LF::get( $data, $key, array() );
 				}
 			)
-			->map( array( &$this, 'runOrReturnParameters' ) )
+			->map( array( &$this, 'run_or_return_parameters' ) )
 			->bind(
 				function( $values ) {
 					return LF::array_combine( $this->keys, $values );
@@ -84,11 +84,11 @@ class Assets {
 	 * @param  array $data input.
 	 * @return array
 	 */
-	public function runOrReturnParameters( $data ) {
+	public function run_or_return_parameters( $data ) {
 		return LF::map(
 			$data,
 			function( $values ) {
-				return LF::map( $values, array( '\\LolitaFramework\\LF', 'runOrReturn' ) );
+				return LF::map( $values, array( '\\LolitaFramework\\LF', 'run_or_return' ) );
 			}
 		);
 	}
@@ -140,7 +140,7 @@ class Assets {
 					}
 				)
 				->compact()
-				->value()
+				->value(),
 		);
 	}
 
@@ -154,7 +154,7 @@ class Assets {
 	public function parse_function( $key, $data ) {
 		return array(
 			array( &$this, LF::str_replace( $key, '.', '_' ) ),
-			$data[ $key ]
+			$data[ $key ],
 		);
 	}
 
@@ -198,7 +198,7 @@ class Assets {
 	/**
 	 * Localizes a registered script with data for a JavaScript variable.
 	 *
-	 * @param  array $el arguments for wp_localize_script
+	 * @param  array $el arguments for wp_localize_script.
 	 * @return array
 	 */
 	public function localize( $el ) {

@@ -15,7 +15,7 @@ abstract class Fn extends View {
 	 * @param  mixed $fn function or value.
 	 * @return mixed
 	 */
-	public static function runOrReturn( $fn ) {
+	public static function run_or_return( $fn ) {
 		if ( is_callable( $fn ) ) {
 			return $fn();
 		}
