@@ -128,7 +128,7 @@ class Configuration {
 				Path::join(
 					array(
 						$base,
-						Str::lower( $path_info['filename'] ) . self::CONFIG_EXTENSION,
+						Str::snake( $path_info['filename'], '-' ) . self::CONFIG_EXTENSION,
 					)
 				)
 			);
@@ -173,9 +173,51 @@ class Configuration {
 	 */
 	public function init( $lf ) {
 		return function( $path_info ) use ( $lf ) {
-			$class_name = $path_info['class_name'];
-			$config_data = $path_info['config_data'];
-			return new $class_name( $lf, $config_data );
+			$class_name      = $path_info['class_name'];
+			$config_data     = $path_info['config_data'];
+			$required_fn     = array( $class_name, 'required' );
+			$required_params = array();
+			$def_fn          = array( $class_name, 'defaults' );
+
+			if ( is_callable( $required_fn ) ) {
+				$required_params = $required_fn();
+			}
+
+			if ( ! is_callable( $def_fn ) ) {
+				$def_fn = function( $el ) {
+					return $el;
+				};
+			}
+
+			return new $class_name(
+				$lf,
+				Chain::of( $config_data )
+					->map( $this->check_required_params( $required_params ) )
+					->map( $def_fn )
+			);
+		};
+	}
+
+	/**
+	 * Check post type parameters by errors
+	 *
+	 * @throws Exception Parameter "%s" is required!.
+	 * @param  array $required required arguments.
+	 * @return Function
+	 */
+	public function check_required_params( $required ) {
+		return function( $item ) use ( $required ) {
+			Arr::map(
+				$required,
+				function( $required_key ) use ( $item ) {
+					if ( ! array_key_exists( $required_key, $item ) ) {
+						/* translators: %s: required key */
+						throw new Exception( sprintf( __( 'Parameter "%s" is required!', 'events' ), $required_key ) );
+					}
+					return $required_key;
+				}
+			);
+			return $item;
 		};
 	}
 }

@@ -305,6 +305,19 @@ abstract class Arr extends Base {
 	}
 
 	/**
+	 * Apply a user supplied function to every member of an array
+	 *
+	 * @param  array    $array The input array.
+	 * @param  function $callback Typically, callback takes on two parameters. The array parameter's value being the first, and the key/index second.
+	 * @param  mixed    $userdata If the optional userdata parameter is supplied, it will be passed as the third parameter to the callback.
+	 * @return array
+	 */
+	public static function walk( $array, $callback, $userdata = null ) {
+		array_walk( $array, $callback, $userdata );
+		return $array;
+	}
+
+	/**
 	 * Checks if a value exists in an array
 	 *
 	 * @param  array   $haystack The array.
@@ -480,8 +493,8 @@ abstract class Arr extends Base {
 	 */
 	public static function iif( $array, $condition, $true_result, $false_result = null ) {
 		if ( ! is_callable( $false_result ) ) {
-			$false_result = function() {
-				return '';
+			$false_result = function( $el ) {
+				return $el;
 			};
 		}
 		return self::map(

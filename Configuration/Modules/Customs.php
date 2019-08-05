@@ -1,7 +1,6 @@
 <?php
 namespace LolitaFramework\Configuration\Modules;
 
-use \LolitaFramework\Data\Chain;
 use \LolitaFramework\Data\Arr;
 use \LolitaFramework\Data\Path;
 
@@ -21,12 +20,10 @@ class Customs {
 	 * @param mixed $lf Lolita Framework instance.
 	 * @param mixed $data config data.
 	 */
-	public function __construct( $lf, $data = array() ) {
-		Chain::of( $data )
-			->map( $this->prepare_patterns( dirname( $lf->lf_folder ) ) )
+	public function __construct( $lf, $data ) {
+		$data->map( $this->prepare_patterns( dirname( $lf->lf_folder ) ) )
 			->array_reduce( array( &$this, 'get_paths' ), array() )
-			->map( array( &$this, 'load_classes' ) )
-			->value();
+			->map( array( &$this, 'load_classes' ) );
 	}
 
 	/**

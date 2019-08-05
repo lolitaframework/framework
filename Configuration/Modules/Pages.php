@@ -1,7 +1,6 @@
 <?php
 namespace LolitaFramework\Configuration\Modules;
 
-use \LolitaFramework\Data\Chain;
 use \LolitaFramework\Data\Arr;
 
 /**
@@ -15,7 +14,7 @@ class Pages {
 	 * @param mixed $lf Lolita Framework instance.
 	 * @param mixed $data config data.
 	 */
-	public function __construct( $lf, $data = array() ) {
+	public function __construct( $lf, $data ) {
 		add_action( 'admin_menu', $this->add_pages( $data ) );
 	}
 
@@ -26,13 +25,11 @@ class Pages {
 	 */
 	public function add_pages( $data ) {
 		return function() use ( $data ) {
-			$a = Chain::of( $data )
-				->iif(
-					array( &$this, 'is_sub_menu' ),
-					array( &$this, 'add_sub_menu' ),
-					array( &$this, 'add_menu' )
-				)
-				->value();
+			$data->iif(
+				array( &$this, 'is_sub_menu' ),
+				array( &$this, 'add_sub_menu' ),
+				array( &$this, 'add_menu' )
+			);
 		};
 	}
 

@@ -2,9 +2,9 @@
 namespace LolitaFramework\Configuration\Modules;
 
 /**
- * Actions configuration module
+ * Shortcodes configuration module
  */
-class Actions {
+class Shortcodes {
 
 	/**
 	 * Class constructor
@@ -22,23 +22,8 @@ class Actions {
 	 * @param array $el action data.
 	 */
 	public function add( $el ) {
-		add_action( $el['tag'], $el['function_to_add'], $el['priority'], $el['accepted_args'] );
+		add_shortcode( $el['tag'], $el['func'] );
 		return $el;
-	}
-
-	/**
-	 * Set dafault data
-	 *
-	 * @param array $item Input.
-	 */
-	public static function defaults( $item ) {
-		return array_merge(
-			array(
-				'priority'      => 10,
-				'accepted_args' => 1,
-			),
-			$item
-		);
 	}
 
 	/**
@@ -49,7 +34,7 @@ class Actions {
 	public static function required() {
 		return array(
 			'tag',
-			'function_to_add',
+			'func',
 		);
 	}
 }
