@@ -7,6 +7,9 @@ The Lolita framework is a tool aimed to WordPress developers of any levels. But 
 
 Lolita framework is a tool to help you develop websites, plugins and web applications faster using [WordPress](https://wordpress.org/). Using an elegant and simple code syntax, Lolita framework helps you structure and organize your code and allows you to better manage and scale your WordPress websites, plugins and applications.
 
+Framework in Real life:
+* Beagl - https://wordpress.org/plugins/beagl
+
 Development team
 ----------------
 The framework was created by [Eugen Guriev](mailto:eg@beagl.in), who continues to lead the development.
